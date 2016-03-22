@@ -1,0 +1,16 @@
+--- omniORBpy-3.4/mk/beforeauto.mk.in	2009-06-18 08:51:20.000000000 +0000
++++ omniORBpy-3.4.new/mk/beforeauto.mk.in	2010-10-21 13:41:01.285106847 +0000
+@@ -31,11 +31,13 @@
+ LIBDIR  = lib
+ BINDIR  = bin
+ 
++ifndef OMNIORB_BINDIR
+ ifeq ($(OMNIORB_ROOT),)
+ OMNIORB_BINDIR = $(TOP)/$(BINDIR)
+ else
+ OMNIORB_BINDIR = $(OMNIORB_ROOT)/$(BINDIR)
+ endif
++endif
+ 
+ 
+ #############################################################################

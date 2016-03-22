@@ -1,0 +1,13 @@
+--- git/configure.ac	2016-03-02 07:00:31.568548917 -0500
++++ git-patched/configure.ac	2016-03-02 07:06:48.800526356 -0500
+@@ -48,6 +48,10 @@
+ PKG_CHECK_MODULES([BULKIO], [bulkioInterfaces >= 2.0])
+ RH_PKG_IDLDIR([BULKIO], [bulkioInterfaces])
+ 
++# Adjust the variables from RH_PKG_IDLDIR for the staging area.
++OSSIE_IDLDIR="${STAGING_BASE}${OSSIE_IDLDIR}"
++BULKIO_IDLDIR="${STAGING_BASE}${BULKIO_IDLDIR}"
++
+ AX_BOOST_BASE([1.41])
+ AX_BOOST_THREAD
+ AX_BOOST_SYSTEM

@@ -1,0 +1,25 @@
+diff --git src/etc/Makefile.am src/etc/Makefile.am
+index ba2deb8..4f4eef9 100644
+--- src/etc/Makefile.am
++++ src/etc/Makefile.am
+@@ -29,9 +29,7 @@ ldsoconfd_DATA = ld.so.conf.d/redhawk.conf
+ 
+ profileddir = $(sysconfdir)/profile.d
+ profiled_DATA = profile.d/redhawk.sh \
+-  profile.d/redhawk.csh \
+-  profile.d/redhawk-sdrroot.sh \
+-  profile.d/redhawk-sdrroot.csh
++  profile.d/redhawk-sdrroot.sh
+ 
+ lib = lib${gr_libdir_suffix}
+ edit = $(SED) \
+@@ -46,9 +44,7 @@ $(ldsoconfd_DATA) $(profiled_DATA): Makefile
+ 
+ ld.so.conf.d/redhawk.conf: ld.so.conf.d/redhawk.conf.in
+ profile.d/redhawk.sh: profile.d/redhawk.sh.in
+-profile.d/redhawk.csh: profile.d/redhawk.csh.in
+ profile.d/redhawk-sdrroot.sh: profile.d/redhawk-sdrroot.sh.in
+-profile.d/redhawk-sdrroot.csh: profile.d/redhawk-sdrroot.csh.in
+ 
+ DISTCLEANFILES = $(ldsoconfd_DATA) $(profiled_DATA)
+ 

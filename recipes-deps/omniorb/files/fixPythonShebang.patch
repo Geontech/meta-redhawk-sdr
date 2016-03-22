@@ -1,0 +1,10 @@
+diff --git a/src/tool/omniidl/python/scripts/omniidl.in b/src/tool/omniidl/python/scripts/omniidl.in
+index d5ad0b9..a04bfb4 100644
+--- a/src/tool/omniidl/python/scripts/omniidl.in
++++ b/src/tool/omniidl/python/scripts/omniidl.in
+@@ -1,4 +1,4 @@
+-#!@PYTHON@
++#!/usr/bin/env python
+ # -*- python -*-
+ #                           Package   : omniidl
+ # omniidl.in                Created on: 1999/10/29

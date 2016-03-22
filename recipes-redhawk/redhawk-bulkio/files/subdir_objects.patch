@@ -1,0 +1,13 @@
+--- git/configure.ac	2016-02-29 07:20:40.667027864 -0500
++++ git-patched/configure.ac	2016-02-29 07:22:28.202675436 -0500
+@@ -21,8 +21,8 @@
+ AC_INIT(bulkioInterfaces, 2.0.0)
+ AC_SUBST([LIBBULKIOINTERFACES_VERSION_INFO], [3:0:1])
+ 
+-#AM_INIT_AUTOMAKE([nostdinc subdir-objects])
+-AM_INIT_AUTOMAKE([nostdinc])
++AM_INIT_AUTOMAKE([nostdinc subdir-objects])
++#AM_INIT_AUTOMAKE([nostdinc])
+ AC_PROG_CC
+ AC_PROG_CXX
+ AC_PROG_INSTALL

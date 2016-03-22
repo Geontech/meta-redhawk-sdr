@@ -1,0 +1,80 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          omniNames
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
+# Should-Start:      $syslog
+# Should-Stop:       $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start the omniNames Interoperable Naming Service
+# Description:       Starts the CORBA Interoperable Naming Service
+#                    from omniORB.
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/bin/omniNames
+NAME=omniNames
+DESC="omniORB name server"
+SCRIPTNAME=/etc/init.d/$NAME
+LOGDIR=/var/log/omniNames
+LOGFILE=$LOGDIR/omniNames.log
+PIDFILE=/var/run/$NAME.pid
+
+test -f $DAEMON || exit 0
+
+do_start() {
+        start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --exec $DAEMON -- -errlog $LOGFILE -logdir $LOGDIR -start 
+}
+
+do_stop() {
+        start-stop-daemon --oknodo --stop --quiet \
+          --pidfile $PIDFILE --exec $DAEMON
+}
+
+do_clean() {
+        echo "Remove files: $LOGDIR $PIDFILE"
+        rm -rf $LOGDIR
+	mkdir $LOGDIR
+        rm -f $PIDFILE
+}
+
+
+case "$1" in
+  start)
+        echo "Starting $DESC" "omniNames"
+        do_clean
+        do_start
+        echo $?
+        ;;
+  stop)
+        echo "Stopping $DESC" "omniNames"
+        do_stop
+        echo $?
+        do_clean
+        ;;
+  restart|force-reload)
+        echo "Restarting $DESC: " "omniNames"
+        do_stop
+        do_clean
+        sleep 1
+        do_start
+        echo $?
+        ;;
+  clean)
+        do_clean
+        echo $?
+        ;;
+  try-restart|status)
+        echo "Unimplemented feature"
+        exit 3
+        ;;
+  *)
+        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload}" >&2
+        exit 2
+        ;;
+esac
+
+exit 0
+

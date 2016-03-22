@@ -1,0 +1,26 @@
+diff --git src/configure.ac src/configure.ac
+index a3c5992..9b6b0bd 100644
+--- src/configure.ac
++++ src/configure.ac
+@@ -85,7 +85,9 @@ PKG_CHECK_EXISTS([omniCOS4 >= 4.0.0], [libomnicos_exist=yes], [libomnicos_exist=
+ dnl Use PKG_CHECK_MODULES to declare the CFLAGS and LIBS varible
+ AC_MSG_RESULT([yes])
+ PKG_CHECK_MODULES([OMNICOS], [omniCOS4 >= 4.0.0])
+-OMNICOS_IDLDIR=`pkg-config --variable=idldir omniCOS4`
++if test x"$OMNICOS_IDLDIR" = x ; then
++        OMNICOS_IDLDIR=`pkg-config --variable=idldir omniCOS4`
++fi
+ AC_SUBST(OMNICOS_IDLDIR)
+ 
+ AC_DEFINE(ENABLE_EVENTS, 1, [Define if events are enabled])
+@@ -98,7 +100,9 @@ if test "$IDL" = no; then
+ fi
+ 
+ AC_MSG_CHECKING([for default IDL path])
+-idldir=`pkg-config --variable=idldir omniORB4`
++if test x"$idldir" = x ; then
++        idldir=`pkg-config --variable=idldir omniORB4`
++fi
+ AC_MSG_RESULT([$idldir])
+ AC_SUBST(IDLDIR, [$idldir])
+ 

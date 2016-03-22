@@ -1,0 +1,13 @@
+diff --git src/control/sdr/dommgr/DomainManager.spd.xml src/control/sdr/dommgr/DomainManager.spd.xml
+index 1e87193..cea8d85 100644
+--- src/control/sdr/dommgr/DomainManager.spd.xml
++++ src/control/sdr/dommgr/DomainManager.spd.xml
+@@ -36,8 +36,6 @@ with this program.  If not, see http://www.gnu.org/licenses/.
+ 		    <localfile name="DomainManager"/>
+ 		    <entrypoint>/mgr/DomainManager</entrypoint>
+ 		</code>
+-		<processor name="x86_64"/>
+-		<processor name="x86"/>
+ 		<os name="Linux"/>
+ 	</implementation>
+ </softpkg>

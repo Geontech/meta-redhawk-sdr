@@ -1,0 +1,17 @@
+diff --git cpp/Makefile.am cpp/Makefile.am
+index b436b35..cc3403e 100644
+--- cpp/Makefile.am
++++ cpp/Makefile.am
+@@ -17,10 +17,10 @@
+ #
+  
+ ossieName = SigGen
+-bindir = $(prefix)/dom/components/SigGen/cpp/
++bindir = $(SDR_ROOT)/dom/components/SigGen/cpp/
+ bin_PROGRAMS = SigGen
+ 
+-xmldir = $(prefix)/dom/components/SigGen/
++xmldir = $(SDR_ROOT)/dom/components/SigGen/
+ dist_xml_DATA = ../SigGen.prf.xml ../SigGen.scd.xml ../SigGen.spd.xml
+ 
+ distclean-local:

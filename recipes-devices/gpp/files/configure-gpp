@@ -1,0 +1,12 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: configure-gpp
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+### END INIT INFO
+
+cd SDRROOT/dev/devices/GPP
+cpp/devconfig.py --location=./ --mcastnic=MCASTNIC
+

@@ -1,0 +1,90 @@
+diff -Nuar src/acinclude/ossie.m4 src-patched/acinclude/ossie.m4
+--- src/acinclude/ossie.m4	2016-03-01 09:51:46.915186392 -0500
++++ src-patched/acinclude/ossie.m4	2016-03-01 10:19:26.815427832 -0500
+@@ -37,12 +37,6 @@
+         ossie_cv_ossie_home=$ac_default_prefix
+       fi
+     )
+-
+-    dnl Check if this is a cross, if so prepend the sysroot to the ossie home
+-    AS_IF([test "x$cross_compiling" = "xyes"], [
+-      CROSS_SYSROOT=`$CC --print-sysroot`
+-      ossie_cv_ossie_home=${CROSS_SYSROOT}${ossie_cv_ossie_home}
+-    ])
+   ])
+   AC_SUBST(OSSIE_HOME, $ossie_cv_ossie_home)
+ ])
+@@ -60,20 +54,22 @@
+ export PKG_CONFIG_PATH
+ ])
+ 
+-dnl use OSSIEHOME as the default prefix unless --prefix is provided
++dnl use OSSIEHOME as the default prefix even if --prefix is provided
+ AC_DEFUN([OSSIE_OSSIEHOME_AS_PREFIX],
+ [
+-  AS_IF([test "x${prefix}" = "xNONE"], [
+-    dnl Prefix wasn't provided, we need to use ossie home
+-    AC_REQUIRE([OSSIE_OSSIEHOME])
+-    AS_IF([test "x${ossie_cv_ossie_home}" = "xNONE"], [
+-      AC_MSG_ERROR([ossie root directory is not set; this is not expected])
+-    ])
+-    dnl Use ossie home value for prefix
+-    ac_default_prefix=${ossie_cv_ossie_home}
+-    prefix=${ossie_cv_ossie_home}
+-    AC_MSG_NOTICE(using ${ossie_cv_ossie_home} as installation prefix)
+-  ])
++  AC_REQUIRE([OSSIE_OSSIEHOME])
++  ac_default_prefix=${ossie_cv_ossie_home}
++  prefix=${ossie_cv_ossie_home}
++  
++  dnl Also set other important install paths that got passed by bitbake
++  bindir=${prefix}/bin
++  libdir=${prefix}/lib
++  datadir=${prefix}/share
++  exec_prefix=${prefix}
++  sbindir=${prefix}/sbin
++  includedir=${prefix}/include
++  
++  AC_MSG_NOTICE(using ${ossie_cv_ossie_home} as installation prefix)
+ ])
+ 
+ dnl A variant on OSSIE_SDRROOT for use *only* when OSSIE_OSSIEHOME_AS_PREFIX is being used. Priorities:
+diff -Nuar src/acinclude/redhawk.m4 src-patched/acinclude/redhawk.m4
+--- src/acinclude/redhawk.m4	2016-03-01 09:51:46.915186392 -0500
++++ src-patched/acinclude/redhawk.m4	2016-03-01 10:14:48.420199987 -0500
+@@ -49,24 +49,19 @@
+ # -----------------------------------------------------------------------------
+ AC_DEFUN([RH_SOFTPKG_PREFIX],
+ [
+-  AS_IF([test "x${prefix}" = "xNONE"],
+-  [
+-    AC_REQUIRE([OSSIE_SDRROOT])
+-    AS_IF([test "x${ossie_cv_ossie_home}" = "xNONE"], [
+-      AC_MSG_ERROR([SDRROOT is not set; this is not expected])
+-    ])
+-    AC_MSG_CHECKING([for softpkg prefix])
+-    rh_softpkg_path=`echo $1 | tr "." "/"`
+-    prefix="${ossie_cv_sdr_root}/dom/deps/${rh_softpkg_path}"
+-    # Overrule "lib64" suffix
+-    AS_IF([test "x${gr_libdir_suffix}" = "x64"], [
+-      libdir=`echo ${libdir} | sed 's/64$//'`
+-    ])
+-    AC_MSG_RESULT([${prefix}])
++  AC_REQUIRE([OSSIE_SDRROOT])
++  AS_IF([test "x${ossie_cv_ossie_home}" = "xNONE"], [
++    AC_MSG_ERROR([SDRROOT is not set; this is not expected])
+   ])
+-  AS_IF([test "x${exec_prefix}" = "xNONE" -a "x$2" != "x"], [
+-    exec_prefix="\${prefix}/$2"
++  AC_MSG_CHECKING([for softpkg prefix])
++  rh_softpkg_path=`echo $1 | tr "." "/"`
++  prefix="${ossie_cv_sdr_root}/dom/deps/${rh_softpkg_path}"
++  # Overrule "lib64" suffix
++  AS_IF([test "x${gr_libdir_suffix}" = "x64"], [
++    libdir=`echo ${libdir} | sed 's/64$//'`
+   ])
++  AC_MSG_RESULT([${prefix}])
++  exec_prefix="\${prefix}/$2"
+ ])
+ 
+ dnl Internal function to update C++ flags using the current list of soft

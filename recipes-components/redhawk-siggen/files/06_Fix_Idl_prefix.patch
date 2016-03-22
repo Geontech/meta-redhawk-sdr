@@ -1,0 +1,13 @@
+diff --git src/ossie.pc.in src/ossie.pc.in
+index 86a4a40..f778a1d 100644
+--- src/ossie.pc.in
++++ src/ossie.pc.in
+@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
+ libdir=@libdir@
+ includedir=${prefix}/include
+ extraincludedir=${prefix}/include/ossie
+-idldir=${prefix}/share/idl
++idldir=${exec_prefix}/share/idl
+ javadir=@javadir@
+ classpath=${javadir}/ossie.jar:${javadir}/CFInterfaces.jar:${javadir}/log4j-1.2.15.jar:${javadir}/apache-commons-lang-2.4.jar
+ 

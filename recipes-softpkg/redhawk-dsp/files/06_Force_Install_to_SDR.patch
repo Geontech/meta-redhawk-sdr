@@ -1,0 +1,16 @@
+diff --git python/Makefile.am python/Makefile.am
+index 8266a77..35383d0 100644
+--- python/Makefile.am
++++ python/Makefile.am
+@@ -20,9 +20,9 @@
+ 
+ # vim: noet: softtabstop=0
+ 
+-xmldir = $(prefix)/dev/devices/GPP/
++xmldir = $(SDR_ROOT)/dev/devices/GPP/
+ dist_xml_DATA = ../GPP.prf.xml ../GPP.scd.xml ../GPP.spd.xml
+-devdir = $(prefix)/dev/devices/GPP/python/
++devdir = $(SDR_ROOT)/dev/devices/GPP/python/
+ 
+ distclean-local:
+ 	rm -f config.*

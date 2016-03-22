@@ -1,0 +1,78 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          omniEvents
+# Required-Start:    $local_fs $remote_fs $network $omniNames
+# Required-Stop:     $local_fs $remote_fs $network $omniNames
+# Should-Start:      $omniNames
+# Should-Stop:       $omniNames
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start the omniEvents Event Service
+# Description:       Start the omniEvents Event Service.
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/sbin/omniEvents
+NAME=omniEvents
+DESC="service"
+SCRIPTNAME=/etc/init.d/$NAME
+LOGDIR=/var/log/omniEvents
+PIDFILE=/var/run/$NAME.pid
+
+test -f $DAEMON || exit 0
+
+do_start() {
+        start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --exec $DAEMON -- -l $LOGDIR
+}
+
+do_stop() {
+        start-stop-daemon --oknodo --stop --quiet \
+          --pidfile $PIDFILE --exec $DAEMON
+}
+
+do_clean() {
+        echo "Remove files: $LOGDIR $PIDFILE"
+        rm -rf $LOGDIR
+	mkdir $LOGDIR
+        rm -f $PIDFILE
+}
+
+
+case "$1" in
+  start)
+        echo "Starting $DESC" "omniEvents"
+        do_clean
+        do_start
+        echo $?
+        ;;
+  stop)
+        echo "Stopping $DESC" "omniEvents"
+        do_stop
+        echo $?
+        do_clean
+        ;;
+  restart|force-reload)
+        echo "Restarting $DESC: " "omniEvents"
+        do_stop
+        do_clean
+        sleep 1
+        do_start
+        echo $?
+        ;;
+  clean)
+        do_clean
+        echo $?
+        ;;
+  try-restart|status)
+        echo "Unimplemented feature"
+        exit 3
+        ;;
+  *)
+        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload}" >&2
+        exit 2
+        ;;
+esac
+
+exit 0
+

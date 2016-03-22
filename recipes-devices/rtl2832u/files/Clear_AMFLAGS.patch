@@ -1,0 +1,11 @@
+--- cpp/Makefile.am	2016-03-09 13:10:52.280277289 -0500
++++ cpp-patched/Makefile.am	2016-03-09 13:23:41.354773031 -0500
+@@ -26,7 +26,7 @@
+ dist_xml_DATA = ../RTL2832U.scd.xml ../RTL2832U.prf.xml ../RTL2832U.spd.xml
+ confdir = $(prefix)/dev/devices/rh/RTL2832U/
+ dist_conf_SCRIPTS = ../nodeconfig.py
+-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
++ACLOCAL_AMFLAGS = -I m4
+ AUTOMAKE_OPTIONS = subdir-objects
+ 
+ 

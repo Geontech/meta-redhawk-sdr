@@ -1,0 +1,11 @@
+diff -Nuar git/aclocal.d/ACX_PTHREAD.m4 git-patch/aclocal.d/ACX_PTHREAD.m4
+--- git/aclocal.d/ACX_PTHREAD.m4	2016-02-12 12:04:54.522537144 -0500
++++ git-patch/aclocal.d/ACX_PTHREAD.m4	2016-02-12 13:07:21.451239363 -0500
+@@ -239,4 +239,5 @@
+         $2
+ fi
+ AC_LANG_RESTORE
+-])dnl ACX_PTHREAD
+\ No newline at end of file
++])dnl ACX_PTHREAD
++

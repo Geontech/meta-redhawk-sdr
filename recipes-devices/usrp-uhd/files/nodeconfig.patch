@@ -1,0 +1,29 @@
+--- git/nodeconfig.py	2016-03-10 07:01:00.251851153 -0500
++++ git-patched/nodeconfig.py	2016-03-10 07:04:01.358334653 -0500
+@@ -121,7 +121,7 @@
+             compfiles = [{'id':USRP_UHD_componentfile, 'localfile':os.path.join('/devices', 'rh', 'USRP_UHD', 'USRP_UHD.spd.xml')}]
+         else:
+             compfiles = [{'id':USRP_UHD_componentfile, 'localfile':os.path.join('/nodes', self.options.nodename.replace('.','/'), 'USRP_UHD', 'USRP_UHD.spd.xml')}]
+-        compplacements = [{'refid':USRP_UHD_componentfile, 'instantiations':[{'id':self.uuids["componentinstantiation"], 'usagename':'rh.USRP_UHD_' + self.hostname.replace('.', '_')}]}]
++        compplacements = [{'refid':USRP_UHD_componentfile, 'instantiations':[{'id':self.uuids["componentinstantiation"], 'usagename':'rh.USRP_UHD'}]}]
+ 
+         #####################
+         # DeviceManager files
+@@ -207,7 +207,7 @@
+         # Set the parameters for the target_device
+         for struct in _prf.get_struct():
+             if struct.get_name() in "target_device":
+-                for simple in struct.get_props():
++                for simple in struct.get_simple():
+                     if simple.get_name() in self.props:
+                         simple.set_value(str(self.props[simple.get_name()]))
+                                
+@@ -229,7 +229,7 @@
+     from optparse import OptionParser
+     parser = OptionParser()
+     parser.usage = "%s [options] [simple_prop1 simple_value1]..."
+-    parser.add_option("--domainname", dest="domainname", default=None,
++    parser.add_option("--domainname", dest="domainname", default="REDHAWK_DEV",
+                       help="Must give a domainname")
+     parser.add_option("--usrptype", dest="type", default="",
+                       help="The hardware series identifier (usrp1, usrp2, b200, x300, ...)")

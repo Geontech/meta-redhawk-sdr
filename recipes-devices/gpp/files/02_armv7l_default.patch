@@ -1,0 +1,31 @@
+--- cpp/devconfig.py	2016-03-09 11:18:45.081892203 -0500
++++ cpp-patched/devconfig.py	2016-03-09 11:49:18.403838466 -0500
+@@ -63,7 +63,7 @@
+                           'i686':'x86', 
+                           'x86_64':'x86_64', 
+                           'armv7l':'armv7l'}
+-        self.props['processor_name']  = tmp_proc_map.get(tmp_uname_p, 'x86')
++        self.props['processor_name']  = tmp_proc_map.get(tmp_uname_p, 'armv7l')
+ 
+         self._gather_java_information()
+         self._gather_python_information()
+--- cpp/create_node.py	2016-03-09 12:33:32.141934365 -0500
++++ cpp-patched/create_node.py	2016-03-09 12:37:17.582789626 -0500
+@@ -92,7 +92,7 @@
+                           'i686':'x86', 
+                           'x86_64':'x86_64', 
+                           'armv7l':'armv7l'}
+-        self.props['processor_name']  = tmp_proc_map.get(tmp_uname_p, 'x86')
++        self.props['processor_name']  = tmp_proc_map.get(tmp_uname_p, 'armv7l')
+ 
+         self._gather_java_information()
+         self._gather_python_information()
+@@ -254,7 +254,7 @@
+             compfiles = [{'id':GPP_componentfile, 'localfile':os.path.join('/devices', 'GPP', 'GPP.spd.xml')}]
+         else:
+             compfiles = [{'id':GPP_componentfile, 'localfile':os.path.join('/nodes', self.options.nodename, 'GPP', 'GPP.spd.xml')}]
+-        compplacements = [{'refid':GPP_componentfile, 'instantiations':[{'id':self.uuids["componentinstantiation"], 'usagename':'GPP_' + self.hostname.replace('.', '_')}]}]
++        compplacements = [{'refid':GPP_componentfile, 'instantiations':[{'id':self.uuids["componentinstantiation"], 'usagename':'GPP'}]}]
+         if self.options.noevents:
+             connections = []
+         else:

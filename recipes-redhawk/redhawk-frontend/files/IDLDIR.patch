@@ -1,0 +1,13 @@
+--- git/configure.ac	2016-03-02 07:18:49.966842098 -0500
++++ git-patched/configure.ac	2016-03-02 07:23:28.780067757 -0500
+@@ -47,6 +47,10 @@
+ AC_CHECK_PYMODULE(bulkio.bulkioInterfaces, [], [AC_MSG_ERROR([the python bulkio.bulkioInterfaces module is required])])
+ RH_PKG_IDLDIR([BULKIO], [bulkioInterfaces])
+ 
++# Prepend the staging area to OSSIE_IDLDIR and BULKIO_IDLDIR
++OSSIE_IDLDIR="${STAGING_BASE}${OSSIE_IDLDIR}"
++BULKIO_IDLDIR="${STAGING_BASE}${BULKIO_IDLDIR}"
++
+ AC_SUBST([FRONTEND_SO_VERSION],[0:0:0])
+ AC_SUBST([FRONTEND_API_VERSION],[2.3])
+ 
