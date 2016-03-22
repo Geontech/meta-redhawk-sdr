@@ -1,7 +1,7 @@
 meta-REDHAWK-SDR
 =================
 
-> **Note:** This is a distant fork of [Axios' layer](http://github.com/Axios-Engineering/openembedded-hawk) that was fairly far removed.  Their copyright has been added to this copyright list along with a large portion of the original README, and some recipes.  After a series of updates changes it was different enough that it was pushed as a separate layer.
+> **Note:** This is a distant fork of [Axios' layer](http://github.com/Axios-Engineering/openembedded-hawk) that was fairly far removed.  Their copyright has been added to this copyright list along with a large portion of the original README, and some recipes.  After a series of updates and changes it was different enough that it was pushed as a separate layer.
 
 What is Yocto/Open-Embedded?
 ---------------------------
