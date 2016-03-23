@@ -66,7 +66,7 @@ Getting Started
 Alternative Methods
 -------------------
 
-In the `contrib/scripts` folder is the `build-image.sh` script, a derivative of a script from Philip Ballister of Ettus Research who included it with their `meta-sdr`.  It uses `wic` to build a single image file that can be directly copied to an SD card (`dd`) resulting in the appropriate partitions, etc., buased on the associated `wks` file.  Specify the `BUILD_IMAGE` and `MACHINE` environment variables and this script will go through the whole process for you, automated.
+In the `contrib/scripts` folder is the `build-image.sh` script, a derivative of a script from Philip Balister of Ettus Research who included it with their `meta-sdr`.  It uses `wic` to build a single image file that can be directly copied to an SD card (`dd`) resulting in the appropriate partitions, etc., buased on the associated `wks` file.  Specify the `BUILD_IMAGE` and `MACHINE` environment variables and this script will go through the whole process for you, automated.
 
 Additional Resources
 --------------------
