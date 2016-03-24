@@ -36,6 +36,7 @@
 OSSIEHOME=OSSIEHOME_PATH
 SDRROOT=SDRROOT_PATH
 PYTHONPATH=$OSSIEHOME/lib/python:$OSSIEHOME/lib64/python
+LD_LIBRARY_PATH=$OSSIEHOME/lib
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:$OSSIEHOME/bin
 NODENAME=NODE_NAME
 DevMgrPath=$SDRROOT/dev/nodes/$NODENAME
@@ -45,8 +46,10 @@ LOGFILE=/var/log/$NODENAME.log
 DAEMON_ARGS="-d $DevMgrPath/DeviceManager.dcd.xml --pidfile $PIDFILE --daemon 2>&1 > $LOGFILE"
 
 do_start() {
+  export PYTHONPATH=$PYTHONPATH
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+  
   if ! [ -d $DevMgrPath ]; then
-    export PYTHONPATH=$PYTHONPATH
     $SDRROOT/dev/nodes/node-merge.py \
         --domainname="$DOMAIN" \
         --sdrroot="$SDRROOT" \
