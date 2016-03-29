@@ -23,12 +23,12 @@ SECTION = "devel"
 PRIORITY = "optional"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=79e31466c4d9f3a85f2f987c11ebcd83"
-PR = "r2"
 
 DEPENDS += "xsd-native"
 DEPENDS_virtclass-native = ""
 BBCLASSEXTEND = "native"
-NATIVE_INSTALL_WORKS = "1"
+
+PROVIDES += "${PN}-dev"
 
 SRC_URI = " \
     http://codesynthesis.com/download/xsd/3.3/linux-gnu/x86_64/xsd-3.3.0-x86_64-linux-gnu.tar.bz2;name=xsd330bintarbz2 \

@@ -27,8 +27,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad02"
 # autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-sysroot redhawk-oeconf
 
-DEPENDS = "omniorbpy omniorbpy-native log4cxx xsd omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
-RDEPENDS_${PN} = "python omniorbpy omniorb xsd omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
+DEPENDS = "omniorbpy omniorbpy-native log4cxx xsd-dev omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
+RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
 
 PROVIDES += "${PN}-dev ${PN}-staticdev"
 
