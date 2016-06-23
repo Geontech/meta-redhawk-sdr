@@ -52,6 +52,6 @@ do_install () {
 
 # Renaming xsd to xsdcxx since that's another common way to spell it.
 do_install_virtclass-native () {
-    install -m 0755 -D ${S}/bin/xsd ${D}${bindir_cross}/xsdcxx
+    install -m 0755 -D ${S}/bin/xsd ${D}${bindir}/xsdcxx
 }
 
