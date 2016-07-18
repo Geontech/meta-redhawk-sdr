@@ -24,17 +24,12 @@ PRIORITY = "optional"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=68ad62c64cc6c620126241fd429e68fe"
 DEPENDS += "omniorb boost"
-PR = "r0"
 
-# FIXME: Once they finish using develop as the main branch, point this and SRCREV
-#        at the suitable version.  (i.e., whenever they formally release 2.7 *as* 2.7)
-SRC_URI = "git://github.com/redhawksdr/omniEvents;branch=develop;name=omniEvents270git \
+SRC_URI = "git://github.com/redhawksdr/omniEvents.git;branch=develop;tag=2.7.0;protocol=git \
     file://omniEvents.patch \
     file://config.mk.patch \
     file://omniEvents \
 "
-
-SRCREV = "5c1850d806bb5412a30f422e394dad364a53a533"
 
 S = "${WORKDIR}/git"
 

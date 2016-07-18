@@ -18,22 +18,21 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
+DESCRIPTION = "REDHAWK Framework FrontEnd Interfaces"
 HOMEPAGE = "http://www.redhawksdr.org"
 LICENSE = "LGPL-3.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
-DEPENDS = "redhawk-core"
-RDEPENDS_${PN} = "redhawk-core"
+DEPENDS = "redhawk-bulkio"
+RDEPENDS_${PN} = "redhawk-bulkio"
 
-PREFERRED_VERSION_redhawk-core = "2.%"
+PREFERRED_VERSION_redhawk-bulkio = "2.%"
 
-SRC_URI = "git://github.com/RedhawkSDR/framework-bulkioInterfaces.git;tag=2.0.0;protocol=git \
-    file://subdir_objects.patch \
+SRC_URI = "\
+    git://github.com/RedhawkSDR/frontendInterfaces.git;tag=2.3.1;protocol=git \
+    file://IDLDIR.patch \
     file://Add_Missing_Files.patch \
 "
-
-PR = "r0" 
 
 S = "${WORKDIR}/git"
 
@@ -41,18 +40,22 @@ S = "${WORKDIR}/git"
 # autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-sysroot redhawk-oeconf
 
+
 FILES_${PN} += " \
     ${OSSIEHOME}/* \
 "
-INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"
+INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir"
+
 
 EXTRA_OECONF += "--disable-java"
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
-# Dumb-down the build a bit.
+# Required
 CXXFLAGS += "-fpermissive"
 CFLAGS += "-fpermissive"
 
+# Since prefix is set this has to override that
+CACHED_CONFIGUREVARS += "ac_cv_pymod_ossie=yes ac_cv_pymod_bulkio_bulkioInterfaces=yes"
 
 # Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
@@ -60,6 +63,7 @@ do_configure_prepend() {
   export HOST_SYS=${HOST_SYS}
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
+  export STAGING_BASE=${STAGING_DIR}/${MACHINE}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 }
 
@@ -70,4 +74,3 @@ do_install_prepend() {
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
 }
-

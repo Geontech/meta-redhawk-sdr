@@ -27,13 +27,13 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad02"
 # autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-sysroot redhawk-oeconf
 
-DEPENDS = "omniorbpy omniorbpy-native log4cxx xsd-dev omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
+DEPENDS = "omniorbpy omniorbpy-native log4cxx xsd xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
 RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
 
 PROVIDES += "${PN}-dev ${PN}-staticdev"
 
 SRC_URI = "\
-    git://github.com/redhawksdr/framework-core.git;tag=2.0.0;protocol=git \
+    git://github.com/redhawksdr/framework-core.git;tag=2.0.1;protocol=git \
     file://OSSIEHOME_global_prefix.patch \
     file://Remove_Tests.patch \
     file://Add_Missing_Files.patch \
@@ -43,9 +43,6 @@ SRC_URI = "\
     file://remove_csh_scripts.patch \
     file://allow_idl_dir_set.patch \
 "
-
-# The tag is enough to get the right framework-core
-PR = "r0" 
 
 S = "${WORKDIR}/git/src"
 
@@ -66,11 +63,10 @@ FILES_${PN} += " \
 # into a single package and none of those files are in /usr/lib, /usr/bin, etc. resulting
 # in QA getting upset.  We *need* this because otherwise QA will throw an error and kill
 # the packaging, and yet the downstream dependencies and post-install behaviors are hard-
-# coded to look in $OSSIEHOME for these things.  o_o  
-# Now enjoy some Kool Aid with the rest of us.
+# coded to look in $OSSIEHOME for these things. 
 INSANE_SKIP_${PN} += "dev-so la libdir debug-files staticdev installed-vs-shipped"
 
-# Dumb-down the build a bit.
+# Required
 CXXFLAGS += "-fpermissive"
 
 # Needed so that when the python distutils is run it can get the system prefix.

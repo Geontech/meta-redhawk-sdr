@@ -28,9 +28,7 @@ RDEPENDS_${PN} = "redhawk-core python"
 
 PREFERRED_VERSION_redhawk-core = "2.%"
 
-SRC_URI = "git://github.com/RedhawkSDR/framework-codegen.git;tag=2.0.0;protocol=git"
-
-PR = "r0" 
+SRC_URI = "git://github.com/RedhawkSDR/framework-codegen.git;tag=2.0.1;protocol=git"
 
 S = "${WORKDIR}/git"
 
