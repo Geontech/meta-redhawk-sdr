@@ -1,0 +1,11 @@
+--- git/GPP.spd.xml	2016-07-21 18:49:56.849885062 +0000
++++ git/GPP.spd.xml-patched	2016-07-21 19:28:42.551009097 +0000
+@@ -40,7 +40,6 @@
+     <programminglanguage name="C++"/>
+     <humanlanguage name="EN"/>
+     <os name="Linux"/>
+-    <processor name="x86"/>
+-    <processor name="x86_64"/>
++    <processor name="armv7l"/>
+   </implementation>
+ </softpkg>
