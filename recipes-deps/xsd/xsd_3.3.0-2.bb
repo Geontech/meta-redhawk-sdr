@@ -24,8 +24,8 @@ PRIORITY = "optional"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=79e31466c4d9f3a85f2f987c11ebcd83"
 
-DEPENDS += "xsd-native"
-DEPENDS_virtclass-native = ""
+DEPENDS = ""
+DEPENDS_virtclass-native = "xsd-dev"
 BBCLASSEXTEND = "native"
 
 PROVIDES += "${PN}-dev"
@@ -50,7 +50,6 @@ do_install () {
     cp -r ${S}/libxsd/xsd ${D}${includedir}/xsd
 }
 
-# Renaming xsd to xsdcxx since that's another common way to spell it.
 do_install_virtclass-native () {
     install -m 0755 -D ${S}/bin/xsd ${D}${bindir}/xsdcxx
 }
