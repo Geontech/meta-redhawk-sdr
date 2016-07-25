@@ -44,7 +44,11 @@ FILES_${PN} += " \
 "
 INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"
 
-EXTRA_OECONF += "--disable-java"
+EXTRA_OECONF += "\
+    --disable-java \
+    --disable-log4cxx \
+    --with-boost-system=boost_system \
+    "
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
 # Required

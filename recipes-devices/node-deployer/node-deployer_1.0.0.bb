@@ -35,6 +35,7 @@ SRC_URI = "\
 
 PR = "r0" 
 
+S = "${WORKDIR}"
 
 # ##########################################
 # Feel free to define this in the local.conf
