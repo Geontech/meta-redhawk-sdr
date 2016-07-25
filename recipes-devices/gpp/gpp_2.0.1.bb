@@ -35,15 +35,13 @@ RDEPENDS_${PN} = "redhawk-bulkio"
 
 PREFERRED_VERSION_redhawk-bulkio = "2.%"
 
-SRC_URI = "git://github.com/RedhawkSDR/framework-GPP.git;tag=2.0.0;protocol=git \
+SRC_URI = "git://github.com/RedhawkSDR/framework-GPP.git;tag=2.0.1;protocol=git \
     file://01_Clear_AMFLAGS_GPP.patch \
     file://02_armv7l_default.patch \
     file://03_Add_Missing_Files.patch \
     file://04_GPP_spd_armv7l.patch;patchdir=${WORKDIR}/git \
     file://configure-gpp \
 "
-
-PR = "r0" 
 
 S = "${WORKDIR}/git/cpp"
 
@@ -72,12 +70,11 @@ CFLAGS += "-fpermissive"
 # to the volatile filesystem.
 inherit update-rc.d
 INITSCRIPT_NAME = "configure-gpp"
-INITSCRIPT_PARAMS = "defaults 99"
+INITSCRIPT_PARAMS = "defaults 98"
 
 # Install the script
 do_install_append() {
     install -d ${D}/etc/init.d
-    sed -i "s|SDRROOT|${SDRROOT}|g" ${WORKDIR}/configure-gpp
     sed -i "s|MCASTNIC|${RH_GPP_MCASTNIC}|g" ${WORKDIR}/configure-gpp
     install -m 0755 ${WORKDIR}/configure-gpp ${D}/etc/init.d
     

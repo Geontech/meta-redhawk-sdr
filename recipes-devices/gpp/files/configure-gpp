@@ -7,6 +7,8 @@
 # Default-Stop:
 ### END INIT INFO
 
-cd SDRROOT/dev/devices/GPP
+echo "Configuring GPP"
+source /etc/profile
+cd $SDRROOT/dev/devices/GPP
 cpp/devconfig.py --location=./ --mcastnic=MCASTNIC
 
