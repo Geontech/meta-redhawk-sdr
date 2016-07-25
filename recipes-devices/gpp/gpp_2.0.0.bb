@@ -39,6 +39,7 @@ SRC_URI = "git://github.com/RedhawkSDR/framework-GPP.git;tag=2.0.0;protocol=git 
     file://01_Clear_AMFLAGS_GPP.patch \
     file://02_armv7l_default.patch \
     file://03_Add_Missing_Files.patch \
+    file://04_GPP_spd_armv7l.patch;patchdir=${WORKDIR}/git \
     file://configure-gpp \
 "
 
