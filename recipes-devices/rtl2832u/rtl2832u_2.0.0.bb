@@ -45,8 +45,6 @@ SRC_URI = "git://github.com/RedhawkSDR/RTL2832U.git;tag=2.0.0;protocol=git \
     file://nodeconfig.patch \
 "
 
-PR = "r0" 
-
 S = "${WORKDIR}/git/cpp"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
