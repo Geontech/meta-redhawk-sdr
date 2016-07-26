@@ -1,0 +1,11 @@
+--- cpp/states/Limits.cpp	2016-07-26 06:56:43.926880000 -0400
++++ cpp-patched/states/Limits.cpp	2016-07-26 06:58:15.362093504 -0400
+@@ -122,7 +122,7 @@
+   }
+ 
+   try {
+-    std::string line = utils::popen("ps -eo nlwp | tail -n +2 | awk '{ num_threads += $1 } END { print num_threads }' ", true);
++    std::string line = utils::popen("ps -o nlwp | tail -n +2 | awk '{ num_threads += $1 } END { print num_threads }' ", true);
+     if ( line != "ERROR" ) {
+       std::vector<std::string> values;
+       boost::split(values, line, boost::is_any_of(std::string(" \t")), boost::algorithm::token_compress_on );
