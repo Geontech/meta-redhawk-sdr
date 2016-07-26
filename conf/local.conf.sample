@@ -182,6 +182,7 @@ RM_WORK_EXCLUDE = "\
     redhawk-base-image \
     redhawk-node-image \
     redhawk-usrp-uhd-image\
+    ${BUILD_IMAGE} \
     "
     
 #
