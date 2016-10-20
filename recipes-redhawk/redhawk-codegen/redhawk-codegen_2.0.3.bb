@@ -18,13 +18,34 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-BBPATH .= ":${LAYERDIR}"
-BBFILES += "\
-    ${LAYERDIR}/recipes-*/*/*.bb \
-    ${LAYERDIR}/recipes-*/*/*.bbappend \
-    "
-    
-BBFILE_COLLECTIONS += "redhawk"
-BBFILE_PATTERN_redhawk = "^${LAYERDIR}/"
-BBFILE_PRIORITY_redhawk = "10"
+DESCRIPTION = "REDHAWK Codegen"
+HOMEPAGE = "http://www.redhawksdr.org"
+LICENSE = "LGPL-3.0"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
+DEPENDS = "redhawk-core"
+RDEPENDS_${PN} = "redhawk-core python"
+
+PREFERRED_VERSION_redhawk-core = "2.0.3"
+
+SRC_URI = "git://github.com/RedhawkSDR/framework-codegen.git;tag=2.0.3;protocol=git"
+
+S = "${WORKDIR}/git"
+
+# Recipe concept based on: http://stackoverflow.com/questions/16090550/building-python-packages
+
+# This is a python package
+inherit setuptools redhawk-env
+
+do_configure_prepend() {
+  export BUILD_SYS=${BUILD_SYS}
+  export HOST_SYS=${HOST_SYS}
+  export STAGING_INCDIR=${STAGING_INCDIR}
+  export STAGING_LIBDIR=${STAGING_LIBDIR}
+}
+
+BBCLASSEXTEND = "native"
+
+do_install_append() {
+    rm -f ${D}${libdir}/python*/site-packages/site.py*
+}

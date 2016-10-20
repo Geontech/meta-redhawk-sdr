@@ -39,14 +39,14 @@ RH_USRP_UHD_NODE_NAME ?= "DevMgr-USRP_UHD"
 DEPENDS = "redhawk-frontend uhd"
 RDEPENDS_${PN} = "redhawk-frontend uhd"
 
-SRC_URI = "git://github.com/RedhawkSDR/USRP_UHD.git;tag=4.0.0;protocol=git \
+PREFERRED_VERSION_redhawk-frontend = "2.0.3"
+
+SRC_URI = "git://github.com/RedhawkSDR/USRP_UHD.git;tag=4.0.0-3;protocol=git \
     file://Add_Missing_Files.patch \
     file://nodeconfig.patch \
     file://Clear_AMFLAGS.patch \
     file://remove_x86.patch \
 "
-
-PR = "r0" 
 
 S = "${WORKDIR}/git/cpp"
 
