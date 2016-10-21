@@ -28,7 +28,7 @@ DEPENDS = ""
 DEPENDS_virtclass-native = "xsd-dev"
 BBCLASSEXTEND = "native"
 
-PROVIDES += "${PN}-dev"
+PROVIDES += "${PN}-dev ${PN}-dev-native"
 
 SRC_URI = " \
     http://codesynthesis.com/download/xsd/3.3/linux-gnu/x86_64/xsd-3.3.0-x86_64-linux-gnu.tar.bz2;name=xsd330bintarbz2 \

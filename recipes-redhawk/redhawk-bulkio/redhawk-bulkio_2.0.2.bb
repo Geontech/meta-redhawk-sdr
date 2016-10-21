@@ -23,15 +23,14 @@ HOMEPAGE = "http://www.redhawksdr.org"
 LICENSE = "LGPL-3.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
-DEPENDS = "redhawk-bulkio"
-RDEPENDS_${PN} = "redhawk-bulkio"
+DEPENDS = "redhawk-core"
+RDEPENDS_${PN} = "redhawk-core"
 
-PREFERRED_VERSION_redhawk-bulkio = "2.0.3"
+PREFERRED_VERSION_redhawk-core = "2.0.3"
 
-SRC_URI = "git://github.com/RedhawkSDR/burstIOInterfaces.git;tag=2.0.3;protocol=git \
+SRC_URI = "git://github.com/RedhawkSDR/framework-bulkioInterfaces.git;tag=2.0.2;protocol=git \
     file://subdir_objects.patch \
-    file://makefile.am.patch \
-    file://IDLDIR.patch \
+    file://Add_Missing_Files.patch \
 "
 
 S = "${WORKDIR}/git"
@@ -40,15 +39,14 @@ S = "${WORKDIR}/git"
 # autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-sysroot redhawk-oeconf
 
-
 FILES_${PN} += " \
     ${OSSIEHOME}/* \
 "
-INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir"
-
+INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"
 
 EXTRA_OECONF += "\
-    -disable-java \
+    --disable-java \
+    --disable-log4cxx \
     --with-boost-system=boost_system \
     "
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
@@ -57,7 +55,6 @@ EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 CXXFLAGS += "-fpermissive"
 CFLAGS += "-fpermissive"
 
-PARALLEL_MAKE = ""
 
 # Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
@@ -65,7 +62,6 @@ do_configure_prepend() {
   export HOST_SYS=${HOST_SYS}
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
-  export STAGING_BASE=${STAGING_DIR}/${MACHINE}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 }
 
@@ -76,3 +72,4 @@ do_install_prepend() {
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
 }
+

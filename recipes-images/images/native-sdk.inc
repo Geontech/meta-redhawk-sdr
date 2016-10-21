@@ -26,7 +26,6 @@ CORE_IMAGE_EXTRA_INSTALL = "\
     python-distutils \
     python-numpy \
     htop \
-    sshfs-fuse \
     glib-2.0 \
     orc \
     libudev \
@@ -34,5 +33,4 @@ CORE_IMAGE_EXTRA_INSTALL = "\
     openssh-sftp \
     openssh-sftp-server \
     fftwf \
-    ntpdate \
     "

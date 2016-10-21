@@ -26,7 +26,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad02"
 DEPENDS = "redhawk-bulkio"
 RDEPENDS_${PN} = "redhawk-bulkio"
 
-PREFERRED_VERSION_redhawk-bulkio = "2.0.3"
+PREFERRED_VERSION_redhawk-bulkio = "2.0.2"
 
 SRC_URI = "\
     git://github.com/RedhawkSDR/frontendInterfaces.git;tag=2.3.3;protocol=git \

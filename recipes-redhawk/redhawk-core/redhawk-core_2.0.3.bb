@@ -43,6 +43,7 @@ SRC_URI = "\
     file://remove_csh_scripts.patch \
     file://allow_idl_dir_set.patch \
 "
+SRCREV = "732f4ff9999c88aa525d5365977cb84f0f22f639"
 
 S = "${WORKDIR}/git/src"
 
