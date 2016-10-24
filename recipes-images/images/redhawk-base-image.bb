@@ -26,9 +26,9 @@ LICENSE = "LGPL-3.0"
 require version-image.inc
 require native-sdk.inc
 
-# Removed tools-sdk
+# Removed tools-sdk debug-tweaks dev-pkgs
 IMAGE_FEATURES += " \
-    splash ssh-server-openssh tools-debug debug-tweaks dev-pkgs \
+    splash ssh-server-openssh tools-debug \
     "
 
 EXTRA_IMAGE_FEATURES += "package-management"
