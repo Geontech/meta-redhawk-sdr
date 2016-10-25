@@ -7,6 +7,7 @@ TOOLCHAIN_HOST_TASK_append = " nativesdk-python-cheetah \
     nativesdk-cmake nativesdk-python-mako \
     "
 
+# Removed glib-2.0
 CORE_IMAGE_EXTRA_INSTALL = "\
     alsa-utils \
     i2c-tools \
@@ -26,7 +27,6 @@ CORE_IMAGE_EXTRA_INSTALL = "\
     python-distutils \
     python-numpy \
     htop \
-    glib-2.0 \
     orc \
     libudev \
     iperf \

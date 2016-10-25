@@ -69,6 +69,7 @@ FILES_${PN} += " \
 # the packaging, and yet the downstream dependencies and post-install behaviors are hard-
 # coded to look in $OSSIEHOME for these things. 
 INSANE_SKIP_${PN} += "dev-so la libdir debug-files staticdev installed-vs-shipped"
+INSANE_SKIP_${PN}-dbg += "libdir"
 
 # Required
 CXXFLAGS += "-fpermissive"

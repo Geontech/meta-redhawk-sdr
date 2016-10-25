@@ -45,6 +45,7 @@ FILES_${PN} += " \
     ${OSSIEHOME}/* \
 "
 INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir"
+INSANE_SKIP_${PN}-dbg += "libdir"
 
 
 EXTRA_OECONF += "\
