@@ -28,11 +28,11 @@ BBFILES ?= ""
 
 BBLAYERS ?= " \
   ##COREBASE##/meta \
-  ##COREBASE##/../meta-xilinx \
-  ##COREBASE##/../meta-oe/meta-oe \
-  ##COREBASE##/../meta-oe/meta-networking \
-  ##COREBASE##/../meta-oe/meta-python \
-  ##COREBASE##/../meta-oe/meta-filesystems \
+  ##COREBASE##/meta-yocto \
+  ##COREBASE##/../meta-openembedded/meta-oe \
+  ##COREBASE##/../meta-openembedded/meta-networking \
+  ##COREBASE##/../meta-openembedded/meta-python \
+  ##COREBASE##/../meta-openembedded/meta-filesystems \
   ##COREBASE##/../meta-redhawk-sdr \
   "
 
