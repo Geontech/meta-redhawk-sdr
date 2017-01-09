@@ -7,13 +7,11 @@ DEPENDS = "redhawk-bulkio"
 RDEPENDS_${PN} = "redhawk-bulkio"
 
 SRC_URI = " \
-    git://github.com/RedhawkSDR/dsp.git;branch=master;protocol=git \
+    git://github.com/RedhawkSDR/dsp.git;tag=2.0.0;protocol=git \
     file://03_Add_Missing_Files.patch \
     "
 
 SRCREV = "2b3dfb93b5f836e66768f582312e4266cae52cd6"
-
-PR = "r0" 
 
 S = "${WORKDIR}/git/cpp"
 
