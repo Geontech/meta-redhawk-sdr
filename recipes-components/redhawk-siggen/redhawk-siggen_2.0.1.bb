@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE;md5=e6a600fd5e1d9cbde2d9836802
 DEPENDS = "redhawk-bulkio"
 RDEPENDS_${PN} = "redhawk-bulkio"
 
-SRC_URI = "git://github.com/RedhawkSDR/SigGen.git;branch=master;protocol=git \
+SRC_URI = "git://github.com/RedhawkSDR/SigGen.git;tag=2.0.1;protocol=git \
 file://01_Remove_x86_and_Impls.patch;patchdir=.. \
 file://03_Add_Missing_Files.patch; \
 file://02_Ossie_Check_fix.patch; \
