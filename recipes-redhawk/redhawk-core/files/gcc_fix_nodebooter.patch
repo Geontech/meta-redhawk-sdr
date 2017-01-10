@@ -1,0 +1,15 @@
+# Patch provided from http://stackoverflow.com/questions/38571741
+# user bhilburn
+diff --git src-a/control/framework/nodebooter.cpp src-b/control/framework/nodebooter.cpp
+index d79c291..dbd97ad 100644
+--- src-a/control/framework/nodebooter.cpp
++++ src-b/control/framework/nodebooter.cpp
+@@ -141,7 +141,7 @@ void loadPRFExecParams (const std::string& prfFile, ExecParams& execParams)
+         prf.load(prfStream);
+     } catch (const ossie::parser_error& ex) {
+         std::string parser_error_line = ossie::retrieveParserErrorLineNumber(ex.what());
+-        LOG_ERROR(nodebooter, "Failed to parse PRF file " << prfStream<< ". " << parser_error_line << "The XML parser returned the following error: " << ex.what());
++        LOG_ERROR(nodebooter, "Failed to parse PRF file " << prfFile<< ". " << parser_error_line << "The XML parser returned the following error: " << ex.what());
+         exit(EXIT_FAILURE);
+     }
+     prfStream.close();

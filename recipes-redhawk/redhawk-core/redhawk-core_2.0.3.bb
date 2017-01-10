@@ -1,4 +1,4 @@
-SRCTAG = "2.0.1"
+SRCTAG = "2.0.3"
 PREFERRED_VERSION_omniorb = "4.1.6"
 
 SRC_URI_append = "\

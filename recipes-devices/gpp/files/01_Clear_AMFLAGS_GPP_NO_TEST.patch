@@ -1,0 +1,18 @@
+--- cpp/Makefile.am	2017-01-09 15:40:57.047135798 -0500
++++ cpp-patched/Makefile.am	2017-01-09 15:48:45.716371407 -0500
+@@ -24,15 +24,6 @@
+ 
+ xmldir = $(prefix)/dev/devices/GPP/
+ dist_xml_DATA = ../GPP.scd.xml ../GPP.prf.xml ../GPP.spd.xml
+-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+-
+-all-local: GPP
+-	mkdir -p ../tests/sdr/dev/devices/GPP/cpp
+-	cp GPP ../tests/sdr/dev/devices/GPP/cpp/
+-	cp ../GPP.scd.xml ../tests/sdr/dev/devices/GPP/
+-	cp ../GPP.spd.xml ../tests/sdr/dev/devices/GPP/
+-	cp ../GPP.prf.xml ../tests/sdr/dev/devices/GPP/
+-	./gpp_setup --gppcfg --silent --location=../tests/sdr/dev/devices/GPP
+ 
+ distclean-local:
+ 	rm -f config.*
