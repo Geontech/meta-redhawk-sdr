@@ -1,5 +1,5 @@
-SRCTAG = "2.0.1"
-PREFERRED_VERSION_redhawk-bulkio = "2.0.1"
+SRCTAG = "2.0.3"
+PREFERRED_VERSION_redhawk-bulkio = "2.0.3"
 
 SRC_URI_append = "\
     file://01_Clear_AMFLAGS_GPP.patch \

@@ -25,15 +25,29 @@
 echo MACHINE:     "${MACHINE:?Need to set to an available machine}"
 echo BUILD_IMAGE: "${BUILD_IMAGE:?Need to set, e.g., 'redhawk-base-image'}"
 
+META_REDHAWK=`find .. -path ./${PWD##*/} -prune -o -name meta-redhawk-sdr -type d`
+echo Meta-REDHAWK-SDR Root found: ${META_REDHAWK}
+if ! [[ -n "${META_REDHAWK}" ]]; then
+    echo "Could not find meta-redhawk-sdr folder beginning at the parent directory."
+    echo "This will be necessary for calling WKS later."
+    exit 1
+fi
+
 echo STEP 1 - Starting Bit Bake
 if ! bitbake ${BUILD_IMAGE}; then
 	echo Bitbake build image failed
 	exit 1
 fi
 
+# File system building dependencies
+if ! bitbake dosfstools-native mtools-native parted-native; then
+    echo Failed to install tools for building the SD image.
+    exit 1
+fi
+
 echo STEP 2 - Building SD Card Image
 rm -rf images/${MACHINE}/build
-if ! wic create ../meta-redhawk-sdr/contrib/wks/sdimage-8G.wks -e ${BUILD_IMAGE} -o images/${MACHINE}; then
+if ! wic create ${META_REDHAWK}/contrib/wks/sdimage-8G.wks -e ${BUILD_IMAGE} -o images/${MACHINE}; then
 	echo Bitbake build image to SD Card build failed
 	exit 1
 fi

@@ -1,0 +1,15 @@
+# Patch provided from http://stackoverflow.com/questions/38571741
+# user bhilburn
+diff --git src-a/control/sdr/dommgr/applicationSupport.cpp src-b/control/sdr/dommgr/applicationSupport.cpp
+index 1daa7ce..fbb5ac8 100644
+--- src-a/control/sdr/dommgr/applicationSupport.cpp
++++ src-b/control/sdr/dommgr/applicationSupport.cpp
+@@ -853,7 +853,7 @@ const bool  ComponentInfo::isScaCompliant()
+
+ bool ComponentInfo::isAssignedToDevice() const
+ {
+-    return assignedDevice;
++  return static_cast<bool>(assignedDevice);
+ }
+
+ bool ComponentInfo::checkStruct(CF::Properties &props)
