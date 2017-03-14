@@ -1,6 +1,6 @@
 # Set install location OSSIEHOME and SDRROOT
-OSSIEHOME = "/${prefix}/redhawk-sdr/core"
-SDRROOT = "/${prefix}/redhawk-sdr/sdr"
+OSSIEHOME = "${prefix}/local/redhawk-sdr/core"
+SDRROOT = "${prefix}/local/redhawk-sdr/sdr"
 
 # STAGED Versions of thse variables (where machine-specific versions are temporarily held,
 # libs, etc.)
