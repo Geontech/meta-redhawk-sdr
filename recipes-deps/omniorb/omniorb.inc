@@ -72,7 +72,8 @@ do_compile_virtclass-native () {
 do_install () {
     # Set a variable that the Makefiles obey for install.
     autotools_do_install
-    install -m 0644 ${WORKDIR}/omniORB.cfg ${D}/etc/omniORB.cfg
+    install -d ${D}${sysconfdir}
+    install -m 0644 ${WORKDIR}/omniORB.cfg ${D}${sysconfdir}/omniORB.cfg
 }
 
 BBCLASSEXTEND = "native"
