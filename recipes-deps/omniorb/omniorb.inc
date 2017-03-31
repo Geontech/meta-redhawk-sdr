@@ -37,7 +37,6 @@ SRC_URI_append = "\
     file://omniORB_embedded_appl.patch \
     file://pyPrefixIsPrefix-${PV}.patch \
     file://fixPythonShebang.patch \
-    file://omniNames \
     file://rm_LongDouble-${PV}.patch \
 "
 
@@ -57,10 +56,7 @@ FILES_${PN}-dbg += "${libdir}/python2.7/site-packages/.debug/_omniidlmodule.so.4
 
 TARGET_CC_ARCH += "${LDFLAGS}"
 
-inherit autotools pkgconfig pythonnative update-rc.d
-
-INITSCRIPT_NAME = "omniNames"
-INITSCRIPT_PARAMS = "defaults 10"
+inherit autotools pkgconfig pythonnative
 
 CONFFILES_${PN} += "/etc/omniORB.cfg"
 
@@ -76,9 +72,7 @@ do_compile_virtclass-native () {
 do_install () {
     # Set a variable that the Makefiles obey for install.
     autotools_do_install
-    install -d ${D}/etc/init.d
     install -m 0644 ${WORKDIR}/omniORB.cfg ${D}/etc/omniORB.cfg
-    install -m 0755 ${WORKDIR}/omniNames ${D}/etc/init.d/omniNames
 }
 
 BBCLASSEXTEND = "native"
