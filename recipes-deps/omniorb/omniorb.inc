@@ -29,7 +29,7 @@ DEPENDS_virtclass-native += "python-native"
 
 RDEPENDS_${PN}-python += "python"
 PACKAGES += "${PN}-python"
-PROIVDES += "${PN}-python"
+PROVIDES += "${PN}-python"
 
 SRC_URI_append = "\
     file://omniORB.cfg \
