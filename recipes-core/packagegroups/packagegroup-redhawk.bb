@@ -38,9 +38,13 @@ PROVIDES = "${PACKAGES}"
 SUMMARY_packagegroup-redhawk-core = "Basic packages for the REDHAWK Core Framework (enough to be a Domain)."
 RDEPENDS_packagegroup-redhawk-core = "\
     redhawk-core \
+    redhawk-core-python \
     redhawk-frontend \
+    redhawk-frontend-python \
     redhawk-bulkio \
+    redhawk-bulkio-python \
     redhawk-burstio \
+    redhawk-burstio-python \
     redhawk-codegen \
     "
 

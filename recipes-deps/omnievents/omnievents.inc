@@ -32,12 +32,11 @@ SRCTAGARG = "${@['nobranch=1', 'tag=${SRCTAG}'][d.getVar('SRCTAG', True) != '']}
 SRC_URI = "git://github.com/redhawksdr/omniEvents.git;${SRCTAGARG};protocol=git \
     file://omniEvents.patch \
     file://config.mk.patch \
-    file://omniEvents \
 "
 
 S = "${WORKDIR}/git"
 
-inherit autotools pkgconfig update-rc.d
+inherit autotools pkgconfig
 
 EXTRA_OECONF="\
     --with-omniorb=${STAGING_DIR}/${MACHINE}/usr \
@@ -46,10 +45,6 @@ EXTRA_OECONF="\
     
 # Over-write default multi-threaded build temporarily.
 PARALLEL_MAKE = ""
-
-# omniNames is 10, omniEvents will be 11.
-INITSCRIPT_NAME = "omniEvents"
-INITSCRIPT_PARAMS = "defaults 11"
 
 do_configure_append () {
     # omniEvents isn't quite as auto-tooled as omniNames so its build
@@ -67,7 +62,5 @@ do_compile () {
 do_install () {
     # Set a variable that the Makefiles obey for install.
     autotools_do_install
-    install -d ${D}/etc ${D}/etc/init.d 
-    install -m 0755 ${WORKDIR}/omniEvents ${D}/etc/init.d/omniEvents
 }
 
