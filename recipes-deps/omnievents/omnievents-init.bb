@@ -18,13 +18,24 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-BBPATH .= ":${LAYERDIR}"
-BBFILES += "\
-    ${LAYERDIR}/recipes-*/*/*.bb \
-    ${LAYERDIR}/recipes-*/*/*.bbappend \
-    "
-    
-BBFILE_COLLECTIONS += "redhawk-sdr"
-BBFILE_PATTERN_redhawk-sdr = "^${LAYERDIR}/"
-BBFILE_PRIORITY_redhawk-sdr = "10"
+DESCRIPTION = "OmniEvents init script"
+SECTION = "devel"
+PRIORITY = "optional"
+LICENSE = "CLOSED"
+DEPENDS += "omnievents"
+
+SRC_URI = " file://omniEvents"
+
+S = "${WORKDIR}"
+
+inherit update-rc.d
+
+# omniNames is 10, omniEvents will be 11.
+INITSCRIPT_NAME = "omniEvents"
+INITSCRIPT_PARAMS = "defaults 11"
+
+do_install () {
+    install -d ${D}/etc ${D}/etc/init.d 
+    install -m 0755 ${WORKDIR}/omniEvents ${D}/etc/init.d/omniEvents
+}
 
