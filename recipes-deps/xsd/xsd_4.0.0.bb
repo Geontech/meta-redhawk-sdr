@@ -22,31 +22,44 @@ DESCRIPTION = "XSD Libraries for XML parsing"
 SECTION = "devel"
 PRIORITY = "optional"
 LICENSE = "GPL-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=79e31466c4d9f3a85f2f987c11ebcd83"
+LIC_FILES_CHKSUM = "file://xsd/LICENSE;md5=79e31466c4d9f3a85f2f987c11ebcd83"
 
 DEPENDS = ""
-DEPENDS_virtclass-native = "xsd-dev"
+DEPENDS_virtclass-native = "xerces-c-native xsd-dev"
 BBCLASSEXTEND = "native"
 
 PROVIDES += "${PN}-dev ${PN}-dev-native"
 
-SRC_URI = " \
-    git://scm.codesynthesis.com/xsd/xsd.git;protocol=git \
-    "
-SRCREV = "94cba986108a0e0f42295572ca42c356d59328d7"
+SRC_URI = "\
+	http://www.codesynthesis.com/download/xsd/4.0/xsd-4.0.0+dep.tar.bz2 \
+	file://elements.patch \
+	"
+SRC_URI[md5sum] = "ae64d7fcd258addc9b045fe3f96208bb"
+SRC_URI[sha256sum] = "eca52a9c8f52cdbe2ae4e364e4a909503493a0d51ea388fc6c9734565a859817"
 
-S = "${WORKDIR}/git"
+
+S = "${WORKDIR}/xsd-4.0.0+dep"
 
 # Per http://www.codesynthesis.com/pipermail/xsde-users/2012-October/000535.html
 # Boris says to get the binary for the host, then cross-compile and install libxsd...
 # However libxsd is header-only, so this is really just making the executable visible
 # to the host and the headers installed on the target.
 
+do_configure () {
+	:
+}
+do_compile () {
+	:
+}
 do_install () {
     install -d ${D}${includedir}
-    cp -r ${S}/libxsd/xsd ${D}${includedir}/xsd
+    cp -r ${S}/xsd/libxsd/xsd ${D}${includedir}/xsd
+}
+
+do_compile_virtclass-native () {
+	oe_runmake
 }
 
 do_install_virtclass-native () {
-    install -m 0755 -D ${S}/bin/xsd ${D}${bindir}/xsdcxx
+    install -m 0755 -D ${S}/xsd/xsd/xsd ${D}${bindir}/xsdcxx
 }
