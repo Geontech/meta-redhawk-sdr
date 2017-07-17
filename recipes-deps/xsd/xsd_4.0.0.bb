@@ -31,14 +31,11 @@ BBCLASSEXTEND = "native"
 PROVIDES += "${PN}-dev ${PN}-dev-native"
 
 SRC_URI = " \
-    http://codesynthesis.com/download/xsd/3.3/linux-gnu/x86_64/xsd-3.3.0-x86_64-linux-gnu.tar.bz2;name=xsd330bintarbz2 \
+    git://scm.codesynthesis.com/xsd/xsd.git;protocol=git \
     "
+SRCREV = "94cba986108a0e0f42295572ca42c356d59328d7"
 
-S = "${WORKDIR}/xsd-3.3.0-x86_64-linux-gnu"
-
-SRC_URI[xsd330bintarbz2.md5sum] = "62cf1291e210eba37738d5a02f7d2990"
-SRC_URI[xsd330bintarbz2.sha256sum] = "e964e09394c06a3e50a2ef6bd318aac45018ee1d7cd2955170f70426ef20f716"
-
+S = "${WORKDIR}/git"
 
 # Per http://www.codesynthesis.com/pipermail/xsde-users/2012-October/000535.html
 # Boris says to get the binary for the host, then cross-compile and install libxsd...
@@ -53,4 +50,3 @@ do_install () {
 do_install_virtclass-native () {
     install -m 0755 -D ${S}/bin/xsd ${D}${bindir}/xsdcxx
 }
-
