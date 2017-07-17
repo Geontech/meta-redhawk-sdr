@@ -7,11 +7,9 @@ DEPENDS = "libusb1"
 RDEPENDS_${PN} = "libusb1"
 
 SRC_URI = "\
-    git://git.osmocom.org/rtl-sdr.git;tag=v0.5.3;protocol=git \
+    https://github.com/RedhawkSDR/librtlsdr;tag=${PV};protocol=git \
     file://01_fix_pkgconfig.patch \
     "
-
-PR = "r0" 
 
 S = "${WORKDIR}/git"
 
