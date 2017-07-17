@@ -1,0 +1,20 @@
+--- git/nodeconfig.py	2016-03-09 14:41:47.482999800 -0500
++++ git-patched/nodeconfig.py	2016-03-09 14:43:45.513263853 -0500
+@@ -122,7 +122,7 @@
+             compfiles = [{'id':RTL2832U_componentfile, 'localfile':os.path.join('/devices', 'rh', 'RTL2832U', 'RTL2832U.spd.xml')}]
+         else:
+             compfiles = [{'id':RTL2832U_componentfile, 'localfile':os.path.join('/nodes', self.options.nodename.replace('.','/'), 'RTL2832U', 'RTL2832U.spd.xml')}]
+-        compplacements = [{'refid':RTL2832U_componentfile, 'instantiations':[{'id':self.uuids["componentinstantiation"], 'usagename':'rh.RTL2832U_' + self.hostname.replace('.', '_')}]}]
++        compplacements = [{'refid':RTL2832U_componentfile, 'instantiations':[{'id':self.uuids["componentinstantiation"], 'usagename':'rh.RTL2832U'}]}]
+ 
+         #####################
+         # DeviceManager files
+@@ -230,7 +230,7 @@
+     from optparse import OptionParser
+     parser = OptionParser()
+     #parser.usage = "%s [options] [simple_prop1 simple_value1]..."
+-    parser.add_option("--domainname", dest="domainname", default=None,
++    parser.add_option("--domainname", dest="domainname", default="REDHAWK_DEV",
+                       help="Must give a domain name")
+     parser.add_option("--rtlname", dest="name", default="",
+                       help="Name of the targeted RTL")
