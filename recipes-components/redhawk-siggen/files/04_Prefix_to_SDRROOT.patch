@@ -2,16 +2,19 @@ diff --git cpp/Makefile.am cpp/Makefile.am
 index b436b35..cc3403e 100644
 --- cpp/Makefile.am
 +++ cpp/Makefile.am
-@@ -17,10 +17,10 @@
+@@ -17,12 +17,12 @@
  #
-  
- ossieName = SigGen
--bindir = $(prefix)/dom/components/SigGen/cpp/
-+bindir = $(SDR_ROOT)/dom/components/SigGen/cpp/
+ 
+ ossieName = rh.SigGen
+-bindir = $(prefix)/dom/components/rh/SigGen/cpp/
++bindir = $(SDR_ROOT)/dom/components/rh/SigGen/cpp/
  bin_PROGRAMS = SigGen
  
--xmldir = $(prefix)/dom/components/SigGen/
-+xmldir = $(SDR_ROOT)/dom/components/SigGen/
- dist_xml_DATA = ../SigGen.prf.xml ../SigGen.scd.xml ../SigGen.spd.xml
+-xmldir = $(prefix)/dom/components/rh/SigGen/
++xmldir = $(SDR_ROOT)/dom/components/rh/SigGen/
+ dist_xml_DATA = ../SigGen.scd.xml ../SigGen.prf.xml ../SigGen.spd.xml
+-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
++ACLOCAL_AMFLAGS = -I m4
+ AUTOMAKE_OPTIONS = subdir-objects
  
- distclean-local:
+ 
