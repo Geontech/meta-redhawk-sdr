@@ -9,7 +9,6 @@ RDEPENDS_${PN} = "redhawk-bulkio"
 PR = "r1"
 
 SRC_URI_append = " \
-	file://01_Remove_x86_and_Impls.patch;patchdir=.. \
 	file://03_Add_Missing_Files.patch; \
 	file://04_Prefix_to_SDRROOT.patch; \
 "
