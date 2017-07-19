@@ -1,5 +1,5 @@
 # This file sets OSSIEHOME and other environment variables used by autotools
-inherit redhawk-oeconf
+inherit redhawk-oeconf redhawk-sysroot
 
 # Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
@@ -8,6 +8,7 @@ do_configure_prepend() {
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
+  export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
 }
 
 # Needed so that when the python distutils is run it can get the system prefix.
@@ -19,3 +20,18 @@ do_install_prepend() {
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
   export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
 }
+
+# Dynamic architecture patch for whatever ${PACKAGE_ARCH} is set to.
+# 1. This takes whatever is ${NODE_CONFIG_SCRIPT} and find where it hard-codes the architecture look-up,
+#    replacing it for ${PACKAGE_ARCH}
+# 2. This changes processor name x86_64 and replaces it with ${PACKAGE_ARCH}.
+# 3. This removes processor name x86.
+NODE_CONFIG_SCRIPT ?= ""
+do_dynamic_arch_patch () {
+    if ! [ -z ${NODE_CONFIG_SCRIPT} ] ; then 
+        sed -i "s/tmp_proc_map.get(tmp_uname_p, 'x86')/'${PACKAGE_ARCH}'/g" ${S}/${NODE_CONFIG_SCRIPT} 
+    fi
+    sed -i "s/<processor name=\"x86_64\"\/>/<processor name=\"${PACKAGE_ARCH}\"\/>/g" ${S}/../*.spd.xml
+    sed -i "s/<processor name=\"x86\"\/>//g" ${S}/../*.spd.xml
+}
+addtask dynamic_arch_patch after do_patch before do_configure

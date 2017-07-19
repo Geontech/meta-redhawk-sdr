@@ -1,5 +1,5 @@
 
-inherit redhawk-env
+inherit redhawk-sysroot
 
 FILES_${PN} += "${SDRROOT}/dom/waveforms/*"
 

@@ -1,0 +1,147 @@
+diff -Nuar src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml
+--- src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml	2017-07-18 10:11:02.381201718 -0400
++++ src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml	1969-12-31 19:00:00.000000000 -0500
+@@ -1,47 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!--
+-This file is protected by Copyright. Please refer to the COPYRIGHT file 
+-distributed with this source distribution.
+-
+-This file is part of REDHAWK core.
+-
+-REDHAWK core is free software: you can redistribute it and/or modify it under 
+-the terms of the GNU Lesser General Public License as published by the Free 
+-Software Foundation, either version 3 of the License, or (at your option) any 
+-later version.
+-
+-REDHAWK core is distributed in the hope that it will be useful, but WITHOUT ANY 
+-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+-A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more 
+-details.
+-
+-You should have received a copy of the GNU Lesser General Public License along 
+-with this program.  If not, see http://www.gnu.org/licenses/.
+--->
+-
+-<!DOCTYPE properties PUBLIC "-//JTRS//DTD SCA V2.2.2 PRF//EN" "properties.dtd">
+-<properties>
+-    <!-- Provide a processor_name and os_name matching property -->
+-    <simple id="DCE:c10fa291-0d82-49ec-a5e9-fcb5b9b21d17"
+-            name="os_name"
+-            mode="readonly"
+-            type="string">
+-        <description>
+-            SCA required property describing the Operating System
+-        </description>
+-        <value>Linux</value>
+-        <kind kindtype="allocation"/>
+-        <action type="eq"/>
+-    </simple>
+-    <simple id="DCE:01859ee5-c022-454d-be95-b7124b6a208c"
+-            name="processor_name"
+-            mode="readonly"
+-            type="string">
+-        <description>
+-            SCA required property describing the CPU type
+-        </description>
+-        <value>armv7l</value>
+-        <kind kindtype="allocation"/>
+-        <action type="eq"/>
+-    </simple>
+-</properties>
+diff -Nuar src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml
+--- src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml	1969-12-31 19:00:00.000000000 -0500
++++ src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml	2017-07-18 10:13:05.031852986 -0400
+@@ -0,0 +1,47 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!--
++This file is protected by Copyright. Please refer to the COPYRIGHT file 
++distributed with this source distribution.
++
++This file is part of REDHAWK core.
++
++REDHAWK core is free software: you can redistribute it and/or modify it under 
++the terms of the GNU Lesser General Public License as published by the Free 
++Software Foundation, either version 3 of the License, or (at your option) any 
++later version.
++
++REDHAWK core is distributed in the hope that it will be useful, but WITHOUT ANY 
++WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR 
++A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more 
++details.
++
++You should have received a copy of the GNU Lesser General Public License along 
++with this program.  If not, see http://www.gnu.org/licenses/.
++-->
++
++<!DOCTYPE properties PUBLIC "-//JTRS//DTD SCA V2.2.2 PRF//EN" "properties.dtd">
++<properties>
++    <!-- Provide a processor_name and os_name matching property -->
++    <simple id="DCE:c10fa291-0d82-49ec-a5e9-fcb5b9b21d17"
++            name="os_name"
++            mode="readonly"
++            type="string">
++        <description>
++            SCA required property describing the Operating System
++        </description>
++        <value>Linux</value>
++        <kind kindtype="allocation"/>
++        <action type="eq"/>
++    </simple>
++    <simple id="DCE:01859ee5-c022-454d-be95-b7124b6a208c"
++            name="processor_name"
++            mode="readonly"
++            type="string">
++        <description>
++            SCA required property describing the CPU type
++        </description>
++        <value>BB_PACKAGE_ARCH</value>
++        <kind kindtype="allocation"/>
++        <action type="eq"/>
++    </simple>
++</properties>
+diff -Nuar src/control/sdr/devmgr/DeviceManager.spd.xml src/control/sdr/devmgr/DeviceManager.spd.xml
+--- src/control/sdr/devmgr/DeviceManager.spd.xml	2017-07-18 10:11:02.381201718 -0400
++++ src/control/sdr/devmgr/DeviceManager.spd.xml	2017-07-18 10:19:36.184929989 -0400
+@@ -54,4 +54,16 @@
+         <os name="Linux" />
+         <processor name="x86_64"/>
+     </implementation>
++    <implementation id="DCE:4e93fddd-c570-4b85-816c-393f6ae92fe6">
++        <description>BB_PACKAGE_ARCH Implementation of a Device Manager</description>
++        <propertyfile>
++            <localfile name="DeviceManager.Linux.embedded.prf.xml"/>
++        </propertyfile>
++        <code type="Executable">
++            <localfile name="DeviceManager"/>
++            <entrypoint>DeviceManager</entrypoint>
++        </code>
++        <os name="Linux" />
++        <processor name="BB_PACKAGE_ARCH"/>
++    </implementation>
+ </softpkg>
+diff -Nuar src/control/sdr/devmgr/Makefile.am src/control/sdr/devmgr/Makefile.am
+--- src/control/sdr/devmgr/Makefile.am	2017-07-18 10:11:02.382201723 -0400
++++ src/control/sdr/devmgr/Makefile.am	2017-07-18 10:20:36.497250386 -0400
+@@ -19,7 +19,7 @@
+ #
+ 
+ devmgrdir = $(SDR_ROOT)/dev/mgr
+-dist_devmgr_DATA = DeviceManager.spd.xml DeviceManager.scd.xml DeviceManager.prf.xml DeviceManager.Linux.x86.prf.xml DeviceManager.Linux.x86_64.prf.xml DeviceManager.Linux.armv7l.prf.xml
++dist_devmgr_DATA = DeviceManager.spd.xml DeviceManager.scd.xml DeviceManager.prf.xml DeviceManager.Linux.x86.prf.xml DeviceManager.Linux.x86_64.prf.xml DeviceManager.Linux.embedded.prf.xml
+ devmgr_PROGRAMS = DeviceManager
+ 
+ DeviceManager_SOURCES = main.cpp spdSupport.cpp DeviceManager_impl.cpp
+diff -Nuar src/control/sdr/dommgr/DomainManager.spd.xml src/control/sdr/dommgr/DomainManager.spd.xml
+--- src/control/sdr/dommgr/DomainManager.spd.xml	2017-07-18 10:11:02.385201739 -0400
++++ src/control/sdr/dommgr/DomainManager.spd.xml	2017-07-18 10:21:20.971488349 -0400
+@@ -36,8 +36,7 @@
+ 		    <localfile name="DomainManager"/>
+ 		    <entrypoint>/mgr/DomainManager</entrypoint>
+ 		</code>
+-		<processor name="x86_64"/>
+-		<processor name="x86"/>
++		<processor name="BB_PACKAGE_ARCH"/>
+ 		<os name="Linux"/>
+ 	</implementation>
+ </softpkg>

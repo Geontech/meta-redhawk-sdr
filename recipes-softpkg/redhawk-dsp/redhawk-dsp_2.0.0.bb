@@ -1,20 +1,18 @@
 DESCRIPTION = "REDHAWK Core Framework GPP"
-HOMEPAGE = "http://www.redhawksdr.org"
-LICENSE = "LGPL-3.0"
-LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad02"
+
+include recipes-core/include/redhawk-repo.inc
 
 DEPENDS = "redhawk-bulkio"
 RDEPENDS_${PN} = "redhawk-bulkio"
+PREFERRED_VERSION_redhawk-bulkio = "2.0.6"
 
-SRC_URI = " \
-    git://github.com/RedhawkSDR/dsp.git;tag=2.0.0;protocol=git \
-    file://03_Add_Missing_Files.patch \
+SRC_URI_append = " \
+    file://Add_Missing_Files.patch \
     "
 
-SRCREV = "2b3dfb93b5f836e66768f582312e4266cae52cd6"
+PR = "r1"
 
-S = "${WORKDIR}/git/cpp"
-
+S = "${WORKDIR}/git/redhawk-sharedlibs/dsp/cpp"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
 # autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.

@@ -43,7 +43,7 @@ RH_NODE_NAME ?= "DevMgr-${MACHINE}-ALL"
 
 
 # Import the SDRROOT (and OSSIEHOME) locations
-inherit redhawk-env
+inherit redhawk-sysroot
 
 PACKAGES = "${PN}"
 FILES_${PN} = " \
