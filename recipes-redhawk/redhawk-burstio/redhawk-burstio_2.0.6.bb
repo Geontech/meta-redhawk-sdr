@@ -80,6 +80,7 @@ EXTRA_OECONF += "\
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
 CXXFLAGS += "-fpermissive"
+CXXFLAGS += "-std=gnu++98"
 
 PARALLEL_MAKE = ""
 

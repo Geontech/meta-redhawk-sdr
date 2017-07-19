@@ -80,6 +80,7 @@ EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
 # Required
 CXXFLAGS += "-fpermissive"
+CXXFLAGS += "-std=gnu++98"
 CFLAGS += "-fpermissive"
 
 # Since prefix is set this has to override that

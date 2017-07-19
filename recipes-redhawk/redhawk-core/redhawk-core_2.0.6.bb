@@ -62,6 +62,7 @@ EXTRA_OECONF += "\
     "
 
 CXXFLAGS += "-fpermissive"
+CXXFLAGS += "-std=gnu++98"
 
 FILES_${PN}-dbg += " \
     ${SDRROOT}/dev/mgr/.debug \
