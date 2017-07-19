@@ -12,6 +12,8 @@ This repository, along with the base Yocto framework will enable you to build th
  * iVeia Atlas-I-Z7e
  * Several ZC702 -based designs
 
+ > Note: Only the presently-tagged version is supported by this repository, however we can support some earlier versions if required.  Please contact us through our [website](http://www.geontech.com) if this is a need.
+
 Is my hardware supported?
 -------------------------
 The Yocto website provides a list of [Official BSPs][4] which include common hardware platforms like the Raspberry Pi, BeagleBoard, BeagleBone, NUC, Intel Atom, etc.
