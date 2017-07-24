@@ -22,6 +22,4 @@ require redhawk-node-image.bb
 
 SUMMARY = "Console-only REDHAWK Node with the GPP device"
 
-CORE_IMAGE_EXTRA_INSTALL += "\
-    gpp \
-    "
+CORE_IMAGE_EXTRA_INSTALL += "gpp"

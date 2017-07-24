@@ -23,7 +23,9 @@ require redhawk-gpp-image.bb
 SUMMARY = "Console-only REDHAWK with Domain, GPP and omni init scripts for verifying a build"
 
 CORE_IMAGE_EXTRA_INSTALL += "\
-	redhawk-siggen \
+	packagegroup-redhawk-basic-components \
+	packagegroup-redhawk-basic-softpkgs \
+	domain-init \
 	omniorb-init \
     omnievents-init \
     "
