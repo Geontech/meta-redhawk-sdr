@@ -18,27 +18,25 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-DESCRIPTION = "REDHAWK Framework BurstIO Interfaces"
+DESCRIPTION = "REDHAWK Framework FrontEnd Interfaces"
 
 include recipes-core/include/redhawk-repo.inc
 
-PR = "r2"
-
-DEPENDS = "redhawk-bulkio"
-RDEPENDS_${PN} = "redhawk-bulkio"
-RDEPENDS_${PN}-python = "redhawk-bulkio-python"
-PREFERRED_VERSION_redhawk-core = "${REDHAWK_VERSION}"
+DEPENDS = "bulkiointerfaces"
+RDEPENDS_${PN} = "bulkiointerfaces"
+RDEPENDS_${PN}-python = "bulkiointerfaces-python"
+PREFERRED_VERSION_redhawk-bulkio = "${REDHAWK_VERSION}"
 
 PACKAGES += "${PN}-python"
 PROVIDES += "${PN}-python"
 
+PR = "r2"
+
 SRC_URI_append = "\
-    file://subdir_objects.patch \
-    file://makefile.am.patch \
     file://IDLDIR.patch \
 "
 
-S = "${WORKDIR}/git/redhawk-core-framework/burstioInterfaces"
+S = "${WORKDIR}/git/redhawk-core-framework/frontendInterfaces"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
 # autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
@@ -50,6 +48,7 @@ FILES_${PN}-python += " \
 "
 
 FILES_${PN} += " \
+    ${OSSIEHOME}/share \
     ${OSSIEHOME}/lib/lib*.so.* \
 "
 
@@ -58,15 +57,14 @@ FILES_${PN}-dbg += " \
 "
 
 FILES_${PN}-dev += " \
-    ${OSSIEHOME}/lib/lib*.so \
+    ${OSSIEHOME}/lib/*.so \
     ${OSSIEHOME}/include \
-    ${OSSIEHOME}/share/* \
     ${OSSIEHOME}/lib/pkgconfig \
 "
 
 FILES_${PN}-staticdev += " \
     ${OSSIEHOME}/lib/*.a \
-    ${OSSIEHOME}/lib/lib*.la \
+    ${OSSIEHOME}/lib/*.la \
 "
 
 INSANE_SKIP_${PN} += "libdir"
@@ -74,15 +72,17 @@ INSANE_SKIP_${PN}-dbg += "libdir"
 
 
 EXTRA_OECONF += "\
-    -disable-java \
-    --with-boost-system=boost_system \
+    --disable-java \
+    --disable-log4cxx \
     "
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
+# Required
 CXXFLAGS += "-fpermissive"
-CXXFLAGS += "-std=gnu++98"
+CFLAGS += "-fpermissive"
 
-PARALLEL_MAKE = ""
+# Since prefix is set this has to override that
+CACHED_CONFIGUREVARS += "ac_cv_pymod_ossie=yes ac_cv_pymod_bulkio_bulkioInterfaces=yes"
 
 # Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
@@ -101,4 +101,3 @@ do_install_prepend() {
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
 }
-

@@ -24,9 +24,9 @@ include recipes-core/include/redhawk-repo.inc
 
 PR = "r2"
 
-DEPENDS = "redhawk-core"
-RDEPENDS_${PN} = "redhawk-core python"
-PREFERRED_VERSION_redhawk-core = "${REDHAWK_VERSION}"
+DEPENDS = "redhawk"
+RDEPENDS_${PN} = "redhawk python"
+PREFERRED_VERSION_redhawk = "${REDHAWK_VERSION}"
 
 S = "${WORKDIR}/git/redhawk-core-framework/redhawk-codegen"
 

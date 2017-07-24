@@ -18,15 +18,15 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
+DESCRIPTION = "REDHAWK Framework BurstIO Interfaces"
 
 include recipes-core/include/redhawk-repo.inc
 
 PR = "r2"
 
-DEPENDS = "redhawk-core"
-RDEPENDS_${PN} = "redhawk-core"
-RDEPENDS_${PN}-python = "redhawk-core-python"
+DEPENDS = "bulkiointerfaces"
+RDEPENDS_${PN} = "bulkiointerfaces"
+RDEPENDS_${PN}-python = "bulkiointerfaces-python"
 PREFERRED_VERSION_redhawk-core = "${REDHAWK_VERSION}"
 
 PACKAGES += "${PN}-python"
@@ -34,14 +34,15 @@ PROVIDES += "${PN}-python"
 
 SRC_URI_append = "\
     file://subdir_objects.patch \
-    file://Add_Missing_Files.patch \
+    file://IDLDIR.patch \
 "
 
-S = "${WORKDIR}/git/redhawk-core-framework/bulkioInterfaces"
+S = "${WORKDIR}/git/redhawk-core-framework/burstioInterfaces"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
 # autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-oeconf redhawk-sysroot
+
 
 FILES_${PN}-python += " \
     ${OSSIEHOME}/lib/python \
@@ -70,16 +71,16 @@ FILES_${PN}-staticdev += " \
 INSANE_SKIP_${PN} += "libdir"
 INSANE_SKIP_${PN}-dbg += "libdir"
 
+
 EXTRA_OECONF += "\
-    --disable-java \
-    --disable-log4cxx \
+    -disable-java \
     --with-boost-system=boost_system \
     "
-
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
 CXXFLAGS += "-fpermissive"
-CXXFLAGS += "-std=gnu++98"
+
+PARALLEL_MAKE = ""
 
 # Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
@@ -87,6 +88,7 @@ do_configure_prepend() {
   export HOST_SYS=${HOST_SYS}
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
+  export STAGING_BASE=${STAGING_DIR}/${MACHINE}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 }
 

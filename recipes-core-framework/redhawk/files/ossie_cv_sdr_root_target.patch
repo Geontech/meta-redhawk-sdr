@@ -1,0 +1,24 @@
+--- src/acinclude/redhawk.m4	2017-07-21 17:06:10.777957030 -0400
++++ src.new/acinclude/redhawk.m4	2017-07-21 17:07:48.578533129 -0400
+@@ -100,9 +100,10 @@
+   ])
+ 
+   # Test for the existence of the SPD first
+-  rh_softpkg_spd="${ossie_cv_sdr_root}/dom$1"
+-  AS_IF([test ! -r $rh_softpkg_spd], [
+-    AS_IF([test -f $rh_softpkg_spd], [
++  rh_softpkg_spd="$1"
++  rh_softpkg_spd_test="${ossie_cv_sdr_root_target}/dom$1"
++  AS_IF([test ! -r $rh_softpkg_spd_test], [
++    AS_IF([test -f $rh_softpkg_spd_test], [
+       _rh_softpkg_error="Permission denied"
+     ], [
+       _rh_softpkg_error="File not found"
+@@ -110,6 +111,7 @@
+     AC_MSG_ERROR([Failed to open required soft package library $1: ${_rh_softpkg_error}])
+   ])
+ 
++  export SDRROOT=${ossie_cv_sdr_root_target}
+   rh_softpkg_name=`redhawk-softpkg --name $rh_softpkg_spd`
+   rh_softpkg_version_check=""
+   AS_IF([test "x$3" != "x"], [

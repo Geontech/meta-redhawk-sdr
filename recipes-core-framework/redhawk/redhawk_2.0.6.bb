@@ -34,7 +34,6 @@ PROVIDES += "${PN}-python"
 PREFERRED_VERSION_omniorb = "4.2.0"
 
 SRC_URI_append = "\
-    file://Add_Missing_Files.patch \
     file://package_arch.patch \
     file://Fix_Idl_prefix.patch \
     file://OSSIEHOME_global_prefix.patch \
@@ -43,6 +42,7 @@ SRC_URI_append = "\
     file://gcc_fix_applicationSupport.patch \
     file://gcc_fix_nodebooter.patch \
     file://remove_csh_scripts.patch \
+    file://ossie_cv_sdr_root_target.patch \
 "
 
 S = "${WORKDIR}/git/redhawk-core-framework/redhawk/src"
@@ -62,7 +62,6 @@ EXTRA_OECONF += "\
     "
 
 CXXFLAGS += "-fpermissive"
-CXXFLAGS += "-std=gnu++98"
 
 FILES_${PN}-dbg += " \
     ${SDRROOT}/dev/mgr/.debug \
