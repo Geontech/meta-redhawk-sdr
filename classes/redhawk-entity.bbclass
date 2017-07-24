@@ -1,5 +1,5 @@
 # This file sets OSSIEHOME and other environment variables used by autotools
-inherit redhawk-oeconf redhawk-sysroot
+inherit redhawk-oeconf redhawk-sysroot pythonnative
 
 # Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
@@ -9,6 +9,17 @@ do_configure_prepend() {
   export STAGING_LIBDIR=${STAGING_LIBDIR}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
   export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
+  export PATH="${OSSIEHOME_STAGED}/bin:${PATH}"
+
+  # Common patches among device and component as noted by YLB.
+  # These were individual patch files but were being tacked on to many recipes.
+  # This is to reduce some clutter.
+  sed -i 's/ACLOCAL_AMFLAGS = .\+$/ACLOCAL_AMFLAGS = -I m4/g' Makefile.am
+  sed -i 's/xmldir = $(prefix)/xmldir = $(SDR_ROOT)/g' Makefile.am
+  sed -i 's/bindir = $(prefix)/bindir = $(SDR_ROOT)/g' Makefile.am
+  sed -i 's/domdir = $(prefix)/domdir = $(SDR_ROOT)/g' Makefile.am
+  sed -i 's,${prefix}/dom/deps,${SDR_ROOT}/dom/deps,g' configure.ac
+  touch ./NEWS ./README ./AUTHORS ./ChangeLog
 }
 
 # Needed so that when the python distutils is run it can get the system prefix.
