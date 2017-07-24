@@ -14,12 +14,10 @@ do_configure_prepend() {
   # Common patches among device and component as noted by YLB.
   # These were individual patch files but were being tacked on to many recipes.
   # This is to reduce some clutter.
-  sed -i 's/ACLOCAL_AMFLAGS = .\+$/ACLOCAL_AMFLAGS = -I m4/g' Makefile.am
   sed -i 's/xmldir = $(prefix)/xmldir = $(SDR_ROOT)/g' Makefile.am
   sed -i 's/bindir = $(prefix)/bindir = $(SDR_ROOT)/g' Makefile.am
   sed -i 's/domdir = $(prefix)/domdir = $(SDR_ROOT)/g' Makefile.am
   sed -i 's,${prefix}/dom/deps,${SDR_ROOT}/dom/deps,g' configure.ac
-  touch ./NEWS ./README ./AUTHORS ./ChangeLog
 }
 
 # Needed so that when the python distutils is run it can get the system prefix.

@@ -14,3 +14,8 @@ EXTRA_OECONF += "\
     --with-boost-thread=boost_thread \
     "
 
+# Patches common to nearly every REDHAWK source
+do_configure_prepend () {
+  touch ./NEWS ./README ./AUTHORS ./ChangeLog
+  sed -i 's/ACLOCAL_AMFLAGS = .\+$/ACLOCAL_AMFLAGS = -I m4/g' Makefile.am
+}
