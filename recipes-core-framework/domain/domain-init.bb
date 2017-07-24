@@ -50,5 +50,7 @@ do_install () {
     # Copy it to the destination init.d folder, renamed, and patched for the domain name
     install -d ${D}${sysconfdir}/init.d
     install -m 0755 ${WORKDIR}/domain-init.d    ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
+    sed -i "s|SDRROOT_PATH|${SDRROOT}|g"        ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
+    sed -i "s|OSSIEHOME_PATH|${OSSIEHOME}|g"    ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
     sed -i "s|DOMAIN_NAME|${RH_DOMAIN_NAME}|g"  ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
 }
