@@ -66,7 +66,7 @@ do_start() {
 do_stop() {
   echo "Stopping Device Manager on PID $(cat $PIDFILE)"
   if ! kill $(cat $PIDFILE); then
-    echo "Standard kill failed to stop domain manager, escalating!"
+    echo "Standard kill failed to stop device manager, escalating!"
     kill -9 $(cat $PIDFILE)
   fi
 
