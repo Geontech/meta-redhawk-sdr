@@ -5,7 +5,7 @@
  
    try {
 -    std::string line = utils::popen("ps -eo nlwp | tail -n +2 | awk '{ num_threads += $1 } END { print num_threads }' ", true);
-+    std::string line = utils::popen("ps -o nlwp | tail -n +2 | awk '{ num_threads += $1 } END { print num_threads }' ", true);
++    std::string line = utils::popen("cat /proc/[0-9]*/status | sed -rn 's/(Thread.+)([[:digit:]]+$)/\2/p' | awk '{ num_threads += $1 } END { print num_threads }' ", true);
      if ( line != "ERROR" ) {
        std::vector<std::string> values;
        boost::split(values, line, boost::is_any_of(std::string(" \t")), boost::algorithm::token_compress_on );

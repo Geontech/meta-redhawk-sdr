@@ -22,17 +22,16 @@ DESCRIPTION = "REDHAWK Core Framework GPP"
 
 include recipes-core/include/redhawk-repo.inc
 
-DEPENDS = "redhawk-bulkio"
-RDEPENDS_${PN} = "redhawk-bulkio"
-PREFERRED_VERSION_redhawk-bulkio = "2.0.6"
+DEPENDS = "bulkiointerfaces"
+RDEPENDS_${PN} = "bulkiointerfaces"
+PREFERRED_VERSION_bulkiointerfaces = "2.0.6"
 
 PR = "r2"
 
 SRC_URI_append = "\
     file://configure-gpp \
-    file://01_Clear_AMFLAGS_GPP_NO_TEST.patch \
-    file://03_Add_Missing_Files.patch \
-    file://05_GPP_ps_e.patch \
+    file://Clear_AMFLAGS_GPP_NO_TEST.patch \
+    file://GPP_ps_e.patch \
 "
 
 # ################################################

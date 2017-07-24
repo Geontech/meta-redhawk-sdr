@@ -23,9 +23,9 @@ HOMEPAGE = "http://www.geontech.com"
 LICENSE = "LGPL-3.0"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
-DEPENDS := "redhawk-core"
-RDEPENDS_${PN} := "redhawk-core"
-PREFERRED_VERSION_redhawk-core = "2.0.%"
+DEPENDS := "redhawk"
+RDEPENDS_${PN} := "redhawk"
+PREFERRED_VERSION_redhawk = "2.0.%"
 
 SRC_URI = "\
     file://node-init.d \

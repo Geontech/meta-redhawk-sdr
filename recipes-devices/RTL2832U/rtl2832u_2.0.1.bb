@@ -18,68 +18,61 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-DESCRIPTION = "REDHAWK Device for the USRP UHD"
-DEPENDS = "redhawk-bulkio redhawk-frontend uhd"
-RDEPENDS_${PN} = "redhawk-bulkio redhawk-frontend uhd"
+DESCRIPTION = "REDHAWK Device for the RTL2832U"
+DEPENDS = "frontendinterfaces bulkiointerfaces rtlsdr"
+RDEPENDS_${PN} = "frontendinterfaces rtlsdr"
 
-PREFERRED_VERSION_redhawk-bulkio = "2.0.6"
-PREFERRED_VERSION_redhawk-frontend = "2.3.6"
+PREFERRED_VERSION_bulkiointerfaces = "2.0.6"
+PREFERRED_VERSION_frontendinterfaces = "2.3.6"
 
-PR = "4"
+PR = "r5"
 
 include recipes-core/include/redhawk-repo.inc
-
-# NOTE: This recipe requires the USRP UHD driver and hardware installed
-# which is provided by the meta-sdr layer which relies on meta-ettus.
 
 # ################################################
 # End user-controlled variables to adjust the node
 # ################################################
-RH_USRP_UHD_TYPE      ?= "e3x0"
-RH_USRP_UHD_NAME      ?= ""
-RH_USRP_UHD_IP        ?= ""
-RH_USRP_UHD_SERIAL    ?= ""
-RH_USRP_UHD_NODE_NAME ?= "DevMgr-USRP_UHD"
+RH_RTL2832U_NAME      ?= ""
+RH_RTL2832U_VENDOR    ?= ""
+RH_RTL2832U_PRODUCT   ?= ""
+RH_RTL2832U_SERIAL    ?= ""
+RH_RTL2832U_INDEX     ?= ""
+RH_RTL2832U_NODE_NAME ?= "DevMgr-RTL2832U"
 # ################################################
 
 SRC_URI_append = "\
-    file://Add_Missing_Files.patch \
+    file://Fix_rtl_version_constraint.patch \
     file://nodeconfig.patch \
-    file://Clear_AMFLAGS.patch \
-    file://remove_x86.patch \
 "
 
-S = "${WORKDIR}/git/redhawk-devices/USRP_UHD/cpp"
+S = "${WORKDIR}/git/redhawk-devices/RTL2832U/cpp"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
 # autotools-brokensep is the same as autotools but our build and src locations are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
-EXTRA_OECONF += "--prefix=${SDRROOT}"
-EXTRA_AUTORECONF += "-I ${STAGING_DIR}/${MACHINE}${OSSIEHOME}/share/aclocal/ossie"
-
 FILES_${PN} += "${SDRROOT}/*"
 INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"
 
+EXTRA_OECONF += "--prefix=${SDRROOT}"
+EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
-# Link nodeconfig.py and SPD into the source directory so we can patch it.
+# Link nodeconfig.py into the source directory so we can patch it.
 addtask link_nodeconfig before do_patch after do_unpack
 do_link_nodeconfig () {
-    mv ${S}/../nodeconfig.py \
-       ${S}/../USRP_UHD.spd.xml \
-       ${S}
-    ln -sf ${S}/nodeconfig.py       ${S}/../nodeconfig.py
-    ln -sf ${S}/USRP_UHD.spd.xml    ${S}/../USRP_UHD.spd.xml
+    mv ${S}/../nodeconfig.py ${S}
+    ln -sf ${S}/nodeconfig.py ${S}/../nodeconfig.py
 }
 
 # Install the template node
 do_install_append () {
-    ${D}${SDRROOT}/dev/devices/rh/USRP_UHD/nodeconfig.py \
+    ${D}${SDRROOT}/dev/devices/rh/RTL2832U/nodeconfig.py \
         --sdrroot="${D}${SDRROOT}" \
-        --nodename="${RH_USRP_UHD_NODE_NAME}" \
-        --usrptype="${RH_USRP_UHD_TYPE}" \
-        --usrpip="${RH_USRP_UHD_IP}" \
-        --usrpname="${RH_USRP_UHD_IP}" \
-        --usrpserial="${RH_USRP_UHD_SERIAL}" \
-        --inplace \
+        --nodename="DevMgr-${MACHINE}-RTL2832U" \
+        --rtlname="${RH_RTL2832U_NAME}" \
+        --rtlvendor="${RH_RTL2832U_VENDOR}" \
+        --rtlproduct="${RH_RTL2832U_PRODUCT}" \
+        --rtlserial="${RH_RTL2832U_SERIAL}" \
+        --rtlindex="${RH_RTL2832U_INDEX}" \
+        --inplace
 }
