@@ -39,9 +39,10 @@ PYTHONPATH=$OSSIEHOME/lib/python:$OSSIEHOME/lib64/python
 LD_LIBRARY_PATH=$OSSIEHOME/lib
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:$OSSIEHOME/bin
 DOMAIN=DOMAIN_NAME
+DOMAIN_PROFILE=$SDRROOT/dom/domain/DomainManager.dmd.xml
 PIDFILE=/var/run/$DOMAIN.pid
 LOGFILE=/var/log/$DOMAIN.log
-DAEMON_ARGS="-D --domain $DOMAIN --pidfile $PIDFILE --daemon 2>&1 > $LOGFILE"
+DAEMON_ARGS="-D $DOMAIN_PROFILE --domain $DOMAIN --pidfile $PIDFILE --daemon 2>&1 > $LOGFILE"
 
 do_start() {
   export PYTHONPATH=$PYTHONPATH
