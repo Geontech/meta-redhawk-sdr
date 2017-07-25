@@ -52,7 +52,6 @@ S = "${WORKDIR}/omniORB-${PV}"
 # Alternativly, we could packge this into the dev package and then pull that in but that would also get all the headers
 # and idl files
 INSANE_SKIP_${PN}-python += "dev-so"
-FILES_${PN}-dev += "${datadir}/idl/omniORB/* ${datadir}/idl/omniORB/cos/*"
 
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/_omniidlmodule.so*"
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/omniidl/*"
