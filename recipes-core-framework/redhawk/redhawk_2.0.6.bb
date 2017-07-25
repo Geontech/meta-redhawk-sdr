@@ -34,6 +34,7 @@ PROVIDES += "${PN}-python"
 PREFERRED_VERSION_omniorb = "4.2.0"
 
 SRC_URI_append = "\
+    file://uuid_python_package.patch \
     file://package_arch.patch \
     file://Fix_Idl_prefix.patch \
     file://OSSIEHOME_global_prefix.patch \

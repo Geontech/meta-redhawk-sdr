@@ -1,0 +1,14 @@
+--- src/base/framework/python/ossie/utils/__init__.py	2017-07-24 07:21:38.862965609 -0400
++++ src.patched/base/framework/python/ossie/utils/__init__.py	2017-07-25 07:48:04.382570247 -0400
+@@ -20,10 +20,7 @@
+ 
+ from popen import Popen
+ 
+-# Try to use the uuid module from Python 2.5 or newer; if that fails, use our
+-# fallback compatibility module. Should the minimum Python version ever be
+-# raised to 2.5, the compatibility module can be eliminated.
+-import _uuid as uuid
++import uuid
+ 
+ # Manually insert the uuid module into sys.modules to allow statements such as
+ # "import ossie.utils.uuid" to work as expected.
