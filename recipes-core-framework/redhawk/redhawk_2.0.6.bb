@@ -91,6 +91,7 @@ FILES_${PN}-python += " \
 FILES_${PN} += " \
     ${OSSIEHOME}/lib/lib*.so.* \
     ${OSSIEHOME}/bin/nodeBooter \
+    ${OSSIEHOME}/share
     /etc/* \
     ${SDRROOT}/* \
 "
@@ -102,7 +103,6 @@ FILES_${PN}-staticdev += " \
 
 FILES_${PN}-dev += " \
     ${OSSIEHOME}/lib/lib*.so \
-    ${OSSIEHOME}/share \
     ${OSSIEHOME}/include \
     ${OSSIEHOME}/lib/pkgconfig \
 "
