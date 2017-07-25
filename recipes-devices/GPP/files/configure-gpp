@@ -10,5 +10,8 @@
 echo "Configuring GPP"
 source /etc/profile
 cd $SDRROOT/dev/devices/GPP
-cpp/gpp_setup --location=./ --mcastnic=MCASTNIC
-
+cpp/gpp_setup \
+	--location=./ \
+	--mcastnic=MCASTNIC \
+	--nodename=GPP_NODE_NAME \
+	--gppname=GPP_NAME

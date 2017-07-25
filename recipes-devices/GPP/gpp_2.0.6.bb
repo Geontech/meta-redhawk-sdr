@@ -66,15 +66,12 @@ INITSCRIPT_PARAMS = "defaults 98"
 
 NODE_CONFIG_SCRIPT = "gpp_setup"
 
-# Install the script
 do_install_append() {
     install -d ${D}/etc/init.d
-    sed -i "s|MCASTNIC|${RH_GPP_MCASTNIC}|g" ${WORKDIR}/configure-gpp
-    install -m 0755 ${WORKDIR}/configure-gpp ${D}/etc/init.d/configure-gpp
-    
-    # Run node creator (containing just this device)
-    ${D}${SDRROOT}/dev/devices/GPP/cpp/gpp_setup \
-        --sdrroot="${D}${SDRROOT}" \
-        --nodename="${RH_GPP_NODE_NAME}" \
-        --gppname="${RH_GPP_NAME}"
+
+    # Install and patch configure-gpp
+    install -m 0755 ${WORKDIR}/configure-gpp       ${D}/etc/init.d/configure-gpp
+    sed -i "s|MCASTNIC|${RH_GPP_MCASTNIC}|g"       ${D}/etc/init.d/configure-gpp
+    sed -i "s|GPP_NODE_NAME|${RH_GPP_NODE_NAME}|g" ${D}/etc/init.d/configure-gpp
+    sed -i "s|GPP_NAME|${RH_GPP_NAME}|g"           ${D}/etc/init.d/configure-gpp
 }
