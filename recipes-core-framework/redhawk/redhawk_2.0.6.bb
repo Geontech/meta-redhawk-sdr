@@ -91,7 +91,7 @@ FILES_${PN}-python += " \
 FILES_${PN} += " \
     ${OSSIEHOME}/lib/lib*.so.* \
     ${OSSIEHOME}/bin/nodeBooter \
-    ${OSSIEHOME}/share
+    ${OSSIEHOME}/share \
     /etc/* \
     ${SDRROOT}/* \
 "
