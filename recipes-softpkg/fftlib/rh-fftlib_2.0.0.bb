@@ -9,5 +9,5 @@ SRC_URI_append = "\
 	file://fftw3_removal.patch \
 	"
 
-DEPENDS += "rh-dsp fftwf"
-RDEPENDS_${PN} += "rh-dsp fftwf"
+DEPENDS += "rh-dsp fftw"
+RDEPENDS_${PN} += "rh-dsp fftw"

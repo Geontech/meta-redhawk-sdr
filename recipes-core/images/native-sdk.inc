@@ -29,8 +29,8 @@ CORE_IMAGE_EXTRA_INSTALL = "\
     htop \
     orc \
     libudev \
-    iperf \
+    iperf3 \
     openssh-sftp \
     openssh-sftp-server \
-    fftwf \
+    fftw \
     "
