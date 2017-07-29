@@ -24,7 +24,7 @@ include recipes-core/include/redhawk-repo.inc
 
 PR = "r2"
 
-DEPENDS = "redhawk"
+DEPENDS = "redhawk omniorb-native omniorbpy-native"
 RDEPENDS_${PN} = "redhawk"
 RDEPENDS_${PN}-python = "redhawk-python"
 PREFERRED_VERSION_redhawk = "${REDHAWK_VERSION}"
