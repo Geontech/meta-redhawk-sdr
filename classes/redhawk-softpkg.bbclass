@@ -1,4 +1,4 @@
-inherit redhawk-entity.bbclass
+inherit redhawk-entity
 
 # Basic set of depends
 DEPENDS = "redhawk"
