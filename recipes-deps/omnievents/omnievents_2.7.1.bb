@@ -39,8 +39,8 @@ S = "${WORKDIR}/git"
 inherit autotools pkgconfig
 
 EXTRA_OECONF="\
-    --with-omniorb=${STAGING_DIR}/${MACHINE}/usr \
-    --with-boost=${STAGING_DIR}/${MACHINE}/usr \
+    --with-omniorb=${STAGING_EXECPREFIXDIR} \
+    --with-boost=${STAGING_EXECPREFIXDIR} \
     "
     
 # Over-write default multi-threaded build temporarily.
@@ -54,8 +54,8 @@ do_configure_append () {
 }
 
 do_compile () {
-	export IDL=${STAGING_DIR}/${BUILD_SYS}/usr/bin/omniidl
-	export IDL_COS_DIR=${STAGING_DIR}/${BUILD_SYS}/usr/share/idl/omniORB
+	export IDL=${STAGING_BINDIR_NATIVE}/omniidl
+	export IDL_COS_DIR=${STAGING_DATADIR}/idl/omniORB
     oe_runmake
 }
 

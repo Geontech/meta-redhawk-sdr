@@ -55,9 +55,9 @@ inherit autotools-brokensep pkgconfig pythonnative redhawk-oeconf redhawk-sysroo
 EXTRA_OECONF += "\
     --with-sdr=${SDRROOT} \
     --disable-java \
-    --with-expat=${STAGING_DIR_TARGET}/usr \
-    idldir=${STAGING_DIR_TARGET}/usr/share/idl/omniORB \
-    OMNICOS_IDLDIR=${STAGING_DIR_TARGET}/usr/share/idl/omniORB/COS \
+    --with-expat=${STAGING_EXECPREFIXDIR} \
+    idldir=${STAGING_DATADIR}/idl/omniORB \
+    OMNICOS_IDLDIR=${STAGING_DATADIR}/idl/omniORB/COS \
     --with-boost-regex=boost_regex \
     --disable-log4cxx \
     "

@@ -53,7 +53,7 @@ S = "${WORKDIR}/git/redhawk-devices/USRP_UHD/cpp"
 inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
 EXTRA_OECONF += "--prefix=${SDRROOT}"
-EXTRA_AUTORECONF += "-I ${STAGING_DIR}/${MACHINE}${OSSIEHOME}/share/aclocal/ossie"
+EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
 FILES_${PN} += "${SDRROOT}/*"
 INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"

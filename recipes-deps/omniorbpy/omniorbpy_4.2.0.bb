@@ -50,9 +50,8 @@ SRC_URI_append = "\
 
 S = "${WORKDIR}/omniORBpy-${PV}"
 
-EXTRA_OECONF = "--with-omniorb=${STAGING_DIR_TARGET}/usr"
-EXTRA_OECONF_virtclass-native = "--with-omniorb=${STAGING_DIR_NATIVE}/usr"
-
+EXTRA_OECONF = "--with-omniorb=${STAGING_EXECPREFIXDIR}"
+EXTRA_OECONF_virtclass-native = "--with-omniorb=${exec_prefix}"
 
 FILES_${PN} += " \
     ${libdir}/python2.7/site-packages/*.pth \
