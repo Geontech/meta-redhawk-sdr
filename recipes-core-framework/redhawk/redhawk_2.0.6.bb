@@ -24,7 +24,7 @@ include recipes-core/include/redhawk-repo.inc
 
 PR = "r2"
 
-DEPENDS = "omniorbpy omniorbpy-native log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
+DEPENDS = "uname-machine omniorbpy omniorbpy-native log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
 RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
 RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml"
 
@@ -35,7 +35,7 @@ PREFERRED_VERSION_omniorb = "4.2.0"
 
 SRC_URI_append = "\
     file://uuid_python_package.patch \
-    file://package_arch.patch \
+    file://uname_machine.patch \
     file://Fix_Idl_prefix.patch \
     file://OSSIEHOME_global_prefix.patch \
     file://Remove_Tests.patch \
@@ -111,9 +111,11 @@ INSANE_SKIP_${PN} += "libdir"
 INSANE_SKIP_${PN}-dbg += "libdir"
 
 do_package_arch_patch () {
-    find ${S} -type f -exec sed -i "s/BB_PACKAGE_ARCH/${PACKAGE_ARCH}/g" {} \;
+    UNAME_MACHINE=`cat ${OSSIEHOME_STAGED}/share/uname_machine`
+    find ${S} -type f -exec sed -i "s/BB_UNAME_MACHINE/${UNAME_MACHINE}/g" {} \;
 }
 addtask package_arch_patch after do_patch before do_configure
+do_package_arch_patch[depends] += "uname-machine:do_populate_sysroot"
 
 # Needed so that when the python distutils is run it can get the system prefix.
 do_install_prepend() {
