@@ -108,6 +108,7 @@ FILES_${PN}-dev += " \
 "
 
 INSANE_SKIP_${PN} += "libdir"
+INSANE_SKIP_${PN}-dev += "libdir"
 INSANE_SKIP_${PN}-dbg += "libdir"
 
 do_package_arch_patch () {

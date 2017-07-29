@@ -69,6 +69,7 @@ FILES_${PN}-staticdev += " \
 "
 
 INSANE_SKIP_${PN} += "libdir"
+INSANE_SKIP_${PN}-dev += "libdir"
 INSANE_SKIP_${PN}-dbg += "libdir"
 
 
