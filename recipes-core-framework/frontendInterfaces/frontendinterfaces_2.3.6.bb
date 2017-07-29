@@ -17,18 +17,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
+inherit redhawk-core-framework
 
 DESCRIPTION = "REDHAWK Framework FrontEnd Interfaces"
 
-include recipes-core/include/redhawk-repo.inc
-
-DEPENDS = "bulkiointerfaces"
+DEPENDS += "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
 RDEPENDS_${PN}-python = "bulkiointerfaces-python"
-PREFERRED_VERSION_redhawk-bulkio = "${REDHAWK_VERSION}"
-
-PACKAGES += "${PN}-python"
-PROVIDES += "${PN}-python"
 
 PR = "r2"
 
@@ -38,44 +33,6 @@ SRC_URI_append = "\
 
 S = "${WORKDIR}/git/redhawk-core-framework/frontendInterfaces"
 
-# We have to inherit from pythonnative if we do stuff with the system python.
-# autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
-inherit autotools-brokensep pkgconfig pythonnative redhawk-oeconf redhawk-sysroot
-
-
-FILES_${PN}-python += " \
-    ${OSSIEHOME}/lib/python \
-"
-
-FILES_${PN} += " \
-    ${OSSIEHOME}/share \
-    ${OSSIEHOME}/lib/lib*.so.* \
-"
-
-FILES_${PN}-dbg += " \
-    ${OSSIEHOME}/lib/.debug \
-"
-
-FILES_${PN}-dev += " \
-    ${OSSIEHOME}/lib/*.so \
-    ${OSSIEHOME}/include \
-    ${OSSIEHOME}/lib/pkgconfig \
-"
-
-FILES_${PN}-staticdev += " \
-    ${OSSIEHOME}/lib/*.a \
-    ${OSSIEHOME}/lib/*.la \
-"
-
-INSANE_SKIP_${PN} += "libdir"
-INSANE_SKIP_${PN}-dev += "libdir"
-INSANE_SKIP_${PN}-dbg += "libdir"
-
-
-EXTRA_OECONF += "\
-    --disable-java \
-    --disable-log4cxx \
-    "
 CFLAGS += "-fpermissive"
 
 # Since prefix is set this has to override that
@@ -89,12 +46,4 @@ do_configure_prepend() {
   export STAGING_LIBDIR=${STAGING_LIBDIR}
   export STAGING_BASE=${STAGING_DIR}/${MACHINE}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-}
-
-# Needed so that when the python distutils is run it can get the system prefix.
-do_install_prepend() {
-  export BUILD_SYS=${BUILD_SYS}
-  export HOST_SYS=${HOST_SYS}
-  export STAGING_INCDIR=${STAGING_INCDIR}
-  export STAGING_LIBDIR=${STAGING_LIBDIR}
 }

@@ -17,19 +17,15 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
+inherit redhawk-core-framework
 
 DESCRIPTION = "REDHAWK Core Framework"
 
-include recipes-core/include/redhawk-repo.inc
-
 PR = "r2"
 
-DEPENDS = "uname-machine omniorbpy omniorbpy-native log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
+DEPENDS += "uname-machine omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
 RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
 RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml"
-
-PACKAGES += "${PN}-python"
-PROVIDES += "${PN}-python"
 
 PREFERRED_VERSION_omniorb = "4.2.0"
 
@@ -48,29 +44,21 @@ SRC_URI_append = "\
 
 S = "${WORKDIR}/git/redhawk-core-framework/redhawk/src"
 
-# We have to inherit from pythonnative if we do stuff with the system python.
-# autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
-inherit autotools-brokensep pkgconfig pythonnative redhawk-oeconf redhawk-sysroot
-
 EXTRA_OECONF += "\
     --with-sdr=${SDRROOT} \
-    --disable-java \
     --with-expat=${STAGING_EXECPREFIXDIR} \
     idldir=${STAGING_DATADIR}/idl/omniORB \
     OMNICOS_IDLDIR=${STAGING_DATADIR}/idl/omniORB/COS \
     --with-boost-regex=boost_regex \
-    --disable-log4cxx \
     "
 
 FILES_${PN}-dbg += " \
     ${SDRROOT}/dev/mgr/.debug \
     ${SDRROOT}/dom/mgr/.debug \
-    ${OSSIEHOME}/lib/.debug \
     ${OSSIEHOME}/bin/.debug \
 "
 
 FILES_${PN}-python += " \
-    ${OSSIEHOME}/lib/python \
     ${OSSIEHOME}/bin/sdrlint \
     ${OSSIEHOME}/bin/prf2py.py \
     ${OSSIEHOME}/bin/cleanns \
@@ -87,28 +75,12 @@ FILES_${PN}-python += " \
 "
 
 FILES_${PN} += " \
-    ${OSSIEHOME}/lib/lib*.so.* \
     ${OSSIEHOME}/bin/nodeBooter \
-    ${OSSIEHOME}/share \
-    /etc/* \
     ${SDRROOT}/* \
+    /etc/* \
 "
 
-FILES_${PN}-staticdev += " \
-    ${OSSIEHOME}/lib/lib*.a \
-    ${OSSIEHOME}/lib/lib*.la \
-"
-
-FILES_${PN}-dev += " \
-    ${OSSIEHOME}/lib/lib*.so \
-    ${OSSIEHOME}/include \
-    ${OSSIEHOME}/lib/pkgconfig \
-"
-
-INSANE_SKIP_${PN} += "libdir"
-INSANE_SKIP_${PN}-dev += "libdir"
-INSANE_SKIP_${PN}-dbg += "libdir"
-
+# Patch for lack of support in specifying an alternative to armv7l and various x86 options.
 do_package_arch_patch () {
     UNAME_MACHINE=`cat ${OSSIEHOME_STAGED}/share/uname_machine`
     find ${S} -type f -exec sed -i "s/BB_UNAME_MACHINE/${UNAME_MACHINE}/g" {} \;
@@ -116,16 +88,6 @@ do_package_arch_patch () {
 addtask package_arch_patch after do_patch before do_configure
 do_package_arch_patch[depends] += "uname-machine:do_populate_sysroot"
 
-# Needed so that when the python distutils is run it can get the system prefix.
-do_install_prepend() {
-    export BUILD_SYS=${BUILD_SYS}
-    export HOST_SYS=${HOST_SYS}
-    export STAGING_INCDIR=${STAGING_INCDIR}
-    export STAGING_LIBDIR=${STAGING_LIBDIR}
-}
-
-# Because we're using non-standard locations, we have to describe our locations
-# to autotools
 # Get the things from /etc (sysconfdir)
 redhawk_core_etc_sysroot () {
     sysroot_stage_dir ${D}${sysconfdir}/bash_completion.d \ 

@@ -17,20 +17,15 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
+inherit redhawk-core-framework
 
 DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
 
-include recipes-core/include/redhawk-repo.inc
-
-PR = "r2"
-
-DEPENDS = "redhawk omniorb-native omniorbpy-native"
+DEPENDS += "redhawk"
 RDEPENDS_${PN} = "redhawk"
 RDEPENDS_${PN}-python = "redhawk-python"
-PREFERRED_VERSION_redhawk = "${REDHAWK_VERSION}"
 
-PACKAGES += "${PN}-python"
-PROVIDES += "${PN}-python"
+PR = "r2"
 
 SRC_URI_append = "\
     file://subdir_objects.patch \
@@ -38,41 +33,7 @@ SRC_URI_append = "\
 
 S = "${WORKDIR}/git/redhawk-core-framework/bulkioInterfaces"
 
-# We have to inherit from pythonnative if we do stuff with the system python.
-# autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
-inherit autotools-brokensep pkgconfig pythonnative redhawk-oeconf redhawk-sysroot
-
-FILES_${PN}-python += " \
-    ${OSSIEHOME}/lib/python \
-"
-
-FILES_${PN} += " \
-    ${OSSIEHOME}/lib/lib*.so.* \
-"
-
-FILES_${PN}-dbg += " \
-    ${OSSIEHOME}/lib/.debug \
-"
-
-FILES_${PN}-dev += " \
-    ${OSSIEHOME}/lib/lib*.so \
-    ${OSSIEHOME}/include \
-    ${OSSIEHOME}/share/* \
-    ${OSSIEHOME}/lib/pkgconfig \
-"
-
-FILES_${PN}-staticdev += " \
-    ${OSSIEHOME}/lib/*.a \
-    ${OSSIEHOME}/lib/lib*.la \
-"
-
-INSANE_SKIP_${PN} += "libdir"
-INSANE_SKIP_${PN}-dev += "libdir"
-INSANE_SKIP_${PN}-dbg += "libdir"
-
 EXTRA_OECONF += "\
-    --disable-java \
-    --disable-log4cxx \
     --with-boost-system=boost_system \
     "
 
@@ -84,12 +45,3 @@ do_configure_prepend() {
   export STAGING_LIBDIR=${STAGING_LIBDIR}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 }
-
-# Needed so that when the python distutils is run it can get the system prefix.
-do_install_prepend() {
-  export BUILD_SYS=${BUILD_SYS}
-  export HOST_SYS=${HOST_SYS}
-  export STAGING_INCDIR=${STAGING_INCDIR}
-  export STAGING_LIBDIR=${STAGING_LIBDIR}
-}
-
