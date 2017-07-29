@@ -76,10 +76,6 @@ EXTRA_OECONF += "\
     --with-boost-system=boost_system \
     "
 
-EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
-
-CXXFLAGS += "-fpermissive"
-
 # Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
   export BUILD_SYS=${BUILD_SYS}

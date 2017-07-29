@@ -62,8 +62,6 @@ EXTRA_OECONF += "\
     --disable-log4cxx \
     "
 
-CXXFLAGS += "-fpermissive"
-
 FILES_${PN}-dbg += " \
     ${SDRROOT}/dev/mgr/.debug \
     ${SDRROOT}/dom/mgr/.debug \

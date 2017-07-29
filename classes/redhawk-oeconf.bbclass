@@ -19,3 +19,8 @@ do_configure_prepend () {
   touch ./NEWS ./README ./AUTHORS ./ChangeLog
   sed -i 's/ACLOCAL_AMFLAGS = .\+$/ACLOCAL_AMFLAGS = -I m4/g' Makefile.am
 }
+
+# Include the ossie autoconf macros
+EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
+
+CXXFLAGS += "-fpermissive -std=gnu++98"

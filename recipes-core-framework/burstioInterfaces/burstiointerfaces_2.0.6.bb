@@ -77,9 +77,6 @@ EXTRA_OECONF += "\
     -disable-java \
     --with-boost-system=boost_system \
     "
-EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
-
-CXXFLAGS += "-fpermissive"
 
 PARALLEL_MAKE = ""
 
