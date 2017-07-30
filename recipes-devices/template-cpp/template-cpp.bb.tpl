@@ -58,11 +58,6 @@ FILES_${PN} += "${SDRROOT}/*"
 INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"
 
 # You may need to patch your Makefile.am so that OSSIEHOME isn't specified.
-# This AUTORECONF flag handles adding that include back, but referencing
-# the embedded filesystem's OSSIE installation.
-# Also, sometimes it is sufficient to pass the SDRROOT variable to configure
-# as the prefix to ensure it gets installed properly.
-EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 EXTRA_OECONF += "--prefix=${SDRROOT}"
 
 # Setting pymod_ossie=yes is to avoid the configure call checking for the 

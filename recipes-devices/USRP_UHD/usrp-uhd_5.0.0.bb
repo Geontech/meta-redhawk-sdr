@@ -27,7 +27,7 @@ PREFERRED_VERSION_frontendinterfaces = "2.3.6"
 
 PR = "4"
 
-include recipes-core/include/redhawk-repo.inc
+require recipes-core/include/redhawk-repo.inc
 
 # NOTE: This recipe requires the USRP UHD driver and hardware installed
 # which is provided by the meta-sdr layer which relies on meta-ettus.
@@ -53,11 +53,9 @@ S = "${WORKDIR}/git/redhawk-devices/USRP_UHD/cpp"
 inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
 EXTRA_OECONF += "--prefix=${SDRROOT}"
-EXTRA_AUTORECONF += "-I ${STAGING_DIR}/${MACHINE}${OSSIEHOME}/share/aclocal/ossie"
 
 FILES_${PN} += "${SDRROOT}/*"
 INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"
-
 
 # Link nodeconfig.py and SPD into the source directory so we can patch it.
 addtask link_nodeconfig before do_patch after do_unpack

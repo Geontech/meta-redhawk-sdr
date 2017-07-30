@@ -20,7 +20,7 @@
 
 DESCRIPTION = "REDHAWK Core Framework GPP"
 
-include recipes-core/include/redhawk-repo.inc
+require recipes-core/include/redhawk-repo.inc
 
 DEPENDS = "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
@@ -30,7 +30,7 @@ PR = "r2"
 
 SRC_URI_append = "\
     file://configure-gpp \
-    file://Clear_AMFLAGS_GPP_NO_TEST.patch \
+    file://amflags_no_test_or_config.patch \
     file://GPP_ps_e.patch \
 "
 
@@ -50,7 +50,6 @@ inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
 FILES_${PN} += "${SDRROOT}/*"
 
-EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 EXTRA_OECONF += "--prefix=${SDRROOT}"
 
 # Setting pymod_ossie=yes is to avoid the configure call checking for the python ossie module. This isn't ideal but it checks by running python and trying to import said module which is all cross compiled. 

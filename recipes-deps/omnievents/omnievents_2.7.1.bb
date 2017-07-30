@@ -23,7 +23,7 @@ SECTION = "devel"
 PRIORITY = "optional"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=68ad62c64cc6c620126241fd429e68fe"
-DEPENDS += "omniorb boost"
+DEPENDS += "omniorb omniorb-native boost"
 
 PREFERRED_VERSION_omniorb = "4.2.0"
 
@@ -39,8 +39,8 @@ S = "${WORKDIR}/git"
 inherit autotools pkgconfig
 
 EXTRA_OECONF="\
-    --with-omniorb=${STAGING_DIR}/${MACHINE}/usr \
-    --with-boost=${STAGING_DIR}/${MACHINE}/usr \
+    --with-omniorb=${STAGING_EXECPREFIXDIR} \
+    --with-boost=${STAGING_EXECPREFIXDIR} \
     "
     
 # Over-write default multi-threaded build temporarily.
@@ -54,8 +54,8 @@ do_configure_append () {
 }
 
 do_compile () {
-	export IDL=${STAGING_DIR}/${BUILD_SYS}/usr/bin/omniidl
-	export IDL_COS_DIR=${STAGING_DIR}/${BUILD_SYS}/usr/share/idl/omniORB
+	export IDL=${STAGING_BINDIR_NATIVE}/omniidl
+	export IDL_COS_DIR=${STAGING_DATADIR}/idl/omniORB
     oe_runmake
 }
 
