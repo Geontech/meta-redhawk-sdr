@@ -27,7 +27,7 @@ PREFERRED_VERSION_frontendinterfaces = "2.3.6"
 
 PR = "r5"
 
-include recipes-core/include/redhawk-repo.inc
+require recipes-core/include/redhawk-repo.inc
 
 # ################################################
 # End user-controlled variables to adjust the node
