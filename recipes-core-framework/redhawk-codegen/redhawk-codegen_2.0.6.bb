@@ -17,23 +17,22 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
+require recipes-core/include/redhawk-repo.inc
+inherit setuptools redhawk-sysroot
 
 DESCRIPTION = "REDHAWK Codegen"
 
-include recipes-core/include/redhawk-repo.inc
-
-PR = "r2"
-
-DEPENDS = "redhawk"
+DEPENDS += "redhawk"
 RDEPENDS_${PN} = "redhawk python"
 PREFERRED_VERSION_redhawk = "${REDHAWK_VERSION}"
+
+PR = "r2"
 
 S = "${WORKDIR}/git/redhawk-core-framework/redhawk-codegen"
 
 # Recipe concept based on: http://stackoverflow.com/questions/16090550/building-python-packages
 
 # This is a python package
-inherit setuptools redhawk-sysroot
 
 do_configure_prepend() {
   export BUILD_SYS=${BUILD_SYS}
