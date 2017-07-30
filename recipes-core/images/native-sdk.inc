@@ -32,5 +32,5 @@ CORE_IMAGE_EXTRA_INSTALL = "\
     iperf3 \
     openssh-sftp \
     openssh-sftp-server \
-    fftw \
+    libfftwf \
     "

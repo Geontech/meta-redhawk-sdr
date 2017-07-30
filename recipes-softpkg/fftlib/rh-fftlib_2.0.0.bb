@@ -10,4 +10,4 @@ SRC_URI_append = "\
 	"
 
 DEPENDS += "rh-dsp fftw"
-RDEPENDS_${PN} += "rh-dsp fftw"
+RDEPENDS_${PN} += "rh-dsp libfftwf"
