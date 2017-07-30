@@ -46,7 +46,8 @@ INSANE_SKIP_${PN}-dbg += "libdir"
 # OECONF
 EXTRA_OECONF += "\
 	--disable-java \
-    --disable-log4cxx \
+    idldir=${STAGING_DATADIR}/idl/omniORB \
+    OMNICOS_IDLDIR=${STAGING_DATADIR}/idl/omniORB/COS \
 "
 
 # Needed so that when the python distutils is run it can get the system prefix.

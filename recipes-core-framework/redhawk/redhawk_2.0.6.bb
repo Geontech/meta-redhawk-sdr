@@ -47,8 +47,6 @@ S = "${WORKDIR}/git/redhawk-core-framework/redhawk/src"
 EXTRA_OECONF += "\
     --with-sdr=${SDRROOT} \
     --with-expat=${STAGING_EXECPREFIXDIR} \
-    idldir=${STAGING_DATADIR}/idl/omniORB \
-    OMNICOS_IDLDIR=${STAGING_DATADIR}/idl/omniORB/COS \
     --with-boost-regex=boost_regex \
     "
 
