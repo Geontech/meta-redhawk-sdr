@@ -30,22 +30,19 @@ do_install_prepend() {
   export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
 }
 
-# Dynamic architecture patch for whatever is in OSSIEHOME/share/uname_machine, which is set by the 
-# 'uname-machine' recipe (that pulls the value from the kernel config).
-#
+# Dynamic architecture patch for whatever ${REDHAWK_PROCESSOR} is set to.
 # 1. This takes whatever is ${NODE_CONFIG_SCRIPT} and find where it hard-codes the architecture look-up,
-#    replacing it for ${UNAME_MACHINE}
-# 2. This changes processor name x86_64 and replaces it with ${UNAME_MACHINE}.
+#    replacing it for ${REDHAWK_PROCESSOR}
+# 2. This changes processor name x86_64 and replaces it with ${REDHAWK_PROCESSOR}.
 # 3. This removes processor name x86.
+REDHAWK_PROCESSOR ?= "armv7l"
 NODE_CONFIG_SCRIPT ?= ""
-DEPENDS += "uname-machine"
 do_dynamic_arch_patch () {
-    UNAME_MACHINE=`cat ${OSSIEHOME_STAGED}/share/uname_machine`
-    if ! [ -z ${NODE_CONFIG_SCRIPT} ] ; then 
-        sed -i "s/tmp_proc_map.get(tmp_uname_p, 'x86')/'${UNAME_MACHINE}'/g" ${S}/${NODE_CONFIG_SCRIPT} 
-    fi
-    sed -i "s/<processor name=\"x86_64\"\/>/<processor name=\"${UNAME_MACHINE}\"\/>/g" ${S}/../*.spd.xml
-    sed -i "s/<processor name=\"x86\"\/>//g" ${S}/../*.spd.xml
+  if ! [ -z ${NODE_CONFIG_SCRIPT} ] ; then 
+    sed -i "s/tmp_proc_map.get(tmp_uname_p, 'x86')/'${REDHAWK_PROCESSOR}'/g" ${S}/${NODE_CONFIG_SCRIPT} 
+  fi
+  find ${S}/../ -name *.spd.xml -exec sed -i "s/<processor name=\"x86_64\"\/>/<processor name=\"${REDHAWK_PROCESSOR}\"\/>/g" {} \; 
+  find ${S}/../ -name *.spd.xml -exec sed -i "s/<processor name=\"x86\"\/>//g" {} \; 
 }
 addtask dynamic_arch_patch after do_patch before do_configure
-do_dynamic_arch_patch[depends] += "uname-machine:do_populate_sysroot"
+

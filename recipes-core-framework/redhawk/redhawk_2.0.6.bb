@@ -23,7 +23,7 @@ DESCRIPTION = "REDHAWK Core Framework"
 
 PR = "r2"
 
-DEPENDS += "uname-machine omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
+DEPENDS += "omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
 RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
 RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml"
 
@@ -31,7 +31,7 @@ PREFERRED_VERSION_omniorb = "4.2.0"
 
 SRC_URI_append = "\
     file://uuid_python_package.patch \
-    file://uname_machine.patch \
+    file://redhawk_processor.patch \
     file://Fix_Idl_prefix.patch \
     file://OSSIEHOME_global_prefix.patch \
     file://Remove_Tests.patch \
@@ -79,12 +79,11 @@ FILES_${PN} += " \
 "
 
 # Patch for lack of support in specifying an alternative to armv7l and various x86 options.
-do_package_arch_patch () {
-    UNAME_MACHINE=`cat ${OSSIEHOME_STAGED}/share/uname_machine`
-    find ${S} -type f -exec sed -i "s/BB_UNAME_MACHINE/${UNAME_MACHINE}/g" {} \;
+REDHAWK_PROCESSOR ?= "armv7l"
+do_redhawk_processor_patch () {
+    find ${S} -type f -exec sed -i "s/BB_REDHAWK_PROCESSOR/${REDHAWK_PROCESSOR}/g" {} \;
 }
-addtask package_arch_patch after do_patch before do_configure
-do_package_arch_patch[depends] += "uname-machine:do_populate_sysroot"
+addtask redhawk_processor_patch after do_patch before do_configure
 
 # Get the things from /etc (sysconfdir)
 redhawk_core_etc_sysroot () {
