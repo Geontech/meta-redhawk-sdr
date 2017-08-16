@@ -21,14 +21,10 @@ LICENSE = "LGPL3"
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-
 inherit packagegroup
 
 PACKAGES = "\
     packagegroup-redhawk-core \
-    packagegroup-redhawk-node \
-    packagegroup-redhawk-basic-components \
-    packagegroup-redhawk-basic-softpkgs \
     "
 
 PROVIDES = "${PACKAGES}"
@@ -50,49 +46,3 @@ RDEPENDS_packagegroup-redhawk-core = "\
     redhawk-codegen \
     "
 
-# This package group includes extras for creating a node definition based on whatever
-# devices the user has installed as part of their own IMAGE_FEATURES.  See the possibilities
-
-SUMMARY_packagegroup-redhawk-node = "Packages for deploying a node using installed devices."
-RDEPENDS_packagegroup-redhawk-node = "\
-    packagegroup-redhawk-core \
-    node-deployer \
-    "
-
-# This package group builds all of the avilable components (which may incidentally
-# install some softpkg dependencies).
-# TODO: Patch in Python and Java implementations where applicable
-# TODO: Add fcalc component (Python only)
-# TODO: Add DataConverter (requires adding NEON support vs. SSEx)
-SUMMARY_packagegroup-redhawk-basic-components = "All available REDHAWK Components (CPP)"
-RDEPENDS_packagegroup-redhawk-basic-components = "\
-    rh-agc \
-    rh-amfmpmbasebanddemod \
-    rh-arbitraryrateresampler \
-    rh-autocorrelate \
-    rh-fastfilter \
-    rh-filereader \
-    rh-filewriter \
-    rh-hardlimit \
-    rh-psd \
-    rh-psk-soft \
-    rh-rbdsdecoder \
-    rh-siggen \
-    rh-sinksdds \
-    rh-sinksocket \
-    rh-sinkvita49 \
-    rh-sourcesdds \
-    rh-sourcesocket \
-    rh-sourcevita49 \
-    rh-tunefilterdecimate \
-    "
-
-# This package group builds all of the avilable softpkg libraries.
-SUMMARY_packagegroup-redhawk-basic-softpkgs = "All available REDHAWK softpkg dependencies"
-RDEPENDS_packagegroup-redhawk-basic-softpkgs = "\
-    rh-bluefilelib \
-    rh-dsp \
-    rh-fftlib \
-    rh-redhawkdevutils \
-    rh-vita49 \
-    "
