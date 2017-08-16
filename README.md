@@ -36,7 +36,7 @@ Alternatively, you can clone this layer into your own Yocto source tree:
 
 Then edit your `build/conf/bblayers.conf` to include a reference to `meta-redhawk-sdr` at the end of the list.  See our `meta-redhawk-sdr/conf/bblayers.conf.sample` as an example. 
 
-> Note: The processor architecture is set to `armv7l` by default. If you need a different processor architecture, set the `REDHAWK_PROCESSOR` variable in your `build/conf/bblayers.conf`.
+> Note: The processor architecture is set to `armv7l` by default. If you need a different processor architecture, set the `REDHAWK_PROCESSOR` variable in your `build/conf/local.conf`.
 
 Finishing the Build
 -------------------
