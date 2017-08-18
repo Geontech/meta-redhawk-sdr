@@ -25,48 +25,45 @@
 echo MACHINE:     "${MACHINE:?Need to set to an available machine}"
 echo BUILD_IMAGE: "${BUILD_IMAGE:?Need to set, e.g., 'redhawk-base-image'}"
 
-META_REDHAWK=`find .. -path ./${PWD##*/} -prune -o -name meta-redhawk-sdr -type d`
-echo Meta-REDHAWK-SDR Root found: ${META_REDHAWK}
+if [ -d "../poky/meta-redhawk-sdr" ]; then
+    META_REDHAWK="../poky/meta-redhawk-sdr"
+else
+    META_REDHAWK=`find .. -path ./${PWD##*/} -prune -o -name meta-redhawk-sdr -type d`
+fi
+echo "Meta-REDHAWK-SDR Root found: ${META_REDHAWK}"
 if ! [[ -n "${META_REDHAWK}" ]]; then
     echo "Could not find meta-redhawk-sdr folder beginning at the parent directory."
     echo "This will be necessary for calling WKS later."
     exit 1
 fi
 
-echo STEP 1 - Starting Bit Bake
+echo "STEP 1 - Starting Bit Bake ${BUILD_IMAGE}"
 if ! bitbake ${BUILD_IMAGE}; then
-	echo Bitbake build image failed
+	echo "Bitbake build image failed"
 	exit 1
 fi
 
-# File system building dependencies
-if ! bitbake dosfstools-native mtools-native parted-native; then
-    echo Failed to install tools for building the SD image.
+echo "STEP 2 - Building tools to run wic"
+if ! bitbake wic-tools; then
+    echo "Failed to install tools for building the SD image."
     exit 1
 fi
 
-echo STEP 2 - Building SD Card Image
+echo "STEP 3 - Building SD Card Image"
 rm -rf images/${MACHINE}/build
 if ! wic create ${META_REDHAWK}/contrib/wks/sdimage-8G.wks -e ${BUILD_IMAGE} -o images/${MACHINE}; then
-	echo Bitbake build image to SD Card build failed
-	exit 1
+    echo "Bitbake build image to SD Card build failed"
+    exit 1
 fi
 
-echo STEP 3 - Building tools to run wic
-if ! bitbake parted-native mtools-native dosfstools-native; then
-	echo Failed to build tools needed to run wic.
-	exit 1
-fi
-
-echo STEP 4 - Packaging image
-export IMAGE_NAME=`ls images/${MACHINE}/build/sdimage*mmcblk.direct`
+echo "STEP 4 - Packaging image"
+export IMAGE_NAME=`ls images/${MACHINE}/sdimage*mmcblk.direct`
 xz -k ${IMAGE_NAME}
 mv ${IMAGE_NAME}.xz images/${MACHINE}/sdimage-${BUILD_IMAGE}.direct.xz
 mv ${IMAGE_NAME} images/${MACHINE}/sdimage-${BUILD_IMAGE}.direct
 md5sum images/${MACHINE}/sdimage-${BUILD_IMAGE}.direct.xz > images/${MACHINE}/sdimage-${BUILD_IMAGE}.direct.xz.md5
 
-echo FINISHED:
-echo    Archive is at: images/${MACHINE}/sdimage-${BUILD_IMAGE}.direct.xz
-echo    Next: sudo dd if=images/${MACHINE}/sdimage-${BUILD_IMAGE}.direct of=SD CARD bs=1M
-
+echo "FINISHED:"
+echo    "Archive is at: images/${MACHINE}/sdimage-${BUILD_IMAGE}.direct.xz"
+echo    "Next: sudo dd if=images/${MACHINE}/sdimage-${BUILD_IMAGE}.direct of=SD CARD bs=1M"
 
