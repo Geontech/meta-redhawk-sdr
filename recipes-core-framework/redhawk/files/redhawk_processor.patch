@@ -95,7 +95,7 @@ diff -Nuar src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml src/contr
 +        <description>
 +            SCA required property describing the CPU type
 +        </description>
-+        <value>BB_UNAME_MACHINE</value>
++        <value>BB_REDHAWK_PROCESSOR</value>
 +        <kind kindtype="allocation"/>
 +        <action type="eq"/>
 +    </simple>
@@ -108,7 +108,7 @@ diff -Nuar src/control/sdr/devmgr/DeviceManager.spd.xml src/control/sdr/devmgr/D
          <processor name="x86_64"/>
      </implementation>
 +    <implementation id="DCE:4e93fddd-c570-4b85-816c-393f6ae92fe6">
-+        <description>BB_UNAME_MACHINE Implementation of a Device Manager</description>
++        <description>BB_REDHAWK_PROCESSOR Implementation of a Device Manager</description>
 +        <propertyfile>
 +            <localfile name="DeviceManager.Linux.embedded.prf.xml"/>
 +        </propertyfile>
@@ -117,7 +117,7 @@ diff -Nuar src/control/sdr/devmgr/DeviceManager.spd.xml src/control/sdr/devmgr/D
 +            <entrypoint>DeviceManager</entrypoint>
 +        </code>
 +        <os name="Linux" />
-+        <processor name="BB_UNAME_MACHINE"/>
++        <processor name="BB_REDHAWK_PROCESSOR"/>
 +    </implementation>
  </softpkg>
 diff -Nuar src/control/sdr/devmgr/Makefile.am src/control/sdr/devmgr/Makefile.am
@@ -141,7 +141,7 @@ diff -Nuar src/control/sdr/dommgr/DomainManager.spd.xml src/control/sdr/dommgr/D
  		</code>
 -		<processor name="x86_64"/>
 -		<processor name="x86"/>
-+		<processor name="BB_UNAME_MACHINE"/>
++		<processor name="BB_REDHAWK_PROCESSOR"/>
  		<os name="Linux"/>
  	</implementation>
  </softpkg>
