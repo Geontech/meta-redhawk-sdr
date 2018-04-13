@@ -30,12 +30,6 @@ do_install_prepend() {
   export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
 }
 
-# Dynamic architecture patch for whatever ${REDHAWK_PROCESSOR} is set to.
-# 1. This takes whatever is ${NODE_CONFIG_SCRIPT} and find where it hard-codes the architecture look-up,
-#    replacing it for ${REDHAWK_PROCESSOR}
-# 2. This changes processor name x86_64 and replaces it with ${REDHAWK_PROCESSOR}.
-# 3. This removes processor name x86.
-REDHAWK_PROCESSOR ?= "armv7l"
 NODE_CONFIG_SCRIPT ?= ""
 do_dynamic_arch_patch () {
   if ! [ -z ${NODE_CONFIG_SCRIPT} ] ; then 

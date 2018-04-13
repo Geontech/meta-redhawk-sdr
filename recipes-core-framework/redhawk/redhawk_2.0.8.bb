@@ -36,7 +36,6 @@ SRC_URI_append = "\
     file://OSSIEHOME_global_prefix.patch \
     file://Remove_Tests.patch \
     file://allow_idl_dir_set.patch \
-    file://gcc_fix_applicationSupport.patch \
     file://gcc_fix_nodebooter.patch \
     file://remove_csh_scripts.patch \
     file://ossie_cv_sdr_root_target.patch \
@@ -79,7 +78,6 @@ FILES_${PN} += " \
 "
 
 # Patch for lack of support in specifying an alternative to armv7l and various x86 options.
-REDHAWK_PROCESSOR ?= "armv7l"
 do_redhawk_processor_patch () {
     find ${S} -type f -exec sed -i "s/BB_REDHAWK_PROCESSOR/${REDHAWK_PROCESSOR}/g" {} \;
 }
