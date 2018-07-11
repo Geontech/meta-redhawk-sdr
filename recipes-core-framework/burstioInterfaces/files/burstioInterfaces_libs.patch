@@ -1,0 +1,11 @@
+--- git/src/cpp/Makefile.am
++++ git-patched/src/cpp/Makefile.am
+@@ -58,7 +58,8 @@
+ libburstioInterfaces_la_CPPFLAGS = -I . $(OSSIE_CFLAGS)
+ libburstioInterfaces_la_LDFLAGS = -lbulkioInterfaces
++libburstioInterfaces_la_LIBADD = -L$(INTERFACES_LIBDIR)
+ 
+ BUILT_SOURCES = $(nobase_nodist_include_HEADERS) $(nodist_libburstioInterfaces_la_SOURCES)
+ CLEANFILES = $(BUILT_SOURCES)
+ 
+ idl_srcdir = $(top_srcdir)/src/idl

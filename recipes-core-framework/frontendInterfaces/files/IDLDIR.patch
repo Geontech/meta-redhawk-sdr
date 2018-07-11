@@ -1,6 +1,6 @@
 --- git/configure.ac	2016-03-02 07:18:49.966842098 -0500
 +++ git-patched/configure.ac	2016-03-02 07:23:28.780067757 -0500
-@@ -47,6 +47,10 @@
+@@ -49,6 +49,10 @@
  AC_CHECK_PYMODULE(bulkio.bulkioInterfaces, [], [AC_MSG_ERROR([the python bulkio.bulkioInterfaces module is required])])
  RH_PKG_IDLDIR([BULKIO], [bulkioInterfaces])
  
