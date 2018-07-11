@@ -2,7 +2,7 @@ diff --git src/etc/Makefile.am src/etc/Makefile.am
 index ba2deb8..4f4eef9 100644
 --- src/etc/Makefile.am
 +++ src/etc/Makefile.am
-@@ -29,9 +29,7 @@ ldsoconfd_DATA = ld.so.conf.d/redhawk.conf
+@@ -31,9 +31,7 @@ ldsoconfd_DATA = ld.so.conf.d/redhawk.conf
  
  profileddir = $(sysconfdir)/profile.d
  profiled_DATA = profile.d/redhawk.sh \
@@ -11,9 +11,9 @@ index ba2deb8..4f4eef9 100644
 -  profile.d/redhawk-sdrroot.csh
 +  profile.d/redhawk-sdrroot.sh
  
- lib = lib${gr_libdir_suffix}
- edit = $(SED) \
-@@ -46,9 +44,7 @@ $(ldsoconfd_DATA) $(profiled_DATA): Makefile
+ rh_etc_dir = $(sysconfdir)/redhawk
+ cron_dir = $(rh_etc_dir)/cron.d
+@@ -124,9 +122,7 @@ $(ldsoconfd_DATA) $(profiled_DATA): Makefile
  
  ld.so.conf.d/redhawk.conf: ld.so.conf.d/redhawk.conf.in
  profile.d/redhawk.sh: profile.d/redhawk.sh.in

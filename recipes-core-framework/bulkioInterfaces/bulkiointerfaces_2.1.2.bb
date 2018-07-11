@@ -27,9 +27,9 @@ RDEPENDS_${PN}-python = "redhawk-python"
 
 PR = "r2"
 
-SRC_URI_append = "\
-    file://subdir_objects.patch \
-"
+#SRC_URI_append = "\
+#    file://subdir_objects.patch \
+#"
 
 S = "${WORKDIR}/git/redhawk-core-framework/bulkioInterfaces"
 

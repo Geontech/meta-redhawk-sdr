@@ -46,6 +46,7 @@ INSANE_SKIP_${PN}-dbg += "libdir"
 # OECONF
 EXTRA_OECONF += "\
 	--disable-java \
+    OMNIORB_INCLUDEDIR=${STAGING_INCDIR} \
     idldir=${STAGING_DATADIR}/idl/omniORB \
     OMNICOS_IDLDIR=${STAGING_DATADIR}/idl/omniORB/COS \
 "

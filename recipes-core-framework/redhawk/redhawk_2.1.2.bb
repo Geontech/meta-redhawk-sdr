@@ -39,6 +39,7 @@ SRC_URI_append = "\
     file://gcc_fix_nodebooter.patch \
     file://remove_csh_scripts.patch \
     file://ossie_cv_sdr_root_target.patch \
+    file://include_scoped_ptr.patch \
 "
 
 S = "${WORKDIR}/git/redhawk-core-framework/redhawk/src"
@@ -76,6 +77,8 @@ FILES_${PN} += " \
     ${SDRROOT}/* \
     /etc/* \
 "
+
+INSANE_SKIP_${PN} += "installed-vs-shipped"
 
 # Patch for lack of support in specifying an alternative to armv7l and various x86 options.
 do_redhawk_processor_patch () {

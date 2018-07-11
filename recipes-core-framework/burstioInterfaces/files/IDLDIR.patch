@@ -1,7 +1,7 @@
 --- git/configure.ac	2016-03-02 07:00:31.568548917 -0500
 +++ git-patched/configure.ac	2016-03-02 07:06:48.800526356 -0500
 @@ -48,6 +48,10 @@
- PKG_CHECK_MODULES([BULKIO], [bulkioInterfaces >= 2.0])
+ PKG_CHECK_MODULES([BULKIO], [bulkioInterfaces >= 2.1])
  RH_PKG_IDLDIR([BULKIO], [bulkioInterfaces])
  
 +# Adjust the variables from RH_PKG_IDLDIR for the staging area.
