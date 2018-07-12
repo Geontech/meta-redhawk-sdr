@@ -33,8 +33,6 @@ SRC_URI = "git://github.com/redhawksdr/omniEvents.git;branch=develop;tag=2.8.1;p
     file://config.mk.patch \
 "
 
-#file://omniEvents.patch 
-
 S = "${WORKDIR}/git"
 
 inherit autotools pkgconfig

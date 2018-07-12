@@ -78,8 +78,6 @@ FILES_${PN} += " \
     /etc/* \
 "
 
-INSANE_SKIP_${PN} += "installed-vs-shipped"
-
 # Patch for lack of support in specifying an alternative to armv7l and various x86 options.
 do_redhawk_processor_patch () {
     find ${S} -type f -exec sed -i "s/BB_REDHAWK_PROCESSOR/${REDHAWK_PROCESSOR}/g" {} \;
