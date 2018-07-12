@@ -29,10 +29,11 @@ PREFERRED_VERSION_omniorb = "4.2.0"
 
 PR = "r2"
 
-SRC_URI = "git://github.com/redhawksdr/omniEvents.git;tag=2.7.1-2;protocol=git \
-    file://omniEvents.patch \
+SRC_URI = "git://github.com/redhawksdr/omniEvents.git;branch=develop;tag=2.8.1;protocol=git \
     file://config.mk.patch \
 "
+
+#file://omniEvents.patch 
 
 S = "${WORKDIR}/git"
 
