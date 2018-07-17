@@ -19,7 +19,7 @@
 #
 inherit redhawk-core-framework
 
-DESCRIPTION = "REDHAWK Framework BurstIO Interfaces"
+DESCRIPTION = "REDHAWK Framework FrontEnd Interfaces"
 
 DEPENDS += "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
@@ -28,34 +28,22 @@ RDEPENDS_${PN}-python = "bulkiointerfaces-python"
 PR = "r2"
 
 SRC_URI_append = "\
-    file://subdir_objects.patch \
-    file://IDLDIR.patch \
-    file://burstioInterfaces_libs.patch \
+    file://fix_idldir_and_remove_cppunit.patch \
 "
 
-S = "${WORKDIR}/git/redhawk-core-framework/burstioInterfaces"
+S = "${WORKDIR}/git/redhawk-core-framework/frontendInterfaces"
 
-EXTRA_OECONF += "\
-    --disable-testing \
-    --with-boost-system=boost_system \
-    "
+CFLAGS += "-fpermissive"
 
-PARALLEL_MAKE = ""
+# Since prefix is set this has to override that
+CACHED_CONFIGUREVARS += "ac_cv_pymod_ossie=yes ac_cv_pymod_bulkio_bulkioInterfaces=yes"
 
-# Needed so that when the python distutils is run it can get the system prefix which, 
-# since it's the build system python will be /.../x86_64-linux/usr and replace it with 
-# our host systems name.
-# 
-# STAGING_BASE: Must be the staging dir b/c of configure.ac
+# Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
   export BUILD_SYS=${BUILD_SYS}
   export HOST_SYS=${HOST_SYS}
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
-  export STAGING_BASE=${STAGING_DIR_TARGET}
+  export STAGING_BASE=${STAGING_DIR}/${MACHINE}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-}
-
-do_compile_prepend(){
-  export INTERFACES_LIBDIR="${OSSIEHOME_STAGED}/lib"
 }

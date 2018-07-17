@@ -23,7 +23,7 @@ DESCRIPTION = "REDHAWK Core Framework"
 
 PR = "r2"
 
-DEPENDS += "omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource ossp-uuid"
+DEPENDS += "omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource  ossp-uuid"
 RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
 RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml"
 
@@ -73,6 +73,8 @@ FILES_${PN}-python += " \
 "
 
 FILES_${PN} += " \
+    ${OSSIEHOME}/bin/redhawk-shminfo \
+    ${OSSIEHOME}/bin/redhawk-shmclean \
     ${OSSIEHOME}/bin/nodeBooter \
     ${SDRROOT}/* \
     /etc/* \

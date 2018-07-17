@@ -24,7 +24,7 @@ require recipes-core/include/redhawk-repo.inc
 
 DEPENDS = "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
-PREFERRED_VERSION_bulkiointerfaces = "2.1.2"
+PREFERRED_VERSION_bulkiointerfaces = "2.1.3"
 
 PR = "r2"
 

@@ -1,4 +1,4 @@
-REDHAWK_VERSION = "2.1.2"
+REDHAWK_VERSION = "2.1.3"
 
 SRC_URI = "gitsm://github.com/RedhawkSDR/redhawk.git;tag=${REDHAWK_VERSION};branch=master;protocol=git"
 

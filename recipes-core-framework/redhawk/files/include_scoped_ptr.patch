@@ -22,3 +22,15 @@ diff -Nuar src/base/include/ossie/Component.h src-patched/base/include/ossie/Com
  #include "ossie/debug.h"
  #include "ossie/Events.h"
  #include "ossie/Autocomplete.h"
+diff -Nuar src/base/framework/shm/Allocator.cpp src-patched/base/framework/shm/Allocator.cpp
+--- src/base/framework/shm/Allocator.cpp	2016-03-01 09:51:46.915186392 -0600
++++ src-patched/base/framework/shm/Allocator.cpp	2016-03-01 10:14:48.420199987 -0600
+@@ -26,6 +26,7 @@
+ #include <ossie/BufferManager.h>
+ 
+ #include <boost/thread.hpp>
++#include <boost/scoped_ptr.hpp>
+ 
+ #include "Block.h"
+ 
+

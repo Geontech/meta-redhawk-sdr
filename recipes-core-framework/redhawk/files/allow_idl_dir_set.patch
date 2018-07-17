@@ -35,13 +35,12 @@ index a3c5992..9b6b0bd 100644
  AC_MSG_RESULT([$idldir])
  AC_SUBST(IDLDIR, [$idldir])
  
-@@ -275,7 +279,7 @@
+@@ -273,7 +277,7 @@
  
  # C++ unit testing support. May want to conditionally enable/disable this.
 -AM_PATH_CPPUNIT(1.12.1)
 +ifdef([AM_PATH_CPPUNIT], [AM_PATH_CPPUNIT([1.12.1])], [])
- 
- # Undefine the PACKAGE_ variables to avoid warnings when omniORB is installed outside of
- # /usr.  OSSIE doesn't use these variables anyways...and even if it did
- # they would get undefined in any file that included CORBA.h (because ossieconfig.h
- 
+ AS_IF([test "x$HAVE_JAVASUPPORT" == "xyes"], [
+   dnl Use RPM location hard-coded for now
+   AC_SUBST([JUNIT_CLASSPATH], "/usr/share/java/junit4.jar")
+ ])

@@ -6,7 +6,7 @@ require recipes-core/include/redhawk-repo.inc
 inherit autotools-brokensep pkgconfig pythonnative redhawk-oeconf redhawk-sysroot
 
 # For parsing IDL during compile and autoconf detect omniORB IDL
-DEPENDS += "omniorbpy-native"
+DEPENDS += "omniorbpy-native python-setuptools-native"
 
 # Each typically provides a python package
 PACKAGES += "${PN}-python"

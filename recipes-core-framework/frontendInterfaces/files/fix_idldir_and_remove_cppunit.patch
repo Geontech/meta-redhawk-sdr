@@ -11,3 +11,12 @@
  AC_SUBST([FRONTEND_SO_VERSION],[0:0:0])
  AC_SUBST([FRONTEND_API_VERSION],[2.4])
  
+@@ -131,7 +131,7 @@ # fi
+ AM_CONDITIONAL(HAVE_JAVASUPPORT, test $HAVE_JAVASUPPORT = yes)
+ 
+-AM_PATH_CPPUNIT(1.12.1)
++ifdef([AM_PATH_CPPUNIT], [AM_PATH_CPPUNIT([1.12.1])], [])
+ AS_IF([test "x$HAVE_JAVASUPPORT" == "xyes"], [
+   dnl Use RPM location hard-coded for now
+   AC_SUBST([JUNIT_CLASSPATH], "/usr/share/java/junit4.jar")
+ ])

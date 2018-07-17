@@ -2,7 +2,7 @@ diff --git src/etc/Makefile.am src/etc/Makefile.am
 index ba2deb8..4f4eef9 100644
 --- src/etc/Makefile.am
 +++ src/etc/Makefile.am
-@@ -31,9 +31,7 @@ ldsoconfd_DATA = ld.so.conf.d/redhawk.conf
+@@ -29,9 +29,7 @@ ldsoconfd_DATA = ld.so.conf.d/redhawk.conf
  
  profileddir = $(sysconfdir)/profile.d
  profiled_DATA = profile.d/redhawk.sh \
@@ -13,7 +13,7 @@ index ba2deb8..4f4eef9 100644
  
  rh_etc_dir = $(sysconfdir)/redhawk
  cron_dir = $(rh_etc_dir)/cron.d
-@@ -124,17 +122,7 @@ $(ldsoconfd_DATA) $(profiled_DATA): Makefile
+@@ -46,8 +44,6 @@ $(ldsoconfd_DATA) $(profiled_DATA): Makefile
  
  ld.so.conf.d/redhawk.conf: ld.so.conf.d/redhawk.conf.in
  profile.d/redhawk.sh: profile.d/redhawk.sh.in
@@ -22,12 +22,3 @@ index ba2deb8..4f4eef9 100644
 -profile.d/redhawk-sdrroot.csh: profile.d/redhawk-sdrroot.csh.in
  
  DISTCLEANFILES = $(ldsoconfd_DATA) $(profiled_DATA)
- 
--install-data-local:
--	$(MKDIR_P) "$(DESTDIR)/$(localstatedir)/log/redhawk"
--	$(MKDIR_P) "$(DESTDIR)/$(localstatedir)/lock/redhawk/domain-mgrs"
--	$(MKDIR_P) "$(DESTDIR)/$(localstatedir)/lock/redhawk/device-mgrs"
--	$(MKDIR_P) "$(DESTDIR)/$(localstatedir)/lock/redhawk/waveforms"
--	$(MKDIR_P) "$(DESTDIR)/$(localstatedir)/run/redhawk/domain-mgrs"
--	$(MKDIR_P) "$(DESTDIR)/$(localstatedir)/run/redhawk/device-mgrs"
--	$(MKDIR_P) "$(DESTDIR)/$(localstatedir)/run/redhawk/waveforms"
