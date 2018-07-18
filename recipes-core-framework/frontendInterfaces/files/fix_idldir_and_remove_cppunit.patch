@@ -1,6 +1,6 @@
 --- git/configure.ac	2016-03-02 07:18:49.966842098 -0500
 +++ git-patched/configure.ac	2016-03-02 07:23:28.780067757 -0500
-@@ -47,6 +47,10 @@
+@@ -49,6 +49,10 @@
  AC_CHECK_PYMODULE(bulkio.bulkioInterfaces, [], [AC_MSG_ERROR([the python bulkio.bulkioInterfaces module is required])])
  RH_PKG_IDLDIR([BULKIO], [bulkioInterfaces])
  
@@ -9,5 +9,14 @@
 +BULKIO_IDLDIR="${STAGING_BASE}${BULKIO_IDLDIR}"
 +
  AC_SUBST([FRONTEND_SO_VERSION],[0:0:0])
- AC_SUBST([FRONTEND_API_VERSION],[2.3])
+ AC_SUBST([FRONTEND_API_VERSION],[2.4])
  
+@@ -131,7 +131,7 @@ # fi
+ AM_CONDITIONAL(HAVE_JAVASUPPORT, test $HAVE_JAVASUPPORT = yes)
+ 
+-AM_PATH_CPPUNIT(1.12.1)
++ifdef([AM_PATH_CPPUNIT], [AM_PATH_CPPUNIT([1.12.1])], [])
+ AS_IF([test "x$HAVE_JAVASUPPORT" == "xyes"], [
+   dnl Use RPM location hard-coded for now
+   AC_SUBST([JUNIT_CLASSPATH], "/usr/share/java/junit4.jar")
+ ])

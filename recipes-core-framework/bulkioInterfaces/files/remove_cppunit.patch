@@ -1,0 +1,11 @@
+--- git/configure.ac
++++ git-patched/configure.ac
+@@ -131,7 +131,7 @@ # End optional java support
+ 
+ # C++ unit testing support. May want to conditionally enable/disable this.
+-AM_PATH_CPPUNIT(1.12.1)
++ifdef([AM_PATH_CPPUNIT], [AM_PATH_CPPUNIT([1.12.1])], [])
+ AS_IF([test "x$HAVE_JAVASUPPORT" == "xyes"], [
+   dnl Use RPM location hard-coded for now
+   AC_SUBST([JUNIT_CLASSPATH], "/usr/share/java/junit4.jar")
+ ])

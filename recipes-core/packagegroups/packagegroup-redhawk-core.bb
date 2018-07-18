@@ -1,6 +1,6 @@
 # Package group definitions for REDHAWK builds
 
-LICENSE = "LGPL3"
+LICENSE = "LGPL-3.0"
 #
 # This file is protected by Copyright. Please refer to the COPYRIGHT file distributed 
 # with this source distribution.

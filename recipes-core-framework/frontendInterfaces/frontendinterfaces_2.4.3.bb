@@ -28,7 +28,7 @@ RDEPENDS_${PN}-python = "bulkiointerfaces-python"
 PR = "r2"
 
 SRC_URI_append = "\
-    file://IDLDIR.patch \
+    file://fix_idldir_and_remove_cppunit.patch \
 "
 
 S = "${WORKDIR}/git/redhawk-core-framework/frontendInterfaces"

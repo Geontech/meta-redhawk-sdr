@@ -1,6 +1,6 @@
-REDHAWK_VERSION = "2.0.8"
+REDHAWK_VERSION = "2.1.3"
 
-SRC_URI = "gitsm://github.com/RedhawkSDR/redhawk.git;tag=${REDHAWK_VERSION};branch=master-2.0;protocol=git"
+SRC_URI = "gitsm://github.com/RedhawkSDR/redhawk.git;tag=${REDHAWK_VERSION};branch=master;protocol=git"
 
 HOMEPAGE = "http://www.redhawksdr.org"
 LICENSE = "LGPL-3.0"
@@ -13,5 +13,6 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/git/redhawk-core-framework/LICENSE;md5=e6a
 # 2. This changes processor name x86_64 and replaces it with ${REDHAWK_PROCESSOR}.
 # 3. This removes processor name x86.
 REDHAWK_PROCESSOR ?= "x86_64"
+REDHAWK_PROCESSOR_rpi ?= "armv7l"
 REDHAWK_PROCESSOR_zynq ?= "armv7l"
 REDHAWK_PROCESSOR_zynqmp ?= "aarch64"

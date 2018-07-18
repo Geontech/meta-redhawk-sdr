@@ -1,0 +1,36 @@
+diff -Nuar src/base/include/ossie/Resource_impl.h src-patched/base/include/ossie/Resource_impl.h
+--- src/base/include/ossie/Resource_impl.h	2016-03-01 09:51:46.915186392 -0600
++++ src-patched/base/include/ossie/Resource_impl.h	2016-03-01 10:19:26.815427832 -0600
+@@ -24,7 +24,8 @@
+
+ #include <string>
+ #include <map>
++#include <boost/scoped_ptr.hpp>
+ #include "Logging_impl.h"
+ #include "Port_impl.h"
+ #include "LifeCycle_impl.h"
+ #include "PortSet_impl.h"
+diff -Nuar src/base/include/ossie/Component.h src-patched/base/include/ossie/Component.h
+--- src/base/include/ossie/Component.h	2016-03-01 09:51:46.915186392 -0600
++++ src-patched/base/include/ossie/Component.h	2016-03-01 10:14:48.420199987 -0600
+@@ -20,7 +20,8 @@
+
+ #ifndef COMPONENT_H
+ #define	COMPONENT_H
++#include <boost/scoped_ptr.hpp>
+ #include "Resource_impl.h"
+ #include "ossie/debug.h"
+ #include "ossie/Events.h"
+ #include "ossie/Autocomplete.h"
+diff -Nuar src/base/framework/shm/Allocator.cpp src-patched/base/framework/shm/Allocator.cpp
+--- src/base/framework/shm/Allocator.cpp	2016-03-01 09:51:46.915186392 -0600
++++ src-patched/base/framework/shm/Allocator.cpp	2016-03-01 10:14:48.420199987 -0600
+@@ -26,6 +26,7 @@
+ #include <ossie/BufferManager.h>
+ 
+ #include <boost/thread.hpp>
++#include <boost/scoped_ptr.hpp>
+ 
+ #include "Block.h"
+ 
+
