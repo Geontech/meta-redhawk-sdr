@@ -29,12 +29,14 @@ PR = "r2"
 
 SRC_URI_append = "\
     file://subdir_objects.patch \
-    file://IDLDIR.patch \
+    file://fix_idldir_and_remove_cppunit.patch \
+    file://burstioInterfaces_libs.patch \
 "
 
 S = "${WORKDIR}/git/redhawk-core-framework/burstioInterfaces"
 
 EXTRA_OECONF += "\
+    --disable-testing \
     --with-boost-system=boost_system \
     "
 
@@ -52,4 +54,8 @@ do_configure_prepend() {
   export STAGING_LIBDIR=${STAGING_LIBDIR}
   export STAGING_BASE=${STAGING_DIR_TARGET}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
+}
+
+do_compile_prepend(){
+  export INTERFACES_LIBDIR="${OSSIEHOME_STAGED}/lib"
 }

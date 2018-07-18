@@ -1,0 +1,22 @@
+--- git/configure.ac	2016-03-02 07:00:31.568548917 -0500
++++ git-patched/configure.ac	2016-03-02 07:06:48.800526356 -0500
+@@ -48,6 +48,10 @@
+ PKG_CHECK_MODULES([BULKIO], [bulkio >= 2.1])
+ RH_PKG_IDLDIR([BULKIO], [bulkioInterfaces])
+ 
++# Adjust the variables from RH_PKG_IDLDIR for the staging area.
++OSSIE_IDLDIR="${STAGING_BASE}${OSSIE_IDLDIR}"
++BULKIO_IDLDIR="${STAGING_BASE}${BULKIO_IDLDIR}"
++
+ AX_BOOST_BASE([1.41])
+ AX_BOOST_THREAD
+ AX_BOOST_SYSTEM
+@@ -135,7 +139,7 @@
+ # Optionally disable unit tests
+ AC_ARG_ENABLE([testing], AS_HELP_STRING([--disable-testing], [disable build of unit tests]))
+ AS_IF([test "x$enable_testing" != "xno"], [
+-  AM_PATH_CPPUNIT(1.12.1)
++  ifdef([AM_PATH_CPPUNIT], [AM_PATH_CPPUNIT([1.12.1])], [])
+   AS_IF([test "x$HAVE_JAVASUPPORT" == "xyes"], [
+     dnl Use RPM location hard-coded for now
+     AC_SUBST([JUNIT_CLASSPATH], "/usr/share/java/junit4.jar")
