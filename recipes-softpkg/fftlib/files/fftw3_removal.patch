@@ -17,7 +17,7 @@
  Description: basic-components signal processing shared library wrapping FFTW
 -Requires: rh.dsp >= 2.0 fftw3 >= 3.0 fftw3f >= 3.0
 +Requires: rh.dsp >= 2.0 fftw3f >= 3.0
- Version: 2.0.0
+ Version: 2.1.0
 -Libs: -L${libdir} -lfftlib -lfftw3 -lfftw3f
 +Libs: -L${libdir} -lfftlib -lfftw3f
  Cflags: -I${includedir}
