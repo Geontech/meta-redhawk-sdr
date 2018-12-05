@@ -26,7 +26,7 @@ DEPENDS += "redhawk"
 RDEPENDS_${PN} = "redhawk python"
 PREFERRED_VERSION_redhawk = "${REDHAWK_VERSION}"
 
-PR = "r2"
+PR = "r5"
 
 S = "${WORKDIR}/git/redhawk-core-framework/redhawk-codegen"
 

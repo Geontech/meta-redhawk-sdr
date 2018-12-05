@@ -25,7 +25,7 @@ RDEPENDS_${PN} = "bulkiointerfaces frontendinterfaces uhd"
 PREFERRED_VERSION_bulkiointerfaces = "2.0.8"
 PREFERRED_VERSION_frontendinterfaces = "2.3.8"
 
-PR = "4"
+PR = "2"
 
 require recipes-core/include/redhawk-repo.inc
 

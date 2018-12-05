@@ -26,7 +26,7 @@ DEPENDS = "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
 PREFERRED_VERSION_bulkiointerfaces = "2.1.3"
 
-PR = "r2"
+PR = "r5"
 
 SRC_URI_append = "\
     file://configure-gpp \

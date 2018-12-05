@@ -25,7 +25,7 @@ DEPENDS += "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
 RDEPENDS_${PN}-python = "bulkiointerfaces-python"
 
-PR = "r2"
+PR = "r5"
 
 SRC_URI_append = "\
     file://fix_idldir_and_remove_cppunit.patch \
