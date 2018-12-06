@@ -22,8 +22,8 @@ DESCRIPTION = "REDHAWK Device for the USRP UHD"
 DEPENDS = "bulkiointerfaces frontendinterfaces uhd"
 RDEPENDS_${PN} = "bulkiointerfaces frontendinterfaces uhd"
 
-PREFERRED_VERSION_bulkiointerfaces = "2.0.8"
-PREFERRED_VERSION_frontendinterfaces = "2.3.8"
+PREFERRED_VERSION_bulkiointerfaces = "2.2.0"
+PREFERRED_VERSION_frontendinterfaces = "2.4.3"
 
 PR = "2"
 
