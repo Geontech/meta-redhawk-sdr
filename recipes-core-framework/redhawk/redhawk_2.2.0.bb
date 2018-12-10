@@ -40,6 +40,7 @@ SRC_URI_append = "\
     file://remove_csh_scripts.patch \
     file://ossie_cv_sdr_root_target.patch \
     file://include_scoped_ptr.patch \
+    file://componenthost_redhawk_processor.patch \
 "
 
 S = "${WORKDIR}/git/redhawk-core-framework/redhawk/src"
