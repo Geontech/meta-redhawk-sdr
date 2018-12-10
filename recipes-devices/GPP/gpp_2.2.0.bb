@@ -24,14 +24,15 @@ require recipes-core/include/redhawk-repo.inc
 
 DEPENDS = "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
-PREFERRED_VERSION_bulkiointerfaces = "2.1.3"
+PREFERRED_VERSION_bulkiointerfaces = "2.2.0"
 
-PR = "r2"
+PR = "r5"
 
 SRC_URI_append = "\
     file://configure-gpp \
     file://amflags_no_test_or_config.patch \
     file://GPP_ps_e.patch \
+    file://trust-uname-p.patch \
 "
 
 # ################################################

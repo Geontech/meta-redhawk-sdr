@@ -5,4 +5,4 @@ inherit redhawk-core-cpp-component
 DEPENDS = "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
 
-PR = "r1"
+PR = "r5"

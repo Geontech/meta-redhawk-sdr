@@ -1,0 +1,13 @@
+Index: src/control/sdr/ComponentHost/ComponentHost.spd.xml
+===================================================================
+--- src.orig/control/sdr/ComponentHost/ComponentHost.spd.xml
++++ src/control/sdr/ComponentHost/ComponentHost.spd.xml
+@@ -40,7 +40,6 @@ with this program.  If not, see http://w
+     <programminglanguage name="C++"/>
+     <humanlanguage name="EN"/>
+     <os name="Linux"/>
+-    <processor name="x86"/>
+-    <processor name="x86_64"/>
++    <processor name="BB_REDHAWK_PROCESSOR"/>
+   </implementation>
+ </softpkg>

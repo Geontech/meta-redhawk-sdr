@@ -1,6 +1,6 @@
 DESCRIPTION = "REDHAWK VITA49 Libraries SoftPkg"
 
-PR = "r1"
+PR = "r3"
 
 # The core-cpp-softpkg class hierarchy handles ...a lot.
 inherit redhawk-core-cpp-softpkg

@@ -21,11 +21,11 @@ inherit redhawk-core-framework
 
 DESCRIPTION = "REDHAWK Core Framework"
 
-PR = "r2"
+PR = "r5"
 
 DEPENDS += "omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource  ossp-uuid"
 RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
-RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml"
+RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml python-setuptools"
 
 PREFERRED_VERSION_omniorb = "4.2.0"
 
@@ -40,6 +40,7 @@ SRC_URI_append = "\
     file://remove_csh_scripts.patch \
     file://ossie_cv_sdr_root_target.patch \
     file://include_scoped_ptr.patch \
+    file://componenthost_redhawk_processor.patch \
 "
 
 S = "${WORKDIR}/git/redhawk-core-framework/redhawk/src"

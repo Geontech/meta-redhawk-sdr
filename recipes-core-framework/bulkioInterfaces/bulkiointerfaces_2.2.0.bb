@@ -19,43 +19,29 @@
 #
 inherit redhawk-core-framework
 
-DESCRIPTION = "REDHAWK Framework BurstIO Interfaces"
+DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
 
-DEPENDS += "bulkiointerfaces"
-RDEPENDS_${PN} = "bulkiointerfaces"
-RDEPENDS_${PN}-python = "bulkiointerfaces-python"
+DEPENDS += "redhawk"
+RDEPENDS_${PN} = "redhawk"
+RDEPENDS_${PN}-python = "redhawk-python"
 
-PR = "r2"
+PR = "r5"
 
 SRC_URI_append = "\
-    file://subdir_objects.patch \
-    file://fix_idldir_and_remove_cppunit.patch \
-    file://burstioInterfaces_libs.patch \
+    file://remove_cppunit.patch \
 "
 
-S = "${WORKDIR}/git/redhawk-core-framework/burstioInterfaces"
+S = "${WORKDIR}/git/redhawk-core-framework/bulkioInterfaces"
 
 EXTRA_OECONF += "\
-    --disable-testing \
     --with-boost-system=boost_system \
     "
 
-PARALLEL_MAKE = ""
-
-# Needed so that when the python distutils is run it can get the system prefix which, 
-# since it's the build system python will be /.../x86_64-linux/usr and replace it with 
-# our host systems name.
-# 
-# STAGING_BASE: Must be the staging dir b/c of configure.ac
+# Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
   export BUILD_SYS=${BUILD_SYS}
   export HOST_SYS=${HOST_SYS}
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
-  export STAGING_BASE=${STAGING_DIR_TARGET}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-}
-
-do_compile_prepend(){
-  export INTERFACES_LIBDIR="${OSSIEHOME_STAGED}/lib"
 }
