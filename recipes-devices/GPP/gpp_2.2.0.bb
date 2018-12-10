@@ -32,6 +32,7 @@ SRC_URI_append = "\
     file://configure-gpp \
     file://amflags_no_test_or_config.patch \
     file://GPP_ps_e.patch \
+    file://trust-uname-p.patch \
 "
 
 # ################################################
