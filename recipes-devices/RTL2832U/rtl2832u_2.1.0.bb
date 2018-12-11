@@ -22,10 +22,7 @@ DESCRIPTION = "REDHAWK Device for the RTL2832U"
 DEPENDS = "frontendinterfaces bulkiointerfaces rtlsdr"
 RDEPENDS_${PN} = "frontendinterfaces rtlsdr"
 
-PREFERRED_VERSION_bulkiointerfaces = "2.0.6"
-PREFERRED_VERSION_frontendinterfaces = "2.3.6"
-
-PR = "r5"
+PR = "r2"
 
 require recipes-core/include/redhawk-repo.inc
 

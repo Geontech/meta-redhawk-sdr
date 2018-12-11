@@ -25,7 +25,6 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=e6a600fd5e1d9cbde2d983680233ad
 
 DEPENDS := "redhawk"
 RDEPENDS_${PN} := "redhawk"
-PREFERRED_VERSION_redhawk = "2.0.%"
 
 SRC_URI = "\
     file://node-init.d \

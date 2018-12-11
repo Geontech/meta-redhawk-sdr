@@ -1,6 +1,8 @@
---- cpp/Makefile.am	2017-07-29 22:16:53.470273530 -0400
-+++ cpp-patched/Makefile.am	2017-07-29 22:19:39.173311677 -0400
-@@ -18,21 +18,13 @@
+Index: cpp/Makefile.am
+===================================================================
+--- cpp.orig/Makefile.am
++++ cpp/Makefile.am
+@@ -18,25 +18,17 @@
  # along with this program.  If not, see http://www.gnu.org/licenses/.
  #
  ossieName = GPP
@@ -13,7 +15,11 @@
 +xmldir = $(SDR_ROOT)/dev/devices/GPP/
  dist_xml_DATA = ../GPP.scd.xml ../GPP.prf.xml ../GPP.spd.xml
 -ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
--
++ACLOCAL_AMFLAGS = -I m4
+ 
+ screendir = $(bindir)
+ screen_DATA = $(srcdir)/gpp.screenrc
+ 
 -all-local: GPP
 -	mkdir -p ../tests/sdr/dev/devices/GPP/cpp
 -	cp GPP ../tests/sdr/dev/devices/GPP/cpp/
@@ -21,11 +27,11 @@
 -	cp ../GPP.spd.xml ../tests/sdr/dev/devices/GPP/
 -	cp ../GPP.prf.xml ../tests/sdr/dev/devices/GPP/
 -	./gpp_setup --gppcfg --silent --location=../tests/sdr/dev/devices/GPP
-+ACLOCAL_AMFLAGS = -I m4
- 
+-
  distclean-local:
  	rm -f config.*
-@@ -47,9 +39,6 @@
+ 	rm -rf autom4te.cache
+@@ -50,9 +42,6 @@ distclean-local:
  	rm -f missing
  	rm -rf .deps
  

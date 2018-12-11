@@ -29,10 +29,6 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE;md5=e6a600fd5e1d9cbde2d9836802
 DEPENDS        = "redhawk"
 RDEPENDS_${PN} = "redhawk"
 
-# This ensures you depend on the right version
-PREFERRED_VERSION_redhawk = "2.0.%"
-
-
 # If you do not specify a tag, you will need to specify the commit
 # hash using a separate recipe variable.
 SRC_URI = "git://<your URL>;tag=<your tag>;protocol=git \

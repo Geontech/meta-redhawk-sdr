@@ -24,13 +24,12 @@ require recipes-core/include/redhawk-repo.inc
 
 DEPENDS = "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
-PREFERRED_VERSION_bulkiointerfaces = "2.2.0"
 
-PR = "r5"
+PR = "r2"
 
 SRC_URI_append = "\
-    file://configure-gpp \
     file://amflags_no_test_or_config.patch \
+    file://configure-gpp \
     file://GPP_ps_e.patch \
     file://trust-uname-p.patch \
 "
@@ -46,7 +45,7 @@ RH_GPP_NAME         ?= "GPP-${PACKAGE_ARCH}"
 S = "${WORKDIR}/git/redhawk-core-framework/GPP/cpp"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
-# autotools-brokensep is the sasme as autotools but our build and src locations are the same since we cannot build away from our src.
+# autotools-brokensep is the same as autotools but our build and src locations are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
 FILES_${PN} += "${SDRROOT}/*"

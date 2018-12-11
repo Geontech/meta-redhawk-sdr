@@ -21,13 +21,11 @@ inherit redhawk-core-framework
 
 DESCRIPTION = "REDHAWK Core Framework"
 
-PR = "r5"
+PR = "r2"
 
 DEPENDS += "omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource  ossp-uuid"
 RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
 RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml python-setuptools"
-
-PREFERRED_VERSION_omniorb = "4.2.0"
 
 SRC_URI_append = "\
     file://uuid_python_package.patch \
