@@ -22,42 +22,38 @@ DESCRIPTION = "OmniORB High Performance ORB"
 SECTION = "devel"
 PRIORITY = "optional"
 LICENSE = "GPL-2.0"
-LIC_FILES_CHKSUM = "file://COPYING;md5=75b02c2872421380bbd47781d2bd75d3"
+LIC_FILES_CHKSUM = "file://COPYING;md5=1b422f7cda3870b9c4b040b68ba1c0fe"
 
 DEPENDS += "omniorb-native python"
-DEPENDS_virtclass-native += "python-native"
+DEPENDS_class-native += "python-native"
 
 RDEPENDS_${PN}-python += "python"
 PACKAGES += "${PN}-python"
 PROVIDES += "${PN}-python"
 
-SRC_URI_BASE = "http://downloads.sourceforge.net/omniorb/omniORB-4.2.0.tar.bz2;name=omniORB420tarbz2"
+SRC_URI_BASE = "http://downloads.sourceforge.net/omniorb/omniORB-${PV}.tar.bz2;name=omniORB"
+SRC_URI[omniORB.md5sum]    = "10a30bae5e1fb4563b47891c6cdf2b5c"
+SRC_URI[omniORB.sha256sum] = "26412ac08ab495ce5a6a8e40961fa20b7c43f623c6c26b616d210ca32f078bca"
 SRC_URI = "${SRC_URI_BASE}"
-SRC_URI_virtclass-native = "${SRC_URI_BASE}"
-SRC_URI[omniORB420tarbz2.md5sum] = "f1e104d0a2df92829c1b37a853f4805d"
-SRC_URI[omniORB420tarbz2.sha256sum] = "74c273fc997c2881b128feb52182dbe067acfecc4cf37475f43c104338eba8bc"
+SRC_URI_class-native = "${SRC_URI_BASE}"
 
 SRC_URI_append = "\
     file://omniORB.cfg \
-    file://omniORB-cross.patch \
-    file://omniORB_embedded_appl.patch \
-    file://pyPrefixIsPrefix.patch \
-    file://fixPythonShebang.patch \
-    file://rm_LongDouble.patch \
+    file://0001-beforeauto-cross.patch \
+    file://0002-python-shebang.patch \
+    file://0003-embedded-appl.patch \
 "
 
 S = "${WORKDIR}/omniORB-${PV}"
 
 # Here we need python libraries and the softlink for the omniidlmodule, we have to disable the check for soft links.
-# Alternativly, we could packge this into the dev package and then pull that in but that would also get all the headers
+# Alternativly, we could package this into the dev package and then pull that in but that would also get all the headers
 # and idl files
 INSANE_SKIP_${PN}-python += "dev-so"
 
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/_omniidlmodule.so*"
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/omniidl/*"
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/omniidl_be/*"
-FILES_${PN}-dbg += "${libdir}/python2.7/site-packages/.debug/_omniidlmodule.so.4.1"
-
 
 TARGET_CC_ARCH += "${LDFLAGS}"
 
@@ -70,7 +66,7 @@ do_compile () {
     oe_runmake
 }
 
-do_compile_virtclass-native () {
+do_compile_class-native () {
     oe_runmake
 }
 
@@ -82,5 +78,3 @@ do_install () {
 }
 
 BBCLASSEXTEND = "native"
-
-NATIVE_INSTALL_WORKS = "1"

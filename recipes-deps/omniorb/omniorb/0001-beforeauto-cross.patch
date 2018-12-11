@@ -1,0 +1,18 @@
+Index: omniORB-4.2.3/mk/beforeauto.mk.in
+===================================================================
+--- omniORB-4.2.3.orig/mk/beforeauto.mk.in
++++ omniORB-4.2.3/mk/beforeauto.mk.in
+@@ -62,11 +62,13 @@ endif
+ 
+ ifndef EmbeddedSystem
+ 
++ifndef TOOLBINDIR
+ ifeq ($(MAKECMDGOALS),install)
+     TOOLBINDIR = $(INSTALLBINDIR)
+ else
+     TOOLBINDIR = $(TOP)/$(BINDIR)
+ endif
++endif
+ 
+ OMKDEPEND        = $(TOOLBINDIR)/omkdepend
+ OMNIORB_IDL_ONLY = $(TOOLBINDIR)/omniidl -bcxx

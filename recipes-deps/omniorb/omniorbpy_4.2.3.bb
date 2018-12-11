@@ -22,26 +22,27 @@ DESCRIPTION = "Python bindings for omniORB"
 SECTION =  "devel"
 PRIORITY = "optional"
 LICENSE = "LGPL-2.1"
-LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=dcf3c825659e82539645da41a7908589"
+LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=f1ce71f6a61e941ba8891e815bb61801"
 DEPENDS += "omniorb omniorbpy-native python"
-DEPENDS_virtclass-native += "omniorb-native python-native"
+DEPENDS_class-native += "omniorb-native python-native"
 
 # This will allow this file to create symlinks to so files without throwing an error
 INSANE_SKIP_${PN} = "dev-so"
 
+SRC_URI_BASE = "http://downloads.sourceforge.net/omniorb/omniORBpy-${PV}.tar.bz2;name=omniORBpy"
+SRC_URI = "${SRC_URI_BASE}"
+SRC_URI_class-native = "${SRC_URI_BASE}"
+SRC_URI[omniORBpy.md5sum]    = "7a48a9c731a70490446d83c4641ae6ff"
+SRC_URI[omniORBpy.sha256sum] = "5c601888e57c7664324357a1be50f2739c468057b46fba29821a25069fc0aee5"
+
 SRC_URI_append = "\
-    file://omniORBpy-cross.patch \
-    file://omniORBpy_modules_codesets_dir.mk.patch \
-    file://omniORBpy_modules_connections_dir.mk.patch \
-    file://omniORBpy_modules_sslTP_dir.mk.patch \
-    file://omniORBpy_modules_dir.mk-${PV}.patch \
+    file://0001-beforeauto-cross.patch \
 "
 
 S = "${WORKDIR}/omniORBpy-${PV}"
 
-EXTRA_OECONF = "--with-omniorb=${STAGING_DIR_TARGET}/usr"
-EXTRA_OECONF_virtclass-native = "--with-omniorb=${STAGING_DIR_NATIVE}/usr"
-
+EXTRA_OECONF = "--with-omniorb=${STAGING_EXECPREFIXDIR}"
+EXTRA_OECONF_class-native = "--with-omniorb=${exec_prefix}"
 
 FILES_${PN} += " \
     ${libdir}/python2.7/site-packages/*.pth \
@@ -69,7 +70,7 @@ do_compile () {
     oe_runmake
 }
 
-do_compile_virtclass-native () {
+do_compile_class-native () {
     oe_runmake
 }
 
@@ -79,6 +80,3 @@ do_install_append() {
 }
 
 BBCLASSEXTEND = "native"
-
-NATIVE_INSTALL_WORKS = "1"
-

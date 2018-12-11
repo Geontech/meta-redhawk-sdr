@@ -25,8 +25,6 @@ LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=68ad62c64cc6c620126241fd429e68fe"
 DEPENDS += "omniorb omniorb-native boost"
 
-PREFERRED_VERSION_omniorb = "4.2.0"
-
 PR = "r1"
 
 SRC_URI = "git://github.com/redhawksdr/omniEvents.git;branch=develop;tag=2.8.1;protocol=git \
