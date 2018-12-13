@@ -55,6 +55,8 @@ FILES_${PN}-python += "${libdir}/python2.7/site-packages/_omniidlmodule.so*"
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/omniidl/*"
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/omniidl_be/*"
 
+DIRFILES = "1"
+
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 inherit autotools pkgconfig pythonnative

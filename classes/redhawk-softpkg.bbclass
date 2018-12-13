@@ -1,4 +1,4 @@
-inherit redhawk-entity
+inherit autotools-brokensep pkgconfig redhawk-entity
 
 # Basic set of depends
 DEPENDS = "redhawk"
@@ -35,6 +35,7 @@ FILES_${PN}-dev += "\
 FILES_${PN}-staticdev += "${SOFTPKG_LIBDIR}/*.a"
 
 # Move the xml to be at the base of SOFTPKG_PREFIX.
-do_install_append () {
+fakeroot do_install_append () {
 	find ${D} -name "*.spd.xml" -exec mv {} ${D}${SOFTPKG_PREFIX} \;
 }
+do_install[vardeps] += "SOFTPKG_PREFIX"

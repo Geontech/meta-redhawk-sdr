@@ -59,6 +59,8 @@ FILES_${PN} += " \
     ${libdir}/python2.7/site-packages/CosNaming/* \
 "
 
+DIRFILES = "1"
+
 inherit autotools pkgconfig distutils-base
 
 #ERROR: QA Issue with omniorbpy-dev: No GNU_HASH in the elf binary...
