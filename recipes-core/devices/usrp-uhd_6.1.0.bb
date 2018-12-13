@@ -47,7 +47,8 @@ SRC_URI_append = "\
 S = "${WORKDIR}/git/cpp"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
-# autotools-brokensep is the same as autotools but our build and src locations are the same since we cannot build away from our src.
+# autotools-brokensep is the same as autotools but our build and src locations 
+# are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
 EXTRA_OECONF += "--prefix=${SDRROOT}"
