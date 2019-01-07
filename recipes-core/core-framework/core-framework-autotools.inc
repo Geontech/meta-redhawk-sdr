@@ -47,7 +47,7 @@ INSANE_SKIP_${PN}-dbg += "libdir"
 
 # OECONF
 EXTRA_OECONF += "\
-	--disable-java \
+    --disable-java \
     OMNIORB_INCLUDEDIR=${STAGING_INCDIR} \
     idldir=${STAGING_DATADIR}/idl/omniORB \
     OMNICOS_IDLDIR=${STAGING_DATADIR}/idl/omniORB/COS \
@@ -55,8 +55,8 @@ EXTRA_OECONF += "\
 
 # Needed so that when the python distutils is run it can get the system prefix.
 do_install_prepend() {
-  export BUILD_SYS=${BUILD_SYS}
-  export HOST_SYS=${HOST_SYS}
-  export STAGING_INCDIR=${STAGING_INCDIR}
-  export STAGING_LIBDIR=${STAGING_LIBDIR}
+    export BUILD_SYS=${BUILD_SYS}
+    export HOST_SYS=${HOST_SYS}
+    export STAGING_INCDIR=${STAGING_INCDIR}
+    export STAGING_LIBDIR=${STAGING_LIBDIR}
 }
