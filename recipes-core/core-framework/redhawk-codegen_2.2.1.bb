@@ -18,7 +18,7 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 require core-framework-2.2.1.inc
-inherit setuptools
+inherit setuptools redhawk-sysroot
 
 DESCRIPTION = "REDHAWK Codegen"
 
@@ -42,6 +42,7 @@ do_configure_prepend() {
 
 BBCLASSEXTEND = "native"
 
-do_install_append() {
-    rm -f ${D}${libdir}/python*/site-packages/site.py*
-}
+PYTHON_SITEPACKAGES_DIR = "${OSSIEHOME}/lib/python"
+DISTUTILS_INSTALL_ARGS = "--prefix=${D}/${OSSIEHOME}"
+
+FILES_${PN} = "${OSSIEHOME}"
