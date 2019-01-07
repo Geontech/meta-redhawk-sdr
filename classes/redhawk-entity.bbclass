@@ -30,11 +30,7 @@ do_install_prepend() {
   export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
 }
 
-NODE_CONFIG_SCRIPT ?= ""
 do_dynamic_arch_patch () {
-  if ! [ -z ${NODE_CONFIG_SCRIPT} ] ; then 
-    sed -i "s/tmp_proc_map.get(tmp_uname_p, 'x86')/'${REDHAWK_PROCESSOR}'/g" ${S}/${NODE_CONFIG_SCRIPT} 
-  fi
   find ${S}/../ -name *.spd.xml -exec sed -i "s/<processor name=\"x86_64\"\/>/<processor name=\"${REDHAWK_PROCESSOR}\"\/>/g" {} \; 
   find ${S}/../ -name *.spd.xml -exec sed -i "s/<processor name=\"x86\"\/>//g" {} \; 
 }
