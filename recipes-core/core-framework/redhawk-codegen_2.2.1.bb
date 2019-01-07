@@ -34,10 +34,10 @@ S = "${WORKDIR}/git/redhawk-codegen"
 # This is a python package
 
 do_configure_prepend() {
-  export BUILD_SYS=${BUILD_SYS}
-  export HOST_SYS=${HOST_SYS}
-  export STAGING_INCDIR=${STAGING_INCDIR}
-  export STAGING_LIBDIR=${STAGING_LIBDIR}
+    export BUILD_SYS=${BUILD_SYS}
+    export HOST_SYS=${HOST_SYS}
+    export STAGING_INCDIR=${STAGING_INCDIR}
+    export STAGING_LIBDIR=${STAGING_LIBDIR}
 }
 
 BBCLASSEXTEND = "native"
