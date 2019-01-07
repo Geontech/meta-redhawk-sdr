@@ -1,8 +1,5 @@
 inherit autotools-brokensep pkgconfig redhawk-entity
 
-# Basic set of depends
-DEPENDS = "redhawk"
-RDEPENDS_${PN} = "redhawk"
 
 # Set/append SOFTPKG_PREFIX to the installation directory of your softpkg.
 # Standard REDHAWK Deps install with a package config as:
