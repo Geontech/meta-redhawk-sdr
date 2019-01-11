@@ -15,11 +15,11 @@ PROVIDES += "${PN}-python"
 DIRFILES = "1"
 
 # Common packaging structure
-FILES_${PN}-python += " \
+FILES_${PN}-python = " \
     ${OSSIEHOME}/lib/python \
 "
 
-FILES_${PN} += " \
+FILES_${PN} = " \
     ${OSSIEHOME}/share \
     ${OSSIEHOME}/lib/lib*.so.* \
 "
@@ -34,7 +34,7 @@ FILES_${PN}-dev += " \
     ${OSSIEHOME}/lib/pkgconfig \
 "
 
-FILES_${PN}-staticdev += " \
+FILES_${PN}-staticdev = " \
     ${OSSIEHOME}/lib/*.a \
     ${OSSIEHOME}/lib/*.la \
 "
@@ -60,3 +60,5 @@ do_install_prepend() {
     export STAGING_INCDIR=${STAGING_INCDIR}
     export STAGING_LIBDIR=${STAGING_LIBDIR}
 }
+
+PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"

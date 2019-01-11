@@ -27,6 +27,9 @@ PR = "2"
 DEPENDS += "omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource  ossp-uuid"
 RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
 RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml python-setuptools"
+COMPONENTHOST_PN := "rh-componenthost"
+PACKAGES += "${COMPONENTHOST_PN}"
+
 
 SRC_URI_append = "\
     file://uuid_python_package.patch \
@@ -51,6 +54,22 @@ EXTRA_OECONF += "\
     --without-tests \
     "
 
+COMPONENTHOST_PATH = "${SDRROOT}/dom/mgr/rh/ComponentHost"
+FILES_${COMPONENTHOST_PN} = "${COMPONENTHOST_PATH}"
+
+FILES_${PN} += " \
+    ${OSSIEHOME}/bin/redhawk-shminfo \
+    ${OSSIEHOME}/bin/redhawk-shmclean \
+    ${OSSIEHOME}/bin/nodeBooter \
+    ${SDRROOT}/dom/mgr/DomainManager* \
+    ${SDRROOT}/dom/domain \
+    ${SDRROOT}/dom/deps \
+    ${SDRROOT}/dom/components \
+    ${SDRROOT}/dom/waveforms \
+    ${SDRROOT}/dev \
+    /etc/* \
+    "
+
 FILES_${PN}-dbg += " \
     ${SDRROOT}/dev/mgr/.debug \
     ${SDRROOT}/dom/mgr/.debug \
@@ -73,13 +92,6 @@ FILES_${PN}-python += " \
     ${OSSIEHOME}/bin/cleanes \
 "
 
-FILES_${PN} += " \
-    ${OSSIEHOME}/bin/redhawk-shminfo \
-    ${OSSIEHOME}/bin/redhawk-shmclean \
-    ${OSSIEHOME}/bin/nodeBooter \
-    ${SDRROOT}/* \
-    /etc/* \
-"
 
 # Patch for lack of support in specifying an alternative to armv7l and various x86 options.
 do_redhawk_processor_patch () {

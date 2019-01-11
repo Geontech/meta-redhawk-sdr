@@ -40,6 +40,10 @@ do_configure_prepend() {
     export STAGING_LIBDIR=${STAGING_LIBDIR}
 }
 
+do_install_append() {
+    rm -f ${D}${OSSIEHOME}/lib/python/redhawk/__init__.py*
+}
+
 BBCLASSEXTEND = "native"
 
 PYTHON_SITEPACKAGES_DIR = "${OSSIEHOME}/lib/python"
