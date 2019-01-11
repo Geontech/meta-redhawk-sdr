@@ -4,7 +4,8 @@ Index: cpp/gpp_setup
 +++ cpp/gpp_setup
 @@ -87,10 +87,8 @@ class BaseConfigurator(object):
          self.props['hostName'] = self.hostname
-         tmp_uname_p    = platform.processor()
+-        tmp_uname_p    = platform.processor()
++        tmp_uname_p    = platform.machine()
          tmp_proc_map   = {'i386':'x86',
 -                          'i686':'x86',
 -                          'x86_64':'x86_64',
