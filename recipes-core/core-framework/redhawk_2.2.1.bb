@@ -24,11 +24,22 @@ DESCRIPTION = "REDHAWK Core Framework"
 
 PR = "2"
 
-DEPENDS += "omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip expat boost boost-native python-numpy python-threading python-numbers python-resource  ossp-uuid"
-RDEPENDS_${PN} = "python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost python-numpy python-threading python-subprocess python-numbers python-xml python-resource ossp-uuid"
-RDEPENDS_${PN}-python = "${PN} omniorb-python omniorbpy python-numpy python-threading python-numbers python-resource python-xml python-lxml python-setuptools"
 COMPONENTHOST_PN := "rh-componenthost"
 PACKAGES += "${COMPONENTHOST_PN}"
+
+DEPENDS += "\
+    omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip \
+    expat boost boost-native python-numpy python-threading python-numbers \
+    python-resource ossp-uuid \
+    "
+RDEPENDS_${PN} += "\
+    python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost \
+    python-numpy python-threading python-subprocess python-numbers python-xml \
+    python-resource ossp-uuid \
+    "
+RDEPENDS_${PN}-python += "\
+    ${PN} omniorb-python omniorbpy python-numpy python-threading \
+    python-numbers python-resource python-xml python-lxml python-setuptools"
 
 
 SRC_URI_append = "\
@@ -43,7 +54,7 @@ SRC_URI_append = "\
     file://ossie_cv_sdr_root_target.patch \
     file://include_scoped_ptr.patch \
     file://componenthost_redhawk_processor.patch \
-"
+    "
 
 S = "${WORKDIR}/git/redhawk/src"
 
@@ -90,7 +101,7 @@ FILES_${PN}-python += " \
     ${OSSIEHOME}/bin/py2prf \
     ${OSSIEHOME}/bin/eventviewer \
     ${OSSIEHOME}/bin/cleanes \
-"
+    "
 
 
 # Patch for lack of support in specifying an alternative to armv7l and various x86 options.
