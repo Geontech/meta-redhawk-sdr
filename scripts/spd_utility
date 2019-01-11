@@ -1,0 +1,299 @@
+#!/usr/bin/env python
+# Author: Thomas Goodwin <btgoodwin@geontech.com>
+#
+# Purpose:
+#  1. Patches a source tree to include a new implementation.
+#
+#  2. Patches a binary tree to include a new implementation.
+import os
+import sys
+import copy
+import shutil
+import re
+import logging
+from optparse import OptionParser
+
+from ossie.parsers import spd
+
+LOGGER_NAME = 'SPD Utility'
+
+EXIT_OKAY = 0
+EXIT_NO_PATH = EXIT_OKAY + 1
+EXIT_TOO_MANY_ARGS = EXIT_NO_PATH + 1
+EXIT_TOO_MANY_OPTIONS = EXIT_TOO_MANY_ARGS + 1
+EXIT_NEW_IMPL_ALREADY_EXISTS = EXIT_OKAY
+EXIT_NO_X86_IMPL_EXISTS = EXIT_TOO_MANY_OPTIONS + 1
+EXIT_NO_SPD_FOUND = EXIT_NO_X86_IMPL_EXISTS + 1
+EXIT_UNKNOWN_TARGET_TYPE = EXIT_NO_SPD_FOUND + 1
+EXIT_PATCH_SOURCE_OR_INSTALL = EXIT_UNKNOWN_TARGET_TYPE + 1
+
+def get_impl(the_spd, the_name):
+    '''
+    Returns the implementation 
+    '''
+    for impl in the_spd.get_implementation():
+        names = [p.get_name() for p in impl.get_processor()]
+        if the_name in names:
+            return impl
+    return None
+
+def patch_source(spd_path, processor_name, replace=False):
+    '''
+    Attempts to find an x86_64 implementation duplicate that source tree
+    as the processor_name, then insert the new implementation and then
+    writes out the updated SPD XML.
+
+    In the case of ComponentHost, the entrypoint executable name will
+    change rather than the directory.
+    '''
+    _log = logging.getLogger(LOGGER_NAME)
+    project_spd = spd.parse(spd_path)
+    is_componenthost = project_spd.get_name().endswith('ComponentHost')
+
+    x86_impl = get_impl(project_spd, 'x86_64')
+    if not x86_impl:
+        _log.error("No x86_64 implementation exists.  Something is wrong.")
+        sys.exit(EXIT_NO_X86_IMPL_EXISTS)
+
+    new_impl = get_impl(project_spd, processor_name)
+    if new_impl:
+        _log.info("Implementation %s already exists" % (processor_name))
+        sys.exit(EXIT_NEW_IMPL_ALREADY_EXISTS)
+    
+    # Duplicate or replace
+    if replace:
+        new_impl = x86_impl
+        new_impl.set_processor([])
+        _log.info("Replaced the x86_64 implementation")
+    else:
+        # Duplicate the x86_impl and add it to the SPD
+        new_impl = copy.deepcopy(x86_impl)
+        project_spd.add_implementation(new_impl)
+        _log.info('Duplicated the x86_64 implementation')
+
+    # Duplicate the source directory to the new space
+    # Does not apply to ComponentHost
+    suffix = '-' + processor_name
+    old_impl_id = new_impl.get_id()
+    new_impl_id = old_impl_id + suffix
+    if not is_componenthost:
+        project_path = os.path.dirname(spd_path)
+        old_impl_project_path = os.path.join(project_path, old_impl_id)
+        new_impl_project_path = os.path.join(project_path, new_impl_id)
+        if os.path.exists(new_impl_project_path):
+            shutil.rmtree(new_impl_project_path)
+        shutil.copytree(old_impl_project_path, new_impl_project_path)
+        _log.info('Copied source tree %s to %s' % (old_impl_id, new_impl_id))
+
+    # Patch the new_impl
+    #   - Implementation ID
+    #     - code
+    #       - localfile name
+    #       - entrypoint (if component, device, ComponentHost)
+    #         ComponentHost: append the executable with the suffix
+    #         All others:    replace [old_impl_id] with [new_impl_id]
+    #     - Processor Name
+    #     - for each dependency type=runtime_requirements
+    #       - softpkgref
+    #         - implref refid replace [old_impl_id] with [new_impl_id]
+    new_impl.set_id(new_impl_id)
+    new_code = new_impl.get_code()
+    lf_name = new_code.get_localfile().get_name()
+    entrypoint = new_code.get_entrypoint()
+    if is_componenthost:
+        lf_name += suffix
+        entrypoint += suffix
+    else:
+        lf_name = lf_name.replace(old_impl_id, new_impl_id)
+        new_code.get_localfile().set_name(lf_name)
+        if entrypoint:
+            entrypoint = entrypoint.replace(old_impl_id, new_impl_id)
+            new_code.set_entrypoint(entrypoint)
+    new_impl.set_processor([spd.processor(processor_name)])
+    for dep in new_impl.get_dependency():
+        if dep.get_type() == 'runtime_requirements':
+            dep.get_softpkgref().get_implref().set_refid(new_impl_id)
+
+    _log.info('Finished Implementation: %s' % new_impl_id)
+
+    # Add the new_impl and export.
+    with open(spd_path, 'w') as f:
+        project_spd.export(f, 0)
+        _log.info('Updated: %s' % spd_path)
+
+def patch_sdrroot(source_spd_path, target_type):
+    '''
+    Attempts to find the project in the local SDRROOT.
+     - If the target exists, it is patched with the new implementation.
+     - If the target does not exist, the whole source project is copied
+       to the SDRROOT.
+    
+    The ComponentHost does not keep its binaries in separate directories,
+    therefore all binaries will be located at the root with the XML.
+
+    Variable Naming Convention:
+        var_spd     -> An SPD object
+        var_path    -> abs. or relative path to the var
+        var_file    -> just the file name for var
+        var_dirname -> path containing the var
+    '''
+    _log = logging.getLogger(LOGGER_NAME)
+    source_spd = spd.parse(source_spd_path)
+    source_spd_file = os.path.basename(source_spd_path)
+    source_spd_dirname = os.path.dirname(source_spd_path)
+    is_componenthost = source_spd.get_name().endswith('ComponentHost')
+
+    # Find the destination SPD file if it exists.
+    sdrroot = os.getenv('SDRROOT')
+    target_spd_path = None
+    if source_spd_file == 'ComponentHost.spd.xml':
+        target_spd_path = os.path.join(sdrroot, 'dom/mgr')
+    elif target_type == 'device':
+        target_spd_path = os.path.join(sdrroot, 'dev/devices')
+    elif target_type == 'softpkg':
+        target_spd_path = os.path.join(sdrroot, 'dom/deps')
+    elif target_type == 'component':
+        target_spd_path = os.path.join(sdrroot, 'dom/components')
+    else:
+        _log.error('Unknown target type: %s' % target_type)
+        sys.exit(EXIT_UNKNOWN_TARGET_TYPE)
+
+    # Get the anticipated target location, using the convention of RH assets
+    # installing 'rh.NAME' to '<path>/rh/NAME'.
+    target_subdir = source_spd.get_name().replace('.','/')
+    target_spd_path = os.path.join(target_spd_path, target_subdir, source_spd_file)
+    target_spd_dirname = os.path.dirname(target_spd_path)
+
+    if os.path.isfile(target_spd_path):
+        _log.info('Patching implementation IDs')
+        _log.info('\tFrom: %s' % source_spd_path)
+        _log.info('\tTo:   %s' % target_spd_path)
+
+        # Get an SPD instance, the directory where the SPD is at,
+        # and a list of implementation IDs.  Then update data and files:
+        #  - Component/ComponentHost/Device: use entrypoint to ID path to copy
+        #  - SoftPkg, use localfile name as the path
+        target_spd = spd.parse(target_spd_path)
+        target_dirname = os.path.dirname(target_spd_path)
+
+        # The trick to the next block of logic is that softpkg use localfile.name
+        # which does not point to the library file, only cpp/lib.  Components,
+        # Devices, and the ComponentHost use entrypoint.  Further complicating things,
+        # the ComponentHost doesn't store its binary within cpp, it's in the same path
+        # as the SPD XML.
+        def entrypoint_or_localfile(code):
+            return code.get_entrypoint() or code.get_localfile().get_name()
+
+        target_impl_map = dict()
+        for impl in target_spd.get_implementation():
+            target_impl_map[impl.get_id()] = entrypoint_or_localfile(impl.get_code())
+
+        for s_impl in source_spd.get_implementation():
+            _log.info('Implementation: %s' % s_impl.get_id())
+            s_code_ref = entrypoint_or_localfile(s_impl.get_code())
+            s_code_file = os.path.join(source_spd_dirname, s_code_ref)
+            s_code_dirname = os.path.dirname(s_code_file)
+
+            # Check if the source's code reference file or path exists, if not skip this impl.
+            # In the case of softpkg, this will be cpp[-arch]/lib, so if the arch was never
+            # built, this will evaluate to false since cpp[-arch] is missing too.
+            if not os.path.exists(s_code_file):
+                _log.info('\tSkipped (entrypoint or localfile does not exist)')
+                continue
+
+            # Check if the target entry point ref exists
+            t_code_ref = target_impl_map.get(s_impl.get_id(), None)
+
+            l_msg = '\t%s implementation %s'
+            l_msg_target = target_type.title()
+            l_msg_result = 'updated'
+            if not t_code_ref:
+                # Implementation does not exist, add it.
+                target_spd.add_implementation(copy.deepcopy(s_impl))
+                t_code_ref = s_code_ref
+                l_msg_result = 'added'
+
+            if is_componenthost:
+                # ComponentHost is a single file
+                shutil.copy(s_code_file, target_dirname)
+                l_msg_target = 'ComponentHost'
+            else:
+                # Replace the target directory with the source one:
+                #    rm -rf target/<cpp-id>
+                #    cp -r source/<cpp-id> target
+                t_code_file = os.path.join(target_dirname, t_code_ref)
+                t_code_dirname = os.path.dirname(t_code_file)
+                shutil.rmtree(t_code_dirname)
+                shutil.copytree(s_code_dirname, target_dirname + s_impl.get_id())
+
+            # Parting statement
+            _log.info(l_msg % (l_msg_target, l_msg_result))
+    else:
+        # Copy the whole project to the destination (this is entirely new)
+        # NOTE: We're trusting this is only the necessary runtime artifacts, not
+        # a source tree.
+        shutil.copytree(source_spd_dirname, target_spd_dirname)
+        _log.info("Installed '%s' into %s" % (source_spd.get_name(), sdrroot))
+
+if __name__ == '__main__':
+    logging.basicConfig(format='%(name)-9s:%(levelname)-8s: %(message)s', level=logging.INFO)
+    _log = logging.getLogger(LOGGER_NAME)
+
+    parser = OptionParser()
+    parser.usage = "usage: %prog [options] spd_path"
+    parser.add_option('-n', '--name',
+        action='store',
+        dest='processor_name',
+        default=None,
+        help='Processor name (implentation) to create in a source tree')
+    parser.add_option('-t', '--type',
+        type='choice',
+        choices=['device', 'component', 'softpkg'],
+        action='store',
+        default=None,
+        dest='target_type',
+        help='Target type: device, component, softpkg (not used for ComponentHost)')
+    parser.add_option('-r', '--replace',
+        action='store_true',
+        dest='replace',
+        default=False,
+        help='Replace the x86_64 source implementation with the new one')
+    (options, args) = parser.parse_args()
+
+    if len(args) == 0:
+        _log.error("You must specify the path to a project")
+        sys.exit(EXIT_NO_PATH)
+    elif len(args) > 1:
+        _log.error("Only one argument is supported")
+        sys.exit(EXIT_TOO_MANY_ARGS)
+
+    if options.processor_name and options.target_type:
+        _log.error("Only specify 1: processor_name or target_type")
+        sys.exit(EXIT_TOO_MANY_OPTIONS)
+
+    # spd_path should be a path to the folder containing the spd, prf, etc.
+    spd_path = args[0]
+    if not spd_path.endswith('.xml'):
+        spd_proj_path = spd_path
+        spd_path = None
+        for root, dirs, files in os.walk(spd_proj_path):
+            for name in files:
+                if re.match(r'^.+?\.(SPD|spd)\.(XML|xml)', name):
+                    spd_path = os.path.join(root, name)
+                    break
+            if spd_path:
+                break
+        if not spd_path:
+            _log.error('Provided path did not contain an SPD XML.')
+            sys.exit(EXIT_NO_SPD_FOUND)
+    elif not os.path.isfile(spd_path):
+        _log.error('Provided project file name does not exist')
+        sys.exit(EXIT_NO_SPD_FOUND)
+
+    if options.processor_name:
+        patch_source(spd_path, options.processor_name, options.replace)
+    elif options.target_type:
+        patch_sdrroot(spd_path, options.target_type)
+    else:
+        sys.exit(EXIT_PATCH_SOURCE_OR_INSTALL)
+    sys.exit(EXIT_OKAY)
