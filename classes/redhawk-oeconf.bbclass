@@ -15,10 +15,15 @@ EXTRA_OECONF += "\
     "
 
 # Patches common to nearly every REDHAWK source
-do_configure_prepend () {
-  touch ./NEWS ./README ./AUTHORS ./ChangeLog
-  sed -i 's/ACLOCAL_AMFLAGS = .\+$/ACLOCAL_AMFLAGS = -I m4/g' Makefile.am
+ac_meta_files () {
+    touch ${S}/NEWS ${S}/README ${S}/AUTHORS ${S}/ChangeLog
 }
+do_unpack[postfuncs] += "ac_meta_files"
+
+aclocal_amflags () {
+    sed -i 's/ACLOCAL_AMFLAGS = .\+$/ACLOCAL_AMFLAGS = -I m4/g' ${S}/Makefile.am
+}
+do_patch[postfuncs] += "aclocal_amflags"
 
 # Include the ossie autoconf macros
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
