@@ -52,7 +52,7 @@ do_start() {
     echo "PID file exists. Attemping to stop before starting."
     do_stop
   fi
-  nodeBooter $DAEMON_ARGS
+  nodeBooter $DAEMON_ARGS || do_stop
 }
 
 do_stop() {
