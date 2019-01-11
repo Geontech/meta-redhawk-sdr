@@ -41,6 +41,13 @@ RDEPENDS_${PN}-python += "\
     ${PN} omniorb-python omniorbpy python-numpy python-threading \
     python-numbers python-resource python-xml python-lxml python-setuptools"
 
+BBCLASSEXTEND = "native"
+DEPENDS_class-native += "\
+    omniorbpy-native omniorb-native xsd-native log4cxx-native \
+    omnievents-native e2fsprogs-native apr-util-native apr-native zip-native \
+    expat-native boost-native python-native python-setuptools-native \
+    ossp-uuid-native \
+    "
 
 SRC_URI_append = "\
     file://uuid_python_package.patch \
