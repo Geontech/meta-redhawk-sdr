@@ -1,5 +1,8 @@
 inherit autotools-brokensep pkgconfig redhawk-entity
 
+do_autotools_patch_append () {
+    sed -i -r "s/(^RH_SOFTPKG_PREFIX.+?\[cpp)(\])/\1-${REDHAWK_PROCESSOR}\2/g" ${S}/configure.ac
+}
 
 # Set/append SOFTPKG_PREFIX to the installation directory of your softpkg.
 # Standard REDHAWK Deps install with a package config as:
@@ -11,7 +14,7 @@ inherit autotools-brokensep pkgconfig redhawk-entity
 SOFTPKG_BASE = "${SDRROOT}/dom/deps"
 SOFTPKG_PREFIX ?= "${SOFTPKG_BASE}"
 SOFTPKG_INCLUDEDIR ?= "${SOFTPKG_PREFIX}/include"
-SOFTPKG_EPREFIX ?= "${SOFTPKG_PREFIX}/cpp"
+SOFTPKG_EPREFIX ?= "${SOFTPKG_PREFIX}/cpp-${REDHAWK_PROCESSOR}"
 SOFTPKG_LIBDIR ?= "${SOFTPKG_EPREFIX}/lib"
 
 EXTRA_OECONF += "\
