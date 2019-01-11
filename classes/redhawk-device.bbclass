@@ -1,6 +1,6 @@
 inherit autotools-brokensep pkgconfig redhawk-entity
 
-DEPENDS += "omniorb-native omniorbpy-native"
+DEPENDS_prepend = "omniorb-native omniorbpy-native "
 
 NODE_CONFIG_SCRIPT ?= ""
 do_nodeconfig_patch () {

@@ -20,8 +20,8 @@ do_configure_prepend() {
   sed -i 's,${prefix}/dom/deps,${SDR_ROOT}/dom/deps,g' configure.ac
 }
 # Basic set of depends
-DEPENDS = "redhawk redhawk-native"
-RDEPENDS_${PN} = "redhawk"
+DEPENDS_prepend = "redhawk redhawk-native "
+RDEPENDS_${PN}_prepend = "redhawk "
 
 
 # Needed so that when the python distutils is run it can get the system prefix.
