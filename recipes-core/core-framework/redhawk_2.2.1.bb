@@ -108,8 +108,14 @@ FILES_${PN}-python += " \
 do_redhawk_processor_patch () {
     find ${S} -type f -exec sed -i "s/BB_REDHAWK_PROCESSOR/${REDHAWK_PROCESSOR}/g" {} \;
 }
-do_redhawk_processor_patch[vardeps] += "REDHAWK_PROCESSOR"
-addtask redhawk_processor_patch after do_patch before do_configure
+do_patch[postfuncs] += "do_redhawk_processor_patch"
+
+do_install_append () {
+    # Rename ComponentHost to match the entrypoint created by the
+    # componenthost SPD patch
+    mv ${D}${COMPONENTHOST_PATH}/ComponentHost \
+        ${D}${COMPONENTHOST_PATH}/ComponentHost-${REDHAWK_PROCESSOR}
+}
 
 # Get the things from /etc (sysconfdir)
 redhawk_core_etc_sysroot () {
