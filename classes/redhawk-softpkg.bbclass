@@ -38,4 +38,3 @@ FILES_${PN}-staticdev += "${SOFTPKG_LIBDIR}/*.a"
 fakeroot do_install_append () {
 	find ${D} -name "*.spd.xml" -exec mv {} ${D}${SOFTPKG_PREFIX} \;
 }
-do_install[vardeps] += "SOFTPKG_PREFIX"
