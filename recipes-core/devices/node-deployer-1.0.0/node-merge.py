@@ -20,7 +20,7 @@
 #
 
 
-import os, sys, commands, logging, platform, shutil, socket
+import os, sys, commands, logging, shutil, socket
 from ossie import parsers
 from ossie.utils.model import _uuidgen as uuidgen
 
