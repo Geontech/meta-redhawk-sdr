@@ -1,42 +1,47 @@
 # This file sets OSSIEHOME and other environment variables used by autotools
 inherit redhawk-oeconf redhawk-sysroot pythonnative
 
-# Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
-do_configure_prepend() {
-  export BUILD_SYS=${BUILD_SYS}
-  export HOST_SYS=${HOST_SYS}
-  export STAGING_INCDIR=${STAGING_INCDIR}
-  export STAGING_LIBDIR=${STAGING_LIBDIR}
-  export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-  export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
-  export PATH="${OSSIEHOME_STAGED}/bin:${PATH}"
+# Basic set of depends
+DEPENDS_prepend = "redhawk redhawk-native "
+RDEPENDS_${PN}_prepend = "redhawk "
 
-  # Common patches among device and component as noted by YLB.
-  # These were individual patch files but were being tacked on to many recipes.
-  # This is to reduce some clutter.
-  sed -i 's/xmldir = $(prefix)/xmldir = $(SDR_ROOT)/g' Makefile.am
-  sed -i 's/bindir = $(prefix)/bindir = $(SDR_ROOT)/g' Makefile.am
-  sed -i 's/domdir = $(prefix)/domdir = $(SDR_ROOT)/g' Makefile.am
-  sed -i 's,${prefix}/dom/deps,${SDR_ROOT}/dom/deps,g' configure.ac
+# Our dynamic do_patch tasks are sensitive to REDHAWK_PROCESSOR and the
+# modifications are not repeatable if that variable changes since we're
+# post-patching source without patch files.  My making unpack sensitive
+# to the same variable, changes to it will unpack fresh source so the
+# dynamic patches can run according to the change.
+do_unpack[vardeps] += "REDHAWK_PROCESSOR"
+
+do_autotools_patch () {
+    # Common patches among device and component as noted by YLB.
+    # These were individual patch files but were being tacked on to many recipes.
+    # This is to reduce some clutter.
+    sed -i 's/xmldir = $(prefix)/xmldir = $(SDR_ROOT)/g' ${S}/Makefile.am
+    sed -i 's/bindir = $(prefix)/bindir = $(SDR_ROOT)/g' ${S}/Makefile.am
+    sed -i 's/domdir = $(prefix)/domdir = $(SDR_ROOT)/g' ${S}/Makefile.am
+    sed -i 's,${prefix}/dom/deps,${SDR_ROOT}/dom/deps,g' ${S}/configure.ac
+
+    # Patch the bindir to match what the spd patch will do to the entrypoint
+    sed -i -r "s,(bindir = .+?cpp)/,\1-${REDHAWK_PROCESSOR}/,g" ${S}/Makefile.am
+
+    # Patch the relationship to any softpkg dependencies
+    sed -i -r "s/(^RH_SOFTPKG_CXX.+?\[cpp)(\])(.+$)/\1-${REDHAWK_PROCESSOR}\2\3/g" ${S}/configure.ac
+}
+do_patch[postfuncs] += "do_autotools_patch"
+
+do_configure_prepend () {
+    export BUILD_SYS=${BUILD_SYS}
+    export HOST_SYS=${HOST_SYS}
+    export STAGING_INCDIR=${STAGING_INCDIR}
+    export STAGING_LIBDIR=${STAGING_LIBDIR}
+    export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
+    export PATH="${OSSIEHOME_STAGED}/bin:${PATH}"
 }
 
-# Needed so that when the python distutils is run it can get the system prefix.
-do_install_prepend() {
-  export BUILD_SYS=${BUILD_SYS}
-  export HOST_SYS=${HOST_SYS}
-  export STAGING_INCDIR=${STAGING_INCDIR}
-  export STAGING_LIBDIR=${STAGING_LIBDIR}
-  export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-  export PYTHONPATH=${OSSIEHOME_STAGED}/lib/python:${PYTHONPATH}
+do_spd_implementation_patch () {
+    export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
+    spd_utility -n "${REDHAWK_PROCESSOR}" "${S}/.."
 }
-
-NODE_CONFIG_SCRIPT ?= ""
-do_dynamic_arch_patch () {
-  if ! [ -z ${NODE_CONFIG_SCRIPT} ] ; then 
-    sed -i "s/tmp_proc_map.get(tmp_uname_p, 'x86')/'${REDHAWK_PROCESSOR}'/g" ${S}/${NODE_CONFIG_SCRIPT} 
-  fi
-  find ${S}/../ -name *.spd.xml -exec sed -i "s/<processor name=\"x86_64\"\/>/<processor name=\"${REDHAWK_PROCESSOR}\"\/>/g" {} \; 
-  find ${S}/../ -name *.spd.xml -exec sed -i "s/<processor name=\"x86\"\/>//g" {} \; 
-}
-addtask dynamic_arch_patch after do_patch before do_configure
-
+do_spd_implementation_patch[cleandirs] += "${S}/../cpp-${REDHAWK_PROCESSOR}"
+addtask spd_implementation_patch after do_compile before do_install

@@ -25,7 +25,7 @@ LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://xsd/LICENSE;md5=79e31466c4d9f3a85f2f987c11ebcd83"
 
 DEPENDS = ""
-DEPENDS_virtclass-native = "xerces-c-native xsd-dev"
+DEPENDS_class-native = "xerces-c-native xsd-dev"
 BBCLASSEXTEND = "native"
 
 PROVIDES += "${PN}-dev ${PN}-dev-native"
@@ -56,10 +56,12 @@ do_install () {
     cp -r ${S}/xsd/libxsd/xsd ${D}${includedir}/xsd
 }
 
-do_compile_virtclass-native () {
+do_compile_class-native () {
 	oe_runmake
 }
 
-do_install_virtclass-native () {
+do_install_class-native () {
+    install -d ${D}${includedir}
     install -m 0755 -D ${S}/xsd/xsd/xsd ${D}${bindir}/xsdcxx
+    cp -r ${S}/xsd/libxsd/xsd ${D}${includedir}/xsd
 }

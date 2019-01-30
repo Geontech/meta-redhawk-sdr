@@ -1,0 +1,20 @@
+Index: omniORB/src/tool/omniidl/python/scripts/omniidl.in
+===================================================================
+--- omniORB.orig/src/tool/omniidl/python/scripts/omniidl.in
++++ omniORB/src/tool/omniidl/python/scripts/omniidl.in
+@@ -1,4 +1,4 @@
+-#!@PYTHON@
++#!/usr/bin/env python
+ # -*- python -*-
+ #                           Package   : omniidl
+ # omniidl.in                Created on: 1999/10/29
+Index: omniORB/src/tool/omniidl/python3/scripts/omniidl.in
+===================================================================
+--- omniORB.orig/src/tool/omniidl/python3/scripts/omniidl.in
++++ omniORB/src/tool/omniidl/python3/scripts/omniidl.in
+@@ -1,4 +1,4 @@
+-#!@PYTHON@
++#!/usr/bin/env python3
+ # -*- python -*-
+ #                           Package   : omniidl
+ # omniidl.in                Created on: 1999/10/29

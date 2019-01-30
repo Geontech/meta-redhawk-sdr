@@ -17,31 +17,32 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
+require core-framework-2.2.1.inc
+require core-framework-autotools.inc
 
-BBPATH .= ":${LAYERDIR}"
-BBFILES += "\
-    ${LAYERDIR}/recipes-*/*/*.bb \
-    ${LAYERDIR}/recipes-*/*/*.bbappend \
+DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
+
+DEPENDS += "redhawk"
+RDEPENDS_${PN} = "redhawk"
+RDEPENDS_${PN}-python = "redhawk-python"
+
+PR = "2"
+
+SRC_URI_append = "\
+    file://remove_cppunit.patch \
+"
+
+S = "${WORKDIR}/git/bulkioInterfaces"
+
+EXTRA_OECONF += "\
+    --with-boost-system=boost_system \
     "
-    
-BBFILE_COLLECTIONS += "redhawk-sdr"
-BBFILE_PATTERN_redhawk-sdr = "^${LAYERDIR}/"
-BBFILE_PRIORITY_redhawk-sdr = "10"
-LAYERVERSION_redhawk-sdr = "2"
 
-LAYERDEPENDS_redhawk-sdr = "\
-    core \
-    openembedded-layer \
-    networking-layer \
-    meta-python \
-    "
-
-# #####################################################
-# Set this in your local.conf to override the version #
-# (if available in this layer).                       #
-# #####################################################
-REDHAWK_VERSION ?= "2.2.1"
-require conf/versions/redhawk.inc
-
-# Utility scripts for REDHAWK
-PATH =. "${LAYERDIR}/scripts:"
+# Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
+do_configure_prepend() {
+  export BUILD_SYS=${BUILD_SYS}
+  export HOST_SYS=${HOST_SYS}
+  export STAGING_INCDIR=${STAGING_INCDIR}
+  export STAGING_LIBDIR=${STAGING_LIBDIR}
+  export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
+}

@@ -1,8 +1,8 @@
-inherit redhawk-entity
+inherit autotools-brokensep pkgconfig redhawk-entity
 
-# Basic set of depends
-DEPENDS = "redhawk"
-RDEPENDS_${PN} = "redhawk"
+do_autotools_patch_append () {
+    sed -i -r "s/(^RH_SOFTPKG_PREFIX.+?\[cpp)(\])/\1-${REDHAWK_PROCESSOR}\2/g" ${S}/configure.ac
+}
 
 # Set/append SOFTPKG_PREFIX to the installation directory of your softpkg.
 # Standard REDHAWK Deps install with a package config as:
@@ -14,7 +14,7 @@ RDEPENDS_${PN} = "redhawk"
 SOFTPKG_BASE = "${SDRROOT}/dom/deps"
 SOFTPKG_PREFIX ?= "${SOFTPKG_BASE}"
 SOFTPKG_INCLUDEDIR ?= "${SOFTPKG_PREFIX}/include"
-SOFTPKG_EPREFIX ?= "${SOFTPKG_PREFIX}/cpp"
+SOFTPKG_EPREFIX ?= "${SOFTPKG_PREFIX}/cpp-${REDHAWK_PROCESSOR}"
 SOFTPKG_LIBDIR ?= "${SOFTPKG_EPREFIX}/lib"
 
 EXTRA_OECONF += "\
@@ -35,6 +35,6 @@ FILES_${PN}-dev += "\
 FILES_${PN}-staticdev += "${SOFTPKG_LIBDIR}/*.a"
 
 # Move the xml to be at the base of SOFTPKG_PREFIX.
-do_install_append () {
+fakeroot do_install_append () {
 	find ${D} -name "*.spd.xml" -exec mv {} ${D}${SOFTPKG_PREFIX} \;
 }

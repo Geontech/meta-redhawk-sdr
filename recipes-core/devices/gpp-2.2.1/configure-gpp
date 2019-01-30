@@ -1,0 +1,18 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: configure-gpp
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+### END INIT INFO
+
+echo "Configuring GPP"
+source /etc/profile
+cd $SDRROOT/dev/devices/GPP
+$(find . -name gpp_setup) \
+	--location=./ \
+	--mcastnic=MCASTNIC \
+	--nodename=GPP_NODE_NAME \
+	--gppname=GPP_NAME \
+	--addosprops

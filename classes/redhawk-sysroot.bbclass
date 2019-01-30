@@ -1,10 +1,10 @@
 inherit redhawk-env
 
-redhawk_core_ossie_sysroot () {
+fakeroot redhawk_core_ossie_sysroot () {
     sysroot_stage_dir ${D}${OSSIEHOME} \ 
         ${SYSROOT_DESTDIR}${OSSIEHOME}
 }
-redhawk_core_sdrroot_sysroot () {
+fakeroot redhawk_core_sdrroot_sysroot () {
     sysroot_stage_dir ${D}${SDRROOT} \ 
         ${SYSROOT_DESTDIR}${SDRROOT}
 }

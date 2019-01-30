@@ -1,0 +1,34 @@
+Index: omniORB-4.2.3/src/dir.mk
+===================================================================
+--- omniORB-4.2.3.orig/src/dir.mk
++++ omniORB-4.2.3/src/dir.mk
+@@ -6,15 +6,11 @@ export::
+ 	@$(NoPythonError)
+ endif
+ 
+-ifndef EmbeddedSystem
+ SUBDIRS += tool
+-endif
+ 
+ SUBDIRS += lib
+ 
+-ifndef EmbeddedSystem
+ SUBDIRS += appl services
+-endif
+ 
+ all::
+ 	@echo
+Index: omniORB-4.2.3/src/lib/omniORB/dir.mk
+===================================================================
+--- omniORB-4.2.3.orig/src/lib/omniORB/dir.mk
++++ omniORB-4.2.3/src/lib/omniORB/dir.mk
+@@ -3,9 +3,7 @@
+ 
+ PYSUBDIR = $(shell $(PYTHON) -c 'import sys; sys.stdout.write(sys.version[0] == "3" and "python3" or "python")')
+ 
+-ifndef EmbeddedSystem
+ SUBDIRS = $(PYSUBDIR)
+-endif
+ 
+ SUBDIRS += orbcore
+ 

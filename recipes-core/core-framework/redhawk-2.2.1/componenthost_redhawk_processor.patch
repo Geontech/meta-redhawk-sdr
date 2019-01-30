@@ -1,0 +1,26 @@
+Index: src/control/sdr/ComponentHost/ComponentHost.spd.xml
+===================================================================
+--- src.orig/control/sdr/ComponentHost/ComponentHost.spd.xml
++++ src/control/sdr/ComponentHost/ComponentHost.spd.xml
+@@ -30,17 +30,16 @@ with this program.  If not, see http://w
+   <descriptor>
+     <localfile name="ComponentHost.scd.xml"/>
+   </descriptor>
+-  <implementation id="cpp">
++  <implementation id="cpp-BB_REDHAWK_PROCESSOR">
+     <description>Deployable container for launching multiple components in the same process</description>
+     <code type="Executable">
+-      <localfile name="ComponentHost"/>
+-      <entrypoint>ComponentHost</entrypoint>
++      <localfile name="ComponentHost-BB_REDHAWK_PROCESSOR"/>
++      <entrypoint>ComponentHost-BB_REDHAWK_PROCESSOR</entrypoint>
+     </code>
+     <compiler name="/usr/bin/gcc" version="4.4.7"/>
+     <programminglanguage name="C++"/>
+     <humanlanguage name="EN"/>
+     <os name="Linux"/>
+-    <processor name="x86"/>
+-    <processor name="x86_64"/>
++    <processor name="BB_REDHAWK_PROCESSOR"/>
+   </implementation>
+ </softpkg>

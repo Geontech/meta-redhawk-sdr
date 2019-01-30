@@ -1,0 +1,18 @@
+Index: omniORBpy-4.2.3/mk/beforeauto.mk.in
+===================================================================
+--- omniORBpy-4.2.3.orig/mk/beforeauto.mk.in
++++ omniORBpy-4.2.3/mk/beforeauto.mk.in
+@@ -30,11 +30,13 @@ MAKEDIR = mk
+ LIBDIR  = lib
+ BINDIR  = bin
+ 
++ifndef OMNIORB_BINDIR
+ ifeq ($(OMNIORB_ROOT),)
+ OMNIORB_BINDIR = $(TOP)/$(BINDIR)
+ else
+ OMNIORB_BINDIR = $(OMNIORB_ROOT)/$(BINDIR)
+ endif
++endif
+ 
+ 
+ #############################################################################
