@@ -1,30 +1,30 @@
 #
-# This file is protected by Copyright. Please refer to the COPYRIGHT file distributed 
+# This file is protected by Copyright. Please refer to the COPYRIGHT file distributed
 # with this source distribution.
 #
 # This file is part of Geon Technology's meta-redhawk-sdr.
 #
-# Geon Technology's meta-redhawk-sdr is free software: you can redistribute it and/or 
-# modify it under the terms of the GNU Lesser General Public License as published by 
-# the Free Software Foundation, either version 3 of the License, or (at your option) 
+# Geon Technology's meta-redhawk-sdr is free software: you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or (at your option)
 # any later version.
 #
-# Geon Technology's meta-redhawk-sdr is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+# Geon Technology's meta-redhawk-sdr is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
 # details.
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
-require recipes-core/core-framework/core-framework-2.2.1.inc
+require recipes-core/core-framework/core-framework-2.2.2.inc
 
 DESCRIPTION = "REDHAWK Core Framework GPP"
 
 DEPENDS = "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
 
-PR = "2"
+PR = "1"
 
 SRC_URI_append = "\
     file://amflags_no_test_or_config.patch \
@@ -51,7 +51,7 @@ FILES_${PN} += "${SDRROOT}/*"
 
 EXTRA_OECONF += "--prefix=${SDRROOT}"
 
-# Setting pymod_ossie=yes is to avoid the configure call checking for the python ossie module. This isn't ideal but it checks by running python and trying to import said module which is all cross compiled. 
+# Setting pymod_ossie=yes is to avoid the configure call checking for the python ossie module. This isn't ideal but it checks by running python and trying to import said module which is all cross compiled.
 # We could have it run in a native build but what does that really prove then?
 CACHED_CONFIGUREVARS += "ac_cv_pymod_ossie=yes"
 
