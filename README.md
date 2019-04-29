@@ -47,6 +47,13 @@ In the `contrib/scripts` folder is the `build-image.sh` script, a derivative of 
 
 To use it, link this script into your `build` directory, set it to executable, and specify the `BUILD_IMAGE` and `MACHINE` environment variables (e.g., `qemuarm` and `redhawk-gpp-image`).  Then running this script will go through the whole bitbake process for you, automated.
 
+SPD Patching
+------------
+
+The `scripts/spd_utility` has two purposes.  The first purpose is to take a `cpp` Component, SoftPkg, or Device that has a defined `x86_64` implementation and create a new implementation matching `cpp-REDHAWK_PROCESSOR`.  The output directory, etc. are all changed to match so that the output product will overwrite the original implementation back at the Domain controller, i.e., the second purpose.  The second purpose is to take the output product's SPD and merge it with the Domain's SDRROOT.  Together with collecting the ComponentHost package, the Domain will be able to distribute your assets in a multi-architecture Domain.  See `scripts/spd_utility --help` for arguments.
+
+ > NOTE: If you would like to disable this functionality for your package, include `NO_SPD_PATCH = "1"` in the recipe.
+
 Additional Resources
 --------------------
 

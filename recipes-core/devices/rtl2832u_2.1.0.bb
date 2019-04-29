@@ -64,6 +64,7 @@ do_link_nodeconfig () {
 
 # Install the template node
 do_install_append () {
+    export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
     ${D}${SDRROOT}/dev/devices/rh/RTL2832U/nodeconfig.py \
         --sdrroot="${D}${SDRROOT}" \
         --nodename="DevMgr-${MACHINE}-RTL2832U" \

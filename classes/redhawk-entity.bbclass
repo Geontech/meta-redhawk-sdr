@@ -39,9 +39,12 @@ do_configure_prepend () {
     export PATH="${OSSIEHOME_STAGED}/bin:${PATH}"
 }
 
+NO_SPD_PATCH ?= "0"
 do_spd_implementation_patch () {
-    export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
-    spd_utility -n "${REDHAWK_PROCESSOR}" "${S}/.."
+    if [ ${NO_SPD_PATCH} -eq 0 ]; then
+        export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
+        spd_utility -n "${REDHAWK_PROCESSOR}" "${S}/.."
+    fi
 }
 do_spd_implementation_patch[cleandirs] += "${S}/../cpp-${REDHAWK_PROCESSOR}"
 addtask spd_implementation_patch after do_compile before do_install

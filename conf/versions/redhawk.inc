@@ -5,5 +5,6 @@ require redhawk-${REDHAWK_VERSION}.inc
 # address that need using this variable, which can be overridden as needed.
 REDHAWK_PROCESSOR ?= "${HOST_ARCH}"
 REDHAWK_PROCESSOR_rpi ?= "armv7l"
+REDHAWK_PROCESSOR_ettus-e300 = "armv7l"
 REDHAWK_PROCESSOR_zynq ?= "armv7l"
 REDHAWK_PROCESSOR_zynqmp ?= "aarch64"

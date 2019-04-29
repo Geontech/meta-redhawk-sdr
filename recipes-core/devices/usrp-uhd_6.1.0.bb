@@ -68,6 +68,7 @@ do_link_nodeconfig () {
 
 # Install the template node
 do_install_append () {
+    export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
     ${D}${SDRROOT}/dev/devices/rh/USRP_UHD/nodeconfig.py \
         --sdrroot="${D}${SDRROOT}" \
         --nodename="${RH_USRP_UHD_NODE_NAME}" \
