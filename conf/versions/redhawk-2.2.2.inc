@@ -1,9 +1,9 @@
 # Core Framework
-PREFERRED_VERSION_redhawk            = "2.2.1"
-PREFERRED_VERSION_bulkiointerfaces   = "2.2.1"
-PREFERRED_VERSION_burstiointerfaces  = "2.2.1"
-PREFERRED_VERSION_frontendinterfaces = "2.4.4"
-PREFERRED_VERSION_redhawk-codegen    = "2.2.1"
+PREFERRED_VERSION_redhawk            = "2.2.2"
+PREFERRED_VERSION_bulkiointerfaces   = "2.2.2"
+PREFERRED_VERSION_burstiointerfaces  = "2.2.2"
+PREFERRED_VERSION_frontendinterfaces = "2.4.5"
+PREFERRED_VERSION_redhawk-codegen    = "2.2.2"
 
 # Components
 PREFERRED_VERSION_rh-agc                    = "2.0.0"
@@ -34,7 +34,7 @@ PREFERRED_VERSION_rh-redhawkdevutils = "4.0.1"
 PREFERRED_VERSION_rh-vita49          = "5.0.0"
 
 # Devices
-PREFERRED_VERSION_gpp      = "2.2.1"
+PREFERRED_VERSION_gpp      = "2.2.2"
 PREFERRED_VERSION_rtl2832u = "2.1.0"
 PREFERRED_VERSION_usrp-uhd = "6.1.0"
 
