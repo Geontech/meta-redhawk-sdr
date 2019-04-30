@@ -18,11 +18,15 @@ do_autotools_patch () {
     # This is to reduce some clutter.
     sed -i 's/xmldir = $(prefix)/xmldir = $(SDR_ROOT)/g' ${S}/Makefile.am
     sed -i 's/bindir = $(prefix)/bindir = $(SDR_ROOT)/g' ${S}/Makefile.am
+    sed -i 's/libdir = $(prefix)/libdir = $(SDR_ROOT)/g' ${S}/Makefile.am
     sed -i 's/domdir = $(prefix)/domdir = $(SDR_ROOT)/g' ${S}/Makefile.am
     sed -i 's,${prefix}/dom/deps,${SDR_ROOT}/dom/deps,g' ${S}/configure.ac
 
     # Patch the bindir to match what the spd patch will do to the entrypoint
-    sed -i -r "s,(bindir = .+?cpp)/,\1-${REDHAWK_PROCESSOR}/,g" ${S}/Makefile.am
+    sed -i -r "s,(bindir = .+?cpp)/?,\1-${REDHAWK_PROCESSOR}/,g" ${S}/Makefile.am
+
+    # Patch the libdir to match what the spd patch will do to the entrypoint
+    sed -i -r "s,(libdir = .+?cpp)/?,\1-${REDHAWK_PROCESSOR}/,g" ${S}/Makefile.am
 
     # Patch the relationship to any softpkg dependencies
     sed -i -r "s/(^RH_SOFTPKG_CXX.+?\[cpp)(\])(.+$)/\1-${REDHAWK_PROCESSOR}\2\3/g" ${S}/configure.ac
