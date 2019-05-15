@@ -28,4 +28,4 @@ do_patch[postfuncs] += "aclocal_amflags"
 # Include the ossie autoconf macros
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"
 
-CXXFLAGS += "-fpermissive -std=gnu++98"
+CXXFLAGS_append = " -fpermissive -std=gnu++98"
