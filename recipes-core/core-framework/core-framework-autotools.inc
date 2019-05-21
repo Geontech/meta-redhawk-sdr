@@ -21,6 +21,7 @@ FILES_${PN}-python = " \
 
 FILES_${PN} = " \
     ${OSSIEHOME}/share \
+    ${OSSIEHOME}/lib/*.so \
     ${OSSIEHOME}/lib/lib*.so.* \
 "
 
@@ -29,7 +30,6 @@ FILES_${PN}-dbg += " \
 "
 
 FILES_${PN}-dev += " \
-    ${OSSIEHOME}/lib/*.so \
     ${OSSIEHOME}/include \
     ${OSSIEHOME}/lib/pkgconfig \
 "
@@ -41,7 +41,7 @@ FILES_${PN}-staticdev = " \
 
 # Skips for non-standard libdir location ($OSSIEHOME -> /usr/redhawk-sdr/[lib, share, etc.])
 #                                                            ^^^^^^^^^^^
-INSANE_SKIP_${PN} += "libdir"
+INSANE_SKIP_${PN} += "libdir dev-so"
 INSANE_SKIP_${PN}-dev += "libdir"
 INSANE_SKIP_${PN}-dbg += "libdir"
 

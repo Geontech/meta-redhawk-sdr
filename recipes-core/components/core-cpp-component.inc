@@ -11,4 +11,4 @@ SRC_URI = "git://github.com/redhawksdr/${COMPONENT_NAME};protocol=https;tag=${PV
 S = "${WORKDIR}/git/cpp"
 
 FILES_${PN} += "${SDRROOT}/*"
-FILES_${PN}-dbg += "${SDRROOT}/dom/components/rh/${COMPONENT_NAME}/cpp/.debug"
+FILES_${PN}-dbg += "${SDRROOT}/dom/components/rh/${COMPONENT_NAME}/*/.debug"

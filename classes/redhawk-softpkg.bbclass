@@ -25,10 +25,12 @@ EXTRA_OECONF += "\
 	"
 
 # Packaging
-FILES_${PN} += "${SOFTPKG_PREFIX}/*"
+FILES_${PN} += "\
+	${SOFTPKG_PREFIX}/* \
+	${SOFTPKG_LIBDIR}/*.so \
+	"
 FILES_${PN}-dbg += "${SOFTPKG_LIBDIR}/.debug/*"
 FILES_${PN}-dev += "\
-	${SOFTPKG_LIBDIR}/*.so \
 	${SOFTPKG_LIBDIR}/pkgconfig \
 	${SOFTPKG_INCLUDEDIR} \
 	"

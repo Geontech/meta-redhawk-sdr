@@ -9,3 +9,5 @@ do_nodeconfig_patch () {
   fi
 }
 do_patch[postfuncs] += "do_nodeconfig_patch"
+
+FILES_${PN} += "${SDRROOT}/dev/devices/*"

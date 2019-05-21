@@ -52,3 +52,5 @@ do_spd_implementation_patch () {
 }
 do_spd_implementation_patch[cleandirs] += "${S}/../cpp-${REDHAWK_PROCESSOR}"
 addtask spd_implementation_patch after do_compile before do_install
+
+INSANE_SKIP_${PN} += "dev-so"
