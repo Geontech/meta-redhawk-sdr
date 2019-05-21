@@ -26,6 +26,7 @@ PR = "4"
 
 COMPONENTHOST_PN := "rh-componenthost"
 PACKAGES += "${COMPONENTHOST_PN}"
+PACKAGES_append_class-native = "${COMPONENTHOST_PN}-native"
 
 DEPENDS += "\
     omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip \
@@ -35,7 +36,7 @@ DEPENDS += "\
 RDEPENDS_${PN} += "\
     python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost \
     python-numpy python-threading python-subprocess python-numbers python-xml \
-    python-resource ossp-uuid \
+    python-resource ossp-uuid ${COMPONENTHOST_PN} \
     "
 RDEPENDS_${PN}-python += "\
     ${PN} omniorb-python omniorbpy python-numpy python-threading \
