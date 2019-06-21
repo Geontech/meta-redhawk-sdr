@@ -1,0 +1,13 @@
+diff --git cpp/unicast.cpp cpp/unicast.cpp
+index ecb006b..a3d9851 100644
+--- cpp/unicast.cpp
++++ cpp/unicast.cpp
+@@ -37,7 +37,7 @@ static inline void verify_ (int condition, const char* message, const char* cond
+     if (!condition) {
+         char msg[100];
+         sprintf(msg, "Verify failed '%s' at line %d: %s (%s)\n", file, line, message, condtext);
+-        fprintf(stderr, msg);
++        fprintf(stderr,"%s", msg);
+         perror("perror");
+         throw(BadParameterError3(msg));
+     }

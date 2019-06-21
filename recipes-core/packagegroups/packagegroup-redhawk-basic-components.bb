@@ -50,9 +50,9 @@ RDEPENDS_packagegroup-redhawk-basic-components = "\
     rh-siggen \
     rh-sinksdds \
     rh-sinksocket \
-    rh-sinkvita49 \
     rh-sourcesdds \
     rh-sourcesocket \
-    rh-sourcevita49 \
     rh-tunefilterdecimate \
+    rh-sinkvita49 \
+    rh-sourcevita49 \
     "

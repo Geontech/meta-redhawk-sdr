@@ -8,6 +8,7 @@ inherit redhawk-component
 COMPONENT_NAME ?= "${@'${PN}'.split('rh-')[-1]}"
 
 SRC_URI = "git://github.com/redhawksdr/${COMPONENT_NAME};protocol=https;tag=${PV}-${PR}"
+
 S = "${WORKDIR}/git/cpp"
 
 FILES_${PN} += "${SDRROOT}/*"
