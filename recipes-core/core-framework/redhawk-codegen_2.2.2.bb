@@ -18,11 +18,11 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 require core-framework-2.2.2.inc
-inherit setuptools redhawk-sysroot
+inherit setuptools redhawk-sysroot  
 
 DESCRIPTION = "REDHAWK Codegen"
 
-DEPENDS += "redhawk"
+DEPENDS += "redhawk python-setuptools "
 RDEPENDS_${PN} = "redhawk python"
 
 PR = "1"
