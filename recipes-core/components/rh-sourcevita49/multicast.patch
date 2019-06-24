@@ -1,0 +1,13 @@
+diff --git cpp/multicast.cpp cpp/multicast.cpp
+index 417f90b..01829ab 100644
+--- cpp/multicast.cpp
++++ cpp/multicast.cpp
+@@ -37,7 +37,7 @@ static inline void verify_ (int condition, const char* message, const char* cond
+     if (!condition) {
+         char msg[100];
+         sprintf(msg, "Verify failed '%s' at line %d: %s (%s)\n", file, line, message, condtext);
+-        fprintf(stderr, msg);
++        fprintf(stderr, "%s", msg);
+         perror("perror");
+         throw(BadParameterError(msg));
+     }
