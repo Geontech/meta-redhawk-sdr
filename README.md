@@ -3,7 +3,7 @@ meta-REDHAWK-SDR
 
 Meta-REDHAWK-SDR is an actively-maintained set of [Yocto][1]/[Open-Embedded][2] recipes for the [REDHAWK SDR][3] framework, its dependencies, GPP, other example Devices, all shared libraries (softpkg), and all but 1 CPP Component (DataConvert requires SSE).
 
- > NOTE: The most recent version of Yocto tested with this layer is Rocko, 2.4.1.
+ > NOTE: The most recent version of Yocto tested with this layer is Thud, 2.6.
 
 This repository, along with the base Yocto framework will enable you to build the REDHAWK SDR framework for any hardware platform in which a Board Support Package is available.  We at Geon have successfully used this layer on a variety of Zynq targets including:
 
