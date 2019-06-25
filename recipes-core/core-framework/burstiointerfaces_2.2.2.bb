@@ -32,6 +32,7 @@ SRC_URI_append = "\
     file://subdir_objects.patch \
     file://fix_idldir_and_remove_cppunit.patch \
     file://burstioInterfaces_libs.patch \
+    file://InPortImpl.patch \
 "
 
 S = "${WORKDIR}/git/burstioInterfaces"

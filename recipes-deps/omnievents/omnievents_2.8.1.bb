@@ -32,6 +32,7 @@ PR = "r1"
 
 SRC_URI = "git://github.com/redhawksdr/omniEvents.git;branch=develop;tag=2.8.1;protocol=git \
     file://config.mk.patch \
+    file://daemon_unixcc.patch \
 "
 
 S = "${WORKDIR}/git"

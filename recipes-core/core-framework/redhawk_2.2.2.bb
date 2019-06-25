@@ -30,13 +30,12 @@ PACKAGES_append_class-native = "${COMPONENTHOST_PN}-native"
 
 DEPENDS += "\
     omniorbpy log4cxx xsd-native omniorb omnievents e2fsprogs apr-util apr zip \
-    expat boost boost-native python-numpy python-threading python-numbers \
-    python-resource ossp-uuid \
+    expat boost boost-native python util-linux \
     "
 RDEPENDS_${PN} += "\
     python omniorbpy omniorb omnievents e2fsprogs apr-util apr zip expat boost \
     python-numpy python-threading python-subprocess python-numbers python-xml \
-    python-resource ossp-uuid ${COMPONENTHOST_PN} \
+    python-resource util-linux ${COMPONENTHOST_PN} \
     "
 RDEPENDS_${PN}-python += "\
     ${PN} omniorb-python omniorbpy python-numpy python-threading \
@@ -47,7 +46,7 @@ DEPENDS_class-native += "\
     omniorbpy-native omniorb-native xsd-native log4cxx-native \
     omnievents-native e2fsprogs-native apr-util-native apr-native zip-native \
     expat-native boost-native python-native python-setuptools-native \
-    ossp-uuid-native \
+    util-linux-native \
     "
 
 SRC_URI_append = "\
@@ -62,7 +61,9 @@ SRC_URI_append = "\
     file://ossie_cv_sdr_root_target.patch \
     file://include_scoped_ptr.patch \
     file://componenthost_redhawk_processor.patch \
-    "
+    file://ThreadedComponent.patch \
+    file://signalling.patch \
+"
 
 S = "${WORKDIR}/git/redhawk/src"
 

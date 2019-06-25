@@ -29,16 +29,7 @@ PR = "1"
 
 S = "${WORKDIR}/git/redhawk-codegen"
 
-# Recipe concept based on: http://stackoverflow.com/questions/16090550/building-python-packages
-
-# This is a python package
-
-do_configure_prepend() {
-    export BUILD_SYS=${BUILD_SYS}
-    export HOST_SYS=${HOST_SYS}
-    export STAGING_INCDIR=${STAGING_INCDIR}
-    export STAGING_LIBDIR=${STAGING_LIBDIR}
-}
+do_configure[noexec] = "1"
 
 do_install_append() {
     rm -f ${D}${OSSIEHOME}/lib/python/redhawk/__init__.py*
