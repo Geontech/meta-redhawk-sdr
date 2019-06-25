@@ -23,7 +23,6 @@ require core-framework-autotools.inc
 DESCRIPTION = "REDHAWK Core Framework"
 
 PR = "4"
-PREFERRED_PROVIDER_virtual/python-threading ?= "bulkiointerfaces"
 
 COMPONENTHOST_PN := "rh-componenthost"
 PACKAGES += "${COMPONENTHOST_PN}"

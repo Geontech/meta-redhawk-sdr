@@ -2,7 +2,6 @@ DESCRIPTION = "REDHAWK SinkVITA49"
 
 DEPENDS = "bulkiointerfaces rh-vita49"
 RDEPENDS_${PN} = "bulkiointerfaces rh-vita49"
-LIC_FILES_CHSUM = "0"
 SRC_URI_append = " \
 	file://multicast.patch \
 	file://unicast.patch \
