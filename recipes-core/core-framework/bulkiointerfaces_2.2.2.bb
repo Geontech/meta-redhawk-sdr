@@ -25,11 +25,10 @@ DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
 DEPENDS += "redhawk"
 RDEPENDS_${PN} = "redhawk"
 RDEPENDS_${PN}-python = "redhawk-python"
-#this was added to fix provide errors
-#PROVIDES += " python-resource \
-#    python-threading \
-#    python-numbers \
-#    "
+PROVIDES += " python-resource \
+    python-threading \
+    python-numbers \
+    "
 
 PR = "1"
 
