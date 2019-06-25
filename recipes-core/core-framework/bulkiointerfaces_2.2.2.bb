@@ -25,10 +25,6 @@ DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
 DEPENDS += "redhawk"
 RDEPENDS_${PN} = "redhawk"
 RDEPENDS_${PN}-python = "redhawk-python"
-PROVIDES += " python-resource \
-    python-threading \
-    python-numbers \
-    "
 
 PR = "1"
 
