@@ -32,7 +32,8 @@ PROVIDES += "${PN}-dev ${PN}-dev-native"
 
 SRC_URI = "\
 	http://www.codesynthesis.com/download/xsd/4.0/xsd-4.0.0+dep.tar.bz2 \
-	file://elements.patch \
+	file://elements.hxx.patch \
+	file://elements.txx.patch \
 	"
 SRC_URI[md5sum] = "ae64d7fcd258addc9b045fe3f96208bb"
 SRC_URI[sha256sum] = "eca52a9c8f52cdbe2ae4e364e4a909503493a0d51ea388fc6c9734565a859817"
