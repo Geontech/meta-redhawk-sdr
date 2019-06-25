@@ -1,0 +1,13 @@
+Index: xsd-4.0.0+dep/xsd/libxsd/xsd/cxx/parser/expat/elements.hxx
+===================================================================
+--- xsd-4.0.0+dep.orig/xsd/libxsd/xsd/cxx/parser/expat/elements.hxx
++++ xsd-4.0.0+dep/xsd/libxsd/xsd/cxx/parser/expat/elements.hxx
+@@ -51,7 +51,7 @@ namespace xsd
+           }
+         };
+ 
+-        typedef std::unique_ptr<XML_ParserStruct> parser_auto_ptr;
++        typedef std::unique_ptr<XML_ParserStruct, parser_deleter> parser_auto_ptr;
+ #else
+         // Simple auto pointer for Expat's XML_Parser object.
+         //

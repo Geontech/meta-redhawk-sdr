@@ -1,0 +1,30 @@
+Index: xsd-4.0.0+dep/xsd/libxsd/xsd/cxx/parser/expat/elements.txx
+===================================================================
+--- xsd-4.0.0+dep.orig/xsd/libxsd/xsd/cxx/parser/expat/elements.txx
++++ xsd-4.0.0+dep/xsd/libxsd/xsd/cxx/parser/expat/elements.txx
+@@ -279,13 +279,13 @@ namespace xsd
+         {
+           parser_auto_ptr parser (XML_ParserCreateNS (0, XML_Char (' ')));
+ 
+-          if (parser == 0)
++          if (parser.get() == 0)
+             throw std::bad_alloc ();
+ 
+           if (system_id || public_id)
+-            parse_begin (parser, system_id ? *system_id : *public_id, eh);
++            parse_begin (parser.get(), system_id ? *system_id : *public_id, eh);
+           else
+-            parse_begin (parser, eh);
++            parse_begin (parser.get(), eh);
+ 
+           // Temporarily unset the exception failbit. Also clear the
+           // fail bit when we reset the old state if it was caused
+@@ -311,7 +311,7 @@ namespace xsd
+             }
+ 
+             if (XML_Parse (
+-                  parser, buf, is.gcount (), is.eof ()) == XML_STATUS_ERROR)
++                  parser.get(), buf, is.gcount (), is.eof ()) == XML_STATUS_ERROR)
+             {
+               r = false;
+               break;
