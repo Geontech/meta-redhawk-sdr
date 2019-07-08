@@ -17,12 +17,12 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
-require core-framework-2.2.2.inc
+require core-framework-2.2.3.inc
 require core-framework-autotools.inc
 
 DESCRIPTION = "REDHAWK Core Framework"
 
-PR = "4"
+PR = "1"
 
 COMPONENTHOST_PN := "rh-componenthost"
 PACKAGES += "${COMPONENTHOST_PN}"
@@ -62,6 +62,7 @@ SRC_URI_append = "\
     file://ossie_cv_sdr_root_target.patch \
     file://include_scoped_ptr.patch \
     file://componenthost_redhawk_processor.patch \
+    file://signalling.patch \
     "
 
 S = "${WORKDIR}/git/redhawk/src"

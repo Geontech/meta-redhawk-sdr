@@ -1,0 +1,13 @@
+diff --git src/base/include/ossie/signalling.h src/base/include/ossie/signalling.h
+index 539820c8..3a84c710 100644
+--- src/base/include/ossie/signalling.h
++++ src/base/include/ossie/signalling.h
+@@ -195,7 +195,7 @@ namespace redhawk {
+                     return boost::posix_time::pos_infin;
+                 } else if (timeout > 0.0) {
+                     // Positive: waiter expires timeout seconds from now
+-                    return boost::get_system_time() + boost::posix_time::microseconds(timeout*1e6);
++                    return boost::get_system_time() + boost::posix_time::microseconds(static_cast<unsigned long> (timeout*1e6));
+                 } else {
+                     // Zero: never wait, use invalid time object
+                     return boost::posix_time::ptime();
