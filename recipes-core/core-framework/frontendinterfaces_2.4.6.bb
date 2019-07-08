@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
-require core-framework-2.2.2.inc
+require core-framework-2.2.3.inc
 require core-framework-autotools.inc
 
 DESCRIPTION = "REDHAWK Framework FrontEnd Interfaces"
@@ -26,7 +26,7 @@ DEPENDS += "bulkiointerfaces"
 RDEPENDS_${PN} = "bulkiointerfaces"
 RDEPENDS_${PN}-python = "bulkiointerfaces-python"
 
-PR = "5"
+PR = "1"
 
 SRC_URI_append = "\
     file://fix_idldir_and_remove_cppunit.patch \
