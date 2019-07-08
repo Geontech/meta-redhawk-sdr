@@ -18,8 +18,10 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-require redhawk-node-image.bb
+inherit redhawk-image
 
 SUMMARY = "Console-only REDHAWK Node with the GPP device"
 
-CORE_IMAGE_EXTRA_INSTALL += "gpp"
+IMAGE_INSTALL_append = "\
+    gpp \
+"
