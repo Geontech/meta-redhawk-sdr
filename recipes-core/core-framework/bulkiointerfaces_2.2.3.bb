@@ -17,27 +17,32 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
-require core-framework-2.2.2.inc
-inherit setuptools redhawk-sysroot
+require core-framework-2.2.3.inc
+require core-framework-autotools.inc
 
-DESCRIPTION = "REDHAWK Codegen"
+DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
 
 DEPENDS += "redhawk"
-RDEPENDS_${PN} = "redhawk python"
+RDEPENDS_${PN} = "redhawk"
+RDEPENDS_${PN}-python = "redhawk-python"
 
 PR = "1"
 
-S = "${WORKDIR}/git/redhawk-codegen"
+SRC_URI_append = "\
+    file://remove_cppunit.patch \
+"
 
-do_configure[noexec] = "1"
+S = "${WORKDIR}/git/bulkioInterfaces"
 
-do_install_append() {
-    rm -f ${D}${OSSIEHOME}/lib/python/redhawk/__init__.py*
+EXTRA_OECONF += "\
+    --with-boost-system=boost_system \
+    "
+
+# Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
+do_configure_prepend() {
+  export BUILD_SYS=${BUILD_SYS}
+  export HOST_SYS=${HOST_SYS}
+  export STAGING_INCDIR=${STAGING_INCDIR}
+  export STAGING_LIBDIR=${STAGING_LIBDIR}
+  export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 }
-
-BBCLASSEXTEND = "native"
-
-PYTHON_SITEPACKAGES_DIR = "${OSSIEHOME}/lib/python"
-DISTUTILS_INSTALL_ARGS = "--prefix=${D}/${OSSIEHOME}"
-
-FILES_${PN} = "${OSSIEHOME}"
