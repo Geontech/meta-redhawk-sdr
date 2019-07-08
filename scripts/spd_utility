@@ -245,7 +245,7 @@ if __name__ == '__main__':
         action='store',
         dest='processor_name',
         default=None,
-        help='Processor name (implentation) to create in a source tree')
+        help='Processor name (implementation) to create in a source tree')
     parser.add_option('-t', '--type',
         type='choice',
         choices=['device', 'component', 'softpkg'],
