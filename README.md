@@ -38,8 +38,6 @@ Alternatively, you can clone this layer into your own Yocto source tree:
 
 Then edit your `build/conf/bblayers.conf` to include a reference to `meta-redhawk-sdr` at the end of the list.  See our `meta-redhawk-sdr/conf/bblayers.conf.sample` as an example. 
 
-> Note: The processor architecture is set to `armv7l` by default. If you need a different processor architecture, set the `REDHAWK_PROCESSOR` variable in your `build/conf/local.conf`.
-
 Finishing the Build
 -------------------
 
@@ -50,7 +48,7 @@ To use it, link this script into your `build` directory, set it to executable, a
 SPD Patching
 ------------
 
-The `scripts/spd_utility` has two purposes.  The first purpose is to take a `cpp` Component, SoftPkg, or Device that has a defined `x86_64` implementation and create a new implementation matching `cpp-REDHAWK_PROCESSOR`.  The output directory, etc. are all changed to match so that the output product will overwrite the original implementation back at the Domain controller, i.e., the second purpose.  The second purpose is to take the output product's SPD and merge it with the Domain's SDRROOT.  Together with collecting the ComponentHost package, the Domain will be able to distribute your assets in a multi-architecture Domain.  See `scripts/spd_utility --help` for arguments.
+The `scripts/spd_utility` has two purposes.  The first purpose is to take a `cpp` Component, SoftPkg, or Device that has a defined `x86_64` implementation and create a new implementation matching `cpp-PACKAGE_ARCH`.  The output directory, etc. are all changed to match so that the output product will overwrite the original implementation back at the Domain controller, i.e., the second purpose.  The second purpose is to take the output product's SPD and merge it with the Domain's SDRROOT.  Together with collecting the ComponentHost package, the Domain will be able to distribute your assets in a multi-architecture Domain.  See `scripts/spd_utility --help` for arguments.
 
  > NOTE: If you would like to disable this functionality for your package, include `NO_SPD_PATCH = "1"` in the recipe.
 
