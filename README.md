@@ -52,6 +52,17 @@ The `scripts/spd_utility` has two purposes.  The first purpose is to take a `cpp
 
  > NOTE: If you would like to disable this functionality for your package, include `NO_SPD_PATCH = "1"` in the recipe.
 
+Combining Domain Assets
+----------------
+
+One of the important features of REDHAWK SDR is its ability to transparently distribute the assets of Waveforms across any supported Executable Device.  The assets that come with REDHAWK are generally configured for x86/x86_64 target architectures, whereas those produced by this layer will be for the `PACKAGE_ARCH` defined in each case (see SPD Patching, above).  If you would like to combine these cross-compiled assets with a standard domain, ensure your image definition inherits from `redhawk-image`, build it, and then check the output path:
+
+```
+TMPDIR/deploy/images/MACHINE/your-image-PV-sdrroot.tar.gz
+```
+
+This tarball includes an install script and the above `spd_utility` that will merge each of the Components and SoftPkg libraries included in your image (`IMAGE_NAME`).
+
 Additional Resources
 --------------------
 
