@@ -1,0 +1,13 @@
+Index: cpp/configure.ac
+===================================================================
+--- cpp.orig/configure.ac
++++ cpp/configure.ac
+@@ -43,7 +43,7 @@ AX_BOOST_REGEX
+ 
+ case $host_cpu in
+   *arm*)
+-             CPU_SPECIFIC_FLAGS='-mfpu=neon -ftree-vectorize -ffast-math -funsafe-math-optimizations -funsafe-loop-optimizations -ftree-loop-if-convert-stores -mfloat-abi=hard -ftree-vectorizer-verbose=1'
++             CPU_SPECIFIC_FLAGS='-ftree-vectorize -ffast-math -funsafe-math-optimizations -funsafe-loop-optimizations -ftree-loop-if-convert-stores -ftree-vectorizer-verbose=1'
+              BINDIR_SUFFIX='_arm'
+              ;;
+   *x86*)
