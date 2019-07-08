@@ -28,4 +28,5 @@ IMAGE_INSTALL_append = "\
 	domain-init \
 	omniorb-init \
 	omnievents-init \
+	gpp node-deployer \
 	"
