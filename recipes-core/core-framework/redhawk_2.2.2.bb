@@ -114,7 +114,7 @@ FILES_${PN}-python += " \
 
 # Patch for lack of support in specifying an alternative to armv7l and various x86 options.
 do_redhawk_processor_patch () {
-    find ${S} -type f -exec sed -i "s/BB_REDHAWK_PROCESSOR/${REDHAWK_PROCESSOR}/g" {} \;
+    find ${S} -type f -exec sed -i "s/BB_REDHAWK_PROCESSOR/${PACKAGE_ARCH}/g" {} \;
 }
 do_patch[postfuncs] += "do_redhawk_processor_patch"
 
@@ -122,7 +122,7 @@ do_install_append () {
     # Rename ComponentHost to match the entrypoint created by the
     # componenthost SPD patch
     mv ${D}${COMPONENTHOST_PATH}/ComponentHost \
-        ${D}${COMPONENTHOST_PATH}/ComponentHost-${REDHAWK_PROCESSOR}
+        ${D}${COMPONENTHOST_PATH}/ComponentHost-${PACKAGE_ARCH}
 }
 
 # Get the things from /etc (sysconfdir)
