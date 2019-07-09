@@ -18,14 +18,15 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-require redhawk-gpp-image.bb
+inherit redhawk-image
 
 SUMMARY = "Console-only REDHAWK with Domain, GPP and omni init scripts for verifying a build"
 
-CORE_IMAGE_EXTRA_INSTALL += "\
+IMAGE_INSTALL_append = "\
 	packagegroup-redhawk-basic-components \
 	packagegroup-redhawk-basic-softpkgs \
 	domain-init \
 	omniorb-init \
-    omnievents-init \
-    "
+	omnievents-init \
+	gpp node-deployer \
+	"

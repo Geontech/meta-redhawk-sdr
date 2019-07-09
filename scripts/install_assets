@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+HERE="`pwd -P`"
+SRC_SDRROOT="${1:-$HERE}"
+DEST_SDRROOT="${SDRROOT:-${2:?SDRROOT Must be defined or supplied (second argument)}}"
+
+do_install () {
+    # 1) component, softpkg, device
+    # 2) relative path of SPD(s)
+    export SDRROOT="${DEST_SDRROOT}"
+    find "${SRC_SDRROOT}/${2}" -iname "*.spd.xml" | while read spd; do
+        ./spd_utility -t "${1}" "${spd}" || exit 1
+    done
+}
+
+python -c "from ossie.parsers import spd" &> /dev/null || { echo "PYTHONPATH does not included REDHAWK." && exit 2; }
+
+do_install "component" "dom/components"
+do_install "softpkg" "dom/deps"
+do_install "component" "dom/mgr/rh/ComponentHost"
