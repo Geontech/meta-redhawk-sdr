@@ -18,7 +18,7 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-require redhawk-node-image.bb
+inherit redhawk-image
 
 # NOTE: This image requires the meta-ettus and meta-sdr layers
 # created by Philip Balister at Ettus Research:
@@ -28,7 +28,7 @@ require redhawk-node-image.bb
 
 SUMMARY = "Console-only REDHAWK Node with the USRP UHD device"
 
-CORE_IMAGE_EXTRA_INSTALL += "\
+IMAGE_INSTALL_append = "\
     uhd \
     usrp-uhd \
     "

@@ -44,5 +44,6 @@ RDEPENDS_packagegroup-redhawk-core = "\
     burstiointerfaces \
     burstiointerfaces-python \
     redhawk-codegen \
+    python-modules \
     "
 

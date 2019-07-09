@@ -1,6 +1,7 @@
-diff -Nuar src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml
---- src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml	2017-07-18 10:11:02.381201718 -0400
-+++ src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml	1969-12-31 19:00:00.000000000 -0500
+Index: src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml
+===================================================================
+--- src.orig/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml
++++ /dev/null
 @@ -1,47 +0,0 @@
 -<?xml version="1.0" encoding="UTF-8"?>
 -<!--
@@ -49,9 +50,10 @@ diff -Nuar src/control/sdr/devmgr/DeviceManager.Linux.armv7l.prf.xml src/control
 -        <action type="eq"/>
 -    </simple>
 -</properties>
-diff -Nuar src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml
---- src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml	1969-12-31 19:00:00.000000000 -0500
-+++ src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml	2017-07-18 10:13:05.031852986 -0400
+Index: src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml
+===================================================================
+--- /dev/null
++++ src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml
 @@ -0,0 +1,47 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!--
@@ -100,10 +102,11 @@ diff -Nuar src/control/sdr/devmgr/DeviceManager.Linux.embedded.prf.xml src/contr
 +        <action type="eq"/>
 +    </simple>
 +</properties>
-diff -Nuar src/control/sdr/devmgr/DeviceManager.spd.xml src/control/sdr/devmgr/DeviceManager.spd.xml
---- src/control/sdr/devmgr/DeviceManager.spd.xml	2017-07-18 10:11:02.381201718 -0400
-+++ src/control/sdr/devmgr/DeviceManager.spd.xml	2017-07-18 10:19:36.184929989 -0400
-@@ -54,4 +54,16 @@
+Index: src/control/sdr/devmgr/DeviceManager.spd.xml
+===================================================================
+--- src.orig/control/sdr/devmgr/DeviceManager.spd.xml
++++ src/control/sdr/devmgr/DeviceManager.spd.xml
+@@ -54,4 +54,16 @@ with this program.  If not, see http://w
          <os name="Linux" />
          <processor name="x86_64"/>
      </implementation>
@@ -120,9 +123,10 @@ diff -Nuar src/control/sdr/devmgr/DeviceManager.spd.xml src/control/sdr/devmgr/D
 +        <processor name="BB_REDHAWK_PROCESSOR"/>
 +    </implementation>
  </softpkg>
-diff -Nuar src/control/sdr/devmgr/Makefile.am src/control/sdr/devmgr/Makefile.am
---- src/control/sdr/devmgr/Makefile.am	2017-07-18 10:11:02.382201723 -0400
-+++ src/control/sdr/devmgr/Makefile.am	2017-07-18 10:20:36.497250386 -0400
+Index: src/control/sdr/devmgr/Makefile.am
+===================================================================
+--- src.orig/control/sdr/devmgr/Makefile.am
++++ src/control/sdr/devmgr/Makefile.am
 @@ -19,7 +19,7 @@
  #
  
@@ -132,10 +136,11 @@ diff -Nuar src/control/sdr/devmgr/Makefile.am src/control/sdr/devmgr/Makefile.am
  devmgr_PROGRAMS = DeviceManager
  
  DeviceManager_SOURCES = main.cpp spdSupport.cpp process_utils.cpp DeviceManager_DeployerSupport.cpp DeviceManager_impl.cpp
-diff -Nuar src/control/sdr/dommgr/DomainManager.spd.xml src/control/sdr/dommgr/DomainManager.spd.xml
---- src/control/sdr/dommgr/DomainManager.spd.xml	2017-07-18 10:11:02.385201739 -0400
-+++ src/control/sdr/dommgr/DomainManager.spd.xml	2017-07-18 10:21:20.971488349 -0400
-@@ -36,8 +36,7 @@
+Index: src/control/sdr/dommgr/DomainManager.spd.xml
+===================================================================
+--- src.orig/control/sdr/dommgr/DomainManager.spd.xml
++++ src/control/sdr/dommgr/DomainManager.spd.xml
+@@ -36,8 +36,7 @@ with this program.  If not, see http://w
  		    <localfile name="DomainManager"/>
  		    <entrypoint>/mgr/DomainManager</entrypoint>
  		</code>
@@ -145,3 +150,73 @@ diff -Nuar src/control/sdr/dommgr/DomainManager.spd.xml src/control/sdr/dommgr/D
  		<os name="Linux"/>
  	</implementation>
  </softpkg>
+Index: src/control/framework/nodebooter.cpp
+===================================================================
+--- src.orig/control/framework/nodebooter.cpp
++++ src/control/framework/nodebooter.cpp
+@@ -1192,7 +1192,7 @@ int main(int argc, char* argv[])
+     if (strcmp("i686", un.machine) == 0) {
+         strcpy(un.machine, "x86");
+     }
+-    LOG_DEBUG(nodebooter, "Machine " << un.machine);
++    LOG_DEBUG(nodebooter, "Machine " << std::string("BB_REDHAWK_PROCESSOR"));
+     LOG_DEBUG(nodebooter, "Version " << un.release);
+     LOG_DEBUG(nodebooter, "OS " << un.sysname);
+ 
+@@ -1210,7 +1210,7 @@ int main(int argc, char* argv[])
+                                    ossie::Property::MODE_READONLY,
+                                    ossie::Property::ACTION_EQ,
+                                    ossie::Property::KIND_ALLOCATION,
+-                                   std::string(un.machine));
++                                   std::string("BB_REDHAWK_PROCESSOR"));
+     std::vector<const ossie::Property*> systemProps;
+     systemProps.push_back(&osProp);
+     systemProps.push_back(&procProp);
+Index: src/control/sdr/devmgr/DeviceManager_impl.cpp
+===================================================================
+--- src.orig/control/sdr/devmgr/DeviceManager_impl.cpp
++++ src/control/sdr/devmgr/DeviceManager_impl.cpp
+@@ -80,7 +80,7 @@ DeviceManager_impl::DeviceManager_impl(
+ 
+     // save  os and processor when matching deployments
+     addProperty(processor_name,
+-                _uname.machine,
++                std::string("BB_REDHAWK_PROCESSOR"),
+                 "DCE:fefb9c66-d14a-438d-ad59-2cfd1adb272b",
+                 "processor_name",
+                 "readonly",
+@@ -511,7 +511,7 @@ void DeviceManager_impl::setupImplementa
+ 
+     if (!found_impl){
+         std::ostringstream oss;
+-        oss << "Unable to find device manager implementation to match processor: " << _uname.machine;
++        oss << "Unable to find device manager implementation to match processor: " << std::string("BB_REDHAWK_PROCESSOR");
+         RH_TRACE(this->_baseLog, oss.str() );
+         throw std::runtime_error( oss.str().c_str());
+     }
+Index: src/control/sdr/devmgr/main.cpp
+===================================================================
+--- src.orig/control/sdr/devmgr/main.cpp
++++ src/control/sdr/devmgr/main.cpp
+@@ -420,7 +420,7 @@ int main(int argc, char* argv[])
+     if (strcmp("i686", un.machine) == 0) {
+         strcpy(un.machine, "x86");
+     }
+-    RH_NL_DEBUG(logname, "Machine " << un.machine);
++    RH_NL_DEBUG(logname, "Machine " << std::string("BB_REDHAWK_PROCESSOR"));
+     RH_NL_DEBUG(logname, "Version " << un.release);
+     RH_NL_DEBUG(logname, "OS " << un.sysname);
+     struct rlimit limit;
+Index: src/control/sdr/dommgr/main.cpp
+===================================================================
+--- src.orig/control/sdr/dommgr/main.cpp
++++ src/control/sdr/dommgr/main.cpp
+@@ -348,7 +348,7 @@ int old_main(int argc, char* argv[])
+     if (strcmp("i686", un.machine) == 0) {
+         strcpy(un.machine, "x86");
+     }
+-    RH_NL_DEBUG(logname, "Machine " << un.machine);
++    RH_NL_DEBUG(logname, "Machine " << std::string("BB_REDHAWK_PROCESSOR"));
+     RH_NL_DEBUG(logname, "Version " << un.release);
+     RH_NL_DEBUG(logname, "OS " << un.sysname);
+     struct rlimit limit;

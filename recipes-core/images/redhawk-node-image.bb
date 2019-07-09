@@ -18,8 +18,10 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 
-require redhawk-base-image.bb
+inherit redhawk-image
 
 SUMMARY = "Console-only REDHAWK Node consisting of all user-installed devices"
 
-CORE_IMAGE_EXTRA_INSTALL += "packagegroup-redhawk-node"
+IMAGE_INSTALL_append = "\
+    packagegroup-redhawk-node \
+"

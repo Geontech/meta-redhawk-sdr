@@ -223,8 +223,9 @@ def patch_sdrroot(source_spd_path, target_type):
                 #    cp -r source/<cpp-id> target
                 t_code_file = os.path.join(target_dirname, t_code_ref)
                 t_code_dirname = os.path.dirname(t_code_file)
-                shutil.rmtree(t_code_dirname)
-                shutil.copytree(s_code_dirname, target_dirname + s_impl.get_id())
+                if os.path.exists(t_code_dirname) and os.path.isdir(t_code_dirname):
+                    shutil.rmtree(t_code_dirname)
+                shutil.copytree(s_code_dirname, os.path.join(target_dirname, s_impl.get_id()))
 
             # Parting statement
             _log.info(l_msg % (l_msg_target, l_msg_result))
@@ -245,7 +246,7 @@ if __name__ == '__main__':
         action='store',
         dest='processor_name',
         default=None,
-        help='Processor name (implentation) to create in a source tree')
+        help='Processor name (implementation) to create in a source tree')
     parser.add_option('-t', '--type',
         type='choice',
         choices=['device', 'component', 'softpkg'],
