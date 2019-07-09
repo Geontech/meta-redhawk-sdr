@@ -13,6 +13,8 @@ This repository, along with the base Yocto framework will enable you to build th
  * [Ettus Research E310](https://youtu.be/WSKZsSxtWsQ)
  * iVeia Atlas-I-Z7e
  * Several ZC702 -based designs
+ * [UltraScale+ ZCU102, ZCU106, ZCU111](https://geontech.com/redhawk-on-a-xilinx-zcu111/)
+ * [Altera Stratix 10](https://github.com/kraj/meta-altera/tree/thud)
 
  > Note: Only the presently-tagged version is supported by this repository, however we can support some earlier versions if required.  Please contact us through our [website](http://www.geontech.com) if this is a need.
 
