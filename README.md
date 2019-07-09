@@ -12,6 +12,7 @@ This repository, along with the base Yocto framework will enable you to build th
  * [MicroZed](https://youtu.be/QvCrXl2cxpY)
  * [Ettus Research E310](https://youtu.be/WSKZsSxtWsQ)
  * iVeia Atlas-I-Z7e
+ * [UltraScale+ ZCU102, ZCU106, ZCU111](https://geontech.com/redhawk-on-a-xilinx-zcu111/)
  * Several ZC702 -based designs
 
  > Note: Only the presently-tagged version is supported by this repository, however we can support some earlier versions if required.  Please contact us through our [website](http://www.geontech.com) if this is a need.
