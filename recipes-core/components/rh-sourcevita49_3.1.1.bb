@@ -8,6 +8,8 @@ SRC_URI_append = " \
 	file://unicast_tcp.patch \
 "
 
-PR = "3"
+PR = "1"
 
 require core-cpp-component.inc
+
+SRC_URI = "git://github.com/redhawksdr/${COMPONENT_NAME};protocol=https;tag=${PV}"
