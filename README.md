@@ -16,7 +16,7 @@ This repository, along with the base Yocto framework will enable you to build th
  * [UltraScale+ ZCU102, ZCU106, ZCU111](https://geontech.com/redhawk-on-a-xilinx-zcu111/)
  * [Altera Stratix 10](https://github.com/kraj/meta-altera/tree/thud)
 
- > Note: Only the presently-tagged version is supported by this repository, however we can support some earlier versions if required.  Please contact us through our [website](http://www.geontech.com) if this is a need.
+ > Note: Stick to the Yocto release-named branches for latest support.  Older releases than rocko are not maintained; please contact us through our [website](http://www.geontech.com) if this is a need.
 
 Is my hardware supported?
 -------------------------
