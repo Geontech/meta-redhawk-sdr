@@ -21,25 +21,20 @@ require recipes-core/core-framework/core-framework-2.2.3.inc
 
 DESCRIPTION = "REDHAWK Core Framework GPP"
 
-DEPENDS = "bulkiointerfaces"
+DEPENDS = "bulkiointerfaces redhawk-native"
 RDEPENDS_${PN} = "bulkiointerfaces"
 
 PR = "1"
 
 SRC_URI_append = "\
     file://amflags_no_test_or_config.patch \
-    file://configure-gpp \
     file://GPP_ps_e.patch \
-    file://trust-uname-m.patch \
+    file://set_processor_name \
 "
 
-# ################################################
-# End user-controlled variables to adjust the node
-# ################################################
-RH_GPP_MCASTNIC     ?= ""
-RH_GPP_NODE_NAME    ?= "DevMgr-GPP"
-RH_GPP_NAME         ?= "GPP-${PACKAGE_ARCH}"
-# ################################################
+GPP_NODE_PN := "${PN}-node"
+PACKAGE_BEFORE_PN = "${GPP_NODE_PN}"
+RDEPENDS_${GPP_NODE_PN} = "gpp"
 
 S = "${WORKDIR}/git/GPP/cpp"
 
@@ -47,29 +42,34 @@ S = "${WORKDIR}/git/GPP/cpp"
 # autotools-brokensep is the same as autotools but our build and src locations are the same since we cannot build away from our src.
 inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
-FILES_${PN} += "${SDRROOT}/*"
+FILES_${GPP_NODE_PN} += "${SDRROOT}/dev/nodes"
+FILES_${PN} += "${SDRROOT}/dev/devices*"
 
 EXTRA_OECONF += "--prefix=${SDRROOT}"
 
-# Setting pymod_ossie=yes is to avoid the configure call checking for the python ossie module. This isn't ideal but it checks by running python and trying to import said module which is all cross compiled.
-# We could have it run in a native build but what does that really prove then?
-CACHED_CONFIGUREVARS += "ac_cv_pymod_ossie=yes"
+# ################################################
+# End user-controlled variables to adjust the node
+# ################################################
+RH_GPP_MCASTNIC     ?= ""
+RH_GPP_NODE_NAME    ?= "DevMgr-GPP"
+RH_GPP_NAME         ?= "GPP"
+# ################################################
 
-# The GPP needs to be setup once it's running on the embedded system.
-# This ensures the script is added to init.d and the XML files are linked
-# to the volatile filesystem.
-inherit update-rc.d
-INITSCRIPT_NAME = "configure-gpp"
-INITSCRIPT_PARAMS = "defaults 98"
-
-NODE_CONFIG_SCRIPT = "gpp_setup"
+do_set_processor_name_patch() {
+    export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
+    ${WORKDIR}/set_processor_name -n ${PACKAGE_ARCH} ${S}/..
+}
+do_set_processor_name_patch[depends] += "${PN}:do_prepare_recipe_sysroot"
+addtask set_processor_name_patch after do_patch before do_configure
 
 do_install_append() {
-    install -d ${D}/etc/init.d
-
-    # Install and patch configure-gpp
-    install -m 0755 ${WORKDIR}/configure-gpp       ${D}/etc/init.d/configure-gpp
-    sed -i "s|MCASTNIC|${RH_GPP_MCASTNIC}|g"       ${D}/etc/init.d/configure-gpp
-    sed -i "s|GPP_NODE_NAME|${RH_GPP_NODE_NAME}|g" ${D}/etc/init.d/configure-gpp
-    sed -i "s|GPP_NAME|${RH_GPP_NAME}|g"           ${D}/etc/init.d/configure-gpp
+    export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
+    ${S}/gpp_setup \
+        --location=${S}/.. \
+        --sdrroot=${D}${SDRROOT} \
+        --mcastnic=${RH_GPP_MCASTNIC} \
+        --nodename=${RH_GPP_NODE_NAME} \
+        --gppname=${RH_GPP_NAME} \
+        --processorname=${PACKAGE_ARCH} \
+        --addosprops
 }
