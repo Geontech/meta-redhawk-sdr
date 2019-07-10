@@ -111,8 +111,7 @@ def patch_source(spd_path, processor_name, replace=False):
             new_code.set_entrypoint(entrypoint)
     new_impl.set_processor([spd.processor(processor_name)])
     for dep in new_impl.get_dependency():
-        if dep.get_type() == 'runtime_requirements':
-            dep.get_softpkgref().get_implref().set_refid(new_impl_id)
+        dep.get_softpkgref().get_implref().set_refid(new_impl_id)
 
     _log.info('Finished Implementation: %s' % new_impl_id)
 
