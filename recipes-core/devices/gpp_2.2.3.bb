@@ -29,7 +29,7 @@ PR = "1"
 SRC_URI_append = "\
     file://amflags_no_test_or_config.patch \
     file://GPP_ps_e.patch \
-    file://set_processor_name \
+    file://patch_prf \
 "
 
 GPP_NODE_PN := "${PN}-node"
@@ -55,12 +55,12 @@ RH_GPP_NODE_NAME    ?= "DevMgr-GPP"
 RH_GPP_NAME         ?= "GPP"
 # ################################################
 
-do_set_processor_name_patch() {
+do_patch_prf_patch() {
     export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
-    ${WORKDIR}/set_processor_name -n ${PACKAGE_ARCH} ${S}/..
+    ${WORKDIR}/patch_prf -n ${PACKAGE_ARCH} -o Linux ${S}/..
 }
-do_set_processor_name_patch[depends] += "${PN}:do_prepare_recipe_sysroot"
-addtask set_processor_name_patch after do_patch before do_configure
+do_patch_prf_patch[depends] += "${PN}:do_prepare_recipe_sysroot"
+addtask patch_prf_patch after do_patch before do_configure
 
 do_install_append() {
     export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
