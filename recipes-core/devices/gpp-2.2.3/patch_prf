@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-# Patches the processor_name property ID on a PRF file.
+# Patches the PRF IDs:
+#    processor_name
+#    os_name
 
 import os
 import sys
@@ -8,27 +10,35 @@ import logging
 from optparse import OptionParser
 from ossie.parsers import prf
 
-LOGGER_NAME = 'Processor Patch'
+LOGGER_NAME = 'PRF Patch'
 
 EXIT_OKAY = 0
 EXIT_NO_PATH = EXIT_OKAY + 1
 EXIT_TOO_MANY_ARGS = EXIT_NO_PATH + 1
 EXIT_TOO_MANY_OPTIONS = EXIT_TOO_MANY_ARGS + 1
 EXIT_NO_PRF_FOUND = EXIT_TOO_MANY_OPTIONS + 1
-EXIT_PROCESSOR_NAME_NOT_PATCHED = EXIT_NO_PRF_FOUND + 1
+EXIT_PRF_NOT_PATCHED = EXIT_NO_PRF_FOUND + 1
 
-def set_processor_name(prf_path, processor_name):
+def patch_prf(prf_path, processor_name, os_name):
     PROCESSOR_NAME_ID = 'DCE:fefb9c66-d14a-438d-ad59-2cfd1adb272b'
+    OS_NAME_ID = 'DCE:4a23ad60-0b25-4121-a630-68803a498f75'
     project_prf = prf.parse(prf_path)
+    patched_processor_name = patched_os_name = False
     for prop in project_prf.get_simple():
         _log.info('Checking ID: "%s"' % prop.get_id())
         if prop.get_id() == PROCESSOR_NAME_ID:
             prop.set_value(processor_name)
             _log.info('Set processor_name to "%s"' % prop.get_value())
-            with open(prf_path, 'w') as f:
-                project_prf.export(f, 0)
-            return True
-    _log.error('Failed to find processor_name property')
+            patched_processor_name = True
+        elif prop.get_id() == OS_NAME_ID:
+            prop.set_value(os_name)
+            _log.info('Set os_name to "%s"' % prop.get_value())
+            patched_os_name = True
+    
+    if patched_processor_name and patched_os_name:
+        with open(prf_path, 'w') as f:
+            project_prf.export(f, 0)
+        return True
     return False
 
 
@@ -42,7 +52,12 @@ if __name__ == '__main__':
         action='store',
         dest='processor_name',
         default=None,
-        help='Processor name (implementation) to create in a source tree')
+        help='Processor name')
+    parser.add_option('-o', '--os',
+        action='store',
+        dest='os_name',
+        default='Linux',
+        help='OS Name to create in a source tree')
     (options, args) = parser.parse_args()
     if not options.processor_name:
         parser.error('processor_name is required')
@@ -73,6 +88,6 @@ if __name__ == '__main__':
         _log.error('Provided project file name does not exist')
         sys.exit(EXIT_NO_PRF_FOUND)
 
-    if not set_processor_name(prf_path, options.processor_name):
-        sys.exit(EXIT_PROCESSOR_NAME_NOT_PATCHED)
+    if not patch_prf(prf_path, options.processor_name, options.os_name):
+        sys.exit(EXIT_PRF_NOT_PATCHED)
     sys.exit(EXIT_OKAY)
