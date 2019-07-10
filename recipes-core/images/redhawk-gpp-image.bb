@@ -23,5 +23,5 @@ inherit redhawk-image
 SUMMARY = "Console-only REDHAWK Node with the GPP device"
 
 IMAGE_INSTALL_append = "\
-    gpp \
+    gpp-node \
 "

@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+# Patches the processor_name property ID on a PRF file.
+
+import os
+import sys
+import re
+import logging
+from optparse import OptionParser
+from ossie.parsers import prf
+
+LOGGER_NAME = 'Processor Patch'
+
+EXIT_OKAY = 0
+EXIT_NO_PATH = EXIT_OKAY + 1
+EXIT_TOO_MANY_ARGS = EXIT_NO_PATH + 1
+EXIT_TOO_MANY_OPTIONS = EXIT_TOO_MANY_ARGS + 1
+EXIT_NO_PRF_FOUND = EXIT_TOO_MANY_OPTIONS + 1
+EXIT_PROCESSOR_NAME_NOT_PATCHED = EXIT_NO_PRF_FOUND + 1
+
+def set_processor_name(prf_path, processor_name):
+    PROCESSOR_NAME_ID = 'DCE:fefb9c66-d14a-438d-ad59-2cfd1adb272b'
+    project_prf = prf.parse(prf_path)
+    for prop in project_prf.get_simple():
+        _log.info('Checking ID: "%s"' % prop.get_id())
+        if prop.get_id() == PROCESSOR_NAME_ID:
+            prop.set_value(processor_name)
+            _log.info('Set processor_name to "%s"' % prop.get_value())
+            with open(prf_path, 'w') as f:
+                project_prf.export(f, 0)
+            return True
+    _log.error('Failed to find processor_name property')
+    return False
+
+
+if __name__ == '__main__':
+    logging.basicConfig(format='%(name)-9s:%(levelname)-8s: %(message)s', level=logging.INFO)
+    _log = logging.getLogger(LOGGER_NAME)
+
+    parser = OptionParser()
+    parser.usage = "usage: %prog [options] prf_path"
+    parser.add_option('-n', '--name',
+        action='store',
+        dest='processor_name',
+        default=None,
+        help='Processor name (implementation) to create in a source tree')
+    (options, args) = parser.parse_args()
+    if not options.processor_name:
+        parser.error('processor_name is required')
+
+    if len(args) == 0:
+        _log.error("You must specify the path to a project")
+        sys.exit(EXIT_NO_PATH)
+    elif len(args) > 1:
+        _log.error("Only one argument is supported")
+        sys.exit(EXIT_TOO_MANY_ARGS)
+
+    # prf_path should be a path to the folder containing the prf
+    prf_path = args[0]
+    if not prf_path.endswith('.xml'):
+        prf_proj_path = prf_path
+        prf_path = None
+        for root, dirs, files in os.walk(prf_proj_path):
+            for name in files:
+                if re.match(r'^.+?\.(PRF|prf)\.(XML|xml)', name):
+                    prf_path = os.path.join(root, name)
+                    break
+            if prf_path:
+                break
+        if not prf_path:
+            _log.error('Provided path did not contain an PRF XML.')
+            sys.exit(EXIT_NO_PRF_FOUND)
+    elif not os.path.isfile(prf_path):
+        _log.error('Provided project file name does not exist')
+        sys.exit(EXIT_NO_PRF_FOUND)
+
+    if not set_processor_name(prf_path, options.processor_name):
+        sys.exit(EXIT_PROCESSOR_NAME_NOT_PATCHED)
+    sys.exit(EXIT_OKAY)
