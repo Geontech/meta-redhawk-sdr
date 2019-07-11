@@ -33,13 +33,13 @@ PROVIDES = "${PACKAGES}"
 # install some softpkg dependencies).
 # TODO: Patch in Python and Java implementations where applicable
 # TODO: Add fcalc component (Python only)
-# TODO: Add DataConverter (requires adding NEON support vs. SSEx)
 SUMMARY_packagegroup-redhawk-basic-components = "All available REDHAWK Components (CPP)"
 RDEPENDS_packagegroup-redhawk-basic-components = "\
     rh-agc \
     rh-amfmpmbasebanddemod \
     rh-arbitraryrateresampler \
     rh-autocorrelate \
+    rh-dataconverter \
     rh-fastfilter \
     rh-filereader \
     rh-filewriter \

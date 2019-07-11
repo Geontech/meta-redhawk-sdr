@@ -1,0 +1,15 @@
+Index: cpp/configure.ac
+===================================================================
+--- cpp.orig/configure.ac
++++ cpp/configure.ac
+@@ -27,8 +27,8 @@ AC_PROG_CXX
+ AC_PROG_INSTALL
+ 
+ if test "x$GCC" = xyes ; then
+-    CFLAGS="-msse3 -O3 $CFLAGS"
+-    CXXFLAGS="-msse3 -O3 $CXXFLAGS"
++    CFLAGS=" -O3 $CFLAGS"
++    CXXFLAGS=" -O3 $CXXFLAGS"
+ fi
+ 
+ AC_CORBA_ORB
