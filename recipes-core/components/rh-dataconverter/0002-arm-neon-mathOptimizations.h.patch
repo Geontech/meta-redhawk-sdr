@@ -1,0 +1,50 @@
+Index: cpp/mathOptimizations.h
+===================================================================
+--- cpp.orig/mathOptimizations.h
++++ cpp/mathOptimizations.h
+@@ -48,6 +48,45 @@
+ #ifdef __AVX__
+ #include <immintrin.h>
+ #endif
++#if defined(__ARM_NEON__) || defined(__aarch64__) || defined(_M_ARM)
++#define HW_SIMD_ARM 1
++#include <sse2neon.h>
++// copied from https://github.com/otim/SSE-to-NEON
++// copied from mm_malloc.h {
++#include <stdlib.h>
++
++/* We can't depend on <stdlib.h> since the prototype of posix_memalign
++ may not be visible.  */
++#ifndef __cplusplus
++extern int posix_memalign (void **, size_t, size_t);
++#else
++extern "C" int posix_memalign (void **, size_t, size_t) throw ();
++#endif
++
++static __inline void *
++_mm_malloc (size_t size, size_t alignment)
++{
++    void *ptr;
++    if (alignment == 1)
++        return malloc (size);
++    if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
++        alignment = sizeof (void *);
++    if (posix_memalign (&ptr, alignment, size) == 0)
++        return ptr;
++    else
++        return NULL;
++}
++
++static __inline void
++_mm_free (void * ptr)
++{
++    free (ptr);
++}
++// } copied from mm_malloc.h
++#endif
++#if defined(__SSE2__) || defined(HW_SIMD_ARM)
++#define SSE2_OR_ARM
++#endif
+ #define ALIGNED1(a) ( 0 == ( (ptrdiff_t)(a)&15))
+ #define ALIGNED2(a,b)  ALIGNED1( (ptrdiff_t)(a)|(ptrdiff_t)(b) )
+ #define ALIGNED3(a,b,c)  ALIGNED1( (ptrdiff_t)(a)|(ptrdiff_t)(b)|(ptrdiff_t)(c) )

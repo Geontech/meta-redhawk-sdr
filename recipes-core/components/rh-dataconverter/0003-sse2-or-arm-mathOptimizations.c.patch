@@ -1,0 +1,377 @@
+Index: cpp/mathOptimizations.c
+===================================================================
+--- cpp.orig/mathOptimizations.c
++++ cpp/mathOptimizations.c
+@@ -21,7 +21,7 @@
+ #include "mathOptimizations.h"
+ void char2ucharScaled(unsigned char* dst, const char* src, int n){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128i constant = _mm_set1_epi8(0x80);
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+@@ -66,7 +66,7 @@ int k = 0;
+ 
+ void uchar2charScaled(char* dst, const unsigned char* src, int n){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128i constant = _mm_set1_epi8(0x80);
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+@@ -93,7 +93,7 @@ void char2short(short* dst, const char*
+     ippsConvert_8s16s((const Ipp8s*) src,(Ipp16s*) dst, n);
+ #else
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+7<n;k+=8){
+             __m128i a1 = _mm_loadu_si128((const __m128i*)( src+k));
+@@ -128,7 +128,7 @@ int k = 0;
+             }
+         }
+     }
+-//end of ifdef __SSE2___
++//end of ifdef SSE2_OR_ARM_
+ #endif
+ 
+ //end of ifdef HAVEIPP
+@@ -138,7 +138,7 @@ int k = 0;
+ 
+ void char2ushort(unsigned short* dst, const  char* src, int n){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128i constant = _mm_set1_epi8(0x80);
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+7<n;k+=8){
+@@ -177,14 +177,14 @@ int k = 0;
+         }
+         }
+ }
+-//end of ifdef __SSE2__
++//end of ifdef SSE2_OR_ARM
+ 
+ #endif
+ }
+ 
+ void uchar2shortScaled(short* dst, const unsigned char* src, int n, short sMin,short dR_dM, short dMin){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     //__m128i constant = _mm_set1_epi8(0x80);
+     __m128i s_min = _mm_set1_epi16(sMin);
+     __m128i range = _mm_set1_epi16(dR_dM);
+@@ -259,7 +259,7 @@ void uchar2short(short* dst, const unsig
+ 
+ void uchar2ushortScaled(unsigned short* dst, const unsigned char* src, int n, unsigned short sMin,unsigned short dR_dM, unsigned short dMin){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     //__m128i constant = _mm_set1_epi8(0x80);
+     __m128i s_min = _mm_set1_epi16(sMin);
+     __m128i range = _mm_set1_epi16(dR_dM);
+@@ -316,7 +316,7 @@ int k = 0;
+ 
+ void char2shortScaled(short* dst, const char* src, int n, short sMin,short dR_dM, short dMin){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     //__m128i constant = _mm_set1_epi8(0x80);
+     __m128i s_min = _mm_set1_epi16(sMin);
+     __m128i range = _mm_set1_epi16(dR_dM);
+@@ -376,7 +376,7 @@ int k = 0;
+ 
+ void char2ushortScaled(unsigned short* dst, const char* src, int n, short sMin,short dR_dM, short dMin){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128i constant = _mm_set1_epi8(0x80);
+     //__m128i s_min = _mm_set1_epi16(sMin);
+     __m128i range = _mm_set1_epi16(dR_dM);
+@@ -459,7 +459,7 @@ void char2float( float *dst, const char*
+       }
+ #else
+ 
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+7<n;k+=8){
+             __m128i a1 = _mm_loadu_si128((const __m128i*)( src+k));
+@@ -517,7 +517,7 @@ void uchar2float( float *dst, const unsi
+       }
+ #else
+ 
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+7<n;k+=8){
+             __m128i a1 = _mm_loadu_si128((const __m128i*)( src+k));
+@@ -547,7 +547,7 @@ void uchar2float( float *dst, const unsi
+ }
+ void char2floatScaled( float *dst, const char* src, int n, float sMin,float dRange, float sRange, float dMin){
+ int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 s_range = _mm_set1_ps(sRange);
+     __m128 d_range = _mm_set1_ps(dRange);
+@@ -633,7 +633,7 @@ int k=0;
+ void uchar2floatScaled( float *dst,const  unsigned char* src, int n, float sMin,float dRange, float sRange, float dMin){
+ int k=0;
+ 
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 s_range = _mm_set1_ps(sRange);
+     __m128 d_range = _mm_set1_ps(dRange);
+@@ -719,7 +719,7 @@ int k=0;
+ 
+ void short2ucharScaled(unsigned char* dst, const short* src, int n, float sMin, float dRange, float sRange, float dMin){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 d_min =  _mm_set1_ps(dMin);
+@@ -819,7 +819,7 @@ int k = 0;
+ 
+ void short2uchar(unsigned char* dst, const short* src, int n){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+ 
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+@@ -865,7 +865,7 @@ void short2char(char* dst, const short*
+     ippsConvert_16s8s_Sfs((const Ipp16s*) src,(Ipp8s*) dst, n, ippRndFinancial,0);
+ #else
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+             __m128i a1 = _mm_load_si128((const __m128i*)( src+k));
+@@ -900,7 +900,7 @@ int k = 0;
+ void ushort2char(char* dst, const unsigned short* src, int n){
+ int k = 0;
+ 
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128i s_min = _mm_set1_epi8(0x80);
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+@@ -938,7 +938,7 @@ int k = 0;
+ 
+ void ushort2charScaled(char* dst,const  unsigned short* src, int n, float sMin, float dRange, float sRange, float dMin){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 d_min =  _mm_set1_ps(dMin);
+@@ -1036,7 +1036,7 @@ void ushort2uchar(unsigned char* dst, co
+ 
+ void ushort2ucharScaled(unsigned char* dst,const  unsigned short* src, int n, float sMin, float dRange, float sRange, float dMin){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 d_min =  _mm_set1_ps(dMin);
+@@ -1124,7 +1124,7 @@ int k = 0;
+ 
+ void short2charScaled(char* dst, const short* src, int n, float sMin, float dRange, float sRange, float dMin){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 d_min =  _mm_set1_ps(dMin);
+@@ -1214,7 +1214,7 @@ int k = 0;
+ 
+ void short2ushortScaled(unsigned short* dst, const short* src, int n){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128i constant = _mm_set1_epi16(0x8000);
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+@@ -1272,7 +1272,7 @@ int k = 0;
+ 
+ void ushort2shortScaled(short* dst, const unsigned short* src, int n){
+ int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128i constant = _mm_set1_epi16(0x8000);
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+@@ -1371,7 +1371,7 @@ void short2float( float *dst, const shor
+            }
+ 
+        #else
+-       #ifdef __SSE2__
++       #ifdef SSE2_OR_ARM
+            if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+        
+                for( ; k+15<n;k+=16){
+@@ -1488,7 +1488,7 @@ void ushort2float( float *dst, const uns
+         }
+     }
+ #else
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+ 
+@@ -1567,7 +1567,7 @@ void ushort2float( float *dst, const uns
+ /*
+ void short2ushortScaled( float *dst, const short *src, int n, float sMin,float dRange,float sRange, float dMin){
+     int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 s_range = _mm_set1_ps(sRange);
+     __m128 d_range = _mm_set1_ps(dRange);
+@@ -1650,7 +1650,7 @@ void short2ushortScaled( float *dst, con
+ */
+ void short2floatScaled( float *dst, const short *src, int n, float sMin,float dRange,float sRange, float dMin){
+     int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 s_range = _mm_set1_ps(sRange);
+     __m128 d_range = _mm_set1_ps(dRange);
+@@ -1733,7 +1733,7 @@ void short2floatScaled( float *dst, cons
+ void ushort2floatScaled( float *dst,const  unsigned short *src, int n, float sMin,float dRange,float sRange, float dMin){
+ //Extract integer word from packed integer array element selected by index
+     int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 s_range = _mm_set1_ps(sRange);
+     __m128 d_range = _mm_set1_ps(dRange);
+@@ -1829,7 +1829,7 @@ void short2float2( float *dst, const sho
+ }
+ void copyfloat(float* dst, const float* src, int n){
+     int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for(;k+11<n;k+=12){
+             __m128 a1 = _mm_load_ps((const float*)( src+k));
+@@ -1863,7 +1863,7 @@ void float2char(char* dst, const float*
+ #endif
+     int k = 0;
+     __m128i constant = _mm_set1_epi8(0x80);
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+             __m128 a1 = _mm_load_ps((const float*)( src+k));
+@@ -1898,7 +1898,7 @@ void float2char(char* dst, const float*
+ 
+ void float2charScaled(char* dst, const float* src, int n, float sMin, float dRange, float sRange, float dMin){
+     int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 srange = _mm_set1_ps(sRange);
+@@ -1995,7 +1995,7 @@ void double2doubleScaled(double* dst, co
+ //float2floatScaled(source, dest, size, (float) sMin, (float) dRange, (float) sRange, (float) dMin);
+ void float2floatScaled(float* dst, const float* src, int n, float sMin, float dRange, float sRange, float dMin){
+     int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 srange = _mm_set1_ps(sRange);
+@@ -2044,7 +2044,7 @@ void float2uchar(unsigned char* dst, con
+     ippsConvert_32f8u_Sfs((const Ipp32f*) float, (Ipp8u*) dst, n, ippRndFinancial, 0);
+ #endif
+     int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+         for( ; k+15<n;k+=16){
+             __m128 a1 = _mm_load_ps((const float*)( src+k));
+@@ -2072,7 +2072,7 @@ void float2uchar(unsigned char* dst, con
+ 
+ void float2ucharScaled(unsigned char* dst,const  float* src, int n, float sMin, float dRange, float sRange, float dMin){
+     int k = 0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 srange = _mm_set1_ps(sRange);
+@@ -2139,7 +2139,7 @@ void float2short(short* dst, const float
+     (void)ippsConvert_32f16s_Sfs((const Ipp32f*) src, (Ipp16s*) dst, n, ippRndFinancial, 0);
+ #else
+ int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+     for( ; k+7<n;k+=8){
+             __m128 a1 = _mm_load_ps((const float*)( src+k));
+@@ -2167,7 +2167,7 @@ int k=0;
+ 
+ void float2shortScaled(short* dst, const float* src, int n, float sMin, float dRange, float sRange, float dMin){
+ int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 srange = _mm_set1_ps(sRange);
+@@ -2238,7 +2238,7 @@ void float2ushort(unsigned short* dst, c
+     (void)ippsConvert_32f16u_Sfs((const Ipp32f*) src, (Ipp16u*) dst, n, ippRndFinancial, 0);
+ #else
+ int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(src,dst) && stack_simd_aligned() ) {
+     for( ; k+7<n;k+=8){
+             __m128 a1 = _mm_load_ps((const float*)( src+k));
+@@ -2269,7 +2269,7 @@ int k=0;
+ 
+ void float2ushortScaled(unsigned short* dst, const float* src, int n, float sMin, float dRange, float sRange, float dMin){
+ int k=0;
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+     __m128 s_min = _mm_set1_ps(sMin);
+     __m128 drange = _mm_set1_ps(dRange);
+     __m128 srange = _mm_set1_ps(sRange);
+@@ -2358,7 +2358,7 @@ void interleaveFloat(float* rc, const fl
+     int k=0;
+     int offset = 0;
+     if ( ALIGNED3(rc,r,c) && stack_simd_aligned() ) {
+-#ifdef __SSE2__
++#ifdef SSE2_OR_ARM
+         for( ; k+3<n;k+=4){
+             __m128 a1 = _mm_load_ps((const float*)( r+k));
+               __m128 b1 = _mm_load_ps((const float*)( c+k));
+@@ -2403,19 +2403,20 @@ void interleaveFloat(float* rc, const fl
+ #else
+     int k=0;
+     __m128 b1 = _mm_load1_ps(&b);
++#ifdef SSE2_OR_ARM
+     if ( ALIGNED2(c,a) && stack_simd_aligned() ) {
+-#ifdef __SSE2__
+         for( ; k+3<n;k+=4){
+             __m128 a1 = _mm_load_ps((const float*)(a+k));
+               a1 = _mm_mul_ps(a1,b1);
+             _mm_store_ps((float*)(c+k),a1);
+         }
+     }
+- #endif
++#else
+     if (k<(n-1)){
+         for(;k+1<n;k+=2){
+             c[k] = a[k] * b;
+         }
+     }
+ #endif
++#endif
+ }
