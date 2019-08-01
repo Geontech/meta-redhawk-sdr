@@ -3,7 +3,7 @@ DESCRIPTION = "Header for converting SSE intrinsics to NEON"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=7ae2be7fb1637141840314b51970a9f7"
 
-SRC_URI = "git://github.com/DLTcollab/sse2neon;protocol=https;rev=f1389d5a64ca4f528b97d1d738d04eab00d365d4;destsuffix=${P}"
+SRC_URI = "git://github.com/DLTcollab/sse2neon;protocol=https;rev=f8c710409c9f8f440c9d187a47643988586ffff6;destsuffix=${P}"
 
 DEPENDS = ""
 RDEPENDS_${PN} = ""
