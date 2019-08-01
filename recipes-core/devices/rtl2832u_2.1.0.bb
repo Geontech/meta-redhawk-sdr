@@ -23,6 +23,8 @@ DESCRIPTION = "REDHAWK Device for the RTL2832U"
 DEPENDS = "frontendinterfaces bulkiointerfaces rtlsdr"
 RDEPENDS_${PN} = "frontendinterfaces rtlsdr"
 
+LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE;md5=92aadbd9e4b26926809a4e97460613d5"
+
 PR = "2"
 
 SRC_URI = "git://github.com/redhawksdr/rtl2832u;protocol=https;tag=${PV}-${PR}"
@@ -43,7 +45,7 @@ SRC_URI_append = "\
     file://nodeconfig.patch \
 "
 
-S = "${WORKDIR}/git/redhawk-devices/RTL2832U/cpp"
+S = "${WORKDIR}/git/cpp"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
 # autotools-brokensep is the same as autotools but our build and src locations are the same since we cannot build away from our src.
@@ -72,6 +74,5 @@ do_install_append () {
         --rtlvendor="${RH_RTL2832U_VENDOR}" \
         --rtlproduct="${RH_RTL2832U_PRODUCT}" \
         --rtlserial="${RH_RTL2832U_SERIAL}" \
-        --rtlindex="${RH_RTL2832U_INDEX}" \
-        --inplace
+        --rtlindex="${RH_RTL2832U_INDEX}"
 }
