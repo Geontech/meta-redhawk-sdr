@@ -12,7 +12,7 @@ RDEPENDS_${PN} = "libusb1"
 PR = "4"
 
 SRC_URI_append = "\
-    git://github.com/redhawksdr/librtlsdr;protocol=https;tag=${PV}-${PR} \
+    git://github.com/redhawksdr/librtlsdr;protocol=https;branch=redhawk-v.${PV};tag=${PV}-${PR} \
     file://01_fix_pkgconfig.patch \
     "
 
