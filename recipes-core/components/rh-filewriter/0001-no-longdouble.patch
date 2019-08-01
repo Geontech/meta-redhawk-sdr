@@ -1,0 +1,23 @@
+Index: cpp/FileWriter.cpp
+===================================================================
+--- cpp.orig/FileWriter.cpp
++++ cpp/FileWriter.cpp
+@@ -965,7 +965,6 @@ std::string FileWriter_i::sri_to_XMLstri
+ 
+         CORBA::Float tmpFloat;
+         CORBA::Double tmpDouble;
+-        CORBA::LongDouble tmpLongDouble;
+         switch (typecode_name) {
+         case CORBA::tk_float:
+             sri.keywords[i].value >>= tmpFloat;
+@@ -975,10 +974,6 @@ std::string FileWriter_i::sri_to_XMLstri
+             sri.keywords[i].value >>= tmpDouble;
+             sri_string << tmpDouble;
+             break;
+-        case CORBA::tk_longdouble:
+-            sri.keywords[i].value >>= tmpLongDouble;
+-            sri_string << tmpLongDouble;
+-            break;
+         default:
+             sri_string << ossie::any_to_string(sri.keywords[i].value);
+         }
