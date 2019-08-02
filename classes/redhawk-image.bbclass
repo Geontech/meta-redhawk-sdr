@@ -50,4 +50,4 @@ redhawk_sdrroot_installer() {
     PROJECTS="${PROJECTS//$'\n'/ }"
     tar -czf ${SDRROOT_TAR} ${PROJECTS} -C ${MRSS} spd_utility install_assets
 }
-IMAGE_POSTPROCESS_COMMAND += "redhawk_sdrroot_installer ; "
+ROOTFS_POSTPROCESS_COMMAND += "redhawk_sdrroot_installer ; "
