@@ -42,7 +42,7 @@ SRC_URI_append = "\
     file://0001-beforeauto-cross.patch \
     file://0002-python-shebang.patch \
     file://0003-embedded-appl.patch \
-    ${@'file://0004-LongDouble.patch' if d.getVar('SOC_FAMILY') == 'zynq' else ''} \
+    file://0004-LongDouble.patch \
     "
 
 S = "${WORKDIR}/omniORB-${PV}"
