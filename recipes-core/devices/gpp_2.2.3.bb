@@ -60,7 +60,7 @@ do_patch_prf_patch() {
     export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
     ${WORKDIR}/patch_prf -n ${PACKAGE_ARCH} -o Linux ${S}/..
 }
-do_patch_prf_patch[depends] += "${PN}:do_prepare_recipe_sysroot"
+do_patch_prf_patch[depends] += "redhawk-native:do_populate_sysroot"
 addtask patch_prf_patch after do_patch before do_configure
 
 do_install_append() {
