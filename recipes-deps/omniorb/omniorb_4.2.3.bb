@@ -56,6 +56,7 @@ INSANE_SKIP_${PN}-python += "dev-so"
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/_omniidlmodule.so*"
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/omniidl/*"
 FILES_${PN}-python += "${libdir}/python2.7/site-packages/omniidl_be/*"
+FILES_${PN}-dbg += "${libdir}/python2.7/site-packages/.debug"
 
 DIRFILES = "1"
 
