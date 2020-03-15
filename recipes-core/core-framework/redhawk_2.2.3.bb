@@ -25,7 +25,7 @@ DESCRIPTION = "REDHAWK Core Framework"
 PR = "1"
 
 COMPONENTHOST_PN := "rh-componenthost"
-PACKAGES += "${COMPONENTHOST_PN}"
+PACKAGE_BEFORE_PN += "${COMPONENTHOST_PN}-dbg ${COMPONENTHOST_PN}"
 PACKAGES_append_class-native = "${COMPONENTHOST_PN}-native"
 
 DEPENDS += "\
@@ -76,6 +76,7 @@ EXTRA_OECONF += "\
 
 COMPONENTHOST_PATH = "${SDRROOT}/dom/mgr/rh/ComponentHost"
 FILES_${COMPONENTHOST_PN} = "${COMPONENTHOST_PATH}"
+FILES_${COMPONENTHOST_PN}-dbg = "${COMPONENTHOST_PATH}/.debug"
 
 FILES_${PN} += " \
     ${OSSIEHOME}/bin/redhawk-shminfo \

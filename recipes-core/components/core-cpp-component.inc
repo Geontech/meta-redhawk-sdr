@@ -6,9 +6,10 @@ inherit redhawk-component
 # Derive the component's parent directory name which (should) be the installed component name and location in the
 # core repo.
 COMPONENT_NAME ?= "${@'${PN}'.split('rh-')[-1]}"
+COMPONENT_NAME_SDRROOT ?= "${COMPONENT_NAME}"
 
 SRC_URI = "git://github.com/redhawksdr/${COMPONENT_NAME};protocol=https;tag=${PV}-${PR}"
 S = "${WORKDIR}/git/cpp"
 
 FILES_${PN} += "${SDRROOT}/*"
-FILES_${PN}-dbg += "${SDRROOT}/dom/components/rh/${COMPONENT_NAME}/*/.debug"
+FILES_${PN}-dbg += "${SDRROOT}/dom/components/rh/${COMPONENT_NAME_SDRROOT}/cpp*/.debug"

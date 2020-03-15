@@ -43,7 +43,8 @@ S = "${WORKDIR}/git/GPP/cpp"
 inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
 FILES_${GPP_NODE_PN} += "${SDRROOT}/dev/nodes"
-FILES_${PN} += "${SDRROOT}/dev/devices*"
+FILES_${PN} += "${SDRROOT}/dev/devices/GPP"
+FILES_${PN}-dbg += "${SDRROOT}/dev/devices/GPP/cpp-${PACKAGE_ARCH}/.debug"
 
 EXTRA_OECONF += "--prefix=${SDRROOT}"
 

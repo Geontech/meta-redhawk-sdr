@@ -52,7 +52,8 @@ S = "${WORKDIR}/git/cpp"
 inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 
 FILES_${PN} += "${SDRROOT}/*"
-INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"
+FILES_${PN}-dbg += "${SDRROOT}/dev/devices/RTL2832U/cpp*/.debug"
+INSANE_SKIP_${PN} += "dev-so staticdev libdir installed-vs-shipped"
 
 EXTRA_OECONF += "--prefix=${SDRROOT}"
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"

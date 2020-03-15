@@ -54,7 +54,8 @@ inherit autotools-brokensep pkgconfig pythonnative redhawk-device
 EXTRA_OECONF += "--prefix=${SDRROOT}"
 
 FILES_${PN} += "${SDRROOT}/*"
-INSANE_SKIP_${PN} += "debug-files dev-so staticdev libdir installed-vs-shipped"
+FILES_${PN} += "${SDRROOT}/dev/devices/USRP_UHD/cpp*/.debug"
+INSANE_SKIP_${PN} += "dev-so staticdev libdir installed-vs-shipped"
 
 # Link nodeconfig.py and SPD into the source directory so we can patch it.
 addtask link_nodeconfig before do_patch after do_unpack

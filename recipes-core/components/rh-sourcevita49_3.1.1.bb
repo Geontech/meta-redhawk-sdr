@@ -10,6 +10,8 @@ SRC_URI_append = " \
 
 PR = "1"
 
+COMPONENT_NAME_SDRROOT = "SourceVITA49"
+
 require core-cpp-component.inc
 
 SRC_URI = "git://github.com/redhawksdr/${COMPONENT_NAME};protocol=https;tag=${PV}"
