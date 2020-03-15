@@ -63,6 +63,13 @@ DIRFILES = "1"
 
 inherit autotools pkgconfig distutils-base
 
+# need to export these variables for python-config to work
+export PYTHONPATH
+export BUILD_SYS
+export HOST_SYS
+export STAGING_INCDIR
+export STAGING_LIBDIR
+
 #ERROR: QA Issue with omniorbpy-dev: No GNU_HASH in the elf binary...
 #See for more info: http://old.nabble.com/No-GNU_HASH-found-in-elf-binary-td23072960.html
 TARGET_CC_ARCH += "${LDFLAGS}"

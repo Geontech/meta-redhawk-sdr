@@ -64,6 +64,13 @@ TARGET_CC_ARCH += "${LDFLAGS}"
 
 inherit autotools pkgconfig pythonnative
 
+# need to export these variables for python-config to work
+export PYTHONPATH
+export BUILD_SYS
+export HOST_SYS
+export STAGING_INCDIR
+export STAGING_LIBDIR
+
 CONFFILES_${PN} += "/etc/omniORB.cfg"
 
 do_compile () {
