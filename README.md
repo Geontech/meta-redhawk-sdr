@@ -3,8 +3,6 @@ meta-REDHAWK-SDR
 
 Meta-REDHAWK-SDR is an actively-maintained set of [Yocto][1]/[Open-Embedded][2] recipes for the [REDHAWK SDR][3] framework, its dependencies, GPP, other example Devices, all shared libraries (softpkg), and all CPP Components (SSE or NEON required for DataConverter).
 
- > NOTE: The most recent version of Yocto tested with this layer is Thud, 2.6.
-
 This repository, along with the base Yocto framework will enable you to build the REDHAWK SDR framework for any hardware platform in which a Board Support Package is available.  We at Geon have successfully used this layer on a variety of Zynq targets including:
 
  * [ZC706 Evaluation Board](http://geontech.com/analog-devices-fmcomms-via-yocto/)
@@ -23,8 +21,6 @@ Is my hardware supported?
 The Yocto website provides a list of [Official BSPs][4] which include common hardware platforms like the Raspberry Pi, BeagleBoard, BeagleBone, NUC, Intel Atom, etc.
 
 There are plenty of BSPs floating around for other hardware platforms so do some searching before you write your own.
-
-Use the Pyro branch/version as your starting point for searching since it is the most recent version of Yocto that Geon has actively tested this layer against.
 
 Getting Started
 ----------------
