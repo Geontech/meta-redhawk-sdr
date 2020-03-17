@@ -17,26 +17,27 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
-require core-framework-2.2.3.inc
+require core-framework-2.2.5.inc
 require core-framework-autotools.inc
 
-DESCRIPTION = "REDHAWK Framework BulkIO Interfaces"
+DESCRIPTION = "REDHAWK Framework FrontEnd Interfaces"
 
-DEPENDS += "redhawk"
-RDEPENDS_${PN} = "redhawk"
-RDEPENDS_${PN}-python = "redhawk-python"
+DEPENDS += "bulkiointerfaces"
+RDEPENDS_${PN} = "bulkiointerfaces"
+RDEPENDS_${PN}-python = "bulkiointerfaces-python"
 
 PR = "1"
 
 SRC_URI_append = "\
-    file://remove_cppunit.patch \
+    file://fix_idldir_and_remove_cppunit.patch \
 "
 
-S = "${WORKDIR}/git/bulkioInterfaces"
+S = "${WORKDIR}/git/frontendInterfaces"
 
-EXTRA_OECONF += "\
-    --with-boost-system=boost_system \
-    "
+CFLAGS += "-fpermissive"
+
+# Since prefix is set this has to override that
+CACHED_CONFIGUREVARS += "ac_cv_pymod_ossie=yes ac_cv_pymod_bulkio_bulkioInterfaces=yes"
 
 # Needed so that when the python distutils is run it can get the system prefix which, since it's the build system python will be /.../x86_64-linux/usr and replace it with our host systems name.
 do_configure_prepend() {
@@ -44,5 +45,6 @@ do_configure_prepend() {
   export HOST_SYS=${HOST_SYS}
   export STAGING_INCDIR=${STAGING_INCDIR}
   export STAGING_LIBDIR=${STAGING_LIBDIR}
+  export STAGING_BASE=${STAGING_DIR}/${MACHINE}
   export PKG_CONFIG_PATH="${OSSIEHOME_STAGED}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 }
