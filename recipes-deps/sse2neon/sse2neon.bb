@@ -8,7 +8,9 @@ SRC_URI = "git://github.com/DLTcollab/sse2neon;protocol=https;rev=f8c710409c9f8f
 DEPENDS = ""
 RDEPENDS_${PN} = ""
 
-COMPATIBLE_MACHINE = "(arm|aarch64)"
+COMPATIBLE_MACHINE ?= "^$"
+COMPATIBLE_MACHINE_arm = "${MACHINE}"
+COMPATIBLE_MACHINE_aarch64 = "${MACHINE}"
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
