@@ -1,0 +1,16 @@
+diff --git a/include/fftw_allocator.h b/include/fftw_allocator.h
+index d0b8080..3404abe 100644
+--- a/include/fftw_allocator.h
++++ b/include/fftw_allocator.h
+@@ -38,6 +38,11 @@
+            throw "fftwf_allocator bad type - must be float or complex<float> only";
+        }
+ 
++       template <typename U>
++       struct rebind {
++           typedef fftwf_allocator<U> other;
++       };
++
+        typedef typename std::allocator<Tp>::size_type size_type;
+        typedef typename std::allocator<Tp>::difference_type difference_type;
+        typedef typename std::allocator<Tp>::pointer pointer;

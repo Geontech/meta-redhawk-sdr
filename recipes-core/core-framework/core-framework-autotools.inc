@@ -10,7 +10,7 @@ DEPENDS += "omniorbpy-native python-setuptools-native"
 # Each typically provides a python package; disable directory ownership
 # in the packager to avoid "multiple providers" errors, especially in
 # python packages.
-PACKAGES += "${PN}-python"
+PACKAGE_BEFORE_PN += "${PN}-python"
 PROVIDES += "${PN}-python"
 DIRFILES = "1"
 

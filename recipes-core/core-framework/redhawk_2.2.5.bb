@@ -38,7 +38,7 @@ RDEPENDS_${PN} += "\
     python-resource util-linux ${COMPONENTHOST_PN} \
     "
 RDEPENDS_${PN}-python += "\
-    ${PN} omniorb-python omniorbpy python-numpy python-threading \
+    ${PN} omniorb-python omniorbpy python python-numpy python-threading \
     python-numbers python-resource python-xml python-lxml python-setuptools"
 
 BBCLASSEXTEND = "native"
