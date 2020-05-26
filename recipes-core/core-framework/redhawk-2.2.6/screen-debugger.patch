@@ -1,0 +1,31 @@
+Index: src/base/framework/python/ossie/utils/sandbox/local.py
+===================================================================
+--- src.orig/base/framework/python/ossie/utils/sandbox/local.py
++++ src/base/framework/python/ossie/utils/sandbox/local.py
+@@ -213,6 +213,8 @@ class LocalLauncher(SandboxLauncher):
+                     window = terminal.XTerm(comp._instanceName)
+                 elif window == 'gnome-terminal':
+                     window = terminal.GnomeTerm(comp._instanceName)
++                elif window == 'screen':
++                    window = terminal.ScreenTerm(comp._instanceName)
+                 else:
+                     raise RuntimeError, 'not supported'
+             except Exception, e:
+Index: src/base/framework/python/ossie/utils/sandbox/terminal.py
+===================================================================
+--- src.orig/base/framework/python/ossie/utils/sandbox/terminal.py
++++ src/base/framework/python/ossie/utils/sandbox/terminal.py
+@@ -57,3 +57,13 @@ class GnomeTerm(Terminal):
+ 
+     def _execArgs(self, command, arguments):
+         return ['-x', command] + arguments
++
++class ScreenTerm(Terminal):
++    def __init__(self, title=None):
++        super(ScreenTerm,self).__init__('screen', title)
++
++    def _titleArgs(self, title):
++        return ['-S', title]
++
++    def _execArgs(self, command, arguments):
++        return ['-d', '-m', command] + arguments

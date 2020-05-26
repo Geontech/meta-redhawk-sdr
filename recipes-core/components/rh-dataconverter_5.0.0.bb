@@ -5,11 +5,9 @@ RDEPENDS_${PN} = "bulkiointerfaces rh-fftlib"
 
 PR = "1"
 
-LIC_MD5 = "d4d548a7833916fd41218fdc2430246e"
+COMPONENT_NAME = "DataConverter"
 
 require core-cpp-component.inc
-
-SRC_URI = "git://github.com/redhawksdr/${COMPONENT_NAME};protocol=https;tag=${PV}"
 
 ############################
 ## ARM NEON SUPPORT BELOW ##

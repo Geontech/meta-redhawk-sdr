@@ -5,6 +5,4 @@ RDEPENDS_${PN} = "bulkiointerfaces rh-dsp rh-fftlib"
 
 PR = "4"
 
-LIC_MD5 = "92aadbd9e4b26926809a4e97460613d5"
-
 require core-cpp-component.inc

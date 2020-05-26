@@ -29,28 +29,62 @@ RDEPENDS_${PN} := "redhawk"
 
 SRC_URI = "\
     file://domain-init.d \
+    file://domain-systemd \
+    file://redhawk-domain-log.cfg \
     file://LICENSE \
     "
 
 S = "${WORKDIR}"
 
 # Import the SDRROOT (and OSSIEHOME) locations
-inherit redhawk-sysroot update-rc.d
+inherit redhawk-sysroot
 
-# For Init.d
-RH_DOMAIN_NAME = "REDHAWK_DEV"
-INITSCRIPT_NAME = "domain-${RH_DOMAIN_NAME}"
-INITSCRIPT_PARAMS = "start 90 2 3 4 5 . stop 01 0 1 6 ."
+RH_DOMAIN_NAME ?= "REDHAWK_DEV"
+RH_LOG_CFG_PATH = "${sysconfdir}/redhawk-domain-log.cfg"
 
-FILES_${PN} = " \
-    ${sysconfdir}/init.d/domain-${RH_DOMAIN_NAME} \
+# For sysvinit
+inherit update-rc.d
+INITSCRIPT_PACKAGES = "${PN}"
+INITSCRIPT_NAME_${PN} = "redhawk-domain"
+INITSCRIPT_PARAMS_${PN} = "start 90 2 3 4 5 . stop 01 0 1 6 ."
+
+# For systemd
+inherit systemd
+SYSTEMD_PACKAGES = "${PN}"
+SYSTEMD_SERVICE_${PN} = "redhawk-domain.service"
+SYSTEMD_AUTO_ENABLE = "enable"
+
+FILES_${PN} = "\
+    ${sysconfdir}/init.d/redhawk-domain \
+    ${systemd_system_unitdir}/redhawk-domain.service \
+    ${sysconfdir}/redhawk-domain-log.cfg \
     "
 
+do_compile () {
+    SOURCE_FILE=""
+    TARGET_FILE=""
+    if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
+        SOURCE_FILE="domain-init.d"
+        TARGET_FILE="redhawk-domain"
+    fi
+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+        SOURCE_FILE="domain-systemd"
+        TARGET_FILE="redhawk-domain.service"
+    fi
+    cp -f ${S}/${SOURCE_FILE} ${B}/${TARGET_FILE}
+    sed -i "s|SDRROOT_PATH|${SDRROOT}|g"         ${B}/${TARGET_FILE}
+    sed -i "s|OSSIEHOME_PATH|${OSSIEHOME}|g"     ${B}/${TARGET_FILE}
+    sed -i "s|DOMAIN_NAME|${RH_DOMAIN_NAME}|g"   ${B}/${TARGET_FILE}
+    sed -i "s|LOG_CFG_PATH|${RH_LOG_CFG_PATH}|g" ${B}/${TARGET_FILE}
+}
+
 do_install () {
-    # Copy it to the destination init.d folder, renamed, and patched for the domain name
-    install -d ${D}${sysconfdir}/init.d
-    install -m 0755 ${WORKDIR}/domain-init.d    ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-    sed -i "s|SDRROOT_PATH|${SDRROOT}|g"        ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-    sed -i "s|OSSIEHOME_PATH|${OSSIEHOME}|g"    ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-    sed -i "s|DOMAIN_NAME|${RH_DOMAIN_NAME}|g"  ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
+    install -Dm 0644 ${S}/redhawk-domain-log.cfg ${D}${RH_LOG_CFG_PATH}
+
+    if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
+        install -Dm 0755 ${B}/redhawk-domain ${D}${sysconfdir}/init.d/redhawk-domain
+    fi
+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+        install -Dm 0644 ${B}/redhawk-domain.service ${D}${systemd_system_unitdir}/redhawk-domain.service
+    fi
 }

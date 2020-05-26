@@ -5,6 +5,6 @@ RDEPENDS_${PN} = "bulkiointerfaces"
 
 PR = "1"
 
-require core-cpp-component.inc
+COMPONENT_NAME = "SigGen"
 
-SRC_URI = "git://github.com/redhawksdr/${COMPONENT_NAME};protocol=https;tag=${PV}"
+require core-cpp-component.inc

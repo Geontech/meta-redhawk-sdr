@@ -1,0 +1,21 @@
+Index: cpp/states/Limits.cpp
+===================================================================
+--- cpp.orig/states/Limits.cpp
++++ cpp/states/Limits.cpp
+@@ -83,13 +83,13 @@ void SysLimits::update_state()
+     std::string line;
+     while ( std::getline( file_nr, line ) ) {
+       std::vector<std::string> values;
+-      boost::algorithm::split( values, line, boost::is_any_of(std::string(" \t")), boost::algorithm::token_compress_on );
++      boost::algorithm::split( values, line, boost::is_any_of(std::string(" ")), boost::algorithm::token_compress_on );
+       DEBUG(" values: " << values.size() << "  file-nr line: " << line  );
+         
+-      if ( values.size() > 2 ) {
++      if ( values.size() > 1 ) {
+         try {
+           tmp.files = boost::lexical_cast<int64_t>( values[0] );
+-          tmp.files_limit = boost::lexical_cast<int64_t>( values[2] );
++          tmp.files_limit = boost::lexical_cast<int64_t>( values[values.size()-1] );
+         }
+         catch( boost::bad_lexical_cast ){
+         }

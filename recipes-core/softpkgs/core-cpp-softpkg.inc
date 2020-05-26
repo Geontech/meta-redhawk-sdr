@@ -1,4 +1,4 @@
-require recipes-core/core-framework/core-framework.inc
+require recipes-core/core-framework/core-assets-2.2.6.inc
 
 # Inherit the base softpkg class
 inherit redhawk-softpkg
@@ -6,5 +6,4 @@ inherit redhawk-softpkg
 # Append SOFTPKG_PREFIX
 SOFTPKG_PREFIX .= "/rh/${SOFTPKG_NAME}"
 
-SRC_URI = "git://github.com/redhawksdr/${SOFTPKG_NAME};protocol=https;tag=${PV}-${PR}"
-S = "${WORKDIR}/git/cpp"
+S = "${WORKDIR}/git/sdr/libraries/${SOFTPKG_NAME}/cpp"

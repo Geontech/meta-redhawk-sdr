@@ -17,17 +17,15 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #
-require recipes-core/core-framework/core-framework.inc
+require recipes-core/core-framework/core-assets-2.2.6.inc
+
+S = "${WORKDIR}/git/sdr/devices/RTL2832U/cpp"
 
 DESCRIPTION = "REDHAWK Device for the RTL2832U"
 DEPENDS = "frontendinterfaces bulkiointerfaces rtlsdr"
 RDEPENDS_${PN} = "frontendinterfaces rtlsdr"
 
-LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE;md5=92aadbd9e4b26926809a4e97460613d5"
-
 PR = "2"
-
-SRC_URI = "git://github.com/redhawksdr/rtl2832u;protocol=https;tag=${PV}-${PR}"
 
 # ################################################
 # End user-controlled variables to adjust the node
@@ -44,8 +42,6 @@ SRC_URI_append = "\
     file://Fix_rtl_version_constraint.patch \
     file://nodeconfig.patch \
 "
-
-S = "${WORKDIR}/git/cpp"
 
 # We have to inherit from pythonnative if we do stuff with the system python.
 # autotools-brokensep is the same as autotools but our build and src locations are the same since we cannot build away from our src.
@@ -69,7 +65,8 @@ do_install_append () {
     export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
     ${D}${SDRROOT}/dev/devices/rh/RTL2832U/nodeconfig.py \
         --sdrroot="${D}${SDRROOT}" \
-        --nodename="DevMgr-${MACHINE}-RTL2832U" \
+        --nodename="${RH_NODE_NAME}" \
+        --domainname="${REDHAWK_DOMAIN}" \
         --rtlname="${RH_RTL2832U_NAME}" \
         --rtlvendor="${RH_RTL2832U_VENDOR}" \
         --rtlproduct="${RH_RTL2832U_PRODUCT}" \

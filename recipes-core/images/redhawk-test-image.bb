@@ -23,10 +23,10 @@ inherit redhawk-image
 SUMMARY = "Console-only REDHAWK with Domain, GPP and omni init scripts for verifying a build"
 
 IMAGE_INSTALL_append = "\
+	omniorb-init \
+	omnievents-init \
 	packagegroup-redhawk-basic-components \
 	packagegroup-redhawk-basic-softpkgs \
 	domain-init \
-	omniorb-init \
-	omnievents-init \
-	gpp-node \
+	gpp-init \
 	"
