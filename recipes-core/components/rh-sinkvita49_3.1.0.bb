@@ -9,4 +9,6 @@ SRC_URI_append = " \
 	"
 PR = "3"
 
+COMPONENT_NAME = "SinkVITA49"
+
 require core-cpp-component.inc

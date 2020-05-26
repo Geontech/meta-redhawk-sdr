@@ -3,8 +3,6 @@ meta-REDHAWK-SDR
 
 Meta-REDHAWK-SDR is an actively-maintained set of [Yocto][1]/[Open-Embedded][2] recipes for the [REDHAWK SDR][3] framework, its dependencies, GPP, other example Devices, all shared libraries (softpkg), and all CPP Components (SSE or NEON required for DataConverter).
 
- > NOTE: The most recent version of Yocto tested with this layer is Thud, 2.6.
-
 This repository, along with the base Yocto framework will enable you to build the REDHAWK SDR framework for any hardware platform in which a Board Support Package is available.  We at Geon have successfully used this layer on a variety of Zynq targets including:
 
  * [ZC706 Evaluation Board](http://geontech.com/analog-devices-fmcomms-via-yocto/)
@@ -38,14 +36,14 @@ Alternatively, you can clone this layer into your own Yocto source tree:
     cd <your work director where other meta* are loaded>
     git clone git://github.com/geontech/meta-redhawk-sdr.git
 
-Then edit your `build/conf/bblayers.conf` to include a reference to `meta-redhawk-sdr` at the end of the list.  See our `meta-redhawk-sdr/conf/bblayers.conf.sample` as an example. 
+Then edit your `build/conf/bblayers.conf` to include a reference to `meta-redhawk-sdr` at the end of the list.  See our `meta-redhawk-sdr/conf/bblayers.conf.sample` as an example.
 
-Finishing the Build
--------------------
+Classes
+-------
 
-In the `contrib/scripts` folder is the `build-image.sh` script, a derivative of a script from Philip Balister (@balister) of Ettus Research who included it with their `meta-sdr`.  The script uses `wic` to build a single image file that can be directly copied to an SD card (`dd`) resulting in the appropriate partitions, etc., based on the associated `wks` file.  
+There are a number of package classes provided in this layer to facilitate deploying one's own SoftPkgs, Components, Devices, and Waveforms to the target's SDRROOT.  For items that can be compiled like SoftPkg, Components and Devices, the `redhawk-softpkg`, `redhawk-component`, and `redhawk-device` classes help simplify deploying each by applying common patches to the project ahead of compiling it for the target.
 
-To use it, link this script into your `build` directory, set it to executable, and specify the `BUILD_IMAGE` and `MACHINE` environment variables (e.g., `qemuarm` and `redhawk-gpp-image`).  Then running this script will go through the whole bitbake process for you, automated.
+The REDHAWK Device class defines 2 optional packages: `NAME-node` and `NAME-init`.  The `NAME-node` package has a runtime dependency against the device package `NAME` and tries to collect the node definition named in the variable `RH_NODE_NAME` from `SDRROOT/dev/nodes`.  On the other hand, the `NODE-init` package has a runtime dependency against the `NAME-node` package since it will be deploying a script to run `nodeBooter ...` with that definition on start-up.  Therefore to install your device into the target image so that it automatically boots, you only need to add `NAME-init` to your image definition and ensure your device package installs the node definition.
 
 SPD Patching
 ------------
@@ -64,6 +62,35 @@ TMPDIR/deploy/images/MACHINE/your-image-PV-sdrroot.tar.gz
 ```
 
 This tarball includes an install script and the above `spd_utility` that will merge each of the Components and SoftPkg libraries included in your image (`IMAGE_NAME`).
+
+Testing
+-------
+
+This layer includes some QA tests for installed assets and the core framework itself.  To use any of this, you must first ensure your build host is configured for testing using [Yocto's OEQA system](https://www.yoctoproject.org/docs/3.1/dev-manual/dev-manual.html#performing-automated-runtime-testing).
+
+You can see the set of available test cases in `lib/oeqa/runtime/cases` (omniorb, redhawk, etc.).  Some tests will be skipped if the related package is not installed and cover things like verifying the domain started properly and matches the configured `REDHAWK_DOMAIN` variable.
+
+Enabling the test suites via your `local.conf` looks like this:
+
+```
+IMAGE_CLASSES += "testimage"
+TEST_SUITES = "${REDHAWK_TEST_SUITE}"
+TEST_TARGET = "qemu"
+TEST_QEMUPARAMS = "-m 4096 -smp 4"
+```
+
+ > NOTE 1: This specifies a QEMU target with 4 GB RAM, 4 Cores.  This is not a minimum for REDHAWK; it's an example.
+ > NOTE 2: You could `_append` or `+=` the `TEST_SUITES` variable to run all default tests in addition to REDHAWK's if you wish.
+
+The `redhawk-test-image` includes all components, softpkgs, a GPP, and all initialization scripts to be a functional, stand-alone REDHAWK system ready to run waveforms.  So with the above configuration made, you can run the high-level tests:
+
+```
+bitbake redhawk-test-image -c testimage
+```
+
+ > NOTE: The above `local.conf` changes are enough to expose these tests to your own image as well; the above use of `redhawk-test-image` is an example.
+
+There are other options available to you in the Yocto OE Core `testimage.bbclass` for configuring QEMU or utilizing remote test machines.  Please refer to the Yocto user manual and that class for those options.
 
 Additional Resources
 --------------------

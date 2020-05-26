@@ -53,4 +53,20 @@ do_spd_implementation_patch () {
 do_spd_implementation_patch[cleandirs] += "${S}/../cpp-${PACKAGE_ARCH}"
 addtask spd_implementation_patch after do_compile before do_install
 
+# Setup SSTATE handling of the do_spd_implementation_patch so it's sensitive to the patching tool.
+python do_spd_implementation_patch_setscene () {
+    sstate_setscene(d)
+}
+SSTATETASKS += "do_spd_implementation_patch"
+
+def gen_spd_utility_hash(d):
+    import hashlib
+    script = d.getVar('META_REDHAWK_SDR_SCRIPTS') + '/spd_utility'
+    script_hash = ''
+    with open(script, 'rb') as f:
+        script_hash = hashlib.md5(f.read()).hexdigest()
+    return script_hash
+
+do_spd_implementation_patch[sstate-extra-info] = "${@gen_spd_utility_hash(d)}"
+
 INSANE_SKIP_${PN} += "dev-so"

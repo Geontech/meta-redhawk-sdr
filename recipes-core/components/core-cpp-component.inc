@@ -1,4 +1,4 @@
-require recipes-core/core-framework/core-framework.inc
+require recipes-core/core-framework/core-assets-2.2.6.inc
 
 # Inherit the base component class
 inherit redhawk-component
@@ -7,8 +7,7 @@ inherit redhawk-component
 # core repo.
 COMPONENT_NAME ?= "${@'${PN}'.split('rh-')[-1]}"
 
-SRC_URI = "git://github.com/redhawksdr/${COMPONENT_NAME};protocol=https;tag=${PV}-${PR}"
-S = "${WORKDIR}/git/cpp"
+S = "${WORKDIR}/git/sdr/components/${COMPONENT_NAME}/cpp"
 
 FILES_${PN} += "${SDRROOT}/*"
 FILES_${PN}-dbg += "${SDRROOT}/dom/components/rh/${COMPONENT_NAME}/*/.debug"

@@ -1,0 +1,19 @@
+[Unit]
+Description=OmniORB Naming Service
+After=syslog.target
+
+[Service]
+Type=simple
+User=omniORB
+Group=omniORB
+Environment=LOGDIR=/var/log/omniNames
+Environment=DATADIR=/var/lib/omniNames
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -p $LOGDIR
+ExecStartPre=/bin/chown -R omniORB:omniORB $LOGDIR
+ExecStartPre=/bin/mkdir -p $DATADIR
+ExecStartPre=/bin/chown -R omniORB:omniORB $DATADIR
+ExecStart=/usr/bin/omniNames -start -always -logdir ${LOGDIR}/ -datadir ${DATADIR} -errlog ${LOGDIR}/error.log
+
+[Install]
+WantedBy=multi-user.target

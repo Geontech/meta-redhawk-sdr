@@ -41,19 +41,8 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin:$OSSIEHOME/bin
 DOMAIN=DOMAIN_NAME
 DOMAIN_PROFILE=$SDRROOT/dom/domain/DomainManager.dmd.xml
 PIDFILE=/var/run/$DOMAIN.pid
-LOG_CFG_FILE=/etc/redhawk-domain-log.cfg
+LOG_CFG_FILE=LOG_CFG_PATH
 DAEMON_ARGS="-D $DOMAIN_PROFILE --domain $DOMAIN --pidfile $PIDFILE --daemon -logcfgfile $LOG_CFG_FILE"
-
-if [ ! -f $LOG_CFG_FILE ]; then
-  cat << EOF > $LOG_CFG_FILE
-log4j.rootLogger=INFO,FILE
-log4j.appender.FILE=org.apache.log4j.FileAppender
-log4j.appender.FILE.File=/var/log/@@@DOMAIN.NAME@@@.log
-log4j.appender.FILE.Append=true
-log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
-log4j.appender.FILE.layout.ConversionPattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n \n"
-EOF
-fi
 
 do_start() {
   export PYTHONPATH=$PYTHONPATH
@@ -63,7 +52,9 @@ do_start() {
     echo "PID file exists. Attemping to stop before starting."
     do_stop
   fi
-  nodeBooter $DAEMON_ARGS || do_stop
+  mkdir -p /var/log/redhawk
+  chown -R redhawk:redhawk /var/log/redhawk
+  /sbin/runuser redhawk -s /bin/bash -c "nodeBooter $DAEMON_ARGS" || do_stop
 }
 
 do_stop() {

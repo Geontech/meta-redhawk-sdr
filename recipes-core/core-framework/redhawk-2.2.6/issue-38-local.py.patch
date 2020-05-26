@@ -1,0 +1,12 @@
+Index: src/base/framework/python/ossie/utils/sandbox/local.py
+===================================================================
+--- src.orig/base/framework/python/ossie/utils/sandbox/local.py
++++ src/base/framework/python/ossie/utils/sandbox/local.py
+@@ -230,6 +230,7 @@ class LocalLauncher(SandboxLauncher):
+ 
+         # Resolve all dependency localfiles
+         deps = self._resolveDependencies(sdrroot, device, impl)
++        deps.reverse()
+ 
+         # Execute the entry point, either on the virtual device or the Sandbox
+         # component host

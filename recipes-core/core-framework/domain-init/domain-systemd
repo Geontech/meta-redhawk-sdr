@@ -1,0 +1,17 @@
+[Unit]
+Description=REDHAWK DOMAIN_NAME Service
+After=network.target
+
+[Service]
+Type=simple
+Environment=LOGDIR=/var/log/redhawk
+Environment=DOMAIN=DOMAIN_NAME
+ExecStartPre=/bin/mkdir -p $LOGDIR
+ExecStartPre=/bin/chown -R redhawk:redhawk $LOGDIR
+ExecStart=/bin/bash -lc 'nodeBooter -D --domain ${DOMAIN} -logcfgfile LOG_CFG_PATH'
+User=redhawk
+Group=redhawk
+PermissionsStartOnly=true
+
+[Install]
+WantedBy=multi-user.target

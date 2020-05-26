@@ -1,0 +1,19 @@
+[Unit]
+Description=REDHAWK NODE_NAME Service
+After=omniEvents.service
+Requires=omniEvents.service
+
+[Service]
+Type=simple
+Environment=LOGDIR=/var/log/redhawk
+Environment=DOMAIN=DOMAIN_NAME
+Environment=DEVICE_MANAGER=NODE_NAME
+ExecStartPre=/bin/mkdir -p $LOGDIR
+ExecStartPre=/bin/chown -R redhawk:redhawk $LOGDIR
+ExecStart=/bin/bash -lc 'nodeBooter -d /nodes/${DEVICE_MANAGER}/DeviceManager.dcd.xml --domain ${DOMAIN} &> $LOGDIR/${DEVICE_MANAGER}.log'
+User=redhawk
+Group=redhawk
+PermissionsStartOnly=true
+
+[Install]
+WantedBy=multi-user.target

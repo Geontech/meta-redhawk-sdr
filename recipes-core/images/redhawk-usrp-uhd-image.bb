@@ -30,5 +30,5 @@ SUMMARY = "Console-only REDHAWK Node with the USRP UHD device"
 
 IMAGE_INSTALL_append = "\
     uhd \
-    usrp-uhd \
+    usrp-uhd-init \
     "
