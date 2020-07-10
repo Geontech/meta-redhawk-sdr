@@ -74,6 +74,7 @@ SRC_URI_append = "\
     file://ThreadedComponent.patch \
     file://signalling.patch \
     file://issue-38-local.py.patch \
+    file://screen-debugger.patch \
 "
 
 S = "${WORKDIR}/git/redhawk/src"
