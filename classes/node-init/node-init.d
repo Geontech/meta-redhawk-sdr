@@ -36,7 +36,7 @@ NODENAME=NODE_NAME
 DOMAIN=DOMAIN_NAME
 PIDFILE=/var/run/redhawk/$NODENAME.pid
 LOGFILE=/var/log/redhawk/$NODENAME.log
-DAEMON_ARGS="-d /nodes/$NODENAME/DeviceManager.dcd.xml --domain ${DOMAIN} --pidfile $PIDFILE --daemon 2>&1 > $LOGFILE"
+DAEMON_ARGS="-d /nodes/$NODENAME/DeviceManager.dcd.xml --domain ${DOMAIN} --pidfile $PIDFILE --daemon --user redhawk 2>&1 > $LOGFILE"
 
 do_start() {
   if [ -f $PIDFILE ]; then
@@ -47,17 +47,18 @@ do_start() {
   chown -R redhawk:redhawk /var/run/redhawk
   mkdir -p /var/log/redhawk
   chown -R redhawk:redhawk /var/log/redhawk
-  /sbin/runuser redhawk -s /bin/bash -lc "nodeBooter $DAEMON_ARGS" || do_stop
+  /bin/bash -lc "nodeBooter $DAEMON_ARGS" || do_stop
 }
 
 do_stop() {
-  echo "Stopping Device Manager on PID $(cat $PIDFILE)"
-  if ! kill $(cat $PIDFILE); then
-    echo "Standard kill failed to stop device manager, escalating!"
-    kill -9 $(cat $PIDFILE)
+  if [ -f "${PIDFILE}" ]; then
+    echo "Stopping Device Manager on PID $(cat $PIDFILE)"
+    if ! kill $(cat $PIDFILE); then
+      echo "Standard kill failed to stop device manager, escalating!"
+      kill -9 $(cat $PIDFILE)
+    fi
+    rm -f $PIDFILE
   fi
-
-  rm -f $PIDFILE
 }
 
 do_status() {

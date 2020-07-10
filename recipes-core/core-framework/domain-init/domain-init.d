@@ -42,19 +42,16 @@ DOMAIN=DOMAIN_NAME
 DOMAIN_PROFILE=$SDRROOT/dom/domain/DomainManager.dmd.xml
 PIDFILE=/var/run/$DOMAIN.pid
 LOG_CFG_FILE=LOG_CFG_PATH
-DAEMON_ARGS="-D $DOMAIN_PROFILE --domain $DOMAIN --pidfile $PIDFILE --daemon -logcfgfile $LOG_CFG_FILE"
+DAEMON_ARGS="-D $DOMAIN_PROFILE --domain $DOMAIN --pidfile $PIDFILE --daemon --user redhawk -logcfgfile $LOG_CFG_FILE"
 
 do_start() {
-  export PYTHONPATH=$PYTHONPATH
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
-  
   if [ -f $PIDFILE ]; then
     echo "PID file exists. Attemping to stop before starting."
     do_stop
   fi
   mkdir -p /var/log/redhawk
   chown -R redhawk:redhawk /var/log/redhawk
-  /sbin/runuser redhawk -s /bin/bash -c "nodeBooter $DAEMON_ARGS" || do_stop
+  /bin/bash -lc "nodeBooter $DAEMON_ARGS" || do_stop
 }
 
 do_stop() {
