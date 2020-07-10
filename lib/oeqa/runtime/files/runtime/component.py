@@ -19,6 +19,8 @@ sca_dom_path = os.path.join(os.environ['SDRROOT'], 'dom')
 
 wave_name = str(uuid.uuid1())
 catalog_name = os.path.join('/', 'waveforms', wave_name, wave_name + '.sad.xml')
+waveform_file_path = os.path.abspath(os.path.join(sca_dom_path, catalog_name[1:]))
+waveform_dir_path = os.path.dirname(waveform_file_path)
 
 success = True
 app = None
@@ -27,9 +29,6 @@ try:
     sb.launch(component_name)
     waveform_file = sb.generateSADXML(wave_name)
     sb.release()
-
-    waveform_file_path = os.path.abspath(os.path.join(sca_dom_path, catalog_name[1:]))
-    waveform_dir_path = os.path.dirname(waveform_file_path)
 
     print("Creating waveform path: %s" % waveform_dir_path)
     os.makedirs(waveform_dir_path)
