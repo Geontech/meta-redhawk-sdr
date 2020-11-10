@@ -37,6 +37,7 @@ SRC_URI[omniORB.sha256sum] = "26412ac08ab495ce5a6a8e40961fa20b7c43f623c6c26b616d
 SRC_URI = "\
     ${SRC_URI_BASE} \
     file://omniORB.cfg \
+    file://0000-pyPrefixIsPrefix.patch \
     file://0001-beforeauto-cross.patch \
     file://0002-python-shebang.patch \
     file://0003-embedded-appl.patch \
