@@ -34,10 +34,8 @@ PROVIDES += "${PN}-python"
 SRC_URI_BASE = "http://downloads.sourceforge.net/omniorb/omniORB-${PV}.tar.bz2;name=omniORB"
 SRC_URI[omniORB.md5sum]    = "10a30bae5e1fb4563b47891c6cdf2b5c"
 SRC_URI[omniORB.sha256sum] = "26412ac08ab495ce5a6a8e40961fa20b7c43f623c6c26b616d210ca32f078bca"
-SRC_URI = "${SRC_URI_BASE}"
-SRC_URI_class-native = "${SRC_URI_BASE}"
-
-SRC_URI_append = "\
+SRC_URI = "\
+    ${SRC_URI_BASE} \
     file://omniORB.cfg \
     file://0001-beforeauto-cross.patch \
     file://0002-python-shebang.patch \
