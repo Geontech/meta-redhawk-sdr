@@ -11,6 +11,7 @@ DEPENDS += "omniorbpy-native python-setuptools-native"
 # in the packager to avoid "multiple providers" errors, especially in
 # python packages.
 PACKAGE_BEFORE_PN += "${PN}-python"
+RDEPENDS_${PN}-python_append = " python"
 PROVIDES += "${PN}-python"
 DIRFILES = "1"
 
