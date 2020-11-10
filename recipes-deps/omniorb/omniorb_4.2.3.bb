@@ -28,7 +28,7 @@ DEPENDS += "omniorb-native python"
 DEPENDS_class-native += "python-native"
 
 RDEPENDS_${PN}-python += "python"
-PACKAGES += "${PN}-python"
+PACKAGE_BEFORE_PN += "${PN}-python"
 PROVIDES += "${PN}-python"
 
 SRC_URI_BASE = "http://downloads.sourceforge.net/omniorb/omniORB-${PV}.tar.bz2;name=omniORB"
