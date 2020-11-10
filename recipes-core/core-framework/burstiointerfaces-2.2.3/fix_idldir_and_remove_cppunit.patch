@@ -3,7 +3,7 @@ Index: burstioInterfaces/configure.ac
 --- burstioInterfaces.orig/configure.ac
 +++ burstioInterfaces/configure.ac
 @@ -45,6 +45,10 @@ PKG_CHECK_MODULES([OMNIORB], [omniORB4 >
- PKG_CHECK_MODULES(OSSIE, ossie >= 2.2.2,,exit)
+ PKG_CHECK_MODULES(OSSIE, ossie >= 2.2.3,,exit)
  RH_PKG_IDLDIR([OSSIE], [ossie])
  
 +# Adjust the variables from RH_PKG_IDLDIR for the staging area
