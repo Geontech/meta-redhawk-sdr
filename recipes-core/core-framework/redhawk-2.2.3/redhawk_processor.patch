@@ -220,3 +220,16 @@ Index: src/control/sdr/dommgr/main.cpp
      RH_NL_DEBUG(logname, "Version " << un.release);
      RH_NL_DEBUG(logname, "OS " << un.sysname);
      struct rlimit limit;
+Index: src/base/framework/python/ossie/utils/sandbox/launcher.py
+===================================================================
+--- src.orig/base/framework/python/ossie/utils/sandbox/launcher.py
++++ src/base/framework/python/ossie/utils/sandbox/launcher.py
+@@ -115,7 +115,7 @@ class LocalProcess(object):
+ 
+ class VirtualDevice(object):
+     def __init__(self):
+-        self._processor = platform.machine()
++        self._processor = 'BB_REDHAWK_PROCESSOR' # platform.machine()
+         if self._processor == 'i686':
+             # Map from Linux standard machine name to REDHAWK
+             self._processor = 'x86'
