@@ -38,12 +38,11 @@ S = "${WORKDIR}"
 inherit redhawk-sysroot update-rc.d
 
 # For Init.d
-RH_DOMAIN_NAME = "REDHAWK_DEV"
-INITSCRIPT_NAME = "domain-${RH_DOMAIN_NAME}"
+INITSCRIPT_NAME = "domain-${REDHAWK_DOMAIN}"
 INITSCRIPT_PARAMS = "start 90 2 3 4 5 . stop 01 0 1 6 ."
 
 FILES_${PN} = " \
-    ${sysconfdir}/init.d/domain-${RH_DOMAIN_NAME} \
+    ${sysconfdir}/init.d/domain-${REDHAWK_DOMAIN} \
     "
 
 do_install () {
@@ -52,5 +51,5 @@ do_install () {
     install -m 0755 ${WORKDIR}/domain-init.d    ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
     sed -i "s|SDRROOT_PATH|${SDRROOT}|g"        ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
     sed -i "s|OSSIEHOME_PATH|${OSSIEHOME}|g"    ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
-    sed -i "s|DOMAIN_NAME|${RH_DOMAIN_NAME}|g"  ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
+    sed -i "s|DOMAIN_NAME|${REDHAWK_DOMAIN}|g"  ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
 }

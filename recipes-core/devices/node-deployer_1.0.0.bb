@@ -64,7 +64,7 @@ do_install () {
     sed -i "s|NODE_NAME|${RH_NODE_NAME}|g"      ${WORKDIR}/node-init.d
     sed -i "s|SDRROOT_PATH|${SDRROOT}|g"        ${WORKDIR}/node-init.d
     sed -i "s|OSSIEHOME_PATH|${OSSIEHOME}|g"    ${WORKDIR}/node-init.d
-    sed -i "s|DOMAIN_NAME|REDHAWK_DEV|g"        ${WORKDIR}/node-init.d
+    sed -i "s|DOMAIN_NAME|${REDHAWK_DOMAIN}|g"  ${WORKDIR}/node-init.d
     
     # Copy it to the destination init.d folder, renamed
     install -d ${D}${sysconfdir}/init.d
