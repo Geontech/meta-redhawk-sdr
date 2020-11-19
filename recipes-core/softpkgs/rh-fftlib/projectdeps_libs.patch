@@ -1,0 +1,15 @@
+Index: cpp/Makefile.am
+===================================================================
+--- cpp.orig/Makefile.am
++++ cpp/Makefile.am
+@@ -36,8 +36,8 @@ distclean-local:
+ # you wish to manually control these options.
+ include $(srcdir)/Makefile.am.ide
+ libfftlib_la_SOURCES = $(redhawk_SOURCES_auto)
+-libfftlib_la_LIBADD = $(SOFTPKG_LIBS) $(REDHAWK_LIBS)
+-libfftlib_la_CPPFLAGS = -I $(srcdir)/include $(SOFTPKG_CFLAGS) $(REDHAWK_CFLAGS) $(BOOST_CPPFLAGS)
++libfftlib_la_LIBADD = $(SOFTPKG_LIBS) $(REDHAWK_LIBS) $(PROJECTDEPS_LIBS)
++libfftlib_la_CPPFLAGS = -I $(srcdir)/include $(SOFTPKG_CFLAGS) $(REDHAWK_CFLAGS) $(BOOST_CPPFLAGS) $(PROJECTDEPS_CFLAGS)
+ libfftlib_la_CXXFLAGS = -Wall
+ 
+ redhawk_HEADERS_auto ?= $(filter include/%,$(redhawk_SOURCES_auto))
