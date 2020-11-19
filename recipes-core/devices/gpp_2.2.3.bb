@@ -71,5 +71,6 @@ do_install_append() {
         --nodename=${RH_GPP_NODE_NAME} \
         --gppname=${RH_GPP_NAME} \
         --processorname=${PACKAGE_ARCH} \
+        --domainname=${REDHAWK_DOMAIN} \
         --addosprops
 }
