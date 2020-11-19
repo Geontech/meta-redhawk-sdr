@@ -41,7 +41,7 @@ def patch_source(spd_path, processor_name, replace=False):
     '''
     Attempts to find an x86_64 implementation duplicate that source tree
     as the processor_name, then insert the new implementation and then
-    writes out the updated SPD XML.
+    writes out the updated SPD XML.  Other implementations will be removed.
 
     In the case of ComponentHost, the entrypoint executable name will
     change rather than the directory.
@@ -117,6 +117,11 @@ def patch_source(spd_path, processor_name, replace=False):
             dep.get_softpkgref().set_implref(implref)
         else:
             implref.set_refid(new_impl_id)
+
+    # Drop all other implementations so that REDHAWK doesn't throw errors
+    # for missing entrypoints when it tries to evaluate the installed SPD
+    # at runtime
+    project_spd.set_implementation([new_impl])
 
     _log.info('Finished Implementation: %s' % new_impl_id)
 
