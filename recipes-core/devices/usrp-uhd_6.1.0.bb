@@ -75,5 +75,6 @@ do_install_append () {
         --usrptype="${RH_USRP_UHD_TYPE}" \
         --usrpip="${RH_USRP_UHD_IP}" \
         --usrpname="${RH_USRP_UHD_IP}" \
-        --usrpserial="${RH_USRP_UHD_SERIAL}"
+        --usrpserial="${RH_USRP_UHD_SERIAL}" \
+        --domainname="${REDHAWK_DOMAIN}"
 }
