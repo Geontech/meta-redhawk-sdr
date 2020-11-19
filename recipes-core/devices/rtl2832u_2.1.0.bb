@@ -74,5 +74,6 @@ do_install_append () {
         --rtlvendor="${RH_RTL2832U_VENDOR}" \
         --rtlproduct="${RH_RTL2832U_PRODUCT}" \
         --rtlserial="${RH_RTL2832U_SERIAL}" \
-        --rtlindex="${RH_RTL2832U_INDEX}"
+        --rtlindex="${RH_RTL2832U_INDEX}" \
+        --domainname="${REDHAWK_DOMAIN}"
 }
