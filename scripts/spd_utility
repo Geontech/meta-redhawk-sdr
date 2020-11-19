@@ -50,16 +50,16 @@ def patch_source(spd_path, processor_name, replace=False):
     project_spd = spd.parse(spd_path)
     is_componenthost = project_spd.get_name().endswith('ComponentHost')
 
+    new_impl = get_impl(project_spd, processor_name)
+    if new_impl:
+        _log.info("Implementation %s already exists" % (processor_name))
+        sys.exit(EXIT_NEW_IMPL_ALREADY_EXISTS)
+
     x86_impl = get_impl(project_spd, 'x86_64')
     if not x86_impl:
         _log.error("No x86_64 implementation exists.  Something is wrong.")
         sys.exit(EXIT_NO_X86_IMPL_EXISTS)
 
-    new_impl = get_impl(project_spd, processor_name)
-    if new_impl:
-        _log.info("Implementation %s already exists" % (processor_name))
-        sys.exit(EXIT_NEW_IMPL_ALREADY_EXISTS)
-    
     # Duplicate or replace
     if replace:
         new_impl = x86_impl
