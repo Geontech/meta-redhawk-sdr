@@ -28,16 +28,26 @@ RDEPENDS_${PN} = "omniorb"
 
 SRC_URI = "\
     file://omniNames \
+    file://omniNames.service \
 "
 
 S = "${WORKDIR}"
 
 inherit update-rc.d
-
+INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "omniNames"
 INITSCRIPT_PARAMS = "defaults 10"
 
+inherit systemd
+SYSTEMD_PACKAGES = "${PN}"
+SYSTEMD_SERVICE_${PN} = "omniNames.service"
+SYSTEMD_AUTO_ENABLE = "enable"
+
 do_install () {
-    install -d ${D}/etc/init.d
-    install -m 0755 ${WORKDIR}/omniNames ${D}/etc/init.d/omniNames
+    if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
+        install -Dm 0755 ${WORKDIR}/omniNames ${D}${sysconfdir}/init.d/omniNames
+    fi
+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+        install -Dm 0644 ${WORKDIR}/omniNames.service ${D}${systemd_system_unitdir}/omniNames.service
+    fi
 }
