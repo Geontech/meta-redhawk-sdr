@@ -31,15 +31,19 @@ try:
     waveform_file = sb.generateSADXML(wave_name)
     sb.release()
 
+    dom = redhawk.attach()
+    if not dom:
+        print("Failed to attach to a Domain")
+        sys.exit(1)
+    print("Attached to REDHAWK Domain: %s" % dom.name)
+
     print("Creating waveform path: %s" % waveform_dir_path)
     os.makedirs(waveform_dir_path)
     with open(waveform_file_path, 'w') as f:
         print("Installing waveform to %s..." % waveform_file_path)
         f.write(waveform_file)
     print("Finished installing waveform.")
-    
-    print("Attaching to REDHAWK Domain")
-    dom = redhawk.attach()
+
     has_executables = False
     for d in dom.devices:
         if type(d).__name__ == 'ExecutableDevice':
