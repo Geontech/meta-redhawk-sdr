@@ -63,6 +63,7 @@ SRC_URI_append = "\
     file://componenthost_redhawk_processor.patch \
     file://ThreadedComponent.patch \
     file://signalling.patch \
+    file://dlopen_reverse_order.patch \
 "
 
 S = "${WORKDIR}/git/redhawk/src"
