@@ -53,6 +53,8 @@ try:
     for attempt in range(10):
         try:
             app = dom.createApplication(catalog_name)
+            if app:
+                break
         except Exception as e:
             print(e)
             print "Unable to create application (attempt %d).  Sleeping 5 seconds..." % (attempt+1)
