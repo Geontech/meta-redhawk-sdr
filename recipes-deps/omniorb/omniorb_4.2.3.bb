@@ -60,7 +60,14 @@ DIRFILES = "1"
 
 TARGET_CC_ARCH += "${LDFLAGS}"
 
-inherit autotools pkgconfig pythonnative
+inherit autotools pkgconfig pythonnative useradd
+
+OMNIORB_HOMEDIR = "${localstatedir}/lib/omniNames"
+USERADD_PACKAGES = "${PN}"
+USERADD_PARAM_${PN} = "-M -g omniorb -d ${OMNIORB_HOMEDIR} -s /bin/bash -c 'omniORB servers' omniorb"
+GROUPADD_PARAM_${PN} = "omniorb"
+
+FILES_${PN} += "${OMNIORB_HOMEDIR}"
 
 CONFFILES_${PN} += "/etc/omniORB.cfg"
 
@@ -78,6 +85,8 @@ do_install () {
     autotools_do_install
     install -d ${D}${sysconfdir}
     install -m 0644 ${WORKDIR}/omniORB.cfg ${D}${sysconfdir}/omniORB.cfg
+    install -d -m 755 ${D}${OMNIORB_HOMEDIR}
+    chown -R omniorb:omniorb ${D}${OMNIORB_HOMEDIR}
 }
 
 BBCLASSEXTEND = "native"

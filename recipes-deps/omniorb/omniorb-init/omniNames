@@ -25,7 +25,7 @@ PIDFILE=/var/run/$NAME.pid
 test -f $DAEMON || exit 0
 
 do_start() {
-        start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --exec $DAEMON -- -errlog $LOGFILE -logdir $LOGDIR -start 
+        start-stop-daemon --start --user omniorb --background --pidfile $PIDFILE --make-pidfile --exec $DAEMON -- -errlog $LOGFILE -logdir $LOGDIR -start 
 }
 
 do_stop() {
