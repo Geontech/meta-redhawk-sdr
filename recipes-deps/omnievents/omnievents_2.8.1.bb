@@ -34,6 +34,7 @@ PACKAGE_BEFORE_PN = "${PN_OMNIEVENTS_INIT}"
 RDEPENDS_${PN_OMNIEVENTS_INIT} = "omnievents omniorb-init bash"
 FILES_${PN_OMNIEVENTS_INIT} = "\
     ${sysconfdir}/init.d/* \
+    ${systemd_system_unitdir}/* \
     "
 
 PR = "r1"
@@ -63,6 +64,11 @@ INITSCRIPT_PACKAGES = "${PN_OMNIEVENTS_INIT}"
 INITSCRIPT_NAME_${PN_OMNIEVENTS_INIT} = "omniEvents"
 INITSCRIPT_PARAMS_${PN_OMNIEVENTS_INIT} = "defaults 11"
 
+inherit systemd
+SYSTEMD_PACKAGES = "${PN_OMNIEVENTS_INIT}"
+SYSTEMD_SERVICE_${PN_OMNIEVENTS_INIT} = "omniEvents.service"
+SYSTEMD_AUTO_ENABLE = "enable"
+
 do_configure_append () {
     # omniEvents isn't quite as auto-tooled as omniNames so its build
     # in OE is a bit more involved; we have to manually copy sources, make files, etc.
@@ -82,5 +88,8 @@ do_install () {
 
     if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
         install -Dm 0755 ${WORKDIR}/omniEvents ${D}${sysconfdir}/init.d/omniEvents
+    fi
+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+        install -Dm 0644 ${S}/omniEvents.service ${D}${systemd_system_unitdir}/omniEvents.service
     fi
 }
