@@ -29,11 +29,20 @@ DEPENDS += "omniorb omniorb-native boost"
 DEPENDS_class-native += "omniorb-native boost-native"
 RDEPENDS_${PN} = "omniorb boost"
 
+PN_OMNIEVENTS_INIT = "${PN}-init"
+PACKAGE_BEFORE_PN = "${PN_OMNIEVENTS_INIT}"
+RDEPENDS_${PN_OMNIEVENTS_INIT} = "omnievents omniorb-init bash"
+FILES_${PN_OMNIEVENTS_INIT} = "\
+    ${sysconfdir}/init.d/* \
+    "
+
 PR = "r1"
 
-SRC_URI = "git://github.com/redhawksdr/omniEvents.git;branch=develop;tag=2.8.1;protocol=git \
+SRC_URI = "\
+    git://github.com/redhawksdr/omniEvents.git;branch=develop;tag=2.8.1;protocol=git \
     file://config.mk.patch \
     file://daemon_unixcc.patch \
+    file://omniEvents \
 "
 
 S = "${WORKDIR}/git"
@@ -47,6 +56,12 @@ EXTRA_OECONF="\
     
 # Over-write default multi-threaded build temporarily.
 PARALLEL_MAKE = ""
+
+# omniNames is 10, omniEvents will be 11.
+inherit update-rc.d
+INITSCRIPT_PACKAGES = "${PN_OMNIEVENTS_INIT}"
+INITSCRIPT_NAME_${PN_OMNIEVENTS_INIT} = "omniEvents"
+INITSCRIPT_PARAMS_${PN_OMNIEVENTS_INIT} = "defaults 11"
 
 do_configure_append () {
     # omniEvents isn't quite as auto-tooled as omniNames so its build
@@ -64,4 +79,8 @@ do_compile () {
 do_install () {
     # Set a variable that the Makefiles obey for install.
     autotools_do_install
+
+    if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
+        install -Dm 0755 ${WORKDIR}/omniEvents ${D}${sysconfdir}/init.d/omniEvents
+    fi
 }
