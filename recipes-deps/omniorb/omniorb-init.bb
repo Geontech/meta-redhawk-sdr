@@ -24,6 +24,7 @@ PRIORITY = "optional"
 LICENSE = "CLOSED"
 
 DEPENDS += "omniorb"
+RDEPENDS_${PN} = "omniorb"
 
 SRC_URI = "\
     file://omniNames \
