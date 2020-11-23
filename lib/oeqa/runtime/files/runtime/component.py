@@ -25,17 +25,29 @@ waveform_dir_path = os.path.dirname(waveform_file_path)
 
 success = True
 app = None
+domain = None
 try:
     print("Creating waveform %s with %s in it" % (wave_name, component_name))
     sb.launch(component_name)
     waveform_file = sb.generateSADXML(wave_name)
     sb.release()
 
-    dom = redhawk.attach()
-    if not dom:
+    domain = redhawk.kickDomain('TEST_DOMAIN_{0}'.format(uuid.uuid4()))
+    if not domain:
         print("Failed to attach to a Domain")
         sys.exit(1)
-    print("Attached to REDHAWK Domain: %s" % dom.name)
+
+    has_executables = False
+    for attempt in range(10):
+        for d in domain.devices:
+            if type(d).__name__ == 'ExecutableDevice' and d.usageState != CF.Device.BUSY:
+                has_executables = True
+                break
+        print("Searching for Idle ExecutableDevices, attempt %s" % (attempt+1))
+        time.sleep(5)
+    if not has_executables:
+        domain.terminate()
+        raise Exception("Domain has no idle executable devices")
 
     print("Creating waveform path: %s" % waveform_dir_path)
     os.makedirs(waveform_dir_path)
@@ -44,19 +56,11 @@ try:
         f.write(waveform_file)
     print("Finished installing waveform.")
 
-    has_executables = False
-    for d in dom.devices:
-        if type(d).__name__ == 'ExecutableDevice':
-            has_executables = True
-            break
-    if not has_executables:
-        raise Exception("Domain has no executable devices")
-
     print("Preparing to create application from waveform.")
     app = None
     for attempt in range(10):
         try:
-            app = dom.createApplication(catalog_name)
+            app = domain.createApplication(catalog_name)
             if app:
                 break
         except Exception as e:
@@ -81,6 +85,7 @@ except Exception as e:
 finally:
     if app:
         app.releaseObject()
+    domain.terminate()
 
     if os.path.exists(waveform_dir_path) and os.path.isdir(waveform_dir_path):
         print("Uninstalling application.")

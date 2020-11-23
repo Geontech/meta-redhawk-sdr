@@ -160,140 +160,120 @@ class Runtime(RHRuntimeTestCase):
         self.run_script('basic_import.py')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-agc'])
     def test_component_agc(self):
         self.run_component('rh.agc')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-amfmpmbasebanddemod'])
     def test_component_amfmpmbasebanddemod(self):
         self.run_component('rh.AmFmPmBasebandDemod')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-arbitraryrateresampler'])
     def test_component_arbitraryrateresampler(self):
         self.run_component('rh.ArbitraryRateResampler')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-autocorrelate'])
     def test_component_autocorrelate(self):
         self.run_component('rh.autocorrelate')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-dataconverter'])
     def test_component_dataconverter(self):
         self.run_component('rh.DataConverter')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-fastfilter'])
     def test_component_fastfilter(self):
         self.run_component('rh.fastfilter')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-filereader'])
     def test_component_filereader(self):
         self.run_component('rh.FileReader')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-filewriter'])
     def test_component_filewriter(self):
         self.run_component('rh.FileWriter')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-hardlimit'])
     def test_component_hardlimit(self):
         self.run_component('rh.HardLimit')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-psd'])
     def test_component_psd(self):
         self.run_component('rh.psd')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-psk-soft'])
     def test_component_psk_soft(self):
         self.run_component('rh.psk_soft')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-rbdsdecoder'])
     def test_component_rbdsdecoder(self):
         self.run_component('rh.RBDSDecoder')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-siggen'])
     def test_component_siggen(self):
         self.run_component('rh.SigGen')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-sinksdds'])
     def test_component_sinksdds(self):
         self.run_component('rh.SinkSDDS')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-sinksocket'])
     def test_component_sinksocket(self):
         self.run_component('rh.sinksocket')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-sinkvita49'])
     def test_component_sinkvita49(self):
         self.run_component('rh.SinkVITA49')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-sourcesdds'])
     def test_component_sourcesdds(self):
         self.run_component('rh.SourceSDDS')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-sourcesocket'])
     def test_component_sourcesocket(self):
         self.run_component('rh.sourcesocket')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-sourcevita49'])
     def test_component_sourcevita49(self):
         self.run_component('rh.SourceVITA49')
 
     @OETestDepends(['redhawk.Runtime.test_basic_import'])
-    @OETestDepends(['redhawk.Runtime.test_domain_init'])
     @OEHasPackage(['gpp'])
     @OEHasPackage(['rh-tunefilterdecimate'])
     def test_component_tunefilterdecimate(self):
