@@ -22,13 +22,12 @@ require recipes-core/core-framework/core-framework-2.2.3.inc
 DESCRIPTION = "REDHAWK Core Framework GPP"
 
 DEPENDS = "bulkiointerfaces redhawk-native"
-RDEPENDS_${PN} = "bulkiointerfaces"
+RDEPENDS_${PN} = "bulkiointerfaces procps"
 
 PR = "1"
 
 SRC_URI_append = "\
     file://amflags_no_test_or_config.patch \
-    file://GPP_ps_e.patch \
     file://patch_prf \
 "
 
