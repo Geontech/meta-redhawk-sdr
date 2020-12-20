@@ -23,7 +23,7 @@ do_unpack[postfuncs] += "ac_meta_files"
 aclocal_amflags () {
     sed -i 's/ACLOCAL_AMFLAGS = .\+$/ACLOCAL_AMFLAGS = -I m4/g' ${S}/Makefile.am
 }
-do_patch[postfuncs] += "aclocal_amflags"
+do_configure[prefuncs] += "aclocal_amflags"
 
 # Include the ossie autoconf macros
 EXTRA_AUTORECONF += "-I ${OSSIEHOME_STAGED}/share/aclocal/ossie"

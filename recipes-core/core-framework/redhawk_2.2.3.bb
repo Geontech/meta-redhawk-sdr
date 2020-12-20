@@ -114,11 +114,13 @@ FILES_${PN}-python += " \
     "
 
 
-# Patch for lack of support in specifying an alternative to armv7l and various x86 options.
+# Patch for lack of support in specifying an alternative to the x86 options.
+# This depends on a patch inserting BB_REDHAWK_PROCESSOR anywhere that this
+# static value needs to be clobbered into place.
 do_redhawk_processor_patch () {
     find ${S} -type f -exec sed -i "s/BB_REDHAWK_PROCESSOR/${PACKAGE_ARCH}/g" {} \;
 }
-do_patch[postfuncs] += "do_redhawk_processor_patch"
+do_compile[prefuncs] += "do_redhawk_processor_patch"
 
 do_install_append () {
     # Rename ComponentHost to match the entrypoint created by the

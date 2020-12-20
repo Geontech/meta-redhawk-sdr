@@ -31,7 +31,7 @@ do_autotools_patch () {
     # Patch the relationship to any softpkg dependencies
     sed -i -r "s/(^RH_SOFTPKG_CXX.+?\[cpp)(\])(.+$)/\1-${PACKAGE_ARCH}\2\3/g" ${S}/configure.ac
 }
-do_patch[postfuncs] += "do_autotools_patch"
+do_configure[prefuncs] += "do_autotools_patch"
 
 do_configure_prepend () {
     export BUILD_SYS=${BUILD_SYS}
