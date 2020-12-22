@@ -66,6 +66,7 @@ SRC_URI_append = "\
     file://dlopen_reverse_order.patch \
     file://bare-python2-references.patch \
     file://filesystem_impl-const-value.patch \
+    file://prop_helpers-bad-conversion.patch \
 "
 
 S = "${WORKDIR}/git/redhawk/src"
