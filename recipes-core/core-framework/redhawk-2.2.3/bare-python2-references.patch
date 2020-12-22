@@ -1,0 +1,3337 @@
+Index: src/base/framework/nodeCleanup.py
+===================================================================
+--- src.orig/base/framework/nodeCleanup.py
++++ src/base/framework/nodeCleanup.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/Makefile.am
+===================================================================
+--- src.orig/base/framework/python/Makefile.am
++++ src/base/framework/python/Makefile.am
+@@ -30,10 +30,10 @@ ossie__v_pysetup_0 = --quiet
+ ossie__v_pysetup__0 = $(ossie__v_pysetup_0)
+ 
+ all-local:
+-	python setup.py $(OSSIE_V_pysetup) build
++	$(PYTHON) setup.py $(OSSIE_V_pysetup) build
+ 
+ clean-local:
+-	python setup.py clean
++	$(PYTHON) setup.py clean
+ 	rm -rf build
+ 
+ ossie/cf/%_idl.py : $(top_srcdir)/idl/ossie/CF/%.idl
+Index: src/base/framework/python/ossie/apps/cleanes
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/cleanes
++++ src/base/framework/python/ossie/apps/cleanes
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/apps/cleanns
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/cleanns
++++ src/base/framework/python/ossie/apps/cleanns
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/apps/cleanomni
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/cleanomni
++++ src/base/framework/python/ossie/apps/cleanomni
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/apps/eventviewer
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/eventviewer
++++ src/base/framework/python/ossie/apps/eventviewer
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/apps/py2prf
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/py2prf
++++ src/base/framework/python/ossie/apps/py2prf
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/apps/qtbrowse/qtbrowse
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/qtbrowse/qtbrowse
++++ src/base/framework/python/ossie/apps/qtbrowse/qtbrowse
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/apps/rh_net_diag
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/rh_net_diag
++++ src/base/framework/python/ossie/apps/rh_net_diag
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/apps/rhlauncher/rhlauncher
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/rhlauncher/rhlauncher
++++ src/base/framework/python/ossie/apps/rhlauncher/rhlauncher
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ 
+ from ossie.apps.rhlauncher.main import main
+ main()
+Index: src/base/framework/python/ossie/apps/scaclt
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/scaclt
++++ src/base/framework/python/ossie/apps/scaclt
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/apps/sdrlint
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/sdrlint
++++ src/base/framework/python/ossie/apps/sdrlint
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/ossie/utils/tools/prf2py.py
+===================================================================
+--- src.orig/base/framework/python/ossie/utils/tools/prf2py.py
++++ src/base/framework/python/ossie/utils/tools/prf2py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/control/framework/nodeCleanup.py
+===================================================================
+--- src.orig/control/framework/nodeCleanup.py
++++ src/control/framework/nodeCleanup.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/omnijni/src/cpp/CORBA/Makefile.am
+===================================================================
+--- src.orig/omnijni/src/cpp/CORBA/Makefile.am
++++ src/omnijni/src/cpp/CORBA/Makefile.am
+@@ -29,7 +29,7 @@ jni_%.cpp jni_%.h : %.idl holders.h
+ # Holders for Java primitives types are generated by a custom tool that uses
+ # the IDL code generator.
+ %.cpp %.h : generate-%.py
+-	$(AM_V_GEN)env PYTHONPATH=$(OMNIJNI_PYTHONDIR) python $<
++	$(AM_V_GEN)env PYTHONPATH=$(OMNIJNI_PYTHONDIR) $(PYTHON) $<
+ 
+ libcorbajni_la_CPPFLAGS = $(OMNIORB_CFLAGS) $(OMNIJNI_CPPFLAGS)
+ nodist_libcorbajni_la_SOURCES = jni_corba.cpp jni_corba.h \
+Index: src/testing/Makefile.am
+===================================================================
+--- src.orig/testing/Makefile.am
++++ src/testing/Makefile.am
+@@ -140,10 +140,10 @@ SUBDIRS += java
+ endif
+ 
+ all-local:
+-	python setup.py $(OSSIE_V_pysetup) build
++	$(PYTHON) setup.py $(OSSIE_V_pysetup) build
+ 
+ clean-local:
+-	python setup.py clean
++	$(PYTHON) setup.py clean
+ 	rm -rf build
+ 	-@rm cpp/libossie*.xml 
+ 	-@rm java/libossie*.xml
+@@ -154,7 +154,7 @@ EXTRA_DIST = setup.py
+ PYTHON_INSTALL_FILES=".pythonInstallFiles"
+ 
+ install-exec-hook:
+-	python setup.py install -f --$(PYTHON_INSTALL_SCHEME)=$(DESTDIR)$(prefix) --record $(PYTHON_INSTALL_FILES)
++	$(PYTHON) setup.py install -f --$(PYTHON_INSTALL_SCHEME)=$(DESTDIR)$(prefix) --record $(PYTHON_INSTALL_FILES)
+ 
+ uninstall:
+ 	rm `cat $(PYTHON_INSTALL_FILES)`
+Index: src/base/framework/python/ossie/apps/qtbrowse/setup.py
+===================================================================
+--- src.orig/base/framework/python/ossie/apps/qtbrowse/setup.py
++++ src/base/framework/python/ossie/apps/qtbrowse/setup.py
+@@ -1,4 +1,3 @@
+-#!/usr/bin/env python
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/tools/redhawk-softpkg
+===================================================================
+--- src.orig/tools/redhawk-softpkg
++++ src/tools/redhawk-softpkg
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/base/framework/python/setup.py
+===================================================================
+--- src.orig/base/framework/python/setup.py
++++ src/base/framework/python/setup.py
+@@ -1,4 +1,3 @@
+-#! /usr/bin/env python
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/setup.py
+===================================================================
+--- src.orig/testing/setup.py
++++ src/testing/setup.py
+@@ -1,4 +1,3 @@
+-#! /usr/bin/env python
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/base/framework/LoadableDevice_impl.cpp
+===================================================================
+--- src.orig/base/framework/LoadableDevice_impl.cpp
++++ src/base/framework/LoadableDevice_impl.cpp
+@@ -478,7 +478,7 @@ throw (CORBA::SystemException, CF::Devic
+                         fileOrDirectoryName.erase(iext);
+                     }
+                 }
+-                std::string command = "python -c \"import ";
++                std::string command = "python2 -c \"import ";
+                 command += fileOrDirectoryName;
+                 command += std::string("\" 2>&1"); // redirect stdout and stderr to /dev/null
+                 FILE *fileCheck = popen(command.c_str(), "r");
+@@ -527,7 +527,7 @@ throw (CORBA::SystemException, CF::Devic
+                 if (chdir(relativePath.c_str())) {
+                         // this is an invalid path
+                 } else {
+-                    std::string command = "python -c \"import ";
++                    std::string command = "python2 -c \"import ";
+                     command += fileOrDirectoryName;
+                     command += std::string("\" 2>&1"); // redirect stdout and stderr to /dev/null
+                     FILE *fileCheck = popen(command.c_str(), "r");
+Index: src/control/sdr/devmgr/DeviceManager_DeployerSupport.cpp
+===================================================================
+--- src.orig/control/sdr/devmgr/DeviceManager_DeployerSupport.cpp
++++ src/control/sdr/devmgr/DeviceManager_DeployerSupport.cpp
+@@ -935,7 +935,7 @@ void DeviceManager_impl::do_load ( CF::F
+                         fileOrDirectoryName.erase(iext);
+                     }
+                 }
+-                std::string command = "python -c \"import ";
++                std::string command = "python2 -c \"import ";
+                 command += fileOrDirectoryName;
+                 command += std::string("\" 2>&1"); // redirect stdout and stderr to /dev/null
+                 RH_DEBUG(this->_baseLog, "do_load check python module (.py) cmd= " << command << 
+@@ -965,7 +965,7 @@ void DeviceManager_impl::do_load ( CF::F
+                 if (chdir(relativePath.c_str())) {
+                     // this is an invalid path
+                 } else {
+-                    std::string command = "python -c \"import ";
++                    std::string command = "python2 -c \"import ";
+                     command += fileOrDirectoryName;
+                     command += std::string("\" 2>&1"); // redirect stdout and stderr to /dev/null
+                     RH_DEBUG(this->_baseLog, "cmd= " << command << 
+Index: src/testing/python/test_bitbuffer.py
+===================================================================
+--- src.orig/testing/python/test_bitbuffer.py
++++ src/testing/python/test_bitbuffer.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperBad/CommandWrapperBad.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperBad/CommandWrapperBad.py
++++ src/testing/sdr/dom/components/CommandWrapperBad/CommandWrapperBad.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/_unitTestHelpers/buildconfig.py.in
+===================================================================
+--- src.orig/testing/_unitTestHelpers/buildconfig.py.in
++++ src/testing/_unitTestHelpers/buildconfig.py.in
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/_unitTestHelpers/scatest.py
+===================================================================
+--- src.orig/testing/_unitTestHelpers/scatest.py
++++ src/testing/_unitTestHelpers/scatest.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/app_input/py_prf_check_base.py
+===================================================================
+--- src.orig/testing/app_input/py_prf_check_base.py
++++ src/testing/app_input/py_prf_check_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/python/runtests.py
+===================================================================
+--- src.orig/testing/python/runtests.py
++++ src/testing/python/runtests.py
+@@ -1,4 +1,4 @@
+-#!/bin/env python
++#!/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/runtests.py
+===================================================================
+--- src.orig/testing/runtests.py
++++ src/testing/runtests.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/BasicTestDevice_python_impl1.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/BasicTestDevice_python_impl1.py
++++ src/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/BasicTestDevice_python_impl1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/BasicTestDevice_python_impl1Props.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/BasicTestDevice_python_impl1Props.py
++++ src/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/BasicTestDevice_python_impl1Props.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/WorkModule.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/WorkModule.py
++++ src/testing/sdr/dev/devices/AllocateBasicDevice_python/AllocateBasicDevice_python_impl1/WorkModule.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BadRelease/BadRelease.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BadRelease/BadRelease.py
++++ src/testing/sdr/dev/devices/BadRelease/BadRelease.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BadRelease/BadReleaseProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BadRelease/BadReleaseProps.py
++++ src/testing/sdr/dev/devices/BadRelease/BadReleaseProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BadReleaseBefore/BadReleaseBefore.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BadReleaseBefore/BadReleaseBefore.py
++++ src/testing/sdr/dev/devices/BadReleaseBefore/BadReleaseBefore.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BadReleaseBefore/BadReleaseBeforeProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BadReleaseBefore/BadReleaseBeforeProps.py
++++ src/testing/sdr/dev/devices/BadReleaseBefore/BadReleaseBeforeProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicAlwaysBusyDevice/BasicAlwaysBusyDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicAlwaysBusyDevice/BasicAlwaysBusyDevice.py
++++ src/testing/sdr/dev/devices/BasicAlwaysBusyDevice/BasicAlwaysBusyDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicAlwaysBusyDevice/BasicAlwaysBusyDeviceProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicAlwaysBusyDevice/BasicAlwaysBusyDeviceProps.py
++++ src/testing/sdr/dev/devices/BasicAlwaysBusyDevice/BasicAlwaysBusyDeviceProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicChildDevice/BasicChildDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicChildDevice/BasicChildDevice.py
++++ src/testing/sdr/dev/devices/BasicChildDevice/BasicChildDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicChildDevice/BasicChildDeviceProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicChildDevice/BasicChildDeviceProps.py
++++ src/testing/sdr/dev/devices/BasicChildDevice/BasicChildDeviceProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDevice/BasicTestDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDevice/BasicTestDevice.py
++++ src/testing/sdr/dev/devices/BasicTestDevice/BasicTestDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDevice/BasicTestDeviceProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDevice/BasicTestDeviceProps.py
++++ src/testing/sdr/dev/devices/BasicTestDevice/BasicTestDeviceProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDeviceMatchOverride/BasicTestDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDeviceMatchOverride/BasicTestDevice.py
++++ src/testing/sdr/dev/devices/BasicTestDeviceMatchOverride/BasicTestDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDeviceMatchOverride/BasicTestDeviceProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDeviceMatchOverride/BasicTestDeviceProps.py
++++ src/testing/sdr/dev/devices/BasicTestDeviceMatchOverride/BasicTestDeviceProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDeviceNoAllocDeps/BasicTestDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDeviceNoAllocDeps/BasicTestDevice.py
++++ src/testing/sdr/dev/devices/BasicTestDeviceNoAllocDeps/BasicTestDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDeviceNoAllocDeps/BasicTestDeviceProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDeviceNoAllocDeps/BasicTestDeviceProps.py
++++ src/testing/sdr/dev/devices/BasicTestDeviceNoAllocDeps/BasicTestDeviceProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDeviceWithAbsPaths/BasicTestDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDeviceWithAbsPaths/BasicTestDevice.py
++++ src/testing/sdr/dev/devices/BasicTestDeviceWithAbsPaths/BasicTestDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDeviceWithAbsPaths/BasicTestDeviceProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDeviceWithAbsPaths/BasicTestDeviceProps.py
++++ src/testing/sdr/dev/devices/BasicTestDeviceWithAbsPaths/BasicTestDeviceProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDevice_java/tests/test_BasicTestDevice_java.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDevice_java/tests/test_BasicTestDevice_java.py
++++ src/testing/sdr/dev/devices/BasicTestDevice_java/tests/test_BasicTestDevice_java.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/BasicTestDevice_python_impl1.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/BasicTestDevice_python_impl1.py
++++ src/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/BasicTestDevice_python_impl1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/BasicTestDevice_python_impl1Props.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/BasicTestDevice_python_impl1Props.py
++++ src/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/BasicTestDevice_python_impl1Props.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/WorkModule.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/WorkModule.py
++++ src/testing/sdr/dev/devices/BasicTestDevice_python/BasicTestDevice_python_impl1/WorkModule.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BasicUsesDevice/BasicUsesDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BasicUsesDevice/BasicUsesDevice.py
++++ src/testing/sdr/dev/devices/BasicUsesDevice/BasicUsesDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/BrokenExecutableDevice/BrokenExecutableDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/BrokenExecutableDevice/BrokenExecutableDevice.py
++++ src/testing/sdr/dev/devices/BrokenExecutableDevice/BrokenExecutableDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/CrashableExecutableDevice/python/CrashableExecutableDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/CrashableExecutableDevice/python/CrashableExecutableDevice.py
++++ src/testing/sdr/dev/devices/CrashableExecutableDevice/python/CrashableExecutableDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/EventPortTestDevice/EventPortTestDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/EventPortTestDevice/EventPortTestDevice.py
++++ src/testing/sdr/dev/devices/EventPortTestDevice/EventPortTestDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/EventPortTestDevice/EventPortTestDeviceProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/EventPortTestDevice/EventPortTestDeviceProps.py
++++ src/testing/sdr/dev/devices/EventPortTestDevice/EventPortTestDeviceProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/ExecutableDevicePy/ExecutableDevicePy.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/ExecutableDevicePy/ExecutableDevicePy.py
++++ src/testing/sdr/dev/devices/ExecutableDevicePy/ExecutableDevicePy.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/MatchingDevice/python/MatchingDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/MatchingDevice/python/MatchingDevice.py
++++ src/testing/sdr/dev/devices/MatchingDevice/python/MatchingDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/MatchingDevice/python/MatchingDevice_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/MatchingDevice/python/MatchingDevice_base.py
++++ src/testing/sdr/dev/devices/MatchingDevice/python/MatchingDevice_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/NicExecDevice/python/NicExecDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/NicExecDevice/python/NicExecDevice.py
++++ src/testing/sdr/dev/devices/NicExecDevice/python/NicExecDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/NicExecDevice/python/NicExecDevice_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/NicExecDevice/python/NicExecDevice_base.py
++++ src/testing/sdr/dev/devices/NicExecDevice/python/NicExecDevice_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/PortTestDevice/PortTestDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/PortTestDevice/PortTestDevice.py
++++ src/testing/sdr/dev/devices/PortTestDevice/PortTestDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/PortTestDeviceService/PortTestDeviceService.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/PortTestDeviceService/PortTestDeviceService.py
++++ src/testing/sdr/dev/devices/PortTestDeviceService/PortTestDeviceService.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/PythonExecDev/PythonExecDev_python_impl1/PythonExecDev_python_impl1.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/PythonExecDev/PythonExecDev_python_impl1/PythonExecDev_python_impl1.py
++++ src/testing/sdr/dev/devices/PythonExecDev/PythonExecDev_python_impl1/PythonExecDev_python_impl1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/PythonExecDev/PythonExecDev_python_impl1/PythonExecDev_python_impl1_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/PythonExecDev/PythonExecDev_python_impl1/PythonExecDev_python_impl1_base.py
++++ src/testing/sdr/dev/devices/PythonExecDev/PythonExecDev_python_impl1/PythonExecDev_python_impl1_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/PythonExecDevNoUpdateUsageState/PythonExecDev_python_impl1/PythonExecDev_python_impl1.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/PythonExecDevNoUpdateUsageState/PythonExecDev_python_impl1/PythonExecDev_python_impl1.py
++++ src/testing/sdr/dev/devices/PythonExecDevNoUpdateUsageState/PythonExecDev_python_impl1/PythonExecDev_python_impl1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/PythonExecDevNoUpdateUsageState/PythonExecDev_python_impl1/PythonExecDev_python_impl1_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/PythonExecDevNoUpdateUsageState/PythonExecDev_python_impl1/PythonExecDev_python_impl1_base.py
++++ src/testing/sdr/dev/devices/PythonExecDevNoUpdateUsageState/PythonExecDev_python_impl1/PythonExecDev_python_impl1_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/SADUsesDevice/python/SADUsesDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/SADUsesDevice/python/SADUsesDevice.py
++++ src/testing/sdr/dev/devices/SADUsesDevice/python/SADUsesDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/SADUsesDevice/python/SADUsesDevice_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/SADUsesDevice/python/SADUsesDevice_base.py
++++ src/testing/sdr/dev/devices/SADUsesDevice/python/SADUsesDevice_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/SelfTerminatingDevice/SelfTerminatingDevice.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/SelfTerminatingDevice/SelfTerminatingDevice.py
++++ src/testing/sdr/dev/devices/SelfTerminatingDevice/SelfTerminatingDevice.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/SelfTerminatingDevice/SelfTerminatingDeviceProps.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/SelfTerminatingDevice/SelfTerminatingDeviceProps.py
++++ src/testing/sdr/dev/devices/SelfTerminatingDevice/SelfTerminatingDeviceProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/UnusableAllocateCapacity/UnusableAllocateCapacity.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/UnusableAllocateCapacity/UnusableAllocateCapacity.py
++++ src/testing/sdr/dev/devices/UnusableAllocateCapacity/UnusableAllocateCapacity.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/alloc_test/python/alloc_test.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/alloc_test/python/alloc_test.py
++++ src/testing/sdr/dev/devices/alloc_test/python/alloc_test.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/alloc_test/python/alloc_test_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/alloc_test/python/alloc_test_base.py
++++ src/testing/sdr/dev/devices/alloc_test/python/alloc_test_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/bad_init_device/python/bad_init_device.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/bad_init_device/python/bad_init_device.py
++++ src/testing/sdr/dev/devices/bad_init_device/python/bad_init_device.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/bad_init_device/python/bad_init_device_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/bad_init_device/python/bad_init_device_base.py
++++ src/testing/sdr/dev/devices/bad_init_device/python/bad_init_device_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/bad_init_device/tests/test_bad_init_device.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/bad_init_device/tests/test_bad_init_device.py
++++ src/testing/sdr/dev/devices/bad_init_device/tests/test_bad_init_device.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/cmdline_dev/python/cmdline_dev.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/cmdline_dev/python/cmdline_dev.py
++++ src/testing/sdr/dev/devices/cmdline_dev/python/cmdline_dev.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/cmdline_dev/python/cmdline_dev_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/cmdline_dev/python/cmdline_dev_base.py
++++ src/testing/sdr/dev/devices/cmdline_dev/python/cmdline_dev_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/configure_call_property_dev/python/configure_call_property_dev.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/configure_call_property_dev/python/configure_call_property_dev.py
++++ src/testing/sdr/dev/devices/configure_call_property_dev/python/configure_call_property_dev.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dev/devices/configure_call_property_dev/python/configure_call_property_dev_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/configure_call_property_dev/python/configure_call_property_dev_base.py
++++ src/testing/sdr/dev/devices/configure_call_property_dev/python/configure_call_property_dev_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dev/devices/dev_comp_softpkg/python/dev_comp_softpkg.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/dev_comp_softpkg/python/dev_comp_softpkg.py
++++ src/testing/sdr/dev/devices/dev_comp_softpkg/python/dev_comp_softpkg.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/dev_comp_softpkg/python/dev_comp_softpkg_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/dev_comp_softpkg/python/dev_comp_softpkg_base.py
++++ src/testing/sdr/dev/devices/dev_comp_softpkg/python/dev_comp_softpkg_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/dev_props_bad_numbers/python/dev_props_bad_numbers.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/dev_props_bad_numbers/python/dev_props_bad_numbers.py
++++ src/testing/sdr/dev/devices/dev_props_bad_numbers/python/dev_props_bad_numbers.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dev/devices/dev_props_bad_numbers/python/dev_props_bad_numbers_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/dev_props_bad_numbers/python/dev_props_bad_numbers_base.py
++++ src/testing/sdr/dev/devices/dev_props_bad_numbers/python/dev_props_bad_numbers_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dev/devices/devpy/python/devpy.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/devpy/python/devpy.py
++++ src/testing/sdr/dev/devices/devpy/python/devpy.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dev/devices/devpy/python/devpy_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/devpy/python/devpy_base.py
++++ src/testing/sdr/dev/devices/devpy/python/devpy_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dev/devices/issue_111/python/issue_111.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/issue_111/python/issue_111.py
++++ src/testing/sdr/dev/devices/issue_111/python/issue_111.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/issue_111/python/issue_111_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/issue_111/python/issue_111_base.py
++++ src/testing/sdr/dev/devices/issue_111/python/issue_111_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/issue_111/tests/test_issue_111.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/issue_111/tests/test_issue_111.py
++++ src/testing/sdr/dev/devices/issue_111/tests/test_issue_111.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/issue_111_cpp/tests/test_issue_111_cpp.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/issue_111_cpp/tests/test_issue_111_cpp.py
++++ src/testing/sdr/dev/devices/issue_111_cpp/tests/test_issue_111_cpp.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/issue_111_java/tests/test_issue_111_java.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/issue_111_java/tests/test_issue_111_java.py
++++ src/testing/sdr/dev/devices/issue_111_java/tests/test_issue_111_java.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/log_test_py/python/log_test_py.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/log_test_py/python/log_test_py.py
++++ src/testing/sdr/dev/devices/log_test_py/python/log_test_py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dev/devices/log_test_py/python/log_test_py_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/log_test_py/python/log_test_py_base.py
++++ src/testing/sdr/dev/devices/log_test_py/python/log_test_py_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dev/devices/nocmdline_dev/python/nocmdline_dev.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/nocmdline_dev/python/nocmdline_dev.py
++++ src/testing/sdr/dev/devices/nocmdline_dev/python/nocmdline_dev.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/nocmdline_dev/python/nocmdline_dev_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/nocmdline_dev/python/nocmdline_dev_base.py
++++ src/testing/sdr/dev/devices/nocmdline_dev/python/nocmdline_dev_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/props_test_device/tests/test_props_test_device.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/props_test_device/tests/test_props_test_device.py
++++ src/testing/sdr/dev/devices/props_test_device/tests/test_props_test_device.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/py_dev/python/py_dev.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/py_dev/python/py_dev.py
++++ src/testing/sdr/dev/devices/py_dev/python/py_dev.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/py_dev/python/py_dev_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/py_dev/python/py_dev_base.py
++++ src/testing/sdr/dev/devices/py_dev/python/py_dev_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/py_dev_exec_params/python/py_dev_exec_params.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/py_dev_exec_params/python/py_dev_exec_params.py
++++ src/testing/sdr/dev/devices/py_dev_exec_params/python/py_dev_exec_params.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dev/devices/py_dev_exec_params/python/py_dev_exec_params_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/py_dev_exec_params/python/py_dev_exec_params_base.py
++++ src/testing/sdr/dev/devices/py_dev_exec_params/python/py_dev_exec_params_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dev/devices/python_dev/python/python_dev.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/python_dev/python/python_dev.py
++++ src/testing/sdr/dev/devices/python_dev/python/python_dev.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/python_dev/python/python_dev_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/python_dev/python/python_dev_base.py
++++ src/testing/sdr/dev/devices/python_dev/python/python_dev_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/simpleseqdev/simpleseqdev_python_impl1/simpleseqdev_python_impl1.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/simpleseqdev/simpleseqdev_python_impl1/simpleseqdev_python_impl1.py
++++ src/testing/sdr/dev/devices/simpleseqdev/simpleseqdev_python_impl1/simpleseqdev_python_impl1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/simpleseqdev/simpleseqdev_python_impl1/simpleseqdev_python_impl1_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/simpleseqdev/simpleseqdev_python_impl1/simpleseqdev_python_impl1_base.py
++++ src/testing/sdr/dev/devices/simpleseqdev/simpleseqdev_python_impl1/simpleseqdev_python_impl1_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/simpleseqdev/tests/test_simpleseqdev.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/simpleseqdev/tests/test_simpleseqdev.py
++++ src/testing/sdr/dev/devices/simpleseqdev/tests/test_simpleseqdev.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/start_event_device/python/start_event_device.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/start_event_device/python/start_event_device.py
++++ src/testing/sdr/dev/devices/start_event_device/python/start_event_device.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/start_event_device/python/start_event_device_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/start_event_device/python/start_event_device_base.py
++++ src/testing/sdr/dev/devices/start_event_device/python/start_event_device_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/svc_connect_dev/python/svc_connect_dev.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/svc_connect_dev/python/svc_connect_dev.py
++++ src/testing/sdr/dev/devices/svc_connect_dev/python/svc_connect_dev.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/svc_connect_dev/python/svc_connect_dev_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/svc_connect_dev/python/svc_connect_dev_base.py
++++ src/testing/sdr/dev/devices/svc_connect_dev/python/svc_connect_dev_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/test_collocation_device/python/test_collocation_device.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/test_collocation_device/python/test_collocation_device.py
++++ src/testing/sdr/dev/devices/test_collocation_device/python/test_collocation_device.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/test_collocation_device/python/test_collocation_device_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/test_collocation_device/python/test_collocation_device_base.py
++++ src/testing/sdr/dev/devices/test_collocation_device/python/test_collocation_device_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/ticket_1502/python/ticket_1502.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/ticket_1502/python/ticket_1502.py
++++ src/testing/sdr/dev/devices/ticket_1502/python/ticket_1502.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/ticket_1502/python/ticket_1502_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/ticket_1502/python/ticket_1502_base.py
++++ src/testing/sdr/dev/devices/ticket_1502/python/ticket_1502_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/ticket_1502/tests/test_ticket_1502.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/ticket_1502/tests/test_ticket_1502.py
++++ src/testing/sdr/dev/devices/ticket_1502/tests/test_ticket_1502.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/ticket_cf_939_dev/python/ticket_cf_939_dev.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/ticket_cf_939_dev/python/ticket_cf_939_dev.py
++++ src/testing/sdr/dev/devices/ticket_cf_939_dev/python/ticket_cf_939_dev.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/ticket_cf_939_dev/python/ticket_cf_939_dev_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/ticket_cf_939_dev/python/ticket_cf_939_dev_base.py
++++ src/testing/sdr/dev/devices/ticket_cf_939_dev/python/ticket_cf_939_dev_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/devices/writeonly_py/python/writeonly_py.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/writeonly_py/python/writeonly_py.py
++++ src/testing/sdr/dev/devices/writeonly_py/python/writeonly_py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dev/devices/writeonly_py/python/writeonly_py_base.py
+===================================================================
+--- src.orig/testing/sdr/dev/devices/writeonly_py/python/writeonly_py_base.py
++++ src/testing/sdr/dev/devices/writeonly_py/python/writeonly_py_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dev/services/BasicService/BasicService.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/BasicService/BasicService.py
++++ src/testing/sdr/dev/services/BasicService/BasicService.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/services/S1/python/S1.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/S1/python/S1.py
++++ src/testing/sdr/dev/services/S1/python/S1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/services/S2/python/S2.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/S2/python/S2.py
++++ src/testing/sdr/dev/services/S2/python/S2.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED
+ #
+Index: src/testing/sdr/dev/services/S2_pre/python/S2_pre.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/S2_pre/python/S2_pre.py
++++ src/testing/sdr/dev/services/S2_pre/python/S2_pre.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED
+ #
+Index: src/testing/sdr/dev/services/fake/python/fake.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/fake/python/fake.py
++++ src/testing/sdr/dev/services/fake/python/fake.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/services/prop_svc/python/prop_svc.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/prop_svc/python/prop_svc.py
++++ src/testing/sdr/dev/services/prop_svc/python/prop_svc.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/services/py_svc_exec_params/python/py_svc_exec_params.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/py_svc_exec_params/python/py_svc_exec_params.py
++++ src/testing/sdr/dev/services/py_svc_exec_params/python/py_svc_exec_params.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED
+ #
+Index: src/testing/sdr/dev/services/start_event_service/python/start_event_service.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/start_event_service/python/start_event_service.py
++++ src/testing/sdr/dev/services/start_event_service/python/start_event_service.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/services/svc_a/python/svc_a.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/svc_a/python/svc_a.py
++++ src/testing/sdr/dev/services/svc_a/python/svc_a.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dev/services/svc_b/python/svc_b.py
+===================================================================
+--- src.orig/testing/sdr/dev/services/svc_b/python/svc_b.py
++++ src/testing/sdr/dev/services/svc_b/python/svc_b.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/BasicAC/BasicAC_python_impl1/BasicAC_python_impl1.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/BasicAC/BasicAC_python_impl1/BasicAC_python_impl1.py
++++ src/testing/sdr/dom/components/BasicAC/BasicAC_python_impl1/BasicAC_python_impl1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/BasicAC/BasicAC_python_impl1/BasicAC_python_impl1_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/BasicAC/BasicAC_python_impl1/BasicAC_python_impl1_base.py
++++ src/testing/sdr/dom/components/BasicAC/BasicAC_python_impl1/BasicAC_python_impl1_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CapacityUser/CapacityUser.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CapacityUser/CapacityUser.py
++++ src/testing/sdr/dom/components/CapacityUser/CapacityUser.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapper/CommandWrapper.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapper/CommandWrapper.py
++++ src/testing/sdr/dom/components/CommandWrapper/CommandWrapper.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperEmptyDir/cmd_dir/CommandWrapper.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperEmptyDir/cmd_dir/CommandWrapper.py
++++ src/testing/sdr/dom/components/CommandWrapperEmptyDir/cmd_dir/CommandWrapper.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperLight/CommandWrapper.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperLight/CommandWrapper.py
++++ src/testing/sdr/dom/components/CommandWrapperLight/CommandWrapper.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperMultipleImplementations/CommandWrapper.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperMultipleImplementations/CommandWrapper.py
++++ src/testing/sdr/dom/components/CommandWrapperMultipleImplementations/CommandWrapper.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperNestedSPDDep/CommandWrapperNestedSPDDep.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperNestedSPDDep/CommandWrapperNestedSPDDep.py
++++ src/testing/sdr/dom/components/CommandWrapperNestedSPDDep/CommandWrapperNestedSPDDep.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperSPDDep/CommandWrapperSPDDep.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperSPDDep/CommandWrapperSPDDep.py
++++ src/testing/sdr/dom/components/CommandWrapperSPDDep/CommandWrapperSPDDep.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperSPDDep_collide/CommandWrapperSPDDep.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperSPDDep_collide/CommandWrapperSPDDep.py
++++ src/testing/sdr/dom/components/CommandWrapperSPDDep_collide/CommandWrapperSPDDep.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperStartCounter/python/CommandWrapperStartCounter.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperStartCounter/python/CommandWrapperStartCounter.py
++++ src/testing/sdr/dom/components/CommandWrapperStartCounter/python/CommandWrapperStartCounter.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperStartCounter/python/CommandWrapperStartCounter_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperStartCounter/python/CommandWrapperStartCounter_base.py
++++ src/testing/sdr/dom/components/CommandWrapperStartCounter/python/CommandWrapperStartCounter_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperSubProcess/executables/CommandWrapperSubProcess.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperSubProcess/executables/CommandWrapperSubProcess.py
++++ src/testing/sdr/dom/components/CommandWrapperSubProcess/executables/CommandWrapperSubProcess.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperWithDirectoryLoad/py_impl1/CommandWrapper.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperWithDirectoryLoad/py_impl1/CommandWrapper.py
++++ src/testing/sdr/dom/components/CommandWrapperWithDirectoryLoad/py_impl1/CommandWrapper.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/CommandWrapperWithRelativePaths/CommandWrapper.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/CommandWrapperWithRelativePaths/CommandWrapper.py
++++ src/testing/sdr/dom/components/CommandWrapperWithRelativePaths/CommandWrapper.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ECM_CPP/tests/test_ECM_CPP.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ECM_CPP/tests/test_ECM_CPP.py
++++ src/testing/sdr/dom/components/ECM_CPP/tests/test_ECM_CPP.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ECM_JAVA/tests/test_ECM_JAVA.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ECM_JAVA/tests/test_ECM_JAVA.py
++++ src/testing/sdr/dom/components/ECM_JAVA/tests/test_ECM_JAVA.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ECM_PY/python/ECM_PY.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ECM_PY/python/ECM_PY.py
++++ src/testing/sdr/dom/components/ECM_PY/python/ECM_PY.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ECM_PY/python/ECM_PY_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ECM_PY/python/ECM_PY_base.py
++++ src/testing/sdr/dom/components/ECM_PY/python/ECM_PY_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ECM_PY/tests/test_ECM_PY.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ECM_PY/tests/test_ECM_PY.py
++++ src/testing/sdr/dom/components/ECM_PY/tests/test_ECM_PY.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/EmptyString/python/EmptyString.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/EmptyString/python/EmptyString.py
++++ src/testing/sdr/dom/components/EmptyString/python/EmptyString.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/EmptyString/python/EmptyString_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/EmptyString/python/EmptyString_base.py
++++ src/testing/sdr/dom/components/EmptyString/python/EmptyString_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/EventReceive/tests/test_EventReceive.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/EventReceive/tests/test_EventReceive.py
++++ src/testing/sdr/dom/components/EventReceive/tests/test_EventReceive.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/EventSend/tests/test_EventSend.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/EventSend/tests/test_EventSend.py
++++ src/testing/sdr/dom/components/EventSend/tests/test_EventSend.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/FailStartup/python/FailStartup.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/FailStartup/python/FailStartup.py
++++ src/testing/sdr/dom/components/FailStartup/python/FailStartup.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/FailStartup/python/FailStartup_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/FailStartup/python/FailStartup_base.py
++++ src/testing/sdr/dom/components/FailStartup/python/FailStartup_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/FailableComponent/python/FailableComponent.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/FailableComponent/python/FailableComponent.py
++++ src/testing/sdr/dom/components/FailableComponent/python/FailableComponent.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/FailableComponent/python/FailableComponent_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/FailableComponent/python/FailableComponent_base.py
++++ src/testing/sdr/dom/components/FailableComponent/python/FailableComponent_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/FileManagerPortTest/FileManagerPortTest.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/FileManagerPortTest/FileManagerPortTest.py
++++ src/testing/sdr/dom/components/FileManagerPortTest/FileManagerPortTest.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/MessageReceiverPy/MessageReceiverPy.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/MessageReceiverPy/MessageReceiverPy.py
++++ src/testing/sdr/dom/components/MessageReceiverPy/MessageReceiverPy.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/MessageSenderPy/MessageSenderPy.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/MessageSenderPy/MessageSenderPy.py
++++ src/testing/sdr/dom/components/MessageSenderPy/MessageSenderPy.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/MsgPort_P/python/MsgPort_P.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/MsgPort_P/python/MsgPort_P.py
++++ src/testing/sdr/dom/components/MsgPort_P/python/MsgPort_P.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/MsgPort_P/python/MsgPort_P_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/MsgPort_P/python/MsgPort_P_base.py
++++ src/testing/sdr/dom/components/MsgPort_P/python/MsgPort_P_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_ADDITIONAL_DEP/python/NOOP_ADDITIONAL_DEP.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_ADDITIONAL_DEP/python/NOOP_ADDITIONAL_DEP.py
++++ src/testing/sdr/dom/components/NOOP_ADDITIONAL_DEP/python/NOOP_ADDITIONAL_DEP.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_ADDITIONAL_DEP/python/NOOP_ADDITIONAL_DEP_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_ADDITIONAL_DEP/python/NOOP_ADDITIONAL_DEP_base.py
++++ src/testing/sdr/dom/components/NOOP_ADDITIONAL_DEP/python/NOOP_ADDITIONAL_DEP_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_CAP/python/NOOP_CAP.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_CAP/python/NOOP_CAP.py
++++ src/testing/sdr/dom/components/NOOP_CAP/python/NOOP_CAP.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_CAP/python/NOOP_CAP_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_CAP/python/NOOP_CAP_base.py
++++ src/testing/sdr/dom/components/NOOP_CAP/python/NOOP_CAP_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_ROLL/python/NOOP_ROLL.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_ROLL/python/NOOP_ROLL.py
++++ src/testing/sdr/dom/components/NOOP_ROLL/python/NOOP_ROLL.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_ROLL/python/NOOP_ROLL_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_ROLL/python/NOOP_ROLL_base.py
++++ src/testing/sdr/dom/components/NOOP_ROLL/python/NOOP_ROLL_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_ROLL/python2/NOOP_ROLL.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_ROLL/python2/NOOP_ROLL.py
++++ src/testing/sdr/dom/components/NOOP_ROLL/python2/NOOP_ROLL.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_ROLL/python2/NOOP_ROLL_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_ROLL/python2/NOOP_ROLL_base.py
++++ src/testing/sdr/dom/components/NOOP_ROLL/python2/NOOP_ROLL_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_SIMP/python/NOOP_SIMP.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_SIMP/python/NOOP_SIMP.py
++++ src/testing/sdr/dom/components/NOOP_SIMP/python/NOOP_SIMP.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NOOP_SIMP/python/NOOP_SIMP_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NOOP_SIMP/python/NOOP_SIMP_base.py
++++ src/testing/sdr/dom/components/NOOP_SIMP/python/NOOP_SIMP_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/NonScaCompliant/HelloWorld.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/NonScaCompliant/HelloWorld.py
++++ src/testing/sdr/dom/components/NonScaCompliant/HelloWorld.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PortTest/PortTest.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PortTest/PortTest.py
++++ src/testing/sdr/dom/components/PortTest/PortTest.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PropertyChangeEvents/PropertyChangeEvents.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PropertyChangeEvents/PropertyChangeEvents.py
++++ src/testing/sdr/dom/components/PropertyChangeEvents/PropertyChangeEvents.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PropertyChangeEventsJava/tests/test_PropertyChangeEventsJava.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PropertyChangeEventsJava/tests/test_PropertyChangeEventsJava.py
++++ src/testing/sdr/dom/components/PropertyChangeEventsJava/tests/test_PropertyChangeEventsJava.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PropertyChange_P1/python/PropertyChange_P1.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PropertyChange_P1/python/PropertyChange_P1.py
++++ src/testing/sdr/dom/components/PropertyChange_P1/python/PropertyChange_P1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PropertyChange_P1/python/PropertyChange_P1_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PropertyChange_P1/python/PropertyChange_P1_base.py
++++ src/testing/sdr/dom/components/PropertyChange_P1/python/PropertyChange_P1_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/Property_CPP/tests/test_Property_CPP.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/Property_CPP/tests/test_Property_CPP.py
++++ src/testing/sdr/dom/components/Property_CPP/tests/test_Property_CPP.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/Property_PY/python/Property_PY.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/Property_PY/python/Property_PY.py
++++ src/testing/sdr/dom/components/Property_PY/python/Property_PY.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/Property_PY/python/Property_PY_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/Property_PY/python/Property_PY_base.py
++++ src/testing/sdr/dom/components/Property_PY/python/Property_PY_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PyCallbacks/python/PyCallbacks.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PyCallbacks/python/PyCallbacks.py
++++ src/testing/sdr/dom/components/PyCallbacks/python/PyCallbacks.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PyCallbacks/python/PyCallbacks_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PyCallbacks/python/PyCallbacks_base.py
++++ src/testing/sdr/dom/components/PyCallbacks/python/PyCallbacks_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PythonComponent/PythonComponent_python_impl1/PythonComponent_python_impl1.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PythonComponent/PythonComponent_python_impl1/PythonComponent_python_impl1.py
++++ src/testing/sdr/dom/components/PythonComponent/PythonComponent_python_impl1/PythonComponent_python_impl1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/PythonComponent/PythonComponent_python_impl1/PythonComponent_python_impl1_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/PythonComponent/PythonComponent_python_impl1/PythonComponent_python_impl1_base.py
++++ src/testing/sdr/dom/components/PythonComponent/PythonComponent_python_impl1/PythonComponent_python_impl1_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/SADUsesComponent/python/SADUsesComponent.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/SADUsesComponent/python/SADUsesComponent.py
++++ src/testing/sdr/dom/components/SADUsesComponent/python/SADUsesComponent.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/SADUsesComponent/python/SADUsesComponent_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/SADUsesComponent/python/SADUsesComponent_base.py
++++ src/testing/sdr/dom/components/SADUsesComponent/python/SADUsesComponent_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/Sandbox/python/Sandbox.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/Sandbox/python/Sandbox.py
++++ src/testing/sdr/dom/components/Sandbox/python/Sandbox.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/Sandbox/python/Sandbox_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/Sandbox/python/Sandbox_base.py
++++ src/testing/sdr/dom/components/Sandbox/python/Sandbox_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ServiceComponent/python/ServiceComponent.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ServiceComponent/python/ServiceComponent.py
++++ src/testing/sdr/dom/components/ServiceComponent/python/ServiceComponent.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ServiceComponent/python/ServiceComponent_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ServiceComponent/python/ServiceComponent_base.py
++++ src/testing/sdr/dom/components/ServiceComponent/python/ServiceComponent_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/SlowComponent/SlowComponent.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/SlowComponent/SlowComponent.py
++++ src/testing/sdr/dom/components/SlowComponent/SlowComponent.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/StructAllocProps/StructAllocProps.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/StructAllocProps/StructAllocProps.py
++++ src/testing/sdr/dom/components/StructAllocProps/StructAllocProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestAllPropTypes/python/TestAllPropTypes.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestAllPropTypes/python/TestAllPropTypes.py
++++ src/testing/sdr/dom/components/TestAllPropTypes/python/TestAllPropTypes.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestAllPropTypes/python/TestAllPropTypes_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestAllPropTypes/python/TestAllPropTypes_base.py
++++ src/testing/sdr/dom/components/TestAllPropTypes/python/TestAllPropTypes_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestComplexProps/python/TestComplexProps.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestComplexProps/python/TestComplexProps.py
++++ src/testing/sdr/dom/components/TestComplexProps/python/TestComplexProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestComplexProps/python/TestComplexProps_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestComplexProps/python/TestComplexProps_base.py
++++ src/testing/sdr/dom/components/TestComplexProps/python/TestComplexProps_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/TestComplexProps/tests/test_TestComplexProps.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestComplexProps/tests/test_TestComplexProps.py
++++ src/testing/sdr/dom/components/TestComplexProps/tests/test_TestComplexProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestComponentProperty/python/TestComponentProperty.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestComponentProperty/python/TestComponentProperty.py
++++ src/testing/sdr/dom/components/TestComponentProperty/python/TestComponentProperty.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestComponentProperty/python/TestComponentProperty_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestComponentProperty/python/TestComponentProperty_base.py
++++ src/testing/sdr/dom/components/TestComponentProperty/python/TestComponentProperty_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestJavaOptionalProps/tests/test_TestJavaOptionalProps.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestJavaOptionalProps/tests/test_TestJavaOptionalProps.py
++++ src/testing/sdr/dom/components/TestJavaOptionalProps/tests/test_TestJavaOptionalProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestLoggingAPI/python/TestLoggingAPI.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestLoggingAPI/python/TestLoggingAPI.py
++++ src/testing/sdr/dom/components/TestLoggingAPI/python/TestLoggingAPI.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestLoggingAPI/python/TestLoggingAPI_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestLoggingAPI/python/TestLoggingAPI_base.py
++++ src/testing/sdr/dom/components/TestLoggingAPI/python/TestLoggingAPI_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestLoggingAPI/tests/test_TestLoggingAPI.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestLoggingAPI/tests/test_TestLoggingAPI.py
++++ src/testing/sdr/dom/components/TestLoggingAPI/tests/test_TestLoggingAPI.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestPythonOptionalProps/python/TestPythonOptionalProps.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestPythonOptionalProps/python/TestPythonOptionalProps.py
++++ src/testing/sdr/dom/components/TestPythonOptionalProps/python/TestPythonOptionalProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestPythonOptionalProps/python/TestPythonOptionalProps_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestPythonOptionalProps/python/TestPythonOptionalProps_base.py
++++ src/testing/sdr/dom/components/TestPythonOptionalProps/python/TestPythonOptionalProps_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestPythonProps/TestPythonProps.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestPythonProps/TestPythonProps.py
++++ src/testing/sdr/dom/components/TestPythonProps/TestPythonProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestPythonPropsNoDefaults/TestPythonProps.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestPythonPropsNoDefaults/TestPythonProps.py
++++ src/testing/sdr/dom/components/TestPythonPropsNoDefaults/TestPythonProps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestPythonPropsRange/python/TestPythonPropsRange.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestPythonPropsRange/python/TestPythonPropsRange.py
++++ src/testing/sdr/dom/components/TestPythonPropsRange/python/TestPythonPropsRange.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestPythonPropsRange/python/TestPythonPropsRange_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestPythonPropsRange/python/TestPythonPropsRange_base.py
++++ src/testing/sdr/dom/components/TestPythonPropsRange/python/TestPythonPropsRange_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/TestStructDep/TestStructDep.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/TestStructDep/TestStructDep.py
++++ src/testing/sdr/dom/components/TestStructDep/TestStructDep.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ac_with_properties/python/ac_with_properties.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ac_with_properties/python/ac_with_properties.py
++++ src/testing/sdr/dom/components/ac_with_properties/python/ac_with_properties.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ac_with_properties/python/ac_with_properties_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ac_with_properties/python/ac_with_properties_base.py
++++ src/testing/sdr/dom/components/ac_with_properties/python/ac_with_properties_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ac_with_properties/tests/test_ac_with_properties.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ac_with_properties/tests/test_ac_with_properties.py
++++ src/testing/sdr/dom/components/ac_with_properties/tests/test_ac_with_properties.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/another_ticket_462/python/another_ticket_462.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/another_ticket_462/python/another_ticket_462.py
++++ src/testing/sdr/dom/components/another_ticket_462/python/another_ticket_462.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/another_ticket_462/python/another_ticket_462_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/another_ticket_462/python/another_ticket_462_base.py
++++ src/testing/sdr/dom/components/another_ticket_462/python/another_ticket_462_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/cf_1535_p1/python/cf_1535_p1.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/cf_1535_p1/python/cf_1535_p1.py
++++ src/testing/sdr/dom/components/cf_1535_p1/python/cf_1535_p1.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/cf_1535_p1/python/cf_1535_p1_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/cf_1535_p1/python/cf_1535_p1_base.py
++++ src/testing/sdr/dom/components/cf_1535_p1/python/cf_1535_p1_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/cmdline_def_py/python/cmdline_def_py.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/cmdline_def_py/python/cmdline_def_py.py
++++ src/testing/sdr/dom/components/cmdline_def_py/python/cmdline_def_py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/cmdline_def_py/python/cmdline_def_py_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/cmdline_def_py/python/cmdline_def_py_base.py
++++ src/testing/sdr/dom/components/cmdline_def_py/python/cmdline_def_py_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/cmdline_py/python/cmdline_py.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/cmdline_py/python/cmdline_py.py
++++ src/testing/sdr/dom/components/cmdline_py/python/cmdline_py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/cmdline_py/python/cmdline_py_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/cmdline_py/python/cmdline_py_base.py
++++ src/testing/sdr/dom/components/cmdline_py/python/cmdline_py_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/comp_prop_special_char/python/comp_prop_special_char.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/comp_prop_special_char/python/comp_prop_special_char.py
++++ src/testing/sdr/dom/components/comp_prop_special_char/python/comp_prop_special_char.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/comp_prop_special_char/python/comp_prop_special_char_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/comp_prop_special_char/python/comp_prop_special_char_base.py
++++ src/testing/sdr/dom/components/comp_prop_special_char/python/comp_prop_special_char_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/comp_snk/python/comp_snk.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/comp_snk/python/comp_snk.py
++++ src/testing/sdr/dom/components/comp_snk/python/comp_snk.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/comp_snk/python/comp_snk_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/comp_snk/python/comp_snk_base.py
++++ src/testing/sdr/dom/components/comp_snk/python/comp_snk_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/comp_src/python/comp_src.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/comp_src/python/comp_src.py
++++ src/testing/sdr/dom/components/comp_src/python/comp_src.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/comp_src/python/comp_src_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/comp_src/python/comp_src_base.py
++++ src/testing/sdr/dom/components/comp_src/python/comp_src_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/configure_call_property/python/configure_call_property.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/configure_call_property/python/configure_call_property.py
++++ src/testing/sdr/dom/components/configure_call_property/python/configure_call_property.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/configure_call_property/python/configure_call_property_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/configure_call_property/python/configure_call_property_base.py
++++ src/testing/sdr/dom/components/configure_call_property/python/configure_call_property_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/cpp_with_deps/tests/test_cpp_with_deps.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/cpp_with_deps/tests/test_cpp_with_deps.py
++++ src/testing/sdr/dom/components/cpp_with_deps/tests/test_cpp_with_deps.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/default_kinds/python/default_kinds.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/default_kinds/python/default_kinds.py
++++ src/testing/sdr/dom/components/default_kinds/python/default_kinds.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/default_kinds/python/default_kinds_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/default_kinds/python/default_kinds_base.py
++++ src/testing/sdr/dom/components/default_kinds/python/default_kinds_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/execcheck/python/execcheck.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/execcheck/python/execcheck.py
++++ src/testing/sdr/dom/components/execcheck/python/execcheck.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/execcheck/python/execcheck_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/execcheck/python/execcheck_base.py
++++ src/testing/sdr/dom/components/execcheck/python/execcheck_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/foo/bar/py/python/py.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/foo/bar/py/python/py.py
++++ src/testing/sdr/dom/components/foo/bar/py/python/py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/foo/bar/py/python/py_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/foo/bar/py/python/py_base.py
++++ src/testing/sdr/dom/components/foo/bar/py/python/py_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/hanging_stop/python/hanging_stop.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/hanging_stop/python/hanging_stop.py
++++ src/testing/sdr/dom/components/hanging_stop/python/hanging_stop.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/hanging_stop/python/hanging_stop_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/hanging_stop/python/hanging_stop_base.py
++++ src/testing/sdr/dom/components/hanging_stop/python/hanging_stop_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/hanging_stop_and_release/python/hanging_stop_and_release.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/hanging_stop_and_release/python/hanging_stop_and_release.py
++++ src/testing/sdr/dom/components/hanging_stop_and_release/python/hanging_stop_and_release.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/hanging_stop_and_release/python/hanging_stop_and_release_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/hanging_stop_and_release/python/hanging_stop_and_release_base.py
++++ src/testing/sdr/dom/components/hanging_stop_and_release/python/hanging_stop_and_release_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/huge_msg_python/python/huge_msg_python.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/huge_msg_python/python/huge_msg_python.py
++++ src/testing/sdr/dom/components/huge_msg_python/python/huge_msg_python.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/huge_msg_python/python/huge_msg_python_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/huge_msg_python/python/huge_msg_python_base.py
++++ src/testing/sdr/dom/components/huge_msg_python/python/huge_msg_python_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/logger_py/python/logger_py.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/logger_py/python/logger_py.py
++++ src/testing/sdr/dom/components/logger_py/python/logger_py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/logger_py/python/logger_py_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/logger_py/python/logger_py_base.py
++++ src/testing/sdr/dom/components/logger_py/python/logger_py_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/math_py/python/math_py.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/math_py/python/math_py.py
++++ src/testing/sdr/dom/components/math_py/python/math_py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/math_py/python/math_py_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/math_py/python/math_py_base.py
++++ src/testing/sdr/dom/components/math_py/python/math_py_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/msg_through/python/msg_through.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/msg_through/python/msg_through.py
++++ src/testing/sdr/dom/components/msg_through/python/msg_through.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/msg_through/python/msg_through_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/msg_through/python/msg_through_base.py
++++ src/testing/sdr/dom/components/msg_through/python/msg_through_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/newtime/python/newtime.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/newtime/python/newtime.py
++++ src/testing/sdr/dom/components/newtime/python/newtime.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/newtime/python/newtime_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/newtime/python/newtime_base.py
++++ src/testing/sdr/dom/components/newtime/python/newtime_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/non_ac_with_properties/python/non_ac_with_properties.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/non_ac_with_properties/python/non_ac_with_properties.py
++++ src/testing/sdr/dom/components/non_ac_with_properties/python/non_ac_with_properties.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/non_ac_with_properties/python/non_ac_with_properties_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/non_ac_with_properties/python/non_ac_with_properties_base.py
++++ src/testing/sdr/dom/components/non_ac_with_properties/python/non_ac_with_properties_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/non_ac_with_properties/tests/test_non_ac_with_properties.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/non_ac_with_properties/tests/test_non_ac_with_properties.py
++++ src/testing/sdr/dom/components/non_ac_with_properties/tests/test_non_ac_with_properties.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_one/python/noop_mix_one.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_one/python/noop_mix_one.py
++++ src/testing/sdr/dom/components/noop_mix_one/python/noop_mix_one.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_one/python/noop_mix_one_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_one/python/noop_mix_one_base.py
++++ src/testing/sdr/dom/components/noop_mix_one/python/noop_mix_one_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_one/tests/test_noop_mix_one.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_one/tests/test_noop_mix_one.py
++++ src/testing/sdr/dom/components/noop_mix_one/tests/test_noop_mix_one.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_three/python/noop_mix_three.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_three/python/noop_mix_three.py
++++ src/testing/sdr/dom/components/noop_mix_three/python/noop_mix_three.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_three/python/noop_mix_three_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_three/python/noop_mix_three_base.py
++++ src/testing/sdr/dom/components/noop_mix_three/python/noop_mix_three_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_three/tests/test_noop_mix_three.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_three/tests/test_noop_mix_three.py
++++ src/testing/sdr/dom/components/noop_mix_three/tests/test_noop_mix_three.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_two/python/noop_mix_two.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_two/python/noop_mix_two.py
++++ src/testing/sdr/dom/components/noop_mix_two/python/noop_mix_two.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_two/python/noop_mix_two_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_two/python/noop_mix_two_base.py
++++ src/testing/sdr/dom/components/noop_mix_two/python/noop_mix_two_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/noop_mix_two/tests/test_noop_mix_two.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/noop_mix_two/tests/test_noop_mix_two.py
++++ src/testing/sdr/dom/components/noop_mix_two/tests/test_noop_mix_two.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/orphaned_child/python/orphaned_child.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/orphaned_child/python/orphaned_child.py
++++ src/testing/sdr/dom/components/orphaned_child/python/orphaned_child.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/property_init/python/property_init.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/property_init/python/property_init.py
++++ src/testing/sdr/dom/components/property_init/python/property_init.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/property_init/python/property_init_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/property_init/python/property_init_base.py
++++ src/testing/sdr/dom/components/property_init/python/property_init_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/props_bad_numbers/python/props_bad_numbers.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/props_bad_numbers/python/props_bad_numbers.py
++++ src/testing/sdr/dom/components/props_bad_numbers/python/props_bad_numbers.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/props_bad_numbers/python/props_bad_numbers_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/props_bad_numbers/python/props_bad_numbers_base.py
++++ src/testing/sdr/dom/components/props_bad_numbers/python/props_bad_numbers_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/py_comp/python/py_comp.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/py_comp/python/py_comp.py
++++ src/testing/sdr/dom/components/py_comp/python/py_comp.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/py_comp/python/py_comp_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/py_comp/python/py_comp_base.py
++++ src/testing/sdr/dom/components/py_comp/python/py_comp_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/py_prop_writeonly/python/py_prop_writeonly.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/py_prop_writeonly/python/py_prop_writeonly.py
++++ src/testing/sdr/dom/components/py_prop_writeonly/python/py_prop_writeonly.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/py_prop_writeonly/python/py_prop_writeonly_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/py_prop_writeonly/python/py_prop_writeonly_base.py
++++ src/testing/sdr/dom/components/py_prop_writeonly/python/py_prop_writeonly_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/pythonSoftpkgDep/python/pythonSoftpkgDep.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/pythonSoftpkgDep/python/pythonSoftpkgDep.py
++++ src/testing/sdr/dom/components/pythonSoftpkgDep/python/pythonSoftpkgDep.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/pythonSoftpkgDep/python/pythonSoftpkgDep_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/pythonSoftpkgDep/python/pythonSoftpkgDep_base.py
++++ src/testing/sdr/dom/components/pythonSoftpkgDep/python/pythonSoftpkgDep_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/python_runtest/python/python_runtest.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/python_runtest/python/python_runtest.py
++++ src/testing/sdr/dom/components/python_runtest/python/python_runtest.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/python_runtest/python/python_runtest_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/python_runtest/python/python_runtest_base.py
++++ src/testing/sdr/dom/components/python_runtest/python/python_runtest_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/sdds_src/python/sdds_src.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/sdds_src/python/sdds_src.py
++++ src/testing/sdr/dom/components/sdds_src/python/sdds_src.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/sdds_src/python/sdds_src_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/sdds_src/python/sdds_src_base.py
++++ src/testing/sdr/dom/components/sdds_src/python/sdds_src_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/slow_stop/python/slow_stop.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/slow_stop/python/slow_stop.py
++++ src/testing/sdr/dom/components/slow_stop/python/slow_stop.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/slow_stop/python/slow_stop_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/slow_stop/python/slow_stop_base.py
++++ src/testing/sdr/dom/components/slow_stop/python/slow_stop_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/start_timeout/python/start_timeout.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/start_timeout/python/start_timeout.py
++++ src/testing/sdr/dom/components/start_timeout/python/start_timeout.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/start_timeout/python/start_timeout_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/start_timeout/python/start_timeout_base.py
++++ src/testing/sdr/dom/components/start_timeout/python/start_timeout_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/struct_fields/python/struct_fields.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/struct_fields/python/struct_fields.py
++++ src/testing/sdr/dom/components/struct_fields/python/struct_fields.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/struct_fields/python/struct_fields_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/struct_fields/python/struct_fields_base.py
++++ src/testing/sdr/dom/components/struct_fields/python/struct_fields_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/struct_prop_check/python/struct_prop_check.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/struct_prop_check/python/struct_prop_check.py
++++ src/testing/sdr/dom/components/struct_prop_check/python/struct_prop_check.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/struct_prop_check/python/struct_prop_check_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/struct_prop_check/python/struct_prop_check_base.py
++++ src/testing/sdr/dom/components/struct_prop_check/python/struct_prop_check_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/svc_fn_error/python/svc_fn_error.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/svc_fn_error/python/svc_fn_error.py
++++ src/testing/sdr/dom/components/svc_fn_error/python/svc_fn_error.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/svc_fn_error/python/svc_fn_error_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/svc_fn_error/python/svc_fn_error_base.py
++++ src/testing/sdr/dom/components/svc_fn_error/python/svc_fn_error_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/testcomp/python/testcomp.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/testcomp/python/testcomp.py
++++ src/testing/sdr/dom/components/testcomp/python/testcomp.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/testcomp/python/testcomp_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/testcomp/python/testcomp_base.py
++++ src/testing/sdr/dom/components/testcomp/python/testcomp_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/through/python/through.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/through/python/through.py
++++ src/testing/sdr/dom/components/through/python/through.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/through/python/through_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/through/python/through_base.py
++++ src/testing/sdr/dom/components/through/python/through_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket2093/tests/test_ticket2093.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket2093/tests/test_ticket2093.py
++++ src/testing/sdr/dom/components/ticket2093/tests/test_ticket2093.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_462/python/ticket_462.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_462/python/ticket_462.py
++++ src/testing/sdr/dom/components/ticket_462/python/ticket_462.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_462/python/ticket_462_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_462/python/ticket_462_base.py
++++ src/testing/sdr/dom/components/ticket_462/python/ticket_462_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_462/tests/test_ticket_462.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_462/tests/test_ticket_462.py
++++ src/testing/sdr/dom/components/ticket_462/tests/test_ticket_462.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_462_ac/python/ticket_462_ac.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_462_ac/python/ticket_462_ac.py
++++ src/testing/sdr/dom/components/ticket_462_ac/python/ticket_462_ac.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_462_ac/python/ticket_462_ac_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_462_ac/python/ticket_462_ac_base.py
++++ src/testing/sdr/dom/components/ticket_462_ac/python/ticket_462_ac_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_462_ac/tests/test_ticket_462_ac.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_462_ac/tests/test_ticket_462_ac.py
++++ src/testing/sdr/dom/components/ticket_462_ac/tests/test_ticket_462_ac.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_double/python/ticket_490_double.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_double/python/ticket_490_double.py
++++ src/testing/sdr/dom/components/ticket_490_double/python/ticket_490_double.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_double/python/ticket_490_double_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_double/python/ticket_490_double_base.py
++++ src/testing/sdr/dom/components/ticket_490_double/python/ticket_490_double_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_double/tests/test_ticket_490_double.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_double/tests/test_ticket_490_double.py
++++ src/testing/sdr/dom/components/ticket_490_double/tests/test_ticket_490_double.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_none/python/ticket_490_none.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_none/python/ticket_490_none.py
++++ src/testing/sdr/dom/components/ticket_490_none/python/ticket_490_none.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_none/python/ticket_490_none_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_none/python/ticket_490_none_base.py
++++ src/testing/sdr/dom/components/ticket_490_none/python/ticket_490_none_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_none/tests/test_ticket_490_none.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_none/tests/test_ticket_490_none.py
++++ src/testing/sdr/dom/components/ticket_490_none/tests/test_ticket_490_none.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_single/python/ticket_490_single.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_single/python/ticket_490_single.py
++++ src/testing/sdr/dom/components/ticket_490_single/python/ticket_490_single.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_single/python/ticket_490_single_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_single/python/ticket_490_single_base.py
++++ src/testing/sdr/dom/components/ticket_490_single/python/ticket_490_single_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_490_single/tests/test_ticket_490_single.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_490_single/tests/test_ticket_490_single.py
++++ src/testing/sdr/dom/components/ticket_490_single/tests/test_ticket_490_single.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_cf_1066_comp/python/ticket_cf_1066_comp.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_cf_1066_comp/python/ticket_cf_1066_comp.py
++++ src/testing/sdr/dom/components/ticket_cf_1066_comp/python/ticket_cf_1066_comp.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_cf_1066_comp/python/ticket_cf_1066_comp_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_cf_1066_comp/python/ticket_cf_1066_comp_base.py
++++ src/testing/sdr/dom/components/ticket_cf_1066_comp/python/ticket_cf_1066_comp_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_cf_1067_comp/python/ticket_cf_1067_comp.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_cf_1067_comp/python/ticket_cf_1067_comp.py
++++ src/testing/sdr/dom/components/ticket_cf_1067_comp/python/ticket_cf_1067_comp.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_cf_1067_comp/python/ticket_cf_1067_comp_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_cf_1067_comp/python/ticket_cf_1067_comp_base.py
++++ src/testing/sdr/dom/components/ticket_cf_1067_comp/python/ticket_cf_1067_comp_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_cf_1067_comp/tests/test_ticket_cf_1067_comp.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_cf_1067_comp/tests/test_ticket_cf_1067_comp.py
++++ src/testing/sdr/dom/components/ticket_cf_1067_comp/tests/test_ticket_cf_1067_comp.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_cf_939_comp/python/ticket_cf_939_comp.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_cf_939_comp/python/ticket_cf_939_comp.py
++++ src/testing/sdr/dom/components/ticket_cf_939_comp/python/ticket_cf_939_comp.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/ticket_cf_939_comp/python/ticket_cf_939_comp_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/ticket_cf_939_comp/python/ticket_cf_939_comp_base.py
++++ src/testing/sdr/dom/components/ticket_cf_939_comp/python/ticket_cf_939_comp_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/sdr/dom/components/time_py_now/python/time_py_now.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/time_py_now/python/time_py_now.py
++++ src/testing/sdr/dom/components/time_py_now/python/time_py_now.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/time_py_now/python/time_py_now_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/time_py_now/python/time_py_now_base.py
++++ src/testing/sdr/dom/components/time_py_now/python/time_py_now_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/timeprop_py/python/timeprop_py.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/timeprop_py/python/timeprop_py.py
++++ src/testing/sdr/dom/components/timeprop_py/python/timeprop_py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/timeprop_py/python/timeprop_py_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/timeprop_py/python/timeprop_py_base.py
++++ src/testing/sdr/dom/components/timeprop_py/python/timeprop_py_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/sdr/dom/components/zero_length/python/zero_length.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/zero_length/python/zero_length.py
++++ src/testing/sdr/dom/components/zero_length/python/zero_length.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #
+ # AUTO-GENERATED
+Index: src/testing/sdr/dom/components/zero_length/python/zero_length_base.py
+===================================================================
+--- src.orig/testing/sdr/dom/components/zero_length/python/zero_length_base.py
++++ src/testing/sdr/dom/components/zero_length/python/zero_length_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: src/testing/tests/test_00_Log4py.py
+===================================================================
+--- src.orig/testing/tests/test_00_Log4py.py
++++ src/testing/tests/test_00_Log4py.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/tests/test_00_PythonFramework.py
+===================================================================
+--- src.orig/testing/tests/test_00_PythonFramework.py
++++ src/testing/tests/test_00_PythonFramework.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/tests/test_00_PythonUtils.py
+===================================================================
+--- src.orig/testing/tests/test_00_PythonUtils.py
++++ src/testing/tests/test_00_PythonUtils.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/tests/test_00_ValidateTestDomain.py
+===================================================================
+--- src.orig/testing/tests/test_00_ValidateTestDomain.py
++++ src/testing/tests/test_00_ValidateTestDomain.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/tests/test_01_nodeBooter.py
+===================================================================
+--- src.orig/testing/tests/test_01_nodeBooter.py
++++ src/testing/tests/test_01_nodeBooter.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/tests/test_07_PythonParsers.py
+===================================================================
+--- src.orig/testing/tests/test_07_PythonParsers.py
++++ src/testing/tests/test_07_PythonParsers.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: src/testing/tests/test_13_SDDS.py
+===================================================================
+--- src.orig/testing/tests/test_13_SDDS.py
++++ src/testing/tests/test_13_SDDS.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.

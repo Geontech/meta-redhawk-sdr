@@ -62,6 +62,7 @@ do_patch_prf_patch[depends] += "${PN}:do_prepare_recipe_sysroot"
 addtask patch_prf_patch after do_patch before do_configure
 
 do_install_append() {
+    sed -i -E 's|env python$|env python2|g' ${S}/gpp_setup
     export PYTHONPATH=${OSSIEHOME_STAGED_NATIVE}/lib/python:${PYTHONPATH}
     ${S}/gpp_setup \
         --location=${S}/.. \

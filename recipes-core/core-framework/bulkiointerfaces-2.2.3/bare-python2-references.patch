@@ -1,0 +1,300 @@
+Index: bulkioInterfaces/Makefile.am
+===================================================================
+--- bulkioInterfaces.orig/Makefile.am
++++ bulkioInterfaces/Makefile.am
+@@ -18,7 +18,7 @@
+ # along with this program.  If not, see http://www.gnu.org/licenses/.
+ #
+ 
+-ACLOCAL_AMFLAGS = -I m4 -I ${OSSIEHOME}/share/aclocal/ossie
++ACLOCAL_AMFLAGS = -I m4
+ 
+ ###############################################################################
+ # CONFIGURE YOUR INTERFACES LIBRARY HERE
+@@ -238,11 +238,11 @@ ossie__v_pysetup__0 = $(ossie__v_pysetup
+ all-python: $(PY_SRC_OUT_DIR)/__init__.py
+ 
+ install-python: $(PY_SRC_OUT_DIR)/__init__.py setup.py
+-	python setup.py install -f --$(PYTHON_INSTALL_SCHEME)=$(DESTDIR)$(prefix)
++	$(PYTHON) setup.py install -f --$(PYTHON_INSTALL_SCHEME)=$(DESTDIR)$(prefix)
+ 
+ clean-python:
+ 	rm -rf src/python
+-	python setup.py clean
++	$(PYTHON) setup.py clean
+ 
+ ###############################################################################
+ # Java
+Index: bulkioInterfaces/libsrc/setup.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/setup.py
++++ bulkioInterfaces/libsrc/setup.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/setup.py.in
+===================================================================
+--- bulkioInterfaces.orig/setup.py.in
++++ bulkioInterfaces/setup.py.in
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ from distutils.core import setup
+ 
+ setup(name='bulkioInterfaces',
+Index: bulkioInterfaces/libsrc/Makefile.am
+===================================================================
+--- bulkioInterfaces.orig/libsrc/Makefile.am
++++ bulkioInterfaces/libsrc/Makefile.am
+@@ -112,7 +112,7 @@ install-python:
+ 	$(PYTHON) setup.py install -f $(rootflag) --home=$(prefix) --old-and-unmanageable
+ 
+ clean-python:
+-	python setup.py clean --all
++	$(PYTHON) setup.py clean --all
+ 
+ ###############################################################################
+ # Java
+Index: bulkioInterfaces/libsrc/testing/components/Oversized_framedata/python/Oversized_framedata.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/Oversized_framedata/python/Oversized_framedata.py
++++ bulkioInterfaces/libsrc/testing/components/Oversized_framedata/python/Oversized_framedata.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/Oversized_framedata/python/Oversized_framedata_base.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/Oversized_framedata/python/Oversized_framedata_base.py
++++ bulkioInterfaces/libsrc/testing/components/Oversized_framedata/python/Oversized_framedata_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/Oversized_framedata/tests/test_Oversized_framedata.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/Oversized_framedata/tests/test_Oversized_framedata.py
++++ bulkioInterfaces/libsrc/testing/components/Oversized_framedata/tests/test_Oversized_framedata.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/Python_Ports/python/Python_Ports.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/Python_Ports/python/Python_Ports.py
++++ bulkioInterfaces/libsrc/testing/components/Python_Ports/python/Python_Ports.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python 
++#!/usr/bin/env python2 
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/Python_Ports/python/Python_Ports_base.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/Python_Ports/python/Python_Ports_base.py
++++ bulkioInterfaces/libsrc/testing/components/Python_Ports/python/Python_Ports_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/TestLargePush/python/TestLargePush.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/TestLargePush/python/TestLargePush.py
++++ bulkioInterfaces/libsrc/testing/components/TestLargePush/python/TestLargePush.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/TestLargePush/python/TestLargePush_base.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/TestLargePush/python/TestLargePush_base.py
++++ bulkioInterfaces/libsrc/testing/components/TestLargePush/python/TestLargePush_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/TestLargePush/tests/test_TestLargePush.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/TestLargePush/tests/test_TestLargePush.py
++++ bulkioInterfaces/libsrc/testing/components/TestLargePush/tests/test_TestLargePush.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/multiout_attachable/python/multiout_attachable.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/multiout_attachable/python/multiout_attachable.py
++++ bulkioInterfaces/libsrc/testing/components/multiout_attachable/python/multiout_attachable.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/multiout_attachable/python/multiout_attachable_base.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/multiout_attachable/python/multiout_attachable_base.py
++++ bulkioInterfaces/libsrc/testing/components/multiout_attachable/python/multiout_attachable_base.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/multiout_attachable/tests/test_fail_attachable.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/multiout_attachable/tests/test_fail_attachable.py
++++ bulkioInterfaces/libsrc/testing/components/multiout_attachable/tests/test_fail_attachable.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/multiout_attachable/tests/test_multiout_attachable.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/multiout_attachable/tests/test_multiout_attachable.py
++++ bulkioInterfaces/libsrc/testing/components/multiout_attachable/tests/test_multiout_attachable.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/components/snk_slow/tests/test_snk_slow.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/snk_slow/tests/test_snk_slow.py
++++ bulkioInterfaces/libsrc/testing/components/snk_slow/tests/test_snk_slow.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ import ossie.utils.testing
+ from ossie.utils import sb
+Index: bulkioInterfaces/libsrc/testing/components/src/tests/test_src.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/src/tests/test_src.py
++++ bulkioInterfaces/libsrc/testing/components/src/tests/test_src.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ import ossie.utils.testing
+ from ossie.utils import sb
+Index: bulkioInterfaces/libsrc/testing/components/sri_changed_cpp/tests/test_sri_changed_cpp.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/components/sri_changed_cpp/tests/test_sri_changed_cpp.py
++++ bulkioInterfaces/libsrc/testing/components/sri_changed_cpp/tests/test_sri_changed_cpp.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/devices/dev_src/tests/test_dev_src.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/devices/dev_src/tests/test_dev_src.py
++++ bulkioInterfaces/libsrc/testing/devices/dev_src/tests/test_dev_src.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/tests/python/runtests.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/tests/python/runtests.py
++++ bulkioInterfaces/libsrc/testing/tests/python/runtests.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/tests/python/test_inports.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/tests/python/test_inports.py
++++ bulkioInterfaces/libsrc/testing/tests/python/test_inports.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/tests/python/test_instreams.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/tests/python/test_instreams.py
++++ bulkioInterfaces/libsrc/testing/tests/python/test_instreams.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/tests/python/test_outports.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/tests/python/test_outports.py
++++ bulkioInterfaces/libsrc/testing/tests/python/test_outports.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/tests/python/test_outstreams.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/tests/python/test_outstreams.py
++++ bulkioInterfaces/libsrc/testing/tests/python/test_outstreams.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/tests/python/test_sandbox.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/tests/python/test_sandbox.py
++++ bulkioInterfaces/libsrc/testing/tests/python/test_sandbox.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/tests/python/test_streamsri.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/tests/python/test_streamsri.py
++++ bulkioInterfaces/libsrc/testing/tests/python/test_streamsri.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: bulkioInterfaces/libsrc/testing/tests/python/test_utctime.py
+===================================================================
+--- bulkioInterfaces.orig/libsrc/testing/tests/python/test_utctime.py
++++ bulkioInterfaces/libsrc/testing/tests/python/test_utctime.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.

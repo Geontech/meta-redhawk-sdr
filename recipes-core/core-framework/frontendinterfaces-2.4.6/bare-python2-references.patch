@@ -1,0 +1,118 @@
+Index: frontendInterfaces/Makefile.am
+===================================================================
+--- frontendInterfaces.orig/Makefile.am
++++ frontendInterfaces/Makefile.am
+@@ -135,7 +135,7 @@ $(PY_SRC_OUT_DIR)/__init__.py: $(PY_IDL_
+ 
+ setup.py: Makefile.am
+ # Build up a setup.py line-by-line
+-	@echo "#!/usr/bin/env python" > $@
++	@echo "#!/usr/bin/env python2" > $@
+ 	@echo "# AUTO-GENERATED - DO NOT MODIFY THIS FILE IS PRODUCED BY make" >> $@
+ 	@echo "from distutils.core import setup" >> $@
+ 	@echo "import os" >> $@
+@@ -162,17 +162,17 @@ setup.py: Makefile.am
+ 	@echo ")" >> $@
+ 
+ $(PY_BUILD_OUT_DIR): $(PY_SRC_OUT_DIR)/__init__.py setup.py
+-	python setup.py build --build-lib build/lib
++	$(PYTHON) setup.py build --build-lib build/lib
+ 	touch $(PY_BUILD_OUT_DIR)
+ 
+ all-python: $(PY_BUILD_OUT_DIR)
+ 
+ install-python: $(PY_BUILT_SRCS) setup.py
+-	python setup.py install -f --$(PYTHON_INSTALL_SCHEME)=$(DESTDIR)$(prefix)
++	$(PYTHON) setup.py install -f --$(PYTHON_INSTALL_SCHEME)=$(DESTDIR)$(prefix)
+ 
+ clean-python: setup.py
+ 	rm -rf src/python
+-	python setup.py clean
++	$(PYTHON) setup.py clean
+ 	rm setup.py
+ 
+ ###############################################################################
+Index: frontendInterfaces/libsrc/Makefile.am
+===================================================================
+--- frontendInterfaces.orig/libsrc/Makefile.am
++++ frontendInterfaces/libsrc/Makefile.am
+@@ -78,14 +78,14 @@ SUBDIRS = . testing/tests/cpp
+ all-python: build-python
+ 
+ build-python:
+-	python setup.py build
++	$(PYTHON) setup.py build
+ 
+ install-python:
+ 	test -n "$(DESTDIR)" && buildroot="--root=$(DESTDIR)"; \
+-	  python setup.py install $$buildroot --prefix=$(prefix) --install-purelib=$(prefix)/lib/python --force
++	  $(PYTHON) setup.py install $$buildroot --prefix=$(prefix) --install-purelib=$(prefix)/lib/python --force
+ 
+ clean-python:
+-	python setup.py clean --all
++	$(PYTHON) setup.py clean --all
+ 
+ ###############################################################################
+ # Java
+Index: frontendInterfaces/libsrc/setup.py
+===================================================================
+--- frontendInterfaces.orig/libsrc/setup.py
++++ frontendInterfaces/libsrc/setup.py
+@@ -18,7 +18,6 @@
+ # You should have received a copy of the GNU Lesser General Public License
+ # along with this program.  If not, see http://www.gnu.org/licenses/.
+ #
+-#!/usr/bin/env python
+ 
+ from distutils.core import setup
+ import os
+Index: frontendInterfaces/libsrc/testing/tests/python/runtests.py
+===================================================================
+--- frontendInterfaces.orig/libsrc/testing/tests/python/runtests.py
++++ frontendInterfaces/libsrc/testing/tests/python/runtests.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: frontendInterfaces/libsrc/testing/tests/python/test_create_tuner_allocation.py
+===================================================================
+--- frontendInterfaces.orig/libsrc/testing/tests/python/test_create_tuner_allocation.py
++++ frontendInterfaces/libsrc/testing/tests/python/test_create_tuner_allocation.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: frontendInterfaces/libsrc/testing/tests/python/test_frontend_scanner_allocation.py
+===================================================================
+--- frontendInterfaces.orig/libsrc/testing/tests/python/test_frontend_scanner_allocation.py
++++ frontendInterfaces/libsrc/testing/tests/python/test_frontend_scanner_allocation.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: frontendInterfaces/libsrc/testing/tests/python/test_ports.py
+===================================================================
+--- frontendInterfaces.orig/libsrc/testing/tests/python/test_ports.py
++++ frontendInterfaces/libsrc/testing/tests/python/test_ports.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: frontendInterfaces/libsrc/testing/tests/python/test_validaterequest.py
+===================================================================
+--- frontendInterfaces.orig/libsrc/testing/tests/python/test_validaterequest.py
++++ frontendInterfaces/libsrc/testing/tests/python/test_validaterequest.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.

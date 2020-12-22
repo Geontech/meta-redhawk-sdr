@@ -30,6 +30,7 @@ PR = "1"
 
 SRC_URI_append = "\
     file://remove_cppunit.patch \
+    file://bare-python2-references.patch \
 "
 
 S = "${WORKDIR}/git/bulkioInterfaces"

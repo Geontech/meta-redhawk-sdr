@@ -25,6 +25,10 @@ DESCRIPTION = "REDHAWK Codegen"
 DEPENDS += "redhawk"
 RDEPENDS_${PN} = "redhawk python"
 
+SRC_URI_append = "\
+    file://bare-python2-references.patch \
+    "
+
 PR = "1"
 
 S = "${WORKDIR}/git/redhawk-codegen"

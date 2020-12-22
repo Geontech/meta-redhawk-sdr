@@ -1,0 +1,190 @@
+Index: redhawk-codegen/moveComponentNamespace
+===================================================================
+--- redhawk-codegen.orig/moveComponentNamespace
++++ redhawk-codegen/moveComponentNamespace
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file 
+ # distributed with this source distribution.
+Index: redhawk-codegen/redhawk/codegen/jinja/python/component/binary/templates/resource.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/component/binary/templates/resource.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/component/binary/templates/resource.py
+@@ -20,7 +20,7 @@
+ #% set className = component.userclass.name
+ #% set baseClass = component.baseclass.name
+ #% set artifactType = component.artifacttype
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #% block license
+ #% endblock
+Index: redhawk-codegen/redhawk/codegen/jinja/python/component/binary/templates/resource_base.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/component/binary/templates/resource_base.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/component/binary/templates/resource_base.py
+@@ -20,7 +20,7 @@
+ #% set className = component.baseclass.name
+ #% set superclass = component.superclasses[0].name
+ #% set artifactType = component.artifacttype
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: redhawk-codegen/redhawk/codegen/jinja/python/component/persona/templates/resource.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/component/persona/templates/resource.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/component/persona/templates/resource.py
+@@ -20,7 +20,7 @@
+ #% set className = component.userclass.name
+ #% set baseClass = component.personaclass.name
+ #% set artifactType = component.artifacttype
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #% block license
+ #% endblock
+Index: redhawk-codegen/redhawk/codegen/jinja/python/component/persona/templates/resource_base.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/component/persona/templates/resource_base.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/component/persona/templates/resource_base.py
+@@ -20,7 +20,7 @@
+ #% set className = component.baseclass.name
+ #% set superclass = component.superclasses[0].name
+ #% set artifactType = component.artifacttype
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: redhawk-codegen/redhawk/codegen/jinja/python/component/programmable/templates/resource.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/component/programmable/templates/resource.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/component/programmable/templates/resource.py
+@@ -20,7 +20,7 @@
+ #% set className = component.userclass.name
+ #% set baseClass = component.progclass.name
+ #% set artifactType = component.artifacttype
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #% block license
+ #% endblock
+Index: redhawk-codegen/redhawk/codegen/jinja/python/component/programmable/templates/resource_base.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/component/programmable/templates/resource_base.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/component/programmable/templates/resource_base.py
+@@ -20,7 +20,7 @@
+ #% set className = component.baseclass.name
+ #% set superclass = component.superclasses[0].name
+ #% set artifactType = component.artifacttype
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: redhawk-codegen/redhawk/codegen/jinja/python/component/pull/templates/resource.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/component/pull/templates/resource.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/component/pull/templates/resource.py
+@@ -20,7 +20,7 @@
+ #% set className = component.userclass.name
+ #% set baseClass = component.baseclass.name
+ #% set artifactType = component.artifacttype
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ #% block license
+ #% endblock
+Index: redhawk-codegen/redhawk/codegen/jinja/python/component/pull/templates/resource_base.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/component/pull/templates/resource_base.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/component/pull/templates/resource_base.py
+@@ -20,7 +20,7 @@
+ #% set className = component.baseclass.name
+ #% set superclass = component.superclasses[0].name
+ #% set artifactType = component.artifacttype
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED CODE.  DO NOT MODIFY!
+ #
+Index: redhawk-codegen/redhawk/codegen/jinja/python/service/templates/service.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/python/service/templates/service.py
++++ redhawk-codegen/redhawk/codegen/jinja/python/service/templates/service.py
+@@ -19,7 +19,7 @@
+ #}
+ #% set className = component.userclass.name
+ 
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # AUTO-GENERATED
+ #
+Index: redhawk-codegen/redhawk/codegen/jinja/unitTests/resource/sca/templates/test.py
+===================================================================
+--- redhawk-codegen.orig/redhawk/codegen/jinja/unitTests/resource/sca/templates/test.py
++++ redhawk-codegen/redhawk/codegen/jinja/unitTests/resource/sca/templates/test.py
+@@ -17,7 +17,7 @@
+ # You should have received a copy of the GNU Lesser General Public License
+ # along with this program.  If not, see http://www.gnu.org/licenses/.
+ #}
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ import ossie.utils.testing
+ from ossie.utils import sb
+Index: redhawk-codegen/codegen_version
+===================================================================
+--- redhawk-codegen.orig/codegen_version
++++ redhawk-codegen/codegen_version
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: redhawk-codegen/createBinaryComponent
+===================================================================
+--- redhawk-codegen.orig/createBinaryComponent
++++ redhawk-codegen/createBinaryComponent
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ 
+ '''
+ Command-line wrapper to the createOctaveComponent.py's create() method.
+Index: redhawk-codegen/createOctaveComponent
+===================================================================
+--- redhawk-codegen.orig/createOctaveComponent
++++ redhawk-codegen/createOctaveComponent
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ 
+ '''
+ Command-line wrapper to the createOctaveComponent.py's create() method.
+Index: redhawk-codegen/redhawk-codegen
+===================================================================
+--- redhawk-codegen.orig/redhawk-codegen
++++ redhawk-codegen/redhawk-codegen
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.
+Index: redhawk-codegen/update_project
+===================================================================
+--- redhawk-codegen.orig/update_project
++++ redhawk-codegen/update_project
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python2
+ #
+ # This file is protected by Copyright. Please refer to the COPYRIGHT file
+ # distributed with this source distribution.

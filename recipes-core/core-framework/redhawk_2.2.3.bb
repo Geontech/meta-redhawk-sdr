@@ -64,6 +64,7 @@ SRC_URI_append = "\
     file://ThreadedComponent.patch \
     file://signalling.patch \
     file://dlopen_reverse_order.patch \
+    file://bare-python2-references.patch \
 "
 
 S = "${WORKDIR}/git/redhawk/src"
